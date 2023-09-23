@@ -25,7 +25,7 @@ public class DirectorCarrera extends Persona {
     }
 
     public void ponerSancion(Piloto piloto) {
-        piloto.setSancionado(piloto.getSanciones() + 1);
+        piloto.setSanciones(piloto.getSanciones() + 1);
     }
 
     public ArrayList<String> favoresEspeciales(double plata) {
@@ -48,4 +48,5 @@ public class DirectorCarrera extends Persona {
         int sanciones = 0;
         //to-do
         return sanciones;
+    }
 }

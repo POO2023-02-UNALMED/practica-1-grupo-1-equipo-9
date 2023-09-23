@@ -28,4 +28,5 @@ public class Piloto extends Persona {
 	public boolean isDisponible() {return this.disponible;}
 	
 	public ArrayList<String> getVictorias() {return victorias;}
+
 }

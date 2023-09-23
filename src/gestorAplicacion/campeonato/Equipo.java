@@ -3,6 +3,7 @@ package gestorAplicacion.campeonato;
 import java.util.*;
 import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Vehiculo;
+import gestorAplicacion.paddock.Patrocinador;
 
 public class Equipo {
 
@@ -19,7 +20,7 @@ public class Equipo {
     private Piloto piloto2;
 
     // Métodos de instancia
-    public boolean negociar() {
+    public boolean negociar(double cantidad) {
 
         return false;
     }

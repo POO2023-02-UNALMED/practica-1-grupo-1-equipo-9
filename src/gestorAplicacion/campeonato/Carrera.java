@@ -49,7 +49,9 @@ public class Carrera {
 	public void setDificultad(double dificultad) {this.dificultad = dificultad;}
 	public double getDificultad() {return this.dificultad;}
 	
-	public ArrayList<VehiculoCarrera> getListaCarreras() {return posiciones;}
+	public ArrayList<VehiculoCarrera> getPosiciones() {return posiciones;}
+
+
 	
 	
 }

@@ -20,6 +20,14 @@ public class DirectorCarrera extends Persona {
         this.corrupcion = corrupcion;
     }
 
+    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera) {
+        super(nombre, pais);
+        this.plata = plata;
+        this.licencia = licencia;
+        this.carrera = carrera;
+        this.corrupcion = 0;
+    }
+
     public DirectorCarrera() {
         super();
     }
@@ -30,23 +38,70 @@ public class DirectorCarrera extends Persona {
 
     public ArrayList<String> favoresEspeciales(double plata) {
         ArrayList<String> favores = new ArrayList<>();
-        favores.add("Poner sanción");
+        favores.add("Ver stats de competidores");
         favores.add("Cambiar posición inicial");
-        favores.add("Tunear vehículo");
+        favores.add("Comprar partes de contrabando para el vehículo");
         favores.add("Hacer chocar");
         favores.add("Apuestas subterráneas");
-        //to-do
         return favores;
     }
 
-    public int verStatsCompetidores(double plataMetida) {
-        //to-do
-        return 0;
+    public ArrayList<ArrayList<String>> verStatsCompetidores(double plataMetida) {
+        ArrayList<VehiculoCarrera> listaCompetidores = this.carrera.getPosiciones();
+        ArrayList<ArrayList<String>> listaStats = new ArrayList<>();
+        for (VehiculoCarrera vc : listaCompetidores) {
+            ArrayList<String> stats = new ArrayList<>();
+            Piloto piloto = vc.getPiloto();
+            stats.add(piloto.getNombre());
+            stats.add(String.valueOf(piloto.getSanciones()));
+            //stats.add(String.valueOf(piloto.getHabilidad())); preguntar
+            listaStats.add(stats);
+        }
+        return listaStats;
     }
 
     public int cambiarPosIniciales(double plataMetida, int posicion) {
-        int sanciones = 0;
-        //to-do
-        return sanciones;
+        //llamar metodo en carrera
+        return 0;
+    }
+
+    public void comprarPartesContrabando(double plataMetida, VehiculoCarrera vehiculo) {
+        //llamar metodo en vehiculo
+    }
+
+    public void hacerChocar(double plataMetida, VehiculoCarrera vehiculo) {
+        //llamar metodo en vehiculo
+    }
+
+    public double getPlata() {
+        return plata;
+    }
+
+    public void setPlata(double plata) {
+        this.plata = plata;
+    }
+
+    public boolean isLicencia() {
+        return licencia;
+    }
+
+    public void setLicencia(boolean licencia) {
+        this.licencia = licencia;
+    }
+
+    public Carrera getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
+    }
+
+    public int getCorrupcion() {
+        return corrupcion;
+    }
+
+    public void setCorrupcion(int corrupcion) {
+        this.corrupcion = corrupcion;
     }
 }

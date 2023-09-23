@@ -1,5 +1,5 @@
 package gestorAplicacion.campeonato;
 
-public class VehiculoDeCarrera {
+public class VehiculoCarrera {
 
 }

@@ -14,7 +14,7 @@ public class Carrera {
 	private Campeonato campeonato;
 	private double clima; //.05 soleado, .10 lluvia, .15 tormenta (esto es muerte)
 	private double dificultad;
-	private ArrayList<VehiculoDeCarrera> posiciones;
+	private ArrayList<VehiculoCarrera> posiciones;
 
 	
 	
@@ -49,7 +49,7 @@ public class Carrera {
 	public void setDificultad(double dificultad) {this.dificultad = dificultad;}
 	public double getDificultad() {return this.dificultad;}
 	
-	public ArrayList<VehiculoDeCarrera> getListaCarreras() {return posiciones;}
+	public ArrayList<VehiculoCarrera> getListaCarreras() {return posiciones;}
 	
 	
 }

@@ -37,37 +37,93 @@ public class VehiculoCarrera extends Vehiculo {
         this.morido = true;
     }
 
-//    public void cambiarMotor(Pieza motor, double dinero) {
-//        if (dinero >= motor.getPrecio()) {
-//            this.motor = motor;
-//            this.velocidadTuneao = this.velocidad * motor.getVelocidad();
-//        }
-//    }
-    // creo que hay que pasar eso de paquete o no se
-    // preguntar
-
-//    public void cambiarLlantas(Pieza llantas, double dinero) {
-//        if (dinero >= llantas.getPrecio()) {
-//            this.llantas = llantas;
-//            this.probabilidadChoque = this.probabilidadChoque * llantas.getProbabilidadChoque();
-//        }
-//    }
-
-//    public void cambiarAleron(Pieza aleron, double dinero) {
-//        if (dinero >= aleron.getPrecio()) {
-//            this.aleron = aleron;
-//            this.probabilidadChoque = this.probabilidadChoque * aleron.getProbabilidadChoque();
-//        }
-//    }
-
-    public void repararVehiculo(double dinero) {
-        if (dinero >= 100) {
-            this.morido = false;
+    public void cambiarMotor(Pieza motor, double dinero) {
+        if (dinero >= motor.getPrecio()) {
+            this.setMotor(motor);
+            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - motor.getPrecio());
+            this.velocidadTuneao = getVelocidad() + motor.getVelocidadAnadida();
         }
     }
 
-    public void llenarGasolina() {
-        this.gasolina = 100;
+    public void cambiarNeumaticos(Pieza neumaticos, double dinero) {
+        if (dinero >= neumaticos.getPrecio()) {
+            this.setNeumaticos(neumaticos);
+            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - neumaticos.getPrecio());
+            this.probabilidadChoque = this.probabilidadChoque + neumaticos.getManiobrabilidadAnadida();
+        }
+    }
+
+    public void cambiarAleron(Pieza aleron, double dinero) {
+        if (dinero >= aleron.getPrecio()) {
+            this.setAleron(aleron); ;
+            this.probabilidadChoque = this.probabilidadChoque + aleron.getManiobrabilidadAnadida();
+        }
+    }
+
+    public void repararVehiculo(double dinero) {
+        double precio = 100;
+        if (dinero >= precio) { //preguntar precio
+            this.getAleron().arreglar();
+            this.getMotor().arreglar();
+            this.getNeumaticos().arreglar();
+            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - precio);
+        }
+    }
+
+    public void llenarGasolina(double plata ) {
+        double precio = 100;
+        if (plata >= precio) {
+            this.gasolina = 100;
+            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - precio);
+        }
+    }
+
+    public double getDistanciaRecorrida() {
+        return distanciaRecorrida;
+    }
+
+    public void setDistanciaRecorrida(double distanciaRecorrida) {
+        this.distanciaRecorrida = distanciaRecorrida;
+    }
+
+    public boolean isTerminado() {
+        return terminado;
+    }
+
+    public void setTerminado(boolean terminado) {
+        this.terminado = terminado;
+    }
+
+    public boolean isMorido() {
+        return morido;
+    }
+
+    public void setMorido(boolean morido) {
+        this.morido = morido;
+    }
+
+    public double getVelocidadTuneao() {
+        return velocidadTuneao;
+    }
+
+    public void setVelocidadTuneao(double velocidadTuneao) {
+        this.velocidadTuneao = velocidadTuneao;
+    }
+
+    public double getProbabilidadChoque() {
+        return probabilidadChoque;
+    }
+
+    public void setProbabilidadChoque(double probabilidadChoque) {
+        this.probabilidadChoque = probabilidadChoque;
+    }
+
+    public int getGasolina() {
+        return gasolina;
+    }
+
+    public void setGasolina(int gasolina) {
+        this.gasolina = gasolina;
     }
 
     public void setPiloto(Piloto piloto) {this.piloto = piloto;}

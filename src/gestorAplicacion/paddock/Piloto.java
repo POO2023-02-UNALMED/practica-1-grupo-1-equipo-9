@@ -1,7 +1,7 @@
-package gestorAplicación.paddock;
+package gestorAplicacion.paddock;
 
 import java.util.*;
-import gestorAplicación.campeonato.*;
+import gestorAplicacion.campeonato.*;
 
 public class Piloto extends Persona {
 	private Equipo equipo;

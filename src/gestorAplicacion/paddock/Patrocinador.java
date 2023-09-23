@@ -1,6 +1,6 @@
-package gestorAplicación.paddock;
+package gestorAplicacion.paddock;
 
-import gestorAplicación.campeonato.*;
+import gestorAplicacion.campeonato.*;
 
 public class Patrocinador extends Persona{
 	// Atributos

@@ -1,4 +1,4 @@
-package gestorAplicación.paddock;
+package gestorAplicacion.paddock;
 
 public class Persona {
 	// Atributos

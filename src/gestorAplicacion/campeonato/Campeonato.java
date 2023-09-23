@@ -1,4 +1,4 @@
-package gestorAplicación.campeonato;
+package gestorAplicacion.campeonato;
 
 import java.util.*;
 
@@ -18,11 +18,11 @@ public class Campeonato {
 	
 	// Lista de continentes
 	enum Continente {
-		África,
-		América,
+		Africa,
+		America,
 		Asia,
 		Europa,
-		Oceanía}
+		Oceania}
 	
 	// Métodos de instancia
 	

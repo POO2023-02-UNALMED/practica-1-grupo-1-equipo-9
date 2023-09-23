@@ -1,4 +1,4 @@
-package gestorAplicación.campeonato;
+package gestorAplicacion.campeonato;
 
 public class Ciudad {
 	//Atributos
@@ -7,11 +7,11 @@ public class Ciudad {
 	
 	// Lista de continentes
 	enum Continente {
-		África,
-		América,
+		Africa,
+		America,
 		Asia,
 		Europa,
-		Oceanía}
+		Oceania}
 	
 	// Lista de métodos set y get		
 		public void setNombre(String nombre) {this.nombre = nombre;}

@@ -1,4 +1,4 @@
-package gestorAplicación.campeonato;
+package gestorAplicacion.campeonato;
 
 public class VehiculoDeCarrera {
 

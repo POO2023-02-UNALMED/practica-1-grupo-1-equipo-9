@@ -324,9 +324,9 @@ a. Si cambias tu posición más de 2 veces, sanción ⏳
 
 b. Si compras piezas y la velocidad de tu carro por más de un umbral, sanción 🚗💨
 
-c. Si ganas 2 veces seguidas la apuesta, trikiti (sanción por dinero solo la mitad de lo que tienes) 💰👀
+c. Si ganas 2 veces seguidas la apuesta, sanción por dinero solo la mitad de lo que tienes 💰👀
 
-d. Si pierdes al apostar, trikiti (sanción por dinero solo un cuarto de lo que tienes) 💸😞
+d. Si pierdes al apostar, sanción por dinero solo un cuarto de lo que tienes 💸😞
 
 
 ## 🏁 Simulación de Grand Prix 🏎️

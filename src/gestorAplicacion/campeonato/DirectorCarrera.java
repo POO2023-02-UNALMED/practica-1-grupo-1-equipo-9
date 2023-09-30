@@ -1,9 +1,10 @@
 package gestorAplicacion.campeonato;
 
-import java.util.*;
-import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Persona;
-import gestorAplicacion.campeonato.VehiculoCarrera;
+import gestorAplicacion.paddock.Piloto;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class DirectorCarrera extends Persona {
@@ -16,6 +17,7 @@ public class DirectorCarrera extends Persona {
     public DirectorCarrera() {
         super();
     }
+
     public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera) {
         super(nombre, pais);
         this.plata = plata;
@@ -23,6 +25,7 @@ public class DirectorCarrera extends Persona {
         this.carrera = carrera;
         this.corrupcion = 0;
     }
+
     public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera, int corrupcion) {
         super(nombre, pais);
         this.plata = plata;
@@ -99,6 +102,7 @@ public class DirectorCarrera extends Persona {
             equipo.setPlata(equipo.getPlata() + plataMetida * 2); // Se le da el doble de plata al equipo
         }
     }
+
     public double getPlata() {
         return plata;
     }

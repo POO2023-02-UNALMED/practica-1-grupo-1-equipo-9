@@ -1,9 +1,8 @@
 package gestorAplicacion.campeonato;
 
-import java.util.ArrayList;
-import gestorAplicacion.paddock.Vehiculo;
-import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Pieza;
+import gestorAplicacion.paddock.Piloto;
+import gestorAplicacion.paddock.Vehiculo;
 
 
 public class VehiculoCarrera extends Vehiculo {
@@ -55,7 +54,7 @@ public class VehiculoCarrera extends Vehiculo {
 
     public void cambiarAleron(Pieza aleron, double dinero) {
         if (dinero >= aleron.getPrecio()) {
-            this.setAleron(aleron); ;
+            this.setAleron(aleron);
             this.probabilidadChoque = this.probabilidadChoque + aleron.getManiobrabilidadAnadida();
         }
     }
@@ -70,7 +69,7 @@ public class VehiculoCarrera extends Vehiculo {
         }
     }
 
-    public void llenarGasolina(double plata ) {
+    public void llenarGasolina(double plata) {
         double precio = 100;
         if (plata >= precio) {
             this.gasolina = 100;
@@ -126,10 +125,20 @@ public class VehiculoCarrera extends Vehiculo {
         this.gasolina = gasolina;
     }
 
-    public void setPiloto(Piloto piloto) {this.piloto = piloto;}
-    public Piloto getPiloto() {return this.piloto;}
+    public Piloto getPiloto() {
+        return this.piloto;
+    }
 
-    public void setTiempo(double tiempo) {this.tiempo = tiempo;}
-    public double getTiempo() {return this.tiempo;}
+    public void setPiloto(Piloto piloto) {
+        this.piloto = piloto;
+    }
+
+    public double getTiempo() {
+        return this.tiempo;
+    }
+
+    public void setTiempo(double tiempo) {
+        this.tiempo = tiempo;
+    }
 
 }

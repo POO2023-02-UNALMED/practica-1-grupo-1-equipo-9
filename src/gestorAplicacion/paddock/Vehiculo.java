@@ -41,19 +41,36 @@ public class Vehiculo {
     }
     // vamos a usar la interfaz para imprimir los stats lindos en tablas
 
-    public void setMarca(String marca) {this.marca = marca;}
-    public String getMarca() {return this.marca;}
+    public String getMarca() {
+        return this.marca;
+    }
 
-    public void setModelo(String modelo) {this.modelo = modelo;}
-    public String getModelo() {return this.modelo;}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-    public void setAno(int ano) {this.ano = ano;}
-    public int getAno() {return this.ano;}
+    public String getModelo() {
+        return this.modelo;
+    }
 
-    public void setAleron(Pieza aleron) {this.aleron = aleron;}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAno() {
+        return this.ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
 
     public Pieza getAleron() {
         return aleron;
+    }
+
+    public void setAleron(Pieza aleron) {
+        this.aleron = aleron;
     }
 
     public Pieza getNeumaticos() {

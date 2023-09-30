@@ -1,7 +1,9 @@
 package gestorAplicacion.paddock;
 
-import java.util.*;
+import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.VehiculoCarrera;
+
+import java.util.ArrayList;
 
 public class Pieza {
     static int idActual = 0;
@@ -14,6 +16,7 @@ public class Pieza {
     private String nombre;
     private double precio;
 
+    // Constructor
     public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio) {
         this.id = idActual++;
         this.danado = danado;
@@ -21,6 +24,21 @@ public class Pieza {
         this.maniobrabilidadAnadida = maniobrabilidadAnadida;
         this.nombre = nombre;
         this.precio = precio;
+        Pieza.piezas.add(this);
+    }
+
+    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio, boolean contrabando) {
+        this.id = idActual++;
+        this.danado = danado;
+        this.velocidadAnadida = velocidadAnadida;
+        this.maniobrabilidadAnadida = maniobrabilidadAnadida;
+        this.nombre = nombre;
+        this.precio = precio;
+        if (contrabando) {
+            Pieza.piezasContrabando.add(this);
+        } else {
+            Pieza.piezas.add(this);
+        }
     }
 
     public Pieza() {
@@ -30,17 +48,59 @@ public class Pieza {
         this.maniobrabilidadAnadida = 0;
         this.nombre = "";
         this.precio = 0;
+        Pieza.piezas.add(this);
     }
 
+    public static int getIdActual() {
+        return idActual;
+    }
+
+    public static void setIdActual(int idActual) {
+        Pieza.idActual = idActual;
+    }
+
+    public static ArrayList<Pieza> getPiezas() {
+        return piezas;
+    }
+
+    public static void setPiezas(ArrayList<Pieza> piezas) {
+        Pieza.piezas = piezas;
+    }
+
+    public static ArrayList<Pieza> getPiezasContrabando() {
+        return piezasContrabando;
+    }
+
+    public static void setPiezasContrabando(ArrayList<Pieza> piezasContrabando) {
+        Pieza.piezasContrabando = piezasContrabando;
+    }
+
+    // Metodos de clase
+    public void agregarPieza(Pieza pieza) {
+        piezas.add(pieza);
+    }
+
+    public void agregarPiezaContrabando(Pieza pieza) {
+        piezasContrabando.add(pieza);
+    }
+
+    // Metodos de instancia
     public void arreglar() {
         this.danado = false;
     }
 
-    public void comprar(VehiculoCarrera veh) {
-//        veh.setVelocidad(veh.getVelocidad() + this.velocidadAnadida);
-//        veh.setManiobrabilidad(veh.getManiobrabilidad() + this.maniobrabilidadAnadida);
+    public boolean comprar(VehiculoCarrera vehiculoCarrera, Equipo equipo) {
+        if (this.precio <= equipo.getPlata()) {
+            equipo.setPlata(equipo.getPlata() - this.precio);
+            vehiculoCarrera.setVelocidad(vehiculoCarrera.getVelocidad() + this.velocidadAnadida);
+            vehiculoCarrera.setManiobrabilidad(vehiculoCarrera.getManiobrabilidad() + this.maniobrabilidadAnadida);
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    // Getters y setters
     public boolean isDanado() {
         return danado;
     }
@@ -80,5 +140,13 @@ public class Pieza {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

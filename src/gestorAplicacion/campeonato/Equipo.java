@@ -16,8 +16,8 @@ public class Equipo {
     private String pais;
     private double plata;
     private int puntos;
-    private ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>();
-    private ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
+    private ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehículos disponibles
+    private ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>(); // Lista de pilotos disponibles
     private Piloto piloto1;
     private Piloto piloto2;
 

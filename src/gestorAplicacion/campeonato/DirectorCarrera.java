@@ -5,6 +5,7 @@ import gestorAplicacion.paddock.Piloto;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.ToDoubleBiFunction;
 
 
 public class DirectorCarrera extends Persona {
@@ -73,7 +74,7 @@ public class DirectorCarrera extends Persona {
             return this.carrera.getPosiciones();
         } else {
             // Cambiar posiciones metodo carrera
-            //to-do
+            //TODO
             return this.carrera.getPosiciones();
         }
     }
@@ -82,14 +83,14 @@ public class DirectorCarrera extends Persona {
         this.corrupcion += 1;
         //comprar pieza
         //llamar metodo en vehiculo
-        //to-do
+        //TODO
     }
 
 
     public void hacerChocar(double plataMetida, VehiculoCarrera vehiculo) {
         this.corrupcion += 1;
         //llamar metodo en vehiculo
-        //to-do
+        //TODO
     }
 
 

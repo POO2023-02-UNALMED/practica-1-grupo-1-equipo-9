@@ -1,6 +1,6 @@
 package gestorAplicacion.campeonato;
 
-import java.util.ArrayList;
+import java.util.*;
 import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Persona;
 import gestorAplicacion.campeonato.VehiculoCarrera;
@@ -12,6 +12,17 @@ public class DirectorCarrera extends Persona {
     private Carrera carrera;
     private int corrupcion;
 
+    // Constructores
+    public DirectorCarrera() {
+        super();
+    }
+    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera) {
+        super(nombre, pais);
+        this.plata = plata;
+        this.licencia = licencia;
+        this.carrera = carrera;
+        this.corrupcion = 0;
+    }
     public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera, int corrupcion) {
         super(nombre, pais);
         this.plata = plata;
@@ -20,23 +31,13 @@ public class DirectorCarrera extends Persona {
         this.corrupcion = corrupcion;
     }
 
-    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera) {
-        super(nombre, pais);
-        this.plata = plata;
-        this.licencia = licencia;
-        this.carrera = carrera;
-        this.corrupcion = 0;
-    }
-
-    public DirectorCarrera() {
-        super();
-    }
-
+    // Métodos de instancia
     public void ponerSancion(Piloto piloto) {
         piloto.setSanciones(piloto.getSanciones() + 1);
     }
 
-    public ArrayList<String> favoresEspeciales(double plata) {
+    public ArrayList<String> favoresEspeciales(double plata, Equipo equipo) {
+        equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
         ArrayList<String> favores = new ArrayList<>();
         favores.add("Ver stats de competidores");
         favores.add("Cambiar posición inicial");
@@ -46,7 +47,9 @@ public class DirectorCarrera extends Persona {
         return favores;
     }
 
-    public ArrayList<ArrayList<String>> verStatsCompetidores(double plataMetida) {
+    public ArrayList<ArrayList<String>> verStatsCompetidores(double plataMetida, Equipo equipo) {
+        this.corrupcion += 1;
+        equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
         ArrayList<VehiculoCarrera> listaCompetidores = this.carrera.getPosiciones();
         ArrayList<ArrayList<String>> listaStats = new ArrayList<>();
         for (VehiculoCarrera vc : listaCompetidores) {
@@ -54,25 +57,48 @@ public class DirectorCarrera extends Persona {
             Piloto piloto = vc.getPiloto();
             stats.add(piloto.getNombre());
             stats.add(String.valueOf(piloto.getSanciones()));
-            //stats.add(String.valueOf(piloto.getHabilidad())); preguntar
+            stats.add(String.valueOf(piloto.getHabilidad()));
             listaStats.add(stats);
         }
         return listaStats;
     }
 
-    public int cambiarPosIniciales(double plataMetida, int posicion) {
-        //llamar metodo en carrera
-        return 0;
+    public ArrayList<VehiculoCarrera> cambiarPosIniciales(double plataMetida, int posicion, Equipo equipo) {
+        this.corrupcion += 1;
+        equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
+        if (plataMetida < 1000000) {
+            return this.carrera.getPosiciones();
+        } else {
+            // Cambiar posiciones metodo carrera
+            //to-do
+            return this.carrera.getPosiciones();
+        }
     }
 
-    public void comprarPartesContrabando(double plataMetida, VehiculoCarrera vehiculo) {
+    public void tunearShaddy(double plataMetida, int idPieza, VehiculoCarrera vehiculo) {
+        this.corrupcion += 1;
+        //comprar pieza
         //llamar metodo en vehiculo
+        //to-do
     }
+
 
     public void hacerChocar(double plataMetida, VehiculoCarrera vehiculo) {
+        this.corrupcion += 1;
         //llamar metodo en vehiculo
+        //to-do
     }
 
+
+    public void apuestasSub(double plataMetida, int numero, Equipo equipo) {
+        this.corrupcion += 1;
+        equipo.setPlata(equipo.getPlata() - plataMetida); // Se le quita la plata al equipo
+        Random random = new Random(); // Generador de números aleatorios
+        int randomNumber = random.nextInt(15) + 1; // Número aleatorio entre 1 y 15
+        if (numero == randomNumber) {
+            equipo.setPlata(equipo.getPlata() + plataMetida * 2); // Se le da el doble de plata al equipo
+        }
+    }
     public double getPlata() {
         return plata;
     }

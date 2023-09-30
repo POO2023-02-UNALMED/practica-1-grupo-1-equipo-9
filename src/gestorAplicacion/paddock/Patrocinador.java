@@ -1,6 +1,7 @@
 package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.*;
+import java.util.*;
 
 public class Patrocinador extends Persona{
 	// Atributos
@@ -12,9 +13,6 @@ public class Patrocinador extends Persona{
 	// Lista de métodos set y get
 	public void setDinero(double dinero) {this.dinero = dinero;}
 	public double getDinero() {return this.dinero;}
-	
-	public void setDineroOfrecer(double dinero) {this.dineroOfrecer = dinero;}
-	public double getDineroOfrecer() {return this.dineroOfrecer;}
 	
 	public void setProbAceptar(double prob) {this.probAceptar = prob;}
 	public double getProbAceptar() {return this.probAceptar;}

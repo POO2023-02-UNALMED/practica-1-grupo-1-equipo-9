@@ -4,6 +4,10 @@ import java.util.*;
 import gestorAplicacion.campeonato.VehiculoCarrera;
 
 public class Pieza {
+    static int idActual = 0;
+    static ArrayList<Pieza> piezas = new ArrayList<Pieza>();
+    static ArrayList<Pieza> piezasContrabando = new ArrayList<Pieza>();
+    private int id;
     private boolean danado;
     private double velocidadAnadida;
     private double maniobrabilidadAnadida;
@@ -11,6 +15,7 @@ public class Pieza {
     private double precio;
 
     public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio) {
+        this.id = idActual++;
         this.danado = danado;
         this.velocidadAnadida = velocidadAnadida;
         this.maniobrabilidadAnadida = maniobrabilidadAnadida;
@@ -19,6 +24,12 @@ public class Pieza {
     }
 
     public Pieza() {
+        this.id = idActual++;
+        this.danado = false;
+        this.velocidadAnadida = 0;
+        this.maniobrabilidadAnadida = 0;
+        this.nombre = "";
+        this.precio = 0;
     }
 
     public void arreglar() {

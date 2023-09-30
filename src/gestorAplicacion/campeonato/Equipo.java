@@ -19,31 +19,85 @@ public class Equipo {
     private Piloto piloto1;
     private Piloto piloto2;
 
+    // Constructores
+    public Equipo() {
+        this.id = idActual++;
+        this.nombre = "";
+        this.pais = "";
+        this.plata = 0;
+        this.puntos = 0;
+        this.vehiculosDisponibles = null;
+        this.pilotosDisponibles = null;
+        this.piloto1 = null;
+        this.piloto2 = null;
+        Equipo.equipos.add(this);
+    }
+    public Equipo(String nombre, String pais, double plata, int puntos, ArrayList<Vehiculo> vehiculosDisponibles, ArrayList<Piloto> pilotosDisponibles) {
+        this.id = idActual++;
+        this.nombre = nombre;
+        this.pais = pais;
+        this.plata = plata;
+        this.puntos = puntos;
+        this.vehiculosDisponibles = vehiculosDisponibles;
+        this.pilotosDisponibles = pilotosDisponibles;
+        this.piloto1 = null;
+        this.piloto2 = null;
+        Equipo.equipos.add(this);
+    }
+
     // Métodos de instancia
-    public boolean negociar(double cantidad) {
-
-        return false;
-    }
-
-    public double bajarPatrocinio() {
-        return 0;
-    }
-
-    public double subirPatrocinio() {
-        return 0;
-    }
-
-    public Piloto elegirPiloto1(int id) {
-        return null;
-    }
-
-    public Piloto elegirPiloto2(int id) {
-        return null;
+    public boolean negociar(double cantidad, Patrocinador patrocinador) {
+        double probabilidad = patrocinador.getProbAceptar(); // Probabilidad de aceptar
+        Random random = new Random(); // Generador de números aleatorios
+        double numeroRandom = random.nextDouble(); // Número aleatorio entre 0 y 1
+        if (numeroRandom < probabilidad) { // Si el número aleatorio es menor a la probabilidad de aceptar
+            patrocinador.setDinero(patrocinador.getDinero() - cantidad);
+            this.setPlata(this.getPlata() + cantidad);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Métodos de clase
     public static ArrayList<Equipo> getEquipos() {
         return null;
+    }
+    public static void setEquipos(ArrayList<Equipo> equipos) {
+        Equipo.equipos = equipos;
+    }
+
+    //Metodos de instancia
+    //Sobrecarga para negociar con probabilidad
+    public boolean negociar(double cantidad, Patrocinador patrocinador, double probabilidad) {
+        probabilidad = probabilidad+ patrocinador.getProbAceptar(); // Probabilidad de aceptar
+        Random random = new Random();   // Generador de números aleatorios
+        double numeroRandom = random.nextDouble(); // Número aleatorio entre 0 y 1
+        if (numeroRandom < probabilidad) { // Si el número aleatorio es menor a la probabilidad de aceptar
+            patrocinador.setDinero(patrocinador.getDinero() - cantidad);
+            this.setPlata(this.getPlata() + cantidad);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean bajarPatrocinio(double cantidad, Patrocinador patrocinador) {
+        return this.negociar(cantidad, patrocinador,0.3); // Aumenta probabilidad de aceptar
+    }
+    public boolean subirPatrocinio(double cantidad, Patrocinador patrocinador) {
+        return this.negociar(cantidad, patrocinador, -0.2); // Disminuye probabilidad de aceptar
+    }
+    public Piloto elegirPiloto1(int id) {
+        return null;
+    }
+    public Piloto elegirPiloto2(int id) {
+        return null;
+    }
+    public void agregarPiloto(Piloto piloto) {
+        this.pilotosDisponibles.add(piloto);
+    }
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        this.vehiculosDisponibles.add(vehiculo);
     }
 
     // Lista de métodos set y get
@@ -104,17 +158,5 @@ public class Equipo {
         return this.piloto2;
     }
 
-    // Constructor
-    public Equipo(String nombre, String pais, double plata, int puntos, ArrayList<Vehiculo> vehiculosDisponibles, ArrayList<Piloto> pilotosDisponibles, Piloto piloto1, Piloto piloto2) {
-        this.id = idActual++;
-        this.nombre = nombre;
-        this.pais = pais;
-        this.plata = plata;
-        this.puntos = puntos;
-        this.vehiculosDisponibles = vehiculosDisponibles;
-        this.pilotosDisponibles = pilotosDisponibles;
-        this.piloto1 = piloto1;
-        this.piloto2 = piloto2;
-        Equipo.equipos.add(this);
-    }
+
 }

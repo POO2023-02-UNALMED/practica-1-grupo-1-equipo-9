@@ -174,9 +174,9 @@ Métodos:
 - `Piloto elegirPiloto2(int id)`: Elige al piloto2 por ID.
 
 
-***
+##
 
-📝 Linea de Funcionalidades
+# 📝 Linea de Funcionalidades
 
 ## Preparar Campeonato 🏆
 

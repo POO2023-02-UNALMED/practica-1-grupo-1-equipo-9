@@ -9,29 +9,14 @@ public class Patrocinador extends Persona {
     private double probAceptar;
     private Equipo equipoPatrocinado;
 
-    public double getDinero() {
-        return this.dinero;
-    }
-
     // Lista de métodos set y get
-    public void setDinero(double dinero) {
-        this.dinero = dinero;
-    }
+    public double getDinero() {return this.dinero;}
+    public void setDinero(double dinero) {this.dinero = dinero;}
 
-    public double getProbAceptar() {
-        return this.probAceptar;
-    }
+    public double getProbAceptar() {return this.probAceptar;}
+    public void setProbAceptar(double prob) {this.probAceptar = prob;}
 
-    public void setProbAceptar(double prob) {
-        this.probAceptar = prob;
-    }
-
-    public Equipo getEquipo() {
-        return this.equipoPatrocinado;
-    }
-
-    public void setEquipo(Equipo equipo) {
-        this.equipoPatrocinado = equipo;
-    }
+    public Equipo getEquipo() {return this.equipoPatrocinado;}
+    public void setEquipo(Equipo equipo) {this.equipoPatrocinado = equipo;}
 
 }

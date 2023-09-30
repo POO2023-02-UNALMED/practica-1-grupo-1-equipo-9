@@ -1,60 +1,51 @@
 package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Equipo;
-
 import java.util.ArrayList;
 
 public class Piloto extends Persona {
-    private Equipo equipo;
-    private int puntos;
+	private Equipo equipo;
+    private int puntos; //Puntos en el campeonato 
     private int sanciones;
     private double habilidad; //Probabilidad de chocarse
     private boolean disponible;
     private ArrayList<String> victorias;
 
-    public Equipo getEquipo() {
-        return this.equipo;
+    //Constructores
+    public Piloto(String nombre, String pais, Equipo equipo, double habilidad) {
+    	super(nombre,pais);
+    	this.equipo=equipo;
+    	this.habilidad=habilidad;
+    	equipo.agregarPiloto(this);
     }
-
+    
+    //Atributos de instancia
+    public void sumarPuntos(int puntos) {
+    	this.puntos+=puntos;
+    }
+    
+    public void agregarVictoria(String victoria) {
+    	victorias.add(victoria);
+    }
+    
+    //Atributos de clase 
+    
     // Lista de métodos set y get
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
-    }
+    public Equipo getEquipo() {return this.equipo;}
+    public void setEquipo(Equipo equipo) {this.equipo = equipo;}
 
-    public int getPuntos() {
-        return this.puntos;
-    }
+    public int getPuntos() {return this.puntos;}
+    public void setPuntos(int puntos) {this.puntos = puntos;}
 
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
-    }
+    public int getSanciones() {return this.sanciones;}
+    public void setSanciones(int sanciones) {this.sanciones = sanciones;}
 
-    public int getSanciones() {
-        return this.sanciones;
-    }
+    public double getHabilidad() {return this.habilidad;}
+    public void setHabilidad(double hab) {this.habilidad = hab;}
 
-    public void setSanciones(int sanciones) {
-        this.sanciones = sanciones;
-    }
+    public boolean isDisponible() {return this.disponible;}
+    public void setDisponible(boolean disp) {this.disponible = disp;}
 
-    public double getHabilidad() {
-        return this.habilidad;
-    }
-
-    public void setHabilidad(double hab) {
-        this.habilidad = hab;
-    }
-
-    public boolean isDisponible() {
-        return this.disponible;
-    }
-
-    public void setDisponible(boolean disp) {
-        this.disponible = disp;
-    }
-
-    public ArrayList<String> getVictorias() {
-        return victorias;
-    }
+    public ArrayList<String> getVictorias() {return victorias;}
 
 }

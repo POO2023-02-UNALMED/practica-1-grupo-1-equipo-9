@@ -15,6 +15,12 @@ public class Persona {
         Persona.idActual++;
     }
     
+    public Persona(String nombre) {
+    	this.id = Persona.getIdActual();
+    	this.nombre = nombre;
+        Persona.idActual++;
+    }
+    
     public Persona() {
         this.id = Persona.getIdActual();
         Persona.idActual++;

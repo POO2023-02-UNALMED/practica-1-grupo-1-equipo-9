@@ -25,7 +25,7 @@ public class Ciudad {
     public static ArrayList<Ciudad> getListaCiudades() {
     	return listaCiudades;
     }
-    public static Continente convertirContinente(char id) {
+    public static Continente convertirContinente(char id) { //Convierte un caracter del 1 al 5 en su continente correspondiente 
     	Continente continente = null;
     	switch(id) {
     	case 1:

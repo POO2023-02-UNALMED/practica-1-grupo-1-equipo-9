@@ -58,40 +58,24 @@ public class Equipo {
     }
 
     // Métodos de instancia
-    public boolean negociar(double cantidad, Patrocinador patrocinador) {
-        double probabilidad = patrocinador.getProbAceptar(); // Probabilidad de aceptar
-        Random random = new Random(); // Generador de números aleatorios
-        double numeroRandom = random.nextDouble(); // Número aleatorio entre 0 y 1
-        if (numeroRandom < probabilidad) { // Si el número aleatorio es menor a la probabilidad de aceptar
-            patrocinador.setDinero(patrocinador.getDinero() - cantidad);
-            this.setPlata(this.getPlata() + cantidad);
-            return true;
-        } else {
-            return false;
-        }
+    public void negociar(Patrocinador patrocinador) {//Esto es para aceptar las probabilidades de que acepte un patrocinador
+    	boolean patrocinado=patrocinador.pensarNegocio(this);
+    	if (patrocinado) {System.out.println("¡Se ha patrocinado a tu equipo!");} 
+    	else {System.out.println("No se ha patrocinado a tu equipo :(");}
     }
-
-    //Metodos de instancia
-    //Sobrecarga para negociar con probabilidad
-    public boolean negociar(double cantidad, Patrocinador patrocinador, double probabilidad) {
-        probabilidad = probabilidad + patrocinador.getProbAceptar(); // Probabilidad de aceptar
-        Random random = new Random();   // Generador de números aleatorios
-        double numeroRandom = random.nextDouble(); // Número aleatorio entre 0 y 1
-        if (numeroRandom < probabilidad) { // Si el número aleatorio es menor a la probabilidad de aceptar
-            patrocinador.setDinero(patrocinador.getDinero() - cantidad);
-            this.setPlata(this.getPlata() + cantidad);
-            return true;
-        } else {
-            return false;
-        }
+    
+    public void negociar(double cantidad, Patrocinador patrocinador) {//Sobrecarga para cambiar el dinero que se le pide al patrocinador. A menor cantidad, mayor probabilidad de aceptar.
+        if (cantidad<0) {System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");} 
+        else if (cantidad==0) {System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");}
+        else if (cantidad>patrocinador.getDinero()){
+        	patrocinador.setPatrocinando(true);
+        	System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!");
+        	}
+        else {this.negociar(patrocinador);} 
     }
-
-    public boolean bajarPatrocinio(double cantidad, Patrocinador patrocinador) {
-        return this.negociar(cantidad, patrocinador, 0.3); // Aumenta probabilidad de aceptar
-    }
-
-    public boolean subirPatrocinio(double cantidad, Patrocinador patrocinador) {
-        return this.negociar(cantidad, patrocinador, -0.2); // Disminuye probabilidad de aceptar
+    
+    public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {//Sobrecarga: Esto es para ver si algún equipo que no es elegido por el usuario es patrocinado por algún patrocinador
+    	patrocinador.pensarNegocio(this);
     }
 
     public Piloto elegirPiloto1(int id) {
@@ -110,11 +94,13 @@ public class Equipo {
         this.vehiculosDisponibles.add(vehiculo);
     }
 
+
+
+    // Lista de métodos set y get
     public int getId() {
         return this.id;
     }
-
-    // Lista de métodos set y get
+    
     public void setId(int id) {
         this.id = id;
     }

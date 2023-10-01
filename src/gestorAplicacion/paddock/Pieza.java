@@ -16,7 +16,7 @@ public class Pieza {
     private String nombre;
     private double precio;
 
-    // Constructor
+    // Constructores
     public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio) {
         this.id = idActual++;
         this.danado = danado;

@@ -2,25 +2,26 @@ package gestorAplicacion.campeonato;
 
 import java.util.ArrayList;
 import gestorAplicacion.campeonato.Ciudad.Continente;
+import java.util.Random;
 
 public class Carrera {
-    // Atributos
+    //Atributos
     private static int idActual=1;
 	private int id;
     private String nombreCircuito;
-    private int mes;
-    private double distancia;
-    private double premioEfectivo;
+    private int mes; //El mes determina el orden de la carrera
+    private double distancia; //Distancia de la carrera
+    private double premioEfectivo; //Este premio se distribuye entre los 3 primeros puestos
     private Ciudad ciudad;
-    private DirectorCarrera directorCarrera;
+    private DirectorCarrera directorCarrera; 
     private static Campeonato campeonato;
-    private double clima; //.05 soleado, .10 lluvia, .15 tormenta (esto es muerte)
-    private double dificultad;
+    private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
+    private double dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
     
     private ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
     
     //Constructores
-    public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double clima, double dificultad) {
+    public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double dificultad) {
     	this.id = idActual;
     	Carrera.idActual++;
     	this.nombreCircuito=nombre;
@@ -29,13 +30,16 @@ public class Carrera {
     	this.premioEfectivo=premio;
     	this.ciudad=ciudad;
     	this.directorCarrera=director;
-    	this.clima=clima;
     	this.dificultad=dificultad;
-    	
+    	Random rand = new Random();
+    	double lowerBound=0.0;
+    	double upperBound=0.2;
+    	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
+    	this.clima=numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
     
     //Metodos de instancia
-    public void iniciarCarrera() {}
+    public void iniciarCarrera() {}//Inicializa la carrera
     
     //Metodos de clase
     public static ArrayList<Ciudad> mostrarCiudadesDisponibles() {

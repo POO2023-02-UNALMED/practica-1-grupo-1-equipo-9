@@ -1,6 +1,7 @@
 package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Equipo;
+import gestorAplicacion.campeonato.Campeonato;
 import java.util.ArrayList;
 
 public class Piloto extends Persona {
@@ -24,8 +25,8 @@ public class Piloto extends Persona {
     	this.puntos+=puntos;
     }
     
-    public void agregarVictoria(String victoria) {
-    	victorias.add(victoria);
+    public void agregarVictoria(Campeonato campeonato) {
+    	victorias.add(campeonato.toString());
     }
     
     //Atributos de clase 

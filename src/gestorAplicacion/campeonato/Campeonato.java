@@ -21,7 +21,6 @@ public class Campeonato {
     public static Equipo equipoElegido; //Este es el equipo que tiene el ususario
     public static Campeonato campeonatoElegido; //Campeonato que elije el usuario
 
-
     //Constructores
     public Campeonato(String nombre, int ano, Continente continente, int cantCarreras) { //Cuando se inicialice cada campeonato, se le pasa el nombre y el continente
     	this.id = idActual;

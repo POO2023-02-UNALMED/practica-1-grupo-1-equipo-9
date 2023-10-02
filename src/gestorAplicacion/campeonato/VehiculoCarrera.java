@@ -12,22 +12,22 @@ public class VehiculoCarrera extends Vehiculo {
     private double distanciaRecorrida; //Se usa sólo dentro del ciclo, se calcula en cada iteración para obtener la posición actual
     private boolean terminado; // Mira si terminó la carrera. Si se choca, esto pasa a true.
     private boolean morido; // Si está morido, lo manda al final de la lista de posiciones.
-    private double velocidadTuneao;
+    private double velocidadTuneao; //Velocidad del vehículo + velocidad de las piezas
     private double probabilidadChoque;
     private int gasolina;
+    public static VehiculoCarrera usuarioVehiculo;
 
-    // aqui podriamos usar eso de especializar - herencia
-
-//    public VehiculoCarrera(String nombre, String color, int numero, double velocidad, double velocidadTuneao, double probabilidadChoque, int gasolina) {
-//        super(nombre, color, numero, velocidad);
-//        this.tiempo = 0;
-//        this.distanciaRecorrida = 0;
-//        this.terminado = false;
-//        this.morido = false;
-//        this.velocidadTuneao = velocidadTuneao;
-//        this.probabilidadChoque = probabilidadChoque;
-//        this.gasolina = gasolina;
-//    }
+    public VehiculoCarrera(String marca, String modelo, int ano, Pieza aleron, Pieza neumaticos, Pieza motor, double velocidad, double maniobrabilidad, double precioUtilizar, Piloto piloto) {
+        super(marca, modelo, ano, aleron, neumaticos, motor, velocidad, maniobrabilidad, precioUtilizar);
+        this.piloto = piloto;
+        this.tiempo = 0;
+        this.distanciaRecorrida = 0;
+        this.terminado = false;
+        this.morido = false;
+        this.velocidadTuneao = velocidad + motor.getVelocidadAnadida();
+        this.probabilidadChoque = maniobrabilidad + neumaticos.getManiobrabilidadAnadida() + aleron.getManiobrabilidadAnadida();
+        this.gasolina = 100;
+    }
 
     //Métodos
     public void chocar() { //Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
@@ -36,46 +36,55 @@ public class VehiculoCarrera extends Vehiculo {
         this.morido = true;
     }
 
-    public void cambiarMotor(Pieza motor, double dinero) {
-        if (dinero >= motor.getPrecio()) {
-            this.setMotor(motor);
-            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - motor.getPrecio());
-            this.velocidadTuneao = getVelocidad() + motor.getVelocidadAnadida();
+    public void cambiarMotor(Pieza pieza) {
+        if (Campeonato.equipoElegido.getPlata() >= pieza.getPrecio()) {
+            Campeonato.equipoElegido.setPlata(Campeonato.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
+            this.setMotor(pieza); //Cambiar motor
+            this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }
 
-    public void cambiarNeumaticos(Pieza neumaticos, double dinero) {
-        if (dinero >= neumaticos.getPrecio()) {
-            this.setNeumaticos(neumaticos);
-            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - neumaticos.getPrecio());
-            this.probabilidadChoque = this.probabilidadChoque + neumaticos.getManiobrabilidadAnadida();
+    public void cambiarNeumaticos(Pieza pieza, double dinero) {
+        if (Campeonato.equipoElegido.getPlata() >= pieza.getPrecio()) {
+            Campeonato.equipoElegido.setPlata(Campeonato.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
+            this.setNeumaticos(pieza); //Cambiar neumáticos
+            this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }
 
-    public void cambiarAleron(Pieza aleron, double dinero) {
-        if (dinero >= aleron.getPrecio()) {
-            this.setAleron(aleron);
-            this.probabilidadChoque = this.probabilidadChoque + aleron.getManiobrabilidadAnadida();
+    public void cambiarAleron(Pieza pieza) {
+        if (Campeonato.equipoElegido.getPlata() >= pieza.getPrecio()) {
+            Campeonato.equipoElegido.setPlata(Campeonato.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
+            this.setAleron(pieza); //Cambiar alerón
+            this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }
 
-    public void repararVehiculo(double dinero) {
-        double precio = 100;
-        if (dinero >= precio) { //preguntar precio
+    public void repararVehiculo() {
+        double precio = 100; //preguntar precio
+        if (Campeonato.equipoElegido.getPlata() >= precio) {
+            Campeonato.equipoElegido.setPlata(this.piloto.getEquipo().getPlata() - precio); // Cobrar
+            //Arreglar piezas
             this.getAleron().arreglar();
             this.getMotor().arreglar();
             this.getNeumaticos().arreglar();
-            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - precio);
         }
     }
 
-    public void llenarGasolina(double plata) {
-        double precio = 100;
-        if (plata >= precio) {
-            this.gasolina = 100;
-            this.piloto.getEquipo().setPlata(this.piloto.getEquipo().getPlata() - precio);
-        }
+    public void llenarGasolina() {
+        this.gasolina = 100; //Llenar gasolina al 100%
     }
+
+    public void actualizarVelocidadT() { //Actualiza la velocidad tuneada para cuando se cambie una pieza
+        this.velocidadTuneao = this.getVelocidad() + this.getMotor().getVelocidadAnadida() + this.getNeumaticos().getVelocidadAnadida() + this.getAleron().getVelocidadAnadida();
+    }
+
+    // Ligadura Dinamica
+    public void morir() {
+        Vehiculo vehiculo = this;
+    }
+
+    // Getters y setters
 
     public double getDistanciaRecorrida() {
         return distanciaRecorrida;

@@ -1,5 +1,10 @@
 package gestorAplicacion.paddock;
 
+import gestorAplicacion.campeonato.Equipo;
+import gestorAplicacion.campeonato.VehiculoCarrera;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Vehiculo {
     private String marca;
@@ -36,39 +41,101 @@ public class Vehiculo {
         this.maniobrabilidad = 0;
         this.precioUtilizar = 0;
     }
-    
+
     //Metodos de instancia
     public String toString() {
         return "Marca: " + this.marca + "\nModelo: " + this.modelo + "\nAño: " + this.ano + "\nAlerón: " + this.aleron.toString() + "\nNeumáticos: " + this.neumaticos.toString() + "\nMotor: " + this.motor.toString() + "\nVelocidad: " + this.velocidad + "\nManiobrabilidad: " + this.maniobrabilidad + "\nPrecio de utilización: " + this.precioUtilizar;
+    } // vamos a usar la interfaz para imprimir los stats lindos en tablas
+
+    //comprar vehiculo: se crea el vehiculo de carrera
+    public void comprar(Piloto piloto) {
+        Equipo equipo = piloto.getEquipo();
+        if (equipo.getPlata() >= this.precioUtilizar) {
+            equipo.setPlata(equipo.getPlata() - this.precioUtilizar);
+            VehiculoCarrera vehiculoCarrera = new VehiculoCarrera(this.marca, this.modelo, this.ano, this.aleron, this.neumaticos, this.motor, this.velocidad, this.maniobrabilidad, this.precioUtilizar, piloto);
+            equipo.getVehiculosDisponibles().add(vehiculoCarrera);
+        }
     }
-    
-    // vamos a usar la interfaz para imprimir los stats lindos en tablas
+
+    // Metodo que se usa para ligadura dinamica
+    public void morir() {
+        this.setVelocidad(0);
+        this.setManiobrabilidad(0);
+        this.getAleron().setDanado(true);
+        this.getNeumaticos().setDanado(true);
+        this.getMotor().setDanado(true);
+    }
 
     //Metodos get y set
-    public String getMarca() {return this.marca;}
-    public void setMarca(String marca) {this.marca = marca;}
+    public String getMarca() {
+        return this.marca;
+    }
 
-    public String getModelo() {return this.modelo;}
-    public void setModelo(String modelo) {this.modelo = modelo;}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-    public int getAno() {return this.ano;}
-    public void setAno(int ano) {this.ano = ano;}
+    public String getModelo() {
+        return this.modelo;
+    }
 
-    public Pieza getAleron() {return aleron;}
-    public void setAleron(Pieza aleron) {this.aleron = aleron;}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-    public Pieza getNeumaticos() {return neumaticos;}
-    public void setNeumaticos(Pieza neumaticos) {this.neumaticos = neumaticos;}
+    public int getAno() {
+        return this.ano;
+    }
 
-    public Pieza getMotor() {return motor;}
-    public void setMotor(Pieza motor) {this.motor = motor;}
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
 
-    public double getVelocidad() {return velocidad;}
-    public void setVelocidad(double velocidad) {this.velocidad = velocidad;}
+    public Pieza getAleron() {
+        return aleron;
+    }
 
-    public double getManiobrabilidad() {return maniobrabilidad;}
-    public void setManiobrabilidad(double maniobrabilidad) {this.maniobrabilidad = maniobrabilidad;}
+    public void setAleron(Pieza aleron) {
+        this.aleron = aleron;
+    }
 
-    public double getPrecioUtilizar() {return precioUtilizar;}
-    public void setPrecioUtilizar(double precioUtilizar) {this.precioUtilizar = precioUtilizar;}
+    public Pieza getNeumaticos() {
+        return neumaticos;
+    }
+
+    public void setNeumaticos(Pieza neumaticos) {
+        this.neumaticos = neumaticos;
+    }
+
+    public Pieza getMotor() {
+        return motor;
+    }
+
+    public void setMotor(Pieza motor) {
+        this.motor = motor;
+    }
+
+    public double getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(double velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public double getManiobrabilidad() {
+        return maniobrabilidad;
+    }
+
+    public void setManiobrabilidad(double maniobrabilidad) {
+        this.maniobrabilidad = maniobrabilidad;
+    }
+
+    public double getPrecioUtilizar() {
+        return precioUtilizar;
+    }
+
+    public void setPrecioUtilizar(double precioUtilizar) {
+        this.precioUtilizar = precioUtilizar;
+    }
 }

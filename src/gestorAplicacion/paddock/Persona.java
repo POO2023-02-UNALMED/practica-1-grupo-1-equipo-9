@@ -1,6 +1,6 @@
 package gestorAplicacion.paddock;
 
-public class Persona {
+public abstract class Persona {
     // Atributos
     static int idActual = 1;
     private int id;

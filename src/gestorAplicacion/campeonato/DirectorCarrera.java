@@ -9,7 +9,10 @@ import java.util.function.ToDoubleBiFunction;
 
 
 public class DirectorCarrera extends Persona {
-    private double plata;
+    //Lista directores de carrera
+    private ArrayList<DirectorCarrera> listaDirectores= new ArrayList<DirectorCarrera>(); 
+	
+	private double plata;
     private boolean licencia;
     private Carrera carrera;
     private int corrupcion;

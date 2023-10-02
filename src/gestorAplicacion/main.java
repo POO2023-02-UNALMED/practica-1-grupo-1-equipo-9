@@ -9,6 +9,7 @@ import gestorAplicacion.paddock.*;
 public class main {
 
     public static void main(String[] args) {
+    	//Para hacer pruebas
     	Random rand = new Random();
     	double lowerBound=0.2;
     	double upperBound=0.8;

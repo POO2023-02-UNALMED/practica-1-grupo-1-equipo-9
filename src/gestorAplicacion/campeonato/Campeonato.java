@@ -9,7 +9,6 @@ public class Campeonato {
     
 	//Listas de carreras y equipos
 	private ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
-    private static ArrayList<Equipo> listaEquipos = new ArrayList<Equipo>(); //Los equipos participantes se deben de colocar en esta lista
     
     // Atributos
     private static int idActual = 1;
@@ -47,9 +46,7 @@ public class Campeonato {
     }
     
 
-    //Metodos de clase
-    public static ArrayList<Equipo> getListaEquipos() {return listaEquipos;}
-    
+    //Metodos de clase    
     public static ArrayList<Campeonato> getCampeonatos() {return campeonatos;}
     
     public static void elegirCampeonato(Campeonato campeonato) {

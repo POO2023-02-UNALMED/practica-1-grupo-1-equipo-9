@@ -12,7 +12,7 @@ public class Ciudad {
     
     //Constructores
     public Ciudad(String nombre, Continente continente) {
-    	this.nombre=nombre; 
+    	this.nombre=nombre;
     	this.continente=continente;
     	}
     
@@ -56,7 +56,7 @@ public class Ciudad {
 
 
     // Lista de continentes
-    enum Continente {
+    public enum Continente {
         Africa, America, Asia, Europa, Oceania
     }
 }

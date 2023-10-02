@@ -29,6 +29,7 @@ public class Carrera {
     	this.premioEfectivo=premio;
     	this.ciudad=ciudad;
     	this.directorCarrera=director;
+        director.setCarrera(this);
     	this.dificultad=dificultad;
     	Random rand = new Random();
     	double lowerBound=0.0;

@@ -4,6 +4,7 @@ package gestorAplicacion;
 import java.util.*;
 import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
+import gestorAplicacion.campeonato.Ciudad.Continente;
 
 
 public class main {
@@ -15,5 +16,10 @@ public class main {
     	double upperBound=0.8;
     	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble(); //Generating a number within certain bouns
     	System.out.println(numRandom);
-    }
+
+
+
+
+
+	}
 }

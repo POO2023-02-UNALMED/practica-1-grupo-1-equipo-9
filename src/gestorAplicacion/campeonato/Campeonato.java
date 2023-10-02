@@ -30,6 +30,14 @@ public class Campeonato {
     	this.continente = continente;
     	this.cantidadMaxCarreras = cantCarreras;
     }
+    // Sin ano
+    public Campeonato(String nombre, Continente continente, int cantCarreras) { //Cuando se inicialice cada campeonato, se le pasa el nombre y el continente
+        this.id = idActual;
+        Campeonato.idActual++;
+        this.nombre = nombre;
+        this.continente = continente;
+        this.cantidadMaxCarreras = cantCarreras;
+    }
     
     // Metodos de instancia
     public String toString() {

@@ -22,11 +22,10 @@ public class DirectorCarrera extends Persona {
         super();
     }
 
-    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera) {
+    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia) {
         super(nombre, pais);
         this.plata = plata;
         this.licencia = licencia;
-        this.carrera = carrera;
         this.corrupcion = 0;
     }
 

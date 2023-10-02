@@ -5,7 +5,6 @@ import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Vehiculo;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Equipo {
 
@@ -58,24 +57,32 @@ public class Equipo {
     }
 
     // Métodos de instancia
-    public void negociar(Patrocinador patrocinador) {//Esto es para aceptar las probabilidades de que acepte un patrocinador
-    	boolean patrocinado=patrocinador.pensarNegocio(this);
-    	if (patrocinado) {System.out.println("¡Se ha patrocinado a tu equipo!");} 
-    	else {System.out.println("No se ha patrocinado a tu equipo :(");}
+    public void negociar(Patrocinador patrocinador) {
+        //Esto es para aceptar las probabilidades de que acepte un patrocinador
+        boolean patrocinado = patrocinador.pensarNegocio(this);
+        if (patrocinado) {
+            System.out.println("¡Se ha patrocinado a tu equipo!");
+        } else {
+            System.out.println("No se ha patrocinado a tu equipo :(");
+        }
     }
-    
+
     public void negociar(double cantidad, Patrocinador patrocinador) {//Sobrecarga para cambiar el dinero que se le pide al patrocinador. A menor cantidad, mayor probabilidad de aceptar.
-        if (cantidad<0) {System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");} 
-        else if (cantidad==0) {System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");}
-        else if (cantidad>patrocinador.getDinero()){
-        	patrocinador.setPatrocinando(true);
-        	System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!");
-        	}
-        else {this.negociar(patrocinador);} 
+        if (cantidad < 0) {
+            System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
+        } else if (cantidad == 0) {
+            System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
+        } else if (cantidad > patrocinador.getDinero()) {
+            patrocinador.setPatrocinando(true);
+            System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!");
+        } else {
+            this.negociar(patrocinador);
+        }
     }
-    
-    public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {//Sobrecarga: Esto es para ver si algún equipo que no es elegido por el usuario es patrocinado por algún patrocinador
-    	patrocinador.pensarNegocio(this);
+
+    public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {
+        //Sobrecarga: Esto es para ver si algún equipo que no es elegido por el usuario es patrocinado por algún patrocinador
+        patrocinador.pensarNegocio(this);
     }
 
     public Piloto elegirPiloto1(int id) {
@@ -95,12 +102,11 @@ public class Equipo {
     }
 
 
-
     // Lista de métodos set y get
     public int getId() {
         return this.id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }

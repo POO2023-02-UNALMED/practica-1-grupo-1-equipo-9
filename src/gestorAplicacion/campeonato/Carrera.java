@@ -17,7 +17,6 @@ public class Carrera {
     private static Campeonato campeonato;
     private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
     private double dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
-    
     private ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
     
     //Constructores
@@ -85,7 +84,4 @@ public class Carrera {
     public void setDificultad(double dificultad) {this.dificultad = dificultad;}
 
     public ArrayList<VehiculoCarrera> getPosiciones() {return posiciones;}
-    
-
-
 }

@@ -24,9 +24,10 @@ public class VehiculoCarrera extends Vehiculo {
         this.distanciaRecorrida = 0;
         this.terminado = false;
         this.morido = false;
-        this.velocidadTuneao = velocidad + motor.getVelocidadAnadida();
+        this.velocidadTuneao = 0;
         this.probabilidadChoque = maniobrabilidad + neumaticos.getManiobrabilidadAnadida() + aleron.getManiobrabilidadAnadida();
         this.gasolina = 100;
+        this.actualizarVelocidadT();
     }
 
     //Métodos

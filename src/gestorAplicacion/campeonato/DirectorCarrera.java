@@ -3,6 +3,7 @@ package gestorAplicacion.campeonato;
 import gestorAplicacion.paddock.Persona;
 import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Pieza;
+import gestorAplicacion.campeonato.VehiculoCarrera;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -93,35 +94,42 @@ public class DirectorCarrera extends Persona {
         Equipo equipo = Equipo.equipoElegido;
         if (Equipo.equipoElegido.getPlata() >= precio) {
             this.corrupcion += 1;
-            equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
+            equipo.setPlata(equipo.getPlata() - precio); // Se le quita la plata al equipo
             switch (parte) {
                 case 1: // Neuamaticos
-                    VehiculoCarrera.usuarioVehiculo.setNeumaticos(pieza);
+                    VehiculoCarrera.vehiculoElegido.setNeumaticos(pieza);
                     break;
                 case 2: // Motor
-                    VehiculoCarrera.usuarioVehiculo.setMotor(pieza);
+                    VehiculoCarrera.vehiculoElegido.setMotor(pieza);
                     break;
                 case 3: // Aleron
-                    VehiculoCarrera.usuarioVehiculo.setAleron(pieza);
+                    VehiculoCarrera.vehiculoElegido.setAleron(pieza);
                     break;
             }
         }
     }
 
-    public void hacerChocar(double plataMetida, VehiculoCarrera vehiculo) {
-        this.corrupcion += 1;
-        //llamar metodo en vehiculo
-        //TODO
+    //Para hacer chocar primero hay que elegir a quien se va a chocar de la lista de puestos
+    public void hacerChocar(VehiculoCarrera vehiculo) {
+        double precio = 1000000;
+        if (Equipo.equipoElegido.getPlata() >= precio) {
+            this.corrupcion += 1;
+            Equipo.equipoElegido.setPlata(Equipo.equipoElegido.getPlata() - precio); // Cobrar
+            vehiculo.chocar();
+        }
     }
 
-
-    public void apuestasSub(double plataMetida, int numero, Equipo equipo) {
+    public boolean apuestasSub(double plataMetida, int numero) {
         this.corrupcion += 1;
+        Equipo equipo = Equipo.equipoElegido;
         equipo.setPlata(equipo.getPlata() - plataMetida); // Se le quita la plata al equipo
         Random random = new Random(); // Generador de números aleatorios
         int randomNumber = random.nextInt(15) + 1; // Número aleatorio entre 1 y 15
         if (numero == randomNumber) {
             equipo.setPlata(equipo.getPlata() + plataMetida * 2); // Se le da el doble de plata al equipo
+            return true;
+        } else {
+            return false;
         }
     }
 

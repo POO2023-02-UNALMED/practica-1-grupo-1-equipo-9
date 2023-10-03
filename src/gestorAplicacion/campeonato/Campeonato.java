@@ -83,4 +83,24 @@ public class Campeonato {
     public void setPremio(double premio) {this.premio = premio;}
     
     public ArrayList<Carrera> getListaCarreras() {return listaCarreras;}
+
+    public static void setCampeonatos(ArrayList<Campeonato> campeonatos) {
+        Campeonato.campeonatos = campeonatos;
+    }
+
+    public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+        this.listaCarreras = listaCarreras;
+    }
+
+    public static void setIdActual(int idActual) {
+        Campeonato.idActual = idActual;
+    }
+
+    public static Campeonato getCampeonatoElegido() {
+        return campeonatoElegido;
+    }
+
+    public static void setCampeonatoElegido(Campeonato campeonatoElegido) {
+        Campeonato.campeonatoElegido = campeonatoElegido;
+    }
 }

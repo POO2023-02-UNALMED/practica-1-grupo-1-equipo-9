@@ -3,18 +3,18 @@ package gestorAplicacion.paddock;
 import java.util.ArrayList;
 import java.util.Random;
 import gestorAplicacion.campeonato.Equipo;
+import java.text.DecimalFormat;
 
 public class Patrocinador extends Persona {
     //Lista de patrocinadores
-	public static ArrayList<Patrocinador> listaPatrocinadores = new ArrayList<Patrocinador>();	
-	
+	public static ArrayList<Patrocinador> listaPatrocinadores = new ArrayList<Patrocinador>();
 	//Atributos
     private double dineroDisponible;
     private double dineroOfrecer;
     private double probAceptar;
     private Equipo equipoPatrocinado;
     private boolean patrocinando;
-    
+
     //Constructores
     public Patrocinador(String nombre, double dineroDisponible) {
     	super(nombre);
@@ -23,46 +23,49 @@ public class Patrocinador extends Persona {
     	double lowerBound=0.2;
     	double upperBound=0.8;
     	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
-    	this.dineroOfrecer = dineroDisponible*numRandom; //Se le asigna una cantidad del 20% al 80% del dinero que tiene el patrocinador para que lo ofrezca.
-    	lowerBound=1.0-this.dineroOfrecer/dineroDisponible;
+		DecimalFormat formato = new DecimalFormat("#.##");
+        //this.dineroOfrecer = dineroDisponible*numRandom; //Se le asigna una cantidad del 20% al 80% del dinero que tiene el patrocinador para que lo ofrezca.
+		this.dineroOfrecer = Double.parseDouble(formato.format(dineroDisponible*numRandom));
+		lowerBound=1.0-this.dineroOfrecer/dineroDisponible;
     	upperBound=1.0;
     	numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
     	this.probAceptar = numRandom; //Se le asigna una probabilidad entre 100% menos la proporción del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, más alta la probabilidad de aceptar).
+		Patrocinador.listaPatrocinadores.add(this);
     }
-    
+
     //Metodos de instancia
    public String toString() {
-	   return "Nombre: " + this.getNombre() + "\nCantidad que patrocina:" + this.dineroOfrecer + "\nProbabilidad de aceptar: " + this.probAceptar; 
+	   return "Nombre: " + this.getNombre() + "\nCantidad que patrocina:" + this.dineroOfrecer + "\nProbabilidad de aceptar: " + this.probAceptar;
    }
-   
+
    public boolean pensarNegocio(Equipo equipo) {
-	Random rand = new Random();
-   	double lowerBound=0.0;
-   	double upperBound=this.probAceptar;
-   	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
-   	if (numRandom<this.probAceptar) {
-   		this.setEquipo(equipo);
-   		this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata()+this.dineroOfrecer);
-   		return true;
-   	} else {
-   		return false;
-   	}
+		Random rand = new Random();
+		double lowerBound=0.0;
+		double upperBound=this.probAceptar;
+		double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
+		if (numRandom<this.probAceptar) {
+			this.setEquipo(equipo);
+			this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata()+this.dineroOfrecer);
+			return true;
+		} else {
+			return false;
+		}
    }
-   
+
    public boolean pensarNegocio(Equipo equipo, boolean equipoNoElegido) { //Sobrecargar para que algunos equipos no elegidos por el usuario puedan ser patrocinados
-	Random rand = new Random();
-   	double lowerBound=0.0;
-   	double upperBound=this.probAceptar;
-   	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
-   	if (numRandom<this.probAceptar) {
-   		this.equipoPatrocinado = equipo;
-   		this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata()+this.dineroOfrecer);
-   		return true;
-   	} else {
-   		return false;
-   	}
+		Random rand = new Random();
+		double lowerBound=0.0;
+		double upperBound=this.probAceptar;
+		double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
+		if (numRandom<this.probAceptar) {
+			this.equipoPatrocinado = equipo;
+			this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata()+this.dineroOfrecer);
+			return true;
+		} else {
+			return false;
+		}
    }
-    
+
     //Metodos de clase
     public static String mostrarPatrocinadores() {
     	String tabla = null;
@@ -79,13 +82,13 @@ public class Patrocinador extends Persona {
     	}
     	return tabla;
     }
-    
+
     public static ArrayList<Patrocinador> getListaPatrocinadores(){return listaPatrocinadores;}
 
     //Lista de metodos set y get
     public double getDinero() {return this.dineroDisponible;}
     public void setDinero(double dinero) {this.dineroDisponible = dinero;}
-    
+
     public double getDineroOfrecido() {return this.dineroOfrecer;}
     public void setDineroOfrecido(double dinero) {
     	this.dineroOfrecer=dinero;
@@ -95,7 +98,7 @@ public class Patrocinador extends Persona {
     	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
     	this.probAceptar = numRandom; //Se le asigna una probabilidad entre 100% menos la proporción del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, más alta la probabilidad de aceptar).
     }
-    
+
 
     public double getProbAceptar() {return this.probAceptar;}
     public void setProbAceptar(double prob) {this.probAceptar = prob;}
@@ -111,7 +114,7 @@ public class Patrocinador extends Persona {
     		this.patrocinando=true;
     	}
     	}
-    
+
     public boolean isPatrocinando() {return this.patrocinando;}
     public void setPatrocinando(boolean patrocinando) {this.patrocinando = patrocinando;}
 

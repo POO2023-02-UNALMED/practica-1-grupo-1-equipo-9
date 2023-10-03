@@ -5,6 +5,7 @@ import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Vehiculo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Equipo {
 
@@ -40,10 +41,15 @@ public class Equipo {
         this.pais = pais;
         this.plata = plata;
         this.puntos = puntos;
-        this.pilotosDisponibles = pilotosDisponibles;
         this.piloto1 = null;
         this.piloto2 = null;
         Equipo.equipos.add(this);
+        if (vehiculosDisponibles != null) {
+            Equipo.vehiculosDisponibles = vehiculosDisponibles;
+        } else {
+            Equipo.vehiculosDisponibles = new ArrayList<Vehiculo>();
+        }
+        this.pilotosDisponibles = Objects.requireNonNullElseGet(pilotosDisponibles, ArrayList::new);
     }
 
     // Métodos de clase
@@ -56,26 +62,25 @@ public class Equipo {
     }
 
     // Métodos de instancia
-    public void negociar(Patrocinador patrocinador) {
+    public boolean negociar(Patrocinador patrocinador) {
         //Esto es para aceptar las probabilidades de que acepte un patrocinador
-        boolean patrocinado = patrocinador.pensarNegocio(this);
-        if (patrocinado) {
-            System.out.println("¡Se ha patrocinado a tu equipo!");
-        } else {
-            System.out.println("No se ha patrocinado a tu equipo :(");
-        }
+        return patrocinador.pensarNegocio(this);
     }
 
-    public void negociar(double cantidad, Patrocinador patrocinador) {//Sobrecarga para cambiar el dinero que se le pide al patrocinador. A menor cantidad, mayor probabilidad de aceptar.
+    public String negociar(double cantidad, Patrocinador patrocinador) {//Sobrecarga para cambiar el dinero que se le pide al patrocinador. A menor cantidad, mayor probabilidad de aceptar.
         if (cantidad < 0) {
-            System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
+            //System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
+            return "Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?";
         } else if (cantidad == 0) {
-            System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
+            //System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
+            return "¿Por qué 0? ¿Es que no quieres dinero?";
         } else if (cantidad > patrocinador.getDinero()) {
             patrocinador.setPatrocinando(true);
-            System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!");
+            //System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!");
+            return "¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!";
         } else {
             this.negociar(patrocinador);
+            return "¡Se ha evaluado la opcion de patrocinar a tu equipo!";
         }
     }
 

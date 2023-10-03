@@ -15,7 +15,7 @@ public class VehiculoCarrera extends Vehiculo {
     private double velocidadTuneao; //Velocidad del vehículo + velocidad de las piezas
     private double probabilidadChoque;
     private int gasolina;
-    public static VehiculoCarrera usuarioVehiculo;
+    public static VehiculoCarrera vehiculoElegido; //Vehículo que elije el usuario
 
     public VehiculoCarrera(String marca, String modelo, int ano, Pieza aleron, Pieza neumaticos, Pieza motor, double velocidad, double maniobrabilidad, double precioUtilizar, Piloto piloto) {
         super(marca, modelo, ano, aleron, neumaticos, motor, velocidad, maniobrabilidad, precioUtilizar);
@@ -37,24 +37,24 @@ public class VehiculoCarrera extends Vehiculo {
     }
 
     public void cambiarMotor(Pieza pieza) {
-        if (Campeonato.equipoElegido.getPlata() >= pieza.getPrecio()) {
-            Campeonato.equipoElegido.setPlata(Campeonato.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
+        if (Equipo.equipoElegido.getPlata() >= pieza.getPrecio()) {
+            Equipo.equipoElegido.setPlata(Equipo.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
             this.setMotor(pieza); //Cambiar motor
             this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }
 
     public void cambiarNeumaticos(Pieza pieza, double dinero) {
-        if (Campeonato.equipoElegido.getPlata() >= pieza.getPrecio()) {
-            Campeonato.equipoElegido.setPlata(Campeonato.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
+        if (Equipo.equipoElegido.getPlata() >= pieza.getPrecio()) {
+            Equipo.equipoElegido.setPlata(Equipo.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
             this.setNeumaticos(pieza); //Cambiar neumáticos
             this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }
 
     public void cambiarAleron(Pieza pieza) {
-        if (Campeonato.equipoElegido.getPlata() >= pieza.getPrecio()) {
-            Campeonato.equipoElegido.setPlata(Campeonato.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
+        if (Equipo.equipoElegido.getPlata() >= pieza.getPrecio()) {
+            Equipo.equipoElegido.setPlata(Equipo.equipoElegido.getPlata() - pieza.getPrecio()); // Cobrar
             this.setAleron(pieza); //Cambiar alerón
             this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
@@ -62,8 +62,8 @@ public class VehiculoCarrera extends Vehiculo {
 
     public void repararVehiculo() {
         double precio = 100; //preguntar precio
-        if (Campeonato.equipoElegido.getPlata() >= precio) {
-            Campeonato.equipoElegido.setPlata(this.piloto.getEquipo().getPlata() - precio); // Cobrar
+        if (Equipo.equipoElegido.getPlata() >= precio) {
+            Equipo.equipoElegido.setPlata(this.piloto.getEquipo().getPlata() - precio); // Cobrar
             //Arreglar piezas
             this.getAleron().arreglar();
             this.getMotor().arreglar();
@@ -78,6 +78,30 @@ public class VehiculoCarrera extends Vehiculo {
     public void actualizarVelocidadT() { //Actualiza la velocidad tuneada para cuando se cambie una pieza
         this.velocidadTuneao = this.getVelocidad() + this.getMotor().getVelocidadAnadida() + this.getNeumaticos().getVelocidadAnadida() + this.getAleron().getVelocidadAnadida();
     }
+
+//    public void hacerRandom(int num) {
+//        switch (
+//            num
+//        ) {
+//            case 1:
+//                this.cambiarMotor(this.getMotor().getPiezasDisponibles().get(0));
+//                break;
+//            case 2:
+//                this.cambiarNeumaticos(this.getNeumaticos().getPiezasDisponibles().get(0), 0);
+//                break;
+//            case 3:
+//                this.cambiarAleron(this.getAleron().getPiezasDisponibles().get(0));
+//                break;
+//            case 4:
+//                this.repararVehiculo();
+//                break;
+//            case 5:
+//                this.llenarGasolina();
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
     // Ligadura Dinamica
     public void morir() {

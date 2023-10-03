@@ -183,48 +183,33 @@ Métodos:
 Usuario (POV) 👤
 
 **1. Escoger entre 5 campeonatos predefinidos:**
+- Mostrar Campeonatos predefinidos. 🏆
 - Seleccionar un campeonato de una lista de 5 campeonatos preconfigurados. 🏁
 
-**2. Seleccionar un número determinado de carreras:**
-- Elegir la cantidad de carreras que compondrán el campeonato. 🏎️
-
-**3. Elegir el continente del campeonato:**
-- Seleccionar uno de los 5 continentes disponibles: América, Europa, Asia, África, Oceanía. 🌎
-
-**4. Elegir el año del campeonato:**
+**2. Elegir el año del campeonato:**
 - Indicar el año en el que se llevará a cabo el campeonato. 📅
 
-**5. Elegir detalles adicionales del campeonato:**
-- Definir cualquier detalle adicional del campeonato, como las reglas específicas o características especiales. 📋
-
-**6. Elegir el director de carrera:**
-- Seleccionar un director de carrera que supervisará las carreras del campeonato. 👨‍🏫
-
-**7. Seleccionar SU Equipo:**
+**3. Seleccionar SU Equipo:**
 - Elegir un equipo para competir en el campeonato. Los demás equipos ya están predefinidos. 🚗
-
-**8. Elija el nombre del equipo (utilizando un ENUM):**
-- Seleccionar un nombre para el equipo de una lista predefinida de nombres utilizando ENUM. 📛
-
-**9. Mostrar pilotos del Equipo:**
+- 
+**4. Mostrar pilotos del Equipo:**
 - Visualizar la lista de pilotos disponibles en el equipo seleccionado. 👀
 
-**10. Elegir 2 pilotos:**
+**5. Elegir 2 pilotos:**
+- El primero que elija va a sel EL USUARIO (piloto1)
+- Otro es el compañero de equipo (piloto2) 
 - Seleccionar dos pilotos del equipo para representarlo en las carreras. 👥👥
 
-**11. Negociaciones con Patrocinadores (opcional):**
+**6. Negociaciones con Patrocinadores (opcional):**
 - Realizar negociaciones con patrocinadores para obtener financiamiento adicional. (Opcional) 🤝💰
-
-**12. Mostrar lista de patrocinadores:**
-- Visualizar la lista de patrocinadores disponibles para las negociaciones. 👀📊
-
-**13. Poner dinero a pedir:**
-- Indicar la cantidad de dinero que se solicita a los patrocinadores en las negociaciones. 💵
-
-**14. Según el resultado aleatorio, recibir el patrocinio:**
-- Basado en un resultado aleatorio, recibir el patrocinio de uno o más patrocinadores. 🎲💼
-
-**15. Mostrar el dinero recibido:**
+  1. Mostrar lista de patrocinadores:
+     - Visualizar la lista de patrocinadores disponibles para las negociaciones. 👀📊
+  2. Poner dinero a pedir:
+     - Indicar la cantidad de dinero que se solicita a los patrocinadores en las negociaciones. 💵
+  3. Según el resultado aleatorio, recibir el patrocinio:**
+     - Basado en un resultado aleatorio, recibir el patrocinio de uno o más patrocinadores. 🎲💼
+  
+**7. Mostrar el dinero recibido:**
 - Verificar la cantidad de dinero que se ha recibido de los patrocinadores. 💰💸
 
 ## 📅 Planificar Calendario de Carreras 🏁
@@ -233,11 +218,14 @@ Usuario (POV) 👤
 - Genera el calendario de carreras de acuerdo al número de carreras en el campeonato. 🗓️
 
 **2. Mostrar opciones de Carreras:**
-- Para cada carrera, muestra las siguientes opciones:
-  a. Nombre de la carrera 🏁
-  b. Ciudad - Continente 🌍
-  c. Premio 💰
-  d. Distancia 📏
+- Para cada carrera, muestra los siguientes atributos:
+  1. Nombre de la carrera 🏁
+  2. Ciudad - Continente 🌍
+  3. Premio 💰
+  4. Distancia 📏
+
+1. Elegir el director de carrera:
+    - Seleccionar un director de carrera que supervisará las carreras del campeonato. 👨‍🏫
 
 **3. Elegir mes:**
 - Para cada carrera, selecciona el mes en el que se llevará a cabo la carrera. 🗓️
@@ -247,21 +235,21 @@ Usuario (POV) 👤
 
 **5. Reservar Circuito (Opcional):**
 - Para cada carrera, se puede optar por reservar un circuito. Esta opción puede estar disponible o no.
-  a. Elegir patrocinador: Selecciona un patrocinador para la carrera.
-  b. Valor aleatorio: El patrocinador pagará un monto aleatorio basado en su valor.
+  1. Elegir patrocinador: Selecciona un patrocinador para la carrera.
+  2. Valor aleatorio: El patrocinador pagará un monto aleatorio basado en su valor.
 
 **6. Elegir dificultad de Carrera:**
 - Para cada carrera, define la dificultad de la carrera. Puedes elegir entre diferentes niveles que afectarán aspectos como la probabilidad de choques y adelantamientos.
-  a. Niveles de dificultad disponibles: Fácil, Intermedio, Difícil. 🌟🌟🌟
+  1. Niveles de dificultad disponibles: Fácil, Intermedio, Difícil. 🌟🌟🌟
 
 ## 🛠️ Tunear el Carro 🚗
 
 **1. Para la primera carrera:**
 
-a. Mostrar carros disponibles para el equipo:
+1. Mostrar carros disponibles para el equipo:
 - Visualiza la lista de carros disponibles para tu equipo. 🚗👀
 
-b. Seleccionar el carro según el presupuesto:
+2. Seleccionar el carro según el presupuesto:
 - Selecciona un carro de la lista de acuerdo a tu presupuesto. 💰🚗
 
 c. Mejoras o cambios al carro:
@@ -384,10 +372,9 @@ a. Según la posición, se asignan puntos:
 
 **6. Mostrar resultados:**
 - Se muestran los resultados de la carrera, incluyendo la verificación de sanciones por corrupción, la tabla de posiciones y el tiempo.
-
-a. Verificar por sanciones - Corrupción.
-b. Visualizar la tabla de posiciones y tiempo.
-c. Realizar la ceremonia de premiación.
+    1. Verificar por sanciones - Corrupción.
+    2. Visualizar la tabla de posiciones y tiempo.
+    3. Realizar la ceremonia de premiación.
 
 **7. Opción: ¿Repetir el programa?**
 - El usuario tiene la opción de repetir el programa para participar en una nueva carrera o competición. ♻🔄

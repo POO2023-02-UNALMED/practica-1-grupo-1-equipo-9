@@ -16,6 +16,7 @@ public class Equipo {
     private double plata;
     private int puntos;
     private static ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehículos disponibles
+    public static Equipo equipoElegido; //Este es el equipo que tiene el ususario
     private ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>(); // Lista de pilotos disponibles
     private Piloto piloto1;
     private Piloto piloto2;

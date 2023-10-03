@@ -52,8 +52,7 @@ public class Vehiculo {
         Equipo equipo = piloto.getEquipo();
         if (equipo.getPlata() >= this.precioUtilizar) {
             equipo.setPlata(equipo.getPlata() - this.precioUtilizar);
-            VehiculoCarrera vehiculoCarrera = new VehiculoCarrera(this.marca, this.modelo, this.ano, this.aleron, this.neumaticos, this.motor, this.velocidad, this.maniobrabilidad, this.precioUtilizar, piloto);
-            equipo.getVehiculosDisponibles().add(vehiculoCarrera);
+            VehiculoCarrera.usuarioVehiculo = new VehiculoCarrera(this.marca, this.modelo, this.ano, this.aleron, this.neumaticos, this.motor, this.velocidad, this.maniobrabilidad, this.precioUtilizar, piloto);
         }
     }
 

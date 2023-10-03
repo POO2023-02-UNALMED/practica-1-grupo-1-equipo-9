@@ -10,6 +10,7 @@ public class Piloto extends Persona {
     private int sanciones;
     private double habilidad; //Probabilidad de chocarse
     private boolean disponible;
+    public static Piloto pilotoElegido; //Este es el piloto que tiene el usuario
     private ArrayList<String> victorias;
 
     //Constructores

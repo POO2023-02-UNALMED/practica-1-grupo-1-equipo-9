@@ -2,6 +2,7 @@ package gestorAplicacion.campeonato;
 
 import gestorAplicacion.paddock.Persona;
 import gestorAplicacion.paddock.Piloto;
+import gestorAplicacion.paddock.Pieza;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -53,41 +54,59 @@ public class DirectorCarrera extends Persona {
         return favores;
     }
 
-    public ArrayList<ArrayList<String>> verStatsCompetidores(double plataMetida, Equipo equipo) {
-        this.corrupcion += 1;
-        equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
-        ArrayList<VehiculoCarrera> listaCompetidores = this.carrera.getPosiciones();
+    public ArrayList<ArrayList<String>> verStatsCompetidores() {
+        double precio = 1000000;
         ArrayList<ArrayList<String>> listaStats = new ArrayList<>();
-        for (VehiculoCarrera vc : listaCompetidores) {
-            ArrayList<String> stats = new ArrayList<>();
-            Piloto piloto = vc.getPiloto();
-            stats.add(piloto.getNombre());
-            stats.add(String.valueOf(piloto.getSanciones()));
-            stats.add(String.valueOf(piloto.getHabilidad()));
-            listaStats.add(stats);
+        if (Equipo.equipoElegido.getPlata() >= precio) {
+            this.corrupcion += 1;
+            Equipo equipo = Equipo.equipoElegido;
+            equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
+            ArrayList<VehiculoCarrera> listaCompetidores = this.carrera.getPosiciones();
+            for (VehiculoCarrera vc : listaCompetidores) {
+                ArrayList<String> stats = new ArrayList<>();
+                Piloto piloto = vc.getPiloto();
+                stats.add(piloto.getNombre());
+                stats.add(String.valueOf(piloto.getSanciones()));
+                stats.add(String.valueOf(piloto.getHabilidad()));
+                listaStats.add(stats);
+            }
         }
         return listaStats;
     }
 
-    public ArrayList<VehiculoCarrera> cambiarPosIniciales(double plataMetida, int posicion, Equipo equipo) {
-        this.corrupcion += 1;
-        equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
-        if (plataMetida < 1000000) {
-            return this.carrera.getPosiciones();
-        } else {
+    public ArrayList<VehiculoCarrera> cambiarPosIniciales(int posicion) {
+        double precio = 1000000;
+        Equipo equipo = Equipo.equipoElegido;
+        if (Equipo.equipoElegido.getPlata() >= precio) {
+            this.corrupcion += 1;
+            equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
             // Cambiar posiciones metodo carrera
             //TODO
-            return this.carrera.getPosiciones();
+        }
+        return this.carrera.getPosiciones();
+    }
+
+    // Para tunear Shaddy primero hay que comprar la pieza de contrabando
+    // El proceso es el mismo que comprar una pieza normal
+    public void tunearShaddy(Pieza pieza, int parte) {
+        double precio = 1000000;
+        Equipo equipo = Equipo.equipoElegido;
+        if (Equipo.equipoElegido.getPlata() >= precio) {
+            this.corrupcion += 1;
+            equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
+            switch (parte) {
+                case 1: // Neuamaticos
+                    VehiculoCarrera.usuarioVehiculo.setNeumaticos(pieza);
+                    break;
+                case 2: // Motor
+                    VehiculoCarrera.usuarioVehiculo.setMotor(pieza);
+                    break;
+                case 3: // Aleron
+                    VehiculoCarrera.usuarioVehiculo.setAleron(pieza);
+                    break;
+            }
         }
     }
-
-    public void tunearShaddy(double plataMetida, int idPieza, VehiculoCarrera vehiculo) {
-        this.corrupcion += 1;
-        //comprar pieza
-        //llamar metodo en vehiculo
-        //TODO
-    }
-
 
     public void hacerChocar(double plataMetida, VehiculoCarrera vehiculo) {
         this.corrupcion += 1;

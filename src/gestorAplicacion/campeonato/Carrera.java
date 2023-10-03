@@ -18,6 +18,7 @@ public class Carrera {
     private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
     private double dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
     private ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
+    public static Carrera carreraActual; //Carrera actual que se está corriendo
     
     //Constructores
     public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double dificultad) {

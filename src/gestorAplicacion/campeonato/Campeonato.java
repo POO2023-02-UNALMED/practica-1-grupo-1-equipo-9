@@ -18,7 +18,6 @@ public class Campeonato {
     private Continente continente; //Cada campeonato tiene un continente diferente
     private int cantidadMaxCarreras;
     private double premio; //Premio total que se lleva el equipo cuando se gana el campeonato
-    public static Equipo equipoElegido; //Este es el equipo que tiene el ususario
     public static Campeonato campeonatoElegido; //Campeonato que elije el usuario
 
     //Constructores
@@ -51,7 +50,6 @@ public class Campeonato {
     		System.out.println("Se ha alcanzado el máximo número de carreras para el campeonato, no se ha añadido la carrera.");
     	}
     }
-    
 
     //Metodos de clase    
     public static ArrayList<Campeonato> getCampeonatos() {return campeonatos;}
@@ -59,10 +57,6 @@ public class Campeonato {
     public static void elegirCampeonato(Campeonato campeonato) {
     	campeonatoElegido = campeonato;
     	Carrera.setCampeonato(campeonato);
-    }
-    
-    public static void elegirEquipo(Equipo equipo) {
-    	equipoElegido = equipo;
     }
     
     public static int getIdActual() {return idActual;}
@@ -89,6 +83,4 @@ public class Campeonato {
     public void setPremio(double premio) {this.premio = premio;}
     
     public ArrayList<Carrera> getListaCarreras() {return listaCarreras;}
-
-
 }

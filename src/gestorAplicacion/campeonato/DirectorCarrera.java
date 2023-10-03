@@ -82,7 +82,7 @@ public class DirectorCarrera extends Persona {
             this.corrupcion += 1;
             equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
             // Cambiar posiciones metodo carrera
-            //TODO
+            // TODO
         }
         return this.carrera.getPosiciones();
     }

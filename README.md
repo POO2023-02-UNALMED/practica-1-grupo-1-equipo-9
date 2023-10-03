@@ -209,7 +209,7 @@ Usuario (POV) 👤
   3. Según el resultado aleatorio, recibir el patrocinio:**
      - Basado en un resultado aleatorio, recibir el patrocinio de uno o más patrocinadores. 🎲💼
   
-**7. Mostrar el dinero recibido:**
+**. Mostrar el dinero recibido:**
 - Verificar la cantidad de dinero que se ha recibido de los patrocinadores. 💰💸
 
 ## 📅 Planificar Calendario de Carreras 🏁

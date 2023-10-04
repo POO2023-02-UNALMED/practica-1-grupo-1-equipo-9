@@ -46,9 +46,10 @@ public class Campeonato {
     public void agregarCarrera(Carrera carrerita) {
     	if (this.getNumCarreras()<this.cantidadMaxCarreras) {
     		this.listaCarreras.add(carrerita);
-    	} else {
-    		System.out.println("Se ha alcanzado el máximo número de carreras para el campeonato, no se ha añadido la carrera.");
     	}
+//        else {
+//    		System.out.println("Se ha alcanzado el máximo número de carreras para el campeonato, no se ha añadido la carrera.");
+//    	}
     }
 
     //Metodos de clase    

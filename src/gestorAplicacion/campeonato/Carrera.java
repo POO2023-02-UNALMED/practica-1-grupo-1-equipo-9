@@ -57,6 +57,21 @@ public class Carrera {
         this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
+    public Carrera(String nombre, double distancia, double premio, Ciudad ciudad, double dificultad) {
+        this.id = idActual;
+        Carrera.idActual++;
+        this.nombreCircuito = nombre;
+        this.distancia = distancia;
+        this.premioEfectivo = premio;
+        this.ciudad = ciudad;
+        this.dificultad = dificultad;
+        Random rand = new Random();
+        double lowerBound = 0.0;
+        double upperBound = 0.2;
+        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
+        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+    }
+
     //Metodos de clase
     public static ArrayList<Ciudad> mostrarCiudadesDisponibles() {
         ArrayList<Ciudad> listaCompleta = Ciudad.getListaCiudades();
@@ -129,6 +144,7 @@ public class Carrera {
 
     public void setDirectorCarrera(DirectorCarrera director) {
         this.directorCarrera = director;
+        director.setCarrera(this);
     }
 
     public Ciudad getCiudad() {

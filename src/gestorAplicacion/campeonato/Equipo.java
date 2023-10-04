@@ -35,6 +35,18 @@ public class Equipo {
         Equipo.equipos.add(this);
     }
 
+    public Equipo(String nombre, String pais) {
+        this.id = idActual++;
+        this.nombre = nombre;
+        this.pais = pais;
+        this.plata = 0;
+        this.puntos = 0;
+        this.pilotosDisponibles = null;
+        this.piloto1 = null;
+        this.piloto2 = null;
+        Equipo.equipos.add(this);
+    }
+
     public Equipo(String nombre, String pais, double plata, int puntos, ArrayList<Vehiculo> vehiculosDisponibles, ArrayList<Piloto> pilotosDisponibles) {
         this.id = idActual++;
         this.nombre = nombre;

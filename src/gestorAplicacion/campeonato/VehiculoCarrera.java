@@ -29,7 +29,7 @@ public class VehiculoCarrera extends Vehiculo {
         this.terminado = false;
         this.morido = false;
         this.velocidadTuneao = 0;
-        this.probabilidadChoque = maniobrabilidad + neumaticos.getManiobrabilidadAnadida() + aleron.getManiobrabilidadAnadida();
+        this.probabilidadChoque = Math.max( 1 - piloto.getHabilidad() - maniobrabilidad - neumaticos.getManiobrabilidadAnadida() - aleron.getManiobrabilidadAnadida(), 0.3);
         this.gasolina = 100;
         this.actualizarVelocidadT();
         this.velocidadCircumstancias = 0;

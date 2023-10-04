@@ -4,9 +4,8 @@ import gestorAplicacion.campeonato.Ciudad;
 import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 import java.util.*;
-import uiMain.Tablas;
-import uiMain.AsciiArt.*;
 
+import static uiMain.Tablas.*;
 import static uiMain.AsciiArt.*;
 
 public class MainUI {
@@ -41,7 +40,8 @@ public class MainUI {
         System.out.println("\n");
         // Paso 1: Escoge un Campeonato
         System.out.println("Escoge un Campeonato");
-        // Llamar las tablas
+        tablaCampeonatos(Campeonato.campeonatos);
+
 
         boolean validaciones = false;
 
@@ -67,10 +67,12 @@ public class MainUI {
         int n = sc.nextInt();
         validaciones = false;
         // Validar que el numero sea mayor que 1950 y menor que 9999
+
         while (!validaciones) {
             if (n < 1950 || n > 9999) {
                 // Si no es mayor que 1950 y menor que 9999, imprimir el mensaje de error
                 System.out.println("Por favor, escribe un numero mayor que 1950 y menor que 9999.");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
             } else {
                 // Si es mayor que 1950 y menor que 9999, imprimir el mensaje de exito
                 System.out.println("¡Año elegido!");

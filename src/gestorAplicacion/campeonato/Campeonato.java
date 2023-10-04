@@ -5,7 +5,7 @@ import gestorAplicacion.campeonato.Ciudad.Continente;
 
 public class Campeonato {
     // Lista de campeonatos
-    static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde están todos los campeonatos disponibles
+    public static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde están todos los campeonatos disponibles
     
 	//Listas de carreras y equipos
 	private ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
@@ -28,6 +28,7 @@ public class Campeonato {
     	this.ano = ano;
     	this.continente = continente;
     	this.cantidadMaxCarreras = cantCarreras;
+        campeonatos.add(this);
     }
     // Sin ano
     public Campeonato(String nombre, Continente continente, int cantCarreras) { //Cuando se inicialice cada campeonato, se le pasa el nombre y el continente
@@ -36,6 +37,7 @@ public class Campeonato {
         this.nombre = nombre;
         this.continente = continente;
         this.cantidadMaxCarreras = cantCarreras;
+        campeonatos.add(this);
     }
     
     // Metodos de instancia

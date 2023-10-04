@@ -16,7 +16,7 @@ public class Equipo {
     private String pais;
     private double plata;
     private int puntos;
-    private static ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehículos disponibles
+    private ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehículos disponibles
     public static Equipo equipoElegido; //Este es el equipo que tiene el ususario
     private ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>(); // Lista de pilotos disponibles
     private Piloto piloto1;
@@ -57,9 +57,9 @@ public class Equipo {
         this.piloto2 = null;
         Equipo.equipos.add(this);
         if (vehiculosDisponibles != null) {
-            Equipo.vehiculosDisponibles = vehiculosDisponibles;
+            this.vehiculosDisponibles = vehiculosDisponibles;
         } else {
-            Equipo.vehiculosDisponibles = new ArrayList<Vehiculo>();
+            this.vehiculosDisponibles = new ArrayList<Vehiculo>();
         }
         this.pilotosDisponibles = Objects.requireNonNullElseGet(pilotosDisponibles, ArrayList::new);
     }
@@ -113,8 +113,8 @@ public class Equipo {
         this.pilotosDisponibles.add(piloto);
     }
 
-    public static void agregarVehiculo(Vehiculo vehiculo) {
-        vehiculosDisponibles.add(vehiculo);
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        this.vehiculosDisponibles.add(vehiculo);
     }
 
 
@@ -159,7 +159,7 @@ public class Equipo {
         this.puntos = puntos;
     }
 
-    public static ArrayList<Vehiculo> getVehiculosDisponibles() {
+    public ArrayList<Vehiculo> getVehiculosDisponibles() {
         return vehiculosDisponibles;
     }
 

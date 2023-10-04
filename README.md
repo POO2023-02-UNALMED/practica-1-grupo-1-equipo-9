@@ -217,12 +217,10 @@ Usuario (POV) 👤
 **1. De acuerdo con el campeonato (cantidad de carreras), prepara todas:**
 - Genera el calendario de carreras de acuerdo al número de carreras en el campeonato. 🗓️
 
-**2. Mostrar opciones de Carreras:**
-- Para cada carrera, muestra los siguientes atributos:
-  1. Nombre de la carrera 🏁
-  2. Ciudad - Continente 🌍
-  3. Premio 💰
-  4. Distancia 📏
+**2. Mostrar opciones de Ciudad:**
+- Metodo en ciudad
+- Se crea la carrera
+- "Grand Prix de Ciudad"
 
 1. Elegir el director de carrera:
     - Seleccionar un director de carrera que supervisará las carreras del campeonato. 👨‍🏫

@@ -4,8 +4,11 @@ import gestorAplicacion.paddock.Pieza;
 import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Vehiculo;
 
+import java.util.Random;
+
 
 public class VehiculoCarrera extends Vehiculo {
+    public static VehiculoCarrera vehiculoElegido; //Vehículo que elije el usuario
     //Atributos
     private Piloto piloto; //Conductor
     private double tiempo; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posición final
@@ -13,9 +16,10 @@ public class VehiculoCarrera extends Vehiculo {
     private boolean terminado; // Mira si terminó la carrera. Si se choca, esto pasa a true.
     private boolean morido; // Si está morido, lo manda al final de la lista de posiciones.
     private double velocidadTuneao; //Velocidad del vehículo + velocidad de las piezas
+    private double velocidadCircumstancias; // velocidad de las circunstancias
+    private double velocidadActual; //Velocidad actual del vehículo, velocidad tuneada +- situaciones
     private double probabilidadChoque;
     private int gasolina;
-    public static VehiculoCarrera vehiculoElegido; //Vehículo que elije el usuario
 
     public VehiculoCarrera(String marca, String modelo, int ano, Pieza aleron, Pieza neumaticos, Pieza motor, double velocidad, double maniobrabilidad, double precioUtilizar, Piloto piloto) {
         super(marca, modelo, ano, aleron, neumaticos, motor, velocidad, maniobrabilidad, precioUtilizar);
@@ -25,9 +29,19 @@ public class VehiculoCarrera extends Vehiculo {
         this.terminado = false;
         this.morido = false;
         this.velocidadTuneao = 0;
-        this.probabilidadChoque = maniobrabilidad + neumaticos.getManiobrabilidadAnadida() + aleron.getManiobrabilidadAnadida();
+        this.probabilidadChoque = Math.max( 1 - piloto.getHabilidad() - maniobrabilidad - neumaticos.getManiobrabilidadAnadida() - aleron.getManiobrabilidadAnadida(), 0.3);
         this.gasolina = 100;
         this.actualizarVelocidadT();
+        this.velocidadCircumstancias = 0;
+        this.velocidadActual = velocidadTuneao + velocidadCircumstancias;
+    }
+
+    public static VehiculoCarrera getVehiculoElegido() {
+        return vehiculoElegido;
+    }
+
+    public static void setVehiculoElegido(VehiculoCarrera vehiculoElegido) {
+        VehiculoCarrera.vehiculoElegido = vehiculoElegido;
     }
 
     //Métodos
@@ -77,32 +91,129 @@ public class VehiculoCarrera extends Vehiculo {
     }
 
     public void actualizarVelocidadT() { //Actualiza la velocidad tuneada para cuando se cambie una pieza
-        this.velocidadTuneao = this.getVelocidad() + this.getMotor().getVelocidadAnadida() + this.getNeumaticos().getVelocidadAnadida() + this.getAleron().getVelocidadAnadida();
+        if (!this.getAleron().isDanado()) {
+            this.velocidadTuneao = this.getVelocidad() + this.getAleron().getVelocidadAnadida();
+        }
+        if (!this.getNeumaticos().isDanado()) {
+            this.velocidadTuneao = this.getVelocidad() + this.getNeumaticos().getVelocidadAnadida();
+        }
+        if (!this.getMotor().isDanado()) {
+            this.velocidadTuneao = this.getVelocidad() + this.getMotor().getVelocidadAnadida();
+        }
     }
 
-//    public void hacerRandom(int num) {
-//        switch (
-//            num
-//        ) {
-//            case 1:
-//                this.cambiarMotor(this.getMotor().getPiezasDisponibles().get(0));
-//                break;
-//            case 2:
-//                this.cambiarNeumaticos(this.getNeumaticos().getPiezasDisponibles().get(0), 0);
-//                break;
-//            case 3:
-//                this.cambiarAleron(this.getAleron().getPiezasDisponibles().get(0));
-//                break;
-//            case 4:
-//                this.repararVehiculo();
-//                break;
-//            case 5:
-//                this.llenarGasolina();
-//                break;
-//            default:
-//                break;
-//        }
-//    }
+    public void actualizarVelicidadActual() {
+        //Actualiza la velocidad actual para cuando se cambie una pieza
+        // O si cambia la velocidad de circumstancias
+        this.actualizarVelocidadT(); // Actualizar velocidad tuneada
+        this.velocidadActual = this.velocidadTuneao + this.velocidadCircumstancias; // Actualizar velocidad actual
+        revisarMaxVelocidad(); // Revisar que no se pase de la velocidad máxima
+    }
+
+    public void revisarMaxVelocidad() {
+        if (this.velocidadActual > 375) {
+            this.setVelocidadActual(375);
+        }
+    }
+
+    // Aprovechar DRS (Adelantar) - Aumenta velocidad
+    // 1. Daña el alerón
+    // 2. Aumenta la velocidad
+    // 3. Usa la probabilidad de chocar
+    public void aprovecharDRS() {
+        Random rand = new Random(); // Generador de números aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio entre 1 y 3
+        if (randomNumber == 1) { // Daña el alerón
+            this.getAleron().setDanado(true);
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        } else if (randomNumber <= 9) {
+            this.setVelocidadCircumstancias(50); // Aumenta la velocidad en 10
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        } else { // Usa la probabilidad de chocar
+            double numeroAleatorio = rand.nextDouble();
+            // Número aleatorio entre 0 y 1
+            if (numeroAleatorio <= this.getProbabilidadChoque()) { // Si el número aleatorio es menor o igual a la probabilidad de chocar, choca
+                this.chocar();
+            } else { // Si no, aumenta la velocidad
+                this.setVelocidadCircumstancias(10); // Aumenta la velocidad en 10
+                this.actualizarVelicidadActual(); // Actualizar velocidad actual
+            }
+        }
+    }
+
+    // Frenar (Debe frenar para entrar a pits) - Disminuye la velocidad
+    // 1. Daña las llantas
+    // 2. Disminuye 1 posición
+    // 3. Puede entrar a Pits
+    public void frenar() {
+        Random rand = new Random(); // Generador de números aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio entre 1 y 3
+        if (randomNumber == 1) { // Daña las llantas
+            this.getNeumaticos().setDanado(true);
+            this.actualizarVelicidadActual();
+        } else if (randomNumber <= 9) { // Disminuye 1 posición
+            this.setVelocidadCircumstancias(- 100); // Aumenta la velocidad en 10
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        }
+    }
+
+//    Hacer Maniobra (RE BONUS) -
+//    1. Chocar
+//    2. Aumentar velocidad 100
+
+    public void hacerManiobra() {
+        Random rand = new Random(); // Generador de números aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio
+        if (randomNumber <= 5) { // Choca
+            this.chocar();
+        } else { // Aumenta la velocidad en 100
+            this.setVelocidadCircumstancias(100); // Aumenta la velocidad en 10
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        }
+    }
+
+//  Defender Posición (Pussy) - Mantiene la velocidad actual
+//  1. Aumentar o disminuir velocidad en 20
+    public void defender() {
+        Random rand = new Random(); // Generador de números aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio
+        if (randomNumber <= 5) { // Aumenta la velocidad en 20
+            this.setVelocidadCircumstancias(20); // Aumenta la velocidad en 10
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        } else { // Disminuye la velocidad en 20
+            this.setVelocidadCircumstancias(- 20); // Aumenta la velocidad en 10
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        }
+    }
+
+//  Derrapar RAAAAAAAAAAAAAAAA - Mantiene la velocidad
+//  1. Dañar las llantas
+//  2. Aumentar 30 velocidad
+//  3. Usa la probabilidad de choque
+
+    public void derrapar() {
+        Random rand = new Random(); // Generador de números aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio
+        if (randomNumber == 1) {
+            this.getNeumaticos().setDanado(true); // Dañar las llantas
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        } else if (randomNumber <= 9) {
+            this.setVelocidadCircumstancias(30); // Aumenta la velocidad en 10
+            this.actualizarVelicidadActual(); // Actualizar velocidad actual
+        } else { // Usa la probabilidad de chocar
+            double numeroAleatorio = rand.nextDouble();
+            // Número aleatorio entre 0 y 1
+            if (numeroAleatorio <= this.getProbabilidadChoque()) {
+                // Si el número aleatorio es menor o igual a la probabilidad de chocar, choca
+                this.chocar();
+            } else { // Si no, aumenta la velocidad
+                this.setVelocidadCircumstancias(10); // Aumenta la velocidad en 10
+                this.actualizarVelicidadActual(); // Actualizar velocidad actual
+            }
+        }
+    }
+
+
 
     // Ligadura Dinamica
     public void morir() {
@@ -175,4 +286,19 @@ public class VehiculoCarrera extends Vehiculo {
         this.tiempo = tiempo;
     }
 
+    public double getVelocidadActual() {
+        return velocidadActual;
+    }
+
+    public void setVelocidadActual(double velocidadActual) {
+        this.velocidadActual = velocidadActual;
+    }
+
+    public double getVelocidadCircumstancias() {
+        return velocidadCircumstancias;
+    }
+
+    public void setVelocidadCircumstancias(double velocidadCircumstancias) {
+        this.velocidadCircumstancias = velocidadCircumstancias;
+    }
 }

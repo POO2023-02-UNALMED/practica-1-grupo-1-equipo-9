@@ -1,6 +1,7 @@
 package gestorAplicacion.campeonato;
 
 import gestorAplicacion.campeonato.Ciudad.Continente;
+import gestorAplicacion.paddock.Circuito;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,6 +21,7 @@ public class Carrera {
     private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
     private double dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
     private final ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
+    private Circuito circuito;
 
     //Constructores
     public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double dificultad) {
@@ -40,6 +42,24 @@ public class Carrera {
         this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
+    public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director) {
+        this.id = idActual;
+        Carrera.idActual++;
+        this.nombreCircuito = nombre;
+        this.mes = mes;
+        this.distancia = distancia;
+        this.premioEfectivo = premio;
+        this.ciudad = ciudad;
+        ciudad.setCarrera(this);
+        this.directorCarrera = director;
+        director.setCarrera(this);
+        Random rand = new Random();
+        double lowerBound = 0.0;
+        double upperBound = 0.2;
+        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
+        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+    }
+
     public Carrera(String nombre, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double dificultad) {
         this.id = idActual;
         Carrera.idActual++;
@@ -49,6 +69,21 @@ public class Carrera {
         this.ciudad = ciudad;
         this.directorCarrera = director;
         director.setCarrera(this);
+        this.dificultad = dificultad;
+        Random rand = new Random();
+        double lowerBound = 0.0;
+        double upperBound = 0.2;
+        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
+        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+    }
+
+    public Carrera(String nombre, double distancia, double premio, Ciudad ciudad, double dificultad) {
+        this.id = idActual;
+        Carrera.idActual++;
+        this.nombreCircuito = nombre;
+        this.distancia = distancia;
+        this.premioEfectivo = premio;
+        this.ciudad = ciudad;
         this.dificultad = dificultad;
         Random rand = new Random();
         double lowerBound = 0.0;
@@ -129,6 +164,7 @@ public class Carrera {
 
     public void setDirectorCarrera(DirectorCarrera director) {
         this.directorCarrera = director;
+        director.setCarrera(this);
     }
 
     public Ciudad getCiudad() {
@@ -157,5 +193,29 @@ public class Carrera {
 
     public ArrayList<VehiculoCarrera> getPosiciones() {
         return posiciones;
+    }
+
+    public static Carrera getCarreraActual() {
+        return carreraActual;
+    }
+
+    public static void setCarreraActual(Carrera carreraActual) {
+        Carrera.carreraActual = carreraActual;
+    }
+
+    public static int getIdActual() {
+        return idActual;
+    }
+
+    public static void setIdActual(int idActual) {
+        Carrera.idActual = idActual;
+    }
+
+    public Circuito getCircuito() {
+        return circuito;
+    }
+
+    public void setCircuito(Circuito circuito) {
+        this.circuito = circuito;
     }
 }

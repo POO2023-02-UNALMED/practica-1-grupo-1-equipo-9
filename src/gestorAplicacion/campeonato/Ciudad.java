@@ -9,6 +9,7 @@ public class Ciudad {
 	//Atributos
     private String nombre;
     private Continente continente;
+	private Carrera carrera;
     
     //Constructores
     public Ciudad(String nombre, Continente continente) {
@@ -54,8 +55,19 @@ public class Ciudad {
     public Continente getContinente() {return this.continente;}
     public void setContinente(Continente continente) {this.continente = continente;}
 
+	public static void setListaCiudades(ArrayList<Ciudad> listaCiudades) {
+		Ciudad.listaCiudades = listaCiudades;
+	}
 
-    // Lista de continentes
+	public Carrera getCarrera() {
+		return carrera;
+	}
+
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
+	}
+
+	// Lista de continentes
     public enum Continente {
         Africa, America, Asia, Europa, Oceania
     }

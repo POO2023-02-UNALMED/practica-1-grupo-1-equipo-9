@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Equipo {
 
-    static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
+    public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
     static int idActual = 0;
     private int id;
     private String nombre;
@@ -41,9 +41,6 @@ public class Equipo {
         this.pais = pais;
         this.plata = 0;
         this.puntos = 0;
-        this.pilotosDisponibles = null;
-        this.piloto1 = null;
-        this.piloto2 = null;
         Equipo.equipos.add(this);
     }
 
@@ -53,8 +50,6 @@ public class Equipo {
         this.pais = pais;
         this.plata = plata;
         this.puntos = puntos;
-        this.piloto1 = null;
-        this.piloto2 = null;
         Equipo.equipos.add(this);
         if (vehiculosDisponibles != null) {
             this.vehiculosDisponibles = vehiculosDisponibles;

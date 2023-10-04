@@ -5,128 +5,15 @@ import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 import java.util.*;
 import uiMain.Tablas;
-import uiMain.AsciiArt.*;
+import uiMain.AsciiArt;
+
+import java.util.Random;
 
 import static uiMain.AsciiArt.*;
 
-public class MainUI {
+public class TestPrint {
+
     public static void main(String[] args) {
-        // Variables Necesarias
-        Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
-
-        System.out.println("\n");
-        // Mensaje de bienvenida
-        bienvenida();
-        System.out.println("\n");
-        sc.nextLine();
-
-        // Mensaje de introduccion
-        System.out.println("¡Hola! En este juego, serás un piloto de un equipo de carreras de Fórmula 1.");
-        System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deberás competir en carreras y obtener puntos.");
-        System.out.println("¡Buena suerte!");
-        System.out.println("< Pulsa para continuar >");
-        System.out.println("\n");
-        sc.nextLine();
-
-
-        System.out.println("Primero debes preparar el campeonato en el que competirás.");
-        System.out.println("¡Comencemos!");
-        System.out.println("\n");
-        System.out.println("\n");
-
-        // FUNCIONALIDAD PREPARAR CAMPEONATO
-        // Pasos para Preparar el Campeonato
-        System.out.println("Preparar el Campeonato");
-        System.out.println("\n");
-        // Paso 1: Escoge un Campeonato
-        System.out.println("Escoge un Campeonato");
-        // Llamar las tablas
-
-        boolean validaciones = false;
-
-        while (!validaciones) {
-            System.out.println("Elige uno de los 5 campeonatos, escribe un numero del 1 al 5.");
-            int n = sc.nextInt();
-            // Validar que el numero sea del 1 al 5
-            if (n < 1 || n > 5) {
-                // Si no es del 1 al 5, imprimir el mensaje de error
-                System.out.println("Por favor, escribe un numero del 1 al 5.");
-            } else {
-                // Si es del 1 al 5, imprimir el mensaje de exito
-                // Si es del 1 al 5, cambiar validaciones a true
-                Equipo.equipoElegido = Equipo.equipos.get(n - 1);
-                System.out.println("¡Campeonato elegido!");
-                validaciones = true;
-            }
-        }
-
-        // Paso 2: Elige el Año
-        System.out.println("Elige el Año");
-        System.out.println("Indica el año en el que quieres que se celebre el campeonato.");
-        int n = sc.nextInt();
-        validaciones = false;
-        // Validar que el numero sea mayor que 1950 y menor que 9999
-        while (!validaciones) {
-            if (n < 1950 || n > 9999) {
-                // Si no es mayor que 1950 y menor que 9999, imprimir el mensaje de error
-                System.out.println("Por favor, escribe un numero mayor que 1950 y menor que 9999.");
-            } else {
-                // Si es mayor que 1950 y menor que 9999, imprimir el mensaje de exito
-                System.out.println("¡Año elegido!");
-                validaciones = true;
-            }
-        }
-
-        System.out.println("¡Tu campeonato quedo configurado!");
-        // imprmir como se ve con tablitas
-
-
-        //banner("Campeonato 1", "2021");
-        // Paso 3: Selecciona tu Equipo
-        System.out.println("Selecciona tu Escudería");
-        // imprimir equipos
-        System.out.println("Escoge una escudería para competir en el campeonato, escribe un numero del 1 al 10.");
-
-
-        // Paso 4: Mira los Pilotos de tu Equipo
-        System.out.println("Mira los Pilotos de tu Escuderia");
-        // imprimir pilotos con stats
-
-        // Paso 5: Escoge tus Pilotos
-        System.out.println("Escoge tu Piloto");
-
-
-        System.out.println("Escoge tu compañero de equipo");
-
-        // Paso 6: Negocia con Patrocinadores
-        System.out.println("Actualmente, tu equipo no tiene dinero :(.");
-        System.out.println("Si deseas, puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
-        System.out.println("Mira la lista de patrocinadores disponibles:");
-        // imprimir patrocinadores con el dinero que estan dispuestos a dar
-
-        System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
-
-        System.out.println("Decide cuánto dinero quieres pedirle:");
-
-
-        // Paso 7: Verifica tu Dinero
-        System.out.println("Ahora, tu equipo tiene: " + "Dolares");
-        System.out.println("¿Quieres negociar con otro patrocinador? (S/N)");
-
-        System.out.println("Comprueba la cantidad de dinero que has recibido de los patrocinadores.");
-
-        // Mensaje de despedida
-        System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
-    }
-
-    public double random() {
-        Random random = new Random();
-        double numeroAleatorio = 200 + random.nextDouble() * (500 - 200);
-        return Math.round(numeroAleatorio * 100.0) / 100.0;
-    }
-    
-    static {
         Random rand = new Random();
         // Podemos crear aqui los objetos para los tests
         // Esto despues se va a serliaizar
@@ -139,52 +26,46 @@ public class MainUI {
         Campeonato campeonatoOceania = new Campeonato("Campeonato Oceanía", 2023, Ciudad.Continente.Oceania, 2);
 
         // Ciudades y Carreras
-        // Europa
         Ciudad ciudad1 = new Ciudad("Montecarlo", Ciudad.Continente.Europa);
-        Carrera carrera1 = new Carrera("Grand Prix de Mónaco", 260.0, 1000000.0, ciudad1, 4.2);
+        Carrera carrera1 = new Carrera("Gran Premio de Mónaco", 260.0, 1000000.0, ciudad1, 4.2);
         Ciudad ciudad2 = new Ciudad("Monza", Ciudad.Continente.Europa);
-        Carrera carrera2 = new Carrera("Grand Prix de Italia", 306.0, 900000.0, ciudad2, 3.8);
+        Carrera carrera2 = new Carrera("Gran Premio de Italia", 306.0, 900000.0, ciudad2, 3.8);
         Ciudad ciudad3 = new Ciudad("Silverstone", Ciudad.Continente.Europa);
-        Carrera carrera3 = new Carrera("Grand Prix de Gran Bretaña", 308.0, 950000.0, ciudad3, 4.0);
+        Carrera carrera3 = new Carrera("Gran Premio de Gran Bretaña", 308.0, 950000.0, ciudad3, 4.0);
         Ciudad ciudad4 = new Ciudad("Baku", Ciudad.Continente.Europa);
-        Carrera carrera4 = new Carrera("Grand Prix de Azerbaiyán", 306.0, 900000.0, ciudad4, 3.8);
+        Carrera carrera4 = new Carrera("Gran Premio de Azerbaiyán", 306.0, 900000.0, ciudad4, 3.8);
         Ciudad ciudad5 = new Ciudad("Barcelona", Ciudad.Continente.Europa);
-        Carrera carrera5 = new Carrera("Grand Prix de España", 308.0, 950000.0, ciudad5, 4.0);
-        // Asia
+        Carrera carrera5 = new Carrera("Gran Premio de España", 308.0, 950000.0, ciudad5, 4.0);
         Ciudad ciudad6 = new Ciudad("Shanghái", Ciudad.Continente.Asia);
-        Carrera carrera6 = new Carrera("Grand Prix de China", 305.0, 900000.0, ciudad6, 3.8);
+        Carrera carrera6 = new Carrera("Gran Premio de China", 305.0, 900000.0, ciudad6, 3.8);
         Ciudad ciudad7 = new Ciudad("Sakhir", Ciudad.Continente.Asia);
-        Carrera carrera7 = new Carrera("Grand Prix de Baréin", 308.0, 950000.0, ciudad7, 4.0);
+        Carrera carrera7 = new Carrera("Gran Premio de Baréin", 308.0, 950000.0, ciudad7, 4.0);
         Ciudad ciudad8 = new Ciudad("Singapur", Ciudad.Continente.Asia);
-        Carrera carrera8 = new Carrera("Grand Prix de Singapur", 305.0, 900000.0, ciudad8, 3.8);
-        Ciudad ciudad9 = new Ciudad("Jeddah", Ciudad.Continente.Asia);
-        Carrera carrera9 = new Carrera("Grand Prix de Arabia Saudita", 308.0, 950000.0, ciudad9, 4.0);
-        // América
+        Carrera carrera8 = new Carrera("Gran Premio de Singapur", 305.0, 900000.0, ciudad8, 3.8);
+        Ciudad ciudad9 = new Ciudad("Yeda", Ciudad.Continente.Asia);
+        Carrera carrera9 = new Carrera("Gran Premio de Arabia Saudita", 308.0, 950000.0, ciudad9, 4.0);
         Ciudad ciudad10 = new Ciudad("Austin", Ciudad.Continente.America);
-        Carrera carrera10 = new Carrera("Grand Prix de Estados Unidos", 305.0, 900000.0, ciudad10, 3.8);
+        Carrera carrera10 = new Carrera("Gran Premio de Estados Unidos", 305.0, 900000.0, ciudad10, 3.8);
         Ciudad ciudad11 = new Ciudad("Monterrey", Ciudad.Continente.America);
-        Carrera carrera11 = new Carrera("Grand Prix de México", 308.0, 950000.0, ciudad11, 4.0);
+        Carrera carrera11 = new Carrera("Gran Premio de México", 308.0, 950000.0, ciudad11, 4.0);
         Ciudad ciudad12 = new Ciudad("Sao Paulo", Ciudad.Continente.America);
-        Carrera carrera12 = new Carrera("Grand Prix de Brasil", 305.0, 900000.0, ciudad12, 3.8);
+        Carrera carrera12 = new Carrera("Gran Premio de Brasil", 305.0, 900000.0, ciudad12, 3.8);
         Ciudad ciudad13 = new Ciudad("Buenos Aires", Ciudad.Continente.America);
-        Carrera carrera13 = new Carrera("Grand Prix de Argentina", 308.0, 950000.0, ciudad13, 4.0);
-        // África
+        Carrera carrera13 = new Carrera("Gran Premio de Argentina", 308.0, 950000.0, ciudad13, 4.0);
         Ciudad ciudad14 = new Ciudad("Ciudad del Cabo", Ciudad.Continente.Africa);
-        Carrera carrera14 = new Carrera("Grand Prix de Sudáfrica", 305.0, 900000.0, ciudad14, 3.8);
+        Carrera carrera14 = new Carrera("Gran Premio de Sudáfrica", 305.0, 900000.0, ciudad14, 3.8);
         Ciudad ciudad15 = new Ciudad("El Cairo", Ciudad.Continente.Africa);
-        Carrera carrera15 = new Carrera("Grand Prix de Egipto", 308.0, 950000.0, ciudad15, 4.0);
+        Carrera carrera15 = new Carrera("Gran Premio de Egipto", 308.0, 950000.0, ciudad15, 4.0);
         Ciudad ciudad16 = new Ciudad("Nairobi", Ciudad.Continente.Africa);
-        Carrera carrera16 = new Carrera("Grand Prix de Kenia", 305.0, 900000.0, ciudad16, 3.8);
-
-        // Oceanía
+        Carrera carrera16 = new Carrera("Gran Premio de Kenia", 305.0, 900000.0, ciudad16, 3.8);
         Ciudad ciudad17 = new Ciudad("Melbourne", Ciudad.Continente.Oceania);
-        Carrera carrera17 = new Carrera("Grand Prix de Australia", 308.0, 950000.0, ciudad17, 4.0);
+        Carrera carrera17 = new Carrera("Gran Premio de Australia", 308.0, 950000.0, ciudad17, 4.0);
         Ciudad ciudad18 = new Ciudad("Auckland", Ciudad.Continente.Oceania);
-        Carrera carrera18 = new Carrera("Grand Prix de Nueva Zelanda", 305.0, 900000.0, ciudad18, 3.8);
+        Carrera carrera18 = new Carrera("Gran Premio de Nueva Zelanda", 305.0, 900000.0, ciudad18, 3.8);
         Ciudad ciudad19 = new Ciudad("Sídney", Ciudad.Continente.Oceania);
-        Carrera carrera19 = new Carrera("Grand Prix de Australia", 308.0, 950000.0, ciudad19, 4.0);
+        Carrera carrera19 = new Carrera("Gran Premio de Australia", 308.0, 950000.0, ciudad19, 4.0);
         Ciudad ciudad20 = new Ciudad("Adelaida", Ciudad.Continente.Oceania);
-        Carrera carrera20 = new Carrera("Grand Prix de Australia", 305.0, 900000.0, ciudad20, 3.8);
+        Carrera carrera20 = new Carrera("Gran Premio de Australia", 305.0, 900000.0, ciudad20, 3.8);
 
         // Directores de Carrera
         DirectorCarrera director1 = new DirectorCarrera("Michael Schmidt", "Mónaco", 500000.0, true);
@@ -208,9 +89,9 @@ public class MainUI {
         Patrocinador patrocinador7 = new Patrocinador("Acme Corporation", 55000.0);
         Patrocinador patrocinador8 = new Patrocinador("Tech Innovations Ltd.", 30000.0);
         Patrocinador patrocinador9 = new Patrocinador("Global Motorsport Group", 75000.0);
-        Patrocinador patrocinador10 = new Patrocinador("Puma", 150000.0);
+        Patrocinador patrocinador10 = new Patrocinador("Puma", 15000.0);
 
-        // Creación de equipos
+        // Equipos
         Equipo equipo1 = new Equipo("Mercedes-AMG Petronas Formula One Team", "Alemania");
         Equipo equipo2 = new Equipo("Scuderia Ferrari", "Italia");
         Equipo equipo3 = new Equipo("Red Bull Racing", "Austria");
@@ -220,94 +101,62 @@ public class MainUI {
         Equipo equipo7 = new Equipo("Williams Racing", "Reino Unido");
         Equipo equipo8 = new Equipo("Alfa Romeo Racing", "Suiza");
         Equipo equipo9 = new Equipo("Haas F1 Team", "Estados Unidos");
-        Equipo equipo10 = new Equipo("Alpha Tauri", "Austria");
+        Equipo equipo10 = new Equipo("Uralkali Haas F1 Team", "Estados Unidos");
 
-// Creación de pilotos para cada equipo
+        // Pilotos
         Piloto piloto1Equipo1 = new Piloto("H. Ham", "GER", equipo1, Math.random() * 0.4);
-        Piloto piloto2Equipo1 = new Piloto("V. Bot", "FIN", equipo1, Math.random() * 0.4);
-        Piloto piloto3Equipo1 = new Piloto("G. Rus", "FIN", equipo1, Math.random() * 0.4);
-        Piloto piloto4Equipo1 = new Piloto("L. Ham", "GBR", equipo1, Math.random() * 0.4);
-        Piloto piloto5Equipo1 = new Piloto("N. Ros", "GER", equipo1, Math.random() * 0.4);
-
-        Piloto piloto1Equipo2 = new Piloto("C. LeC", "MON", equipo2, Math.random() * 0.4);
-        Piloto piloto2Equipo2 = new Piloto("C. Sai", "ESP", equipo2, Math.random() * 0.4);
-        Piloto piloto3Equipo2 = new Piloto("D. Ric", "AUS", equipo2, Math.random() * 0.4);
-        Piloto piloto4Equipo2 = new Piloto("L. Nor", "GBR", equipo2, Math.random() * 0.4);
-        Piloto piloto5Equipo2 = new Piloto("A. Gio", "ITA", equipo2, Math.random() * 0.4);
-
-        Piloto piloto1Equipo3 = new Piloto("M. Ver", "NED", equipo3, Math.random() * 0.4);
-        Piloto piloto2Equipo3 = new Piloto("S. Per", "MEX", equipo3, Math.random() * 0.4);
-        Piloto piloto3Equipo3 = new Piloto("S. Gas", "FRA", equipo3, Math.random() * 0.4);
-        Piloto piloto4Equipo3 = new Piloto("Y. Tsn", "JPN", equipo3, Math.random() * 0.4);
-        Piloto piloto5Equipo3 = new Piloto("P. Alx", "THA", equipo3, Math.random() * 0.4);
-
-        Piloto piloto1Equipo4 = new Piloto("L. Nor", "GBR", equipo4, Math.random() * 0.4);
-        Piloto piloto2Equipo4 = new Piloto("D. Ric", "AUS", equipo4, Math.random() * 0.4);
-        Piloto piloto3Equipo4 = new Piloto("L. Ham", "GBR", equipo4, Math.random() * 0.4);
-        Piloto piloto4Equipo4 = new Piloto("A. Rai", "FIN", equipo4, Math.random() * 0.4);
-        Piloto piloto5Equipo4 = new Piloto("C. Sci", "LOR", equipo4, Math.random() * 0.4);
-
-        Piloto piloto1Equipo5 = new Piloto("S. Vet", "GER", equipo5, Math.random() * 0.4);
-        Piloto piloto2Equipo5 = new Piloto("L. Str", "CAN", equipo5, Math.random() * 0.4);
-        Piloto piloto3Equipo5 = new Piloto("L. Hld", "DEN", equipo5, Math.random() * 0.4);
-        Piloto piloto4Equipo5 = new Piloto("Y. Tsu", "JPN", equipo5, Math.random() * 0.4);
-        Piloto piloto5Equipo5 = new Piloto("P. Lbe", "GBR", equipo5, Math.random() * 0.4);
-
-        Piloto piloto1Equipo6 = new Piloto("F. Aco", "ESP", equipo6, Math.random() * 0.4);
-        Piloto piloto2Equipo6 = new Piloto("E. Oco", "FRA", equipo6, Math.random() * 0.4);
-        Piloto piloto3Equipo6 = new Piloto("G. Fee", "FRA", equipo6, Math.random() * 0.4);
-        Piloto piloto4Equipo6 = new Piloto("M. Oco", "SUI", equipo6, Math.random() * 0.4);
-        Piloto piloto5Equipo6 = new Piloto("N. Has", "GBR", equipo6, Math.random() * 0.4);
-
-        Piloto piloto1Equipo7 = new Piloto("G. Rus", "FIN", equipo7, Math.random() * 0.4);
-        Piloto piloto2Equipo7 = new Piloto("N. Lfe", "GBR", equipo7, Math.random() * 0.4);
-        Piloto piloto3Equipo7 = new Piloto("N. Maz", "CAN", equipo7, Math.random() * 0.4);
-        Piloto piloto4Equipo7 = new Piloto("A. Nor", "GBR", equipo7, Math.random() * 0.4);
-        Piloto piloto5Equipo7 = new Piloto("C. Rsl", "GBR", equipo7, Math.random() * 0.4);
-
-        Piloto piloto1Equipo8 = new Piloto("V. Bot", "FIN", equipo8, Math.random() * 0.4);
-        Piloto piloto2Equipo8 = new Piloto("N. Maz", "CAN", equipo8, Math.random() * 0.4);
-        Piloto piloto3Equipo8 = new Piloto("K. Rka", "FIN", equipo8, Math.random() * 0.4);
-        Piloto piloto4Equipo8 = new Piloto("A. Gio", "ITA", equipo8, Math.random() * 0.4);
-        Piloto piloto5Equipo8 = new Piloto("M. Ver", "NED", equipo8, Math.random() * 0.4);
-
-        Piloto piloto1Equipo9 = new Piloto("M. Sch", "GER", equipo9, Math.random() * 0.4);
-        Piloto piloto2Equipo9 = new Piloto("N. Lat", "LAT", equipo9, Math.random() * 0.4);
-        Piloto piloto3Equipo9 = new Piloto("C. Sci", "USA", equipo9, Math.random() * 0.4);
-        Piloto piloto4Equipo9 = new Piloto("L. For", "USA", equipo9, Math.random() * 0.4);
-        Piloto piloto5Equipo9 = new Piloto("C. Snt", "FRA", equipo9, Math.random() * 0.4);
-
-        Piloto piloto1Equipo10 = new Piloto("Y. Tsn", "JPN", equipo10, Math.random() * 0.4);
-        Piloto piloto2Equipo10 = new Piloto("P. Alx", "THA", equipo10, Math.random() * 0.4);
-        Piloto piloto3Equipo10 = new Piloto("Y. Szu", "RUS", equipo10, Math.random() * 0.4);
-        Piloto piloto4Equipo10 = new Piloto("N. Mak", "GBR", equipo10, Math.random() * 0.4);
-        Piloto piloto5Equipo10 = new Piloto("L. Nor", "GBR", equipo10, Math.random() * 0.4);
-
-
+        Piloto piloto2Equipo1 = new Piloto("V. Bot", "GER", equipo1, Math.random() * 0.4);
+        Piloto piloto3Equipo1 = new Piloto("L. Ham", "GER", equipo1, Math.random() * 0.4);
+        Piloto piloto4Equipo1 = new Piloto("N. Ros", "GER", equipo1, Math.random() * 0.4);
+        Piloto piloto5Equipo1 = new Piloto("G. Rus", "GER", equipo1, Math.random() * 0.4);
         // Agregar a equipo1
         equipo1.agregarPiloto(piloto1Equipo1);
         equipo1.agregarPiloto(piloto2Equipo1);
         equipo1.agregarPiloto(piloto3Equipo1);
         equipo1.agregarPiloto(piloto4Equipo1);
         equipo1.agregarPiloto(piloto5Equipo1);
+
+        Piloto piloto1Equipo2 = new Piloto("C. Lec", "ITA", equipo2, Math.random() * 0.4);
+        Piloto piloto2Equipo2 = new Piloto("C. San", "ITA", equipo2, Math.random() * 0.4);
+        Piloto piloto3Equipo2 = new Piloto("M. Gat", "ITA", equipo2, Math.random() * 0.4);
+        Piloto piloto4Equipo2 = new Piloto("C. Sci", "ITA", equipo2, Math.random() * 0.4);
+        Piloto piloto5Equipo2 = new Piloto("L. Bin", "ITA", equipo2, Math.random() * 0.4);
         // Agregar a equipo2
         equipo2.agregarPiloto(piloto1Equipo2);
         equipo2.agregarPiloto(piloto2Equipo2);
         equipo2.agregarPiloto(piloto3Equipo2);
         equipo2.agregarPiloto(piloto4Equipo2);
         equipo2.agregarPiloto(piloto5Equipo2);
+
+        Piloto piloto1Equipo3 = new Piloto("M. Ver", "AUT", equipo3, Math.random() * 0.4);
+        Piloto piloto2Equipo3 = new Piloto("S. Per", "AUT", equipo3, Math.random() * 0.4);
+        Piloto piloto3Equipo3 = new Piloto("A. Alb", "AUT", equipo3, Math.random() * 0.4);
+        Piloto piloto4Equipo3 = new Piloto("P. Gas", "AUT", equipo3, Math.random() * 0.4);
+        Piloto piloto5Equipo3 = new Piloto("Y. Tsu", "AUT", equipo3, Math.random() * 0.4);
         // Agregar a equipo3
         equipo3.agregarPiloto(piloto1Equipo3);
         equipo3.agregarPiloto(piloto2Equipo3);
         equipo3.agregarPiloto(piloto3Equipo3);
         equipo3.agregarPiloto(piloto4Equipo3);
         equipo3.agregarPiloto(piloto5Equipo3);
+
+        Piloto piloto1Equipo4 = new Piloto("L. Nor", "GBR", equipo4, Math.random() * 0.4);
+        Piloto piloto2Equipo4 = new Piloto("D. Ric", "AUS", equipo4, Math.random() * 0.4);
+        Piloto piloto3Equipo4 = new Piloto("L. Sai", "ESP", equipo4, Math.random() * 0.4);
+        Piloto piloto4Equipo4 = new Piloto("N. Yea", "GBR", equipo4, Math.random() * 0.4);
+        Piloto piloto5Equipo4 = new Piloto("C. Nor", "GBR", equipo4, Math.random() * 0.4);
         // Agregar a equipo4
         equipo4.agregarPiloto(piloto1Equipo4);
         equipo4.agregarPiloto(piloto2Equipo4);
         equipo4.agregarPiloto(piloto3Equipo4);
         equipo4.agregarPiloto(piloto4Equipo4);
         equipo4.agregarPiloto(piloto5Equipo4);
+
+        Piloto piloto1Equipo5 = new Piloto("S. Vet", "DEU", equipo5, Math.random() * 0.4);
+        Piloto piloto2Equipo5 = new Piloto("L. Str", "CAN", equipo5, Math.random() * 0.4);
+        Piloto piloto3Equipo5 = new Piloto("F. Stt", "MEX", equipo5, Math.random() * 0.4);
+        Piloto piloto4Equipo5 = new Piloto("G. ALO", "ESP", equipo5, Math.random() * 0.4);
+        Piloto piloto5Equipo5 = new Piloto("Y. Tsu", "GBR", equipo5, Math.random() * 0.4);
         // Agregar a equipo5
         equipo5.agregarPiloto(piloto1Equipo5);
         equipo5.agregarPiloto(piloto2Equipo5);
@@ -407,5 +256,8 @@ public class MainUI {
         equipo10.agregarVehiculo(vehiculo19);
         equipo10.agregarVehiculo(vehiculo20);
 
+        //
+//        car();
+//        littleCar(" ");
     }
 }

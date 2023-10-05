@@ -2,12 +2,13 @@ package gestorAplicacion.campeonato;
 
 import gestorAplicacion.campeonato.Ciudad.Continente;
 import gestorAplicacion.paddock.Circuito;
-
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Carrera {
-    public static Carrera carreraActual; //Carrera actual que se está corriendo
+    //Carrera actual durante el main
+    public static Carrera carreraActual;
+    //Lista de posiciones de los vehiculos
+    private static ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
     //Atributos
     private static int idActual = 1;
     private static Campeonato campeonato;
@@ -20,7 +21,7 @@ public class Carrera {
     private DirectorCarrera directorCarrera;
     private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
     private double dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
-    private final ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
+
     private Circuito circuito;
 
     //Constructores
@@ -113,9 +114,38 @@ public class Carrera {
         campeonato = campeonatico;
     }
 
-    //Metodos de instancia
-    public void iniciarCarrera() {
-    }//Inicializa la carrera
+    //Metodos para el ciclo de la carrera
+    public static void comenzarCarrera(Carrera carrera) { //Metodo para comenzar cada carrera. Cada carrera se trabajara estaticamente.
+        carreraActual = carrera;
+    }
+
+    public static void actualizarGasolina() { //Cada iteracion se debe actualizar la gasolina.
+        if (VehiculoCarrera.vehiculoElegido.getGasolina()>3) { //Si hay suficiente gasolina, se reduce el nivel.
+            VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina()-3);
+        }
+        else { //Si no hay suficiente gasolina, el carro choca.
+            VehiculoCarrera.vehiculoElegido.chocar();
+        }
+    }
+
+    public static void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones
+        posiciones.sort(Comparator.comparing(VehiculoCarrera::getDistanciaRecorrida));
+    }
+
+    public static ArrayList<Boolean> actualizarOpciones() { //Este metodo selecciona aleatoriamente que opciones se van a mostrar
+        ArrayList<Boolean> listaOpciones = new ArrayList<Boolean>();
+        Random rand = new Random();
+        for (int i=0 ; i<5 ; i++) {
+            int numRandom= rand.nextInt(10);
+            if (numRandom>=3) {
+                listaOpciones.add(true);
+            }
+            else {
+                listaOpciones.add(false);
+            }
+        }
+        return listaOpciones;
+    }
 
     // Lista de metodos set y get
     public int getId() {

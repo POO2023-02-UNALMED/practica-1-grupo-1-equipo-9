@@ -259,5 +259,6 @@ public class TestPrint {
         //
 //        car();
 //        littleCar(" ");
+        control();
     }
 }

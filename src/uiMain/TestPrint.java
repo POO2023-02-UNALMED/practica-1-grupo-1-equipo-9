@@ -259,13 +259,16 @@ public class TestPrint {
         //
 //        car();
 //        littleCar(" ");
-        control();
-        System.out.println(" ");
-        ps5controller();
-        System.out.println(" ");
-        bigCar();
-        System.out.println(" ");
-        pitStop();
-        cup();
+//        control();
+//        System.out.println(" ");
+//        ps5controller();
+//        System.out.println(" ");
+//        bigCar();
+//        System.out.println(" ");
+//        pitStop();
+//        cup();
+//        System.out.println(" ");
+//        cards();
+        //banner(campeonatoAfrica.getNombre());
     }
 }

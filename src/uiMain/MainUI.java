@@ -24,7 +24,6 @@ public class MainUI {
         System.out.println("¡Hola! En este juego, serás un piloto de un equipo de carreras de Fórmula 1.");
         System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deberás competir en carreras y obtener puntos.");
         System.out.println("¡Buena suerte!");
-        System.out.println("< Pulsa para continuar >");
         System.out.println("\n");
         sc.nextLine();
 
@@ -82,6 +81,8 @@ public class MainUI {
 
         System.out.println("¡Tu campeonato quedo configurado!");
         // imprmir como se ve con tablitas
+
+
 
 
         //banner("Campeonato 1", "2021");

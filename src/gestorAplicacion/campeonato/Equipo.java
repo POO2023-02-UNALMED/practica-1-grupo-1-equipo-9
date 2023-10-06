@@ -8,19 +8,21 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Equipo {
-
     public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
+
+    //Atributos
     static int idActual = 0;
     private int id;
     private String nombre;
     private String pais;
     private double plata;
-    private int puntos;
+    private int puntos; //TODO: Preguntar si los puntos son generales (serializados) o son unicos a cada campeonato y luego se borran
     private ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehículos disponibles
     public static Equipo equipoElegido; //Este es el equipo que tiene el ususario
     private ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>(); // Lista de pilotos disponibles
     private Piloto piloto1;
     private Piloto piloto2;
+    private ArrayList<Patrocinador> patrocinadoresEquipo = new ArrayList<Patrocinador>(); //Lista de patrocinadores que patrocinan al equipo TODO: Perdon, toque tu clase :,(
 
     // Constructores
     public Equipo() {
@@ -176,6 +178,14 @@ public class Equipo {
 
     public void setPiloto2(Piloto piloto2) {
         this.piloto2 = piloto2;
+    }
+
+    public ArrayList<Patrocinador> getPatrocinadoresEquipo() {
+        return patrocinadoresEquipo;
+    }
+
+    public void setPatrocinadoresEquipo(ArrayList<Patrocinador> patrocinadoresEquipo) {
+        this.patrocinadoresEquipo = patrocinadoresEquipo;
     }
 
 

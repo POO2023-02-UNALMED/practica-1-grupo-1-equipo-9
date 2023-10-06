@@ -38,7 +38,10 @@ public class DirectorCarrera extends Persona {
         this.carrera = carrera;
         this.corrupcion = corrupcion;
     }
-
+    //Metodo abstracto heredado
+    public void recibirPlata(double plata) {
+        this.setPlata(this.getPlata()+plata);
+    }
     // Métodos de instancia
     public void ponerSancion(Piloto piloto) {
         piloto.setSanciones(piloto.getSanciones() + 1);

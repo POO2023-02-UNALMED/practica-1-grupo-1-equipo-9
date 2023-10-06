@@ -2,13 +2,18 @@ package gestorAplicacion.campeonato;
 
 import gestorAplicacion.campeonato.Ciudad.Continente;
 import gestorAplicacion.paddock.Circuito;
+import gestorAplicacion.paddock.Patrocinador;
+import gestorAplicacion.paddock.Vehiculo;
+
 import java.util.*;
 
 public class Carrera {
-    //Carrera actual durante el main
-    public static Carrera carreraActual;
-    //Lista de posiciones de los vehiculos
-    private static ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>();
+    public static Carrera carreraActual;     //Carrera actual durante el main
+
+    public static ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
+
+    public static ArrayList<VehiculoCarrera>  terminados= new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
+
     //Atributos
     private static int idActual = 1;
     private static Campeonato campeonato;
@@ -39,8 +44,7 @@ public class Carrera {
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
-        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
-        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+        this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
     public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director) {
@@ -57,8 +61,7 @@ public class Carrera {
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
-        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
-        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+        this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
     public Carrera(String nombre, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double dificultad) {
@@ -74,8 +77,7 @@ public class Carrera {
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
-        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
-        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+        this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
     public Carrera(String nombre, double distancia, double premio, Ciudad ciudad, double dificultad) {
@@ -89,8 +91,22 @@ public class Carrera {
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
-        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
-        this.clima = numRandom; //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+        this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+    }
+    public Carrera(Ciudad ciudad, int mes, double dificultad){ //El chakalito
+        this.id = idActual;
+        Carrera.idActual++;
+        Random rand = new Random();
+        ArrayList<String> poolNombres = new ArrayList<String>(); //TODO: Preguntar por estos nombres de carreras
+        poolNombres.add("Grand Prix de ");
+        poolNombres.add("Trofeo de ");
+        poolNombres.add("Carrera en las Calles de ");
+        this.ciudad = ciudad;
+        this.mes = mes; //TODO: Hacer verificacion de que no hay meses repetidos
+        this.dificultad = dificultad;
+        this.nombreCircuito = poolNombres.get(rand.nextInt(3))+this.ciudad.getNombre();
+        this.distancia = (rand.nextInt(11)+5)*1000;
+        this.premioEfectivo = (rand.nextInt(3)+1)*1000;
     }
 
     //Metodos de clase
@@ -128,7 +144,15 @@ public class Carrera {
         }
     }
 
-    public static void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones
+    public static void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones  TODO: Preguntar por imprimir dos tablas en paralelo durante el ciclo
+        for (VehiculoCarrera vehiculo: posiciones){
+            vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
+            if (vehiculo.getDistanciaRecorrida()>= carreraActual.getDistancia()){
+                terminados.add(vehiculo);
+                vehiculo.setTerminado(true);
+                posiciones.remove(vehiculo);
+            }
+        }
         posiciones.sort(Comparator.comparing(VehiculoCarrera::getDistanciaRecorrida));
     }
 
@@ -144,8 +168,32 @@ public class Carrera {
                 listaOpciones.add(false);
             }
         }
-        return listaOpciones;
+        return listaOpciones; //Retorna lista de 5 posiciones donde puede haber "true" o "false"
     }
+    //Metodos para el final de la carrera
+    public static boolean actualizarTerminado(){
+        boolean todosTerminados=true;
+        for (VehiculoCarrera vehiculoCarrera : posiciones){
+            if (!vehiculoCarrera.isTerminado()){
+                todosTerminados=false;
+                break;
+            }
+        }
+        return todosTerminados;
+    }
+    public static void premiarCarrera(){ //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
+        int puntosActuales = 8;
+        for (VehiculoCarrera vehiculo : terminados){
+            vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos()+puntosActuales);
+            puntosActuales--;
+        }
+        terminados.get(0).getPiloto().recibirPlata(carreraActual.getPremioEfectivo()*0.7);
+        for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
+            patrocinador.recibirPlata(carreraActual.getPremioEfectivo() * 0.1);
+        }
+        terminados.get(1).getPiloto().recibirPlata(carreraActual.getPremioEfectivo()*0.2);
+        terminados.get(2).getPiloto().recibirPlata(carreraActual.getPremioEfectivo()*0.1);
+    } //TODO: Preguntar por la cantidad que gana cada equipo
 
     // Lista de metodos set y get
     public int getId() {

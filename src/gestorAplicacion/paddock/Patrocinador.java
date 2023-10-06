@@ -37,6 +37,10 @@ public class Patrocinador extends Persona {
    public String toString() {
 	   return "Nombre: " + this.getNombre() + "\nCantidad que patrocina:" + this.dineroOfrecer + "\nProbabilidad de aceptar: " + this.probAceptar;
    }
+	//Metodo abstracto heredado
+	public void recibirPlata(double plata) {
+		this.setDinero(this.getDinero() + plata);
+	}
 
    public boolean pensarNegocio(Equipo equipo) {
 		Random rand = new Random();
@@ -58,16 +62,19 @@ public class Patrocinador extends Persona {
 		double upperBound=this.probAceptar;
 		double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
 		if (numRandom<this.probAceptar) {
-			this.equipoPatrocinado = equipo;
+			if (this.setEquipo(equipo)){
+				return false;
+			} else {
 			this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata()+this.dineroOfrecer);
 			return true;
+			}
 		} else {
 			return false;
 		}
    }
 
     //Metodos de clase
-    public static String mostrarPatrocinadores() {
+    public static String mostrarPatrocinadores() { //TODO: Preguntar si quieren una tabla diferente
     	String tabla = null;
     	for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
     		if (patrocinador.isPatrocinando()) {
@@ -95,8 +102,7 @@ public class Patrocinador extends Persona {
     	Random rand = new Random();
     	double lowerBound=1.0-this.dineroOfrecer/dineroDisponible;
     	double upperBound=1.0;
-    	double numRandom=lowerBound+(upperBound-lowerBound)*rand.nextDouble();
-    	this.probAceptar = numRandom; //Se le asigna una probabilidad entre 100% menos la proporción del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, más alta la probabilidad de aceptar).
+            this.probAceptar = lowerBound+(upperBound-lowerBound)*rand.nextDouble(); //Se le asigna una probabilidad entre 100% menos la proporción del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, más alta la probabilidad de aceptar).
     }
 
 
@@ -104,16 +110,16 @@ public class Patrocinador extends Persona {
     public void setProbAceptar(double prob) {this.probAceptar = prob;}
 
     public Equipo getEquipo() {return this.equipoPatrocinado;}
-    public void setEquipo(Equipo equipo) {
-    	if (this.patrocinando==true && this.equipoPatrocinado==null) { //Si falló el intento de patrocinio
-    		System.out.println("¡El patrocinador " + this.getNombre() + " no está dispuesto a patrocinar!");
-    	} else if (this.patrocinando==true) { //Si ya está patrocinando a un equipo
-    		System.out.println("El patrocinador " + this.getNombre() + " ya está patrocinando a " + this.equipoPatrocinado.getNombre());
-    	} else { // Si no está patrocinando a un equipo
-    		this.equipoPatrocinado = equipo;
-    		this.patrocinando=true;
-    	}
-    	}
+    public boolean setEquipo(Equipo equipo) {
+		if (this.patrocinando) { //Si esta patrocinando a un equipo
+			return false;
+		} else { // Si no esta patrocinando a un equipo
+			this.equipoPatrocinado = equipo;
+			this.patrocinando = true;
+			this.equipoPatrocinado.getPatrocinadoresEquipo().add(this);
+			return true;
+		}
+	}
 
     public boolean isPatrocinando() {return this.patrocinando;}
     public void setPatrocinando(boolean patrocinando) {this.patrocinando = patrocinando;}

@@ -26,6 +26,9 @@ public abstract class Persona {
         Persona.idActual++;
     }
 
+    //Metodos abstractos
+    public abstract void recibirPlata(double plata); //TODO: Dime que este metodo esta bien hecho :sob:
+
     //Metodos de clase
     public static int getIdActual() {
         return idActual;

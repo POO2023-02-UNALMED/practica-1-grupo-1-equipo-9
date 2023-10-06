@@ -410,5 +410,7 @@ public class MainUI {
         equipo10.agregarVehiculo(vehiculo19);
         equipo10.agregarVehiculo(vehiculo20);
 
+        //TODO: Hacer idea del ciclo de cada carrera.
+        //TODO: ESTE MAIN NO ME CORRE AYUDA POR FAVOR.
     }
 }

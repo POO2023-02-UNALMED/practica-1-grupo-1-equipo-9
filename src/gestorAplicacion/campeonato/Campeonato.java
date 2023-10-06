@@ -1,14 +1,14 @@
 package gestorAplicacion.campeonato;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+
 import gestorAplicacion.campeonato.Ciudad.Continente;
 
 public class Campeonato {
-    // Lista de campeonatos
     public static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde están todos los campeonatos disponibles
-    
-	//Listas de carreras y equipos
 	private ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
+    public static Campeonato campeonatoElegido; //Campeonato que elije el usuario
     
     // Atributos
     private static int idActual = 1;
@@ -18,7 +18,7 @@ public class Campeonato {
     private Continente continente; //Cada campeonato tiene un continente diferente
     private int cantidadMaxCarreras;
     private double premio; //Premio total que se lleva el equipo cuando se gana el campeonato
-    public static Campeonato campeonatoElegido; //Campeonato que elije el usuario
+
 
     //Constructores
     public Campeonato(String nombre, int ano, Continente continente, int cantCarreras) { //Cuando se inicialice cada campeonato, se le pasa el nombre y el continente
@@ -52,6 +52,10 @@ public class Campeonato {
 //        else {
 //    		System.out.println("Se ha alcanzado el máximo número de carreras para el campeonato, no se ha añadido la carrera.");
 //    	}
+    }
+
+    public void organizarCarreras(Campeonato campeonato){ //TODO: Verificar que este metodo funcione
+        listaCarreras.sort(Comparator.comparing(Carrera::getMes));
     }
 
     //Metodos de clase    

@@ -17,7 +17,7 @@ public class VehiculoCarrera extends Vehiculo {
     private boolean morido; // Si está morido, lo manda al final de la lista de posiciones.
     private double velocidadTuneao; //Velocidad del vehículo + velocidad de las piezas
     private double velocidadCircumstancias; // velocidad de las circunstancias
-    private double velocidadActual; //Velocidad actual del vehículo, velocidad tuneada +- situaciones
+    private double velocidadActual; //Velocidad actual del vehículo, velocidad tuneada +- situaciones //TODO: IMPORTANTE: La velocidad en que unidades (o numeros) deberiamos trabajarla (no pueden ser horas).
     private double probabilidadChoque;
     private int gasolina;
 

@@ -29,6 +29,11 @@ public class Piloto extends Persona {
     public void agregarVictoria(Campeonato campeonato) {
     	victorias.add(campeonato.toString());
     }
+
+    //Metodo abstracto heredado
+    public void recibirPlata(double plata){
+        this.getEquipo().setPlata(this.getEquipo().getPlata()+plata);
+    }
     
     //Atributos de clase 
     

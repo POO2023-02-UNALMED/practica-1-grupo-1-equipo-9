@@ -5,13 +5,13 @@
 ### 1. Campeonato 🏆
 Atributos:
 - `int id`
+- `static int idActual`
 - `String nombre`
 - `int ano`
-- `int numCarreras`
+- `int cantidadMaxCarreras`
 - `ArrayList<Carrera> listaCarreras`
-- `ArrayList<Equipo> listaEquipos`
-- `String continente`
-- `int premio`
+- `Continente continente`
+- `double premio`
 - `static ArrayList<Campeonato> campeonatos`
 
 Métodos:
@@ -163,6 +163,7 @@ Atributos:
 - `int puntos`
 - `ArrayList<Vehiculo> vehiculosDisponibles`
 - `ArrayList<Piloto> pilotosDisponibles`
+- `static ArrayList<Equipo> listaEquipos`
 - `Piloto piloto1`
 - `Piloto piloto2`
 
@@ -182,63 +183,76 @@ Métodos:
 
 Usuario (POV) 👤
 
+_Lógica (no POV) (Va en [Corchetes])_
+
+
 **1. Escoger entre 5 campeonatos predefinidos:**
 - Mostrar Campeonatos predefinidos. 🏆
 - Seleccionar un campeonato de una lista de 5 campeonatos preconfigurados. 🏁
+- _[Los campeonatos son serializados con tres atributos: Nombre, Continente, Cantidad Máxima de Carreras]_
 
 **2. Elegir el año del campeonato:**
 - Indicar el año en el que se llevará a cabo el campeonato. 📅
+- _[El año se le coloca luego al campeonato elegido]_
 
 **3. Seleccionar SU Equipo:**
 - Elegir un equipo para competir en el campeonato. Los demás equipos ya están predefinidos. 🚗
+- _[Los equipos van serializados, tienen que guardar los nombres, el dinero, y sus pilotos]_
 - 
 **4. Mostrar pilotos del Equipo:**
 - Visualizar la lista de pilotos disponibles en el equipo seleccionado. 👀
+- _[Los pilotos también se serializan a través de la lista de pilotos de la clase equipo]_
 
 **5. Elegir 2 pilotos:**
 - El primero que elija va a sel EL USUARIO (piloto1)
 - Otro es el compañero de equipo (piloto2) 
 - Seleccionar dos pilotos del equipo para representarlo en las carreras. 👥👥
+- _[Los demás equipos NO ELEGIDOS también deberán escoger un piloto]_
 
 **6. Negociaciones con Patrocinadores (opcional):**
 - Realizar negociaciones con patrocinadores para obtener financiamiento adicional. (Opcional) 🤝💰
   1. Mostrar lista de patrocinadores:
      - Visualizar la lista de patrocinadores disponibles para las negociaciones. 👀📊
-  2. Poner dinero a pedir:
-     - Indicar la cantidad de dinero que se solicita a los patrocinadores en las negociaciones. 💵
+     - Los patrocinadores ofrecen un dinero inicialmente.
+     - _[Algunos patrocinadores ya habrán hecho negocios con otros equipos]_
+  2. Elegir manera de negociar:
+     1. Aceptar la cantidad que oferta el patrocinador, e intentar negociar con esa cantidad.
+     2. Indicar una cantidad diferente de dinero que se solicita al patrocinador, y negociar con esa nueva cantidad. 💵
+     3. _[No se puede negociar con patrocinadores que no quieren o que ya patrocinan a otro equipo]_
   3. Según el resultado aleatorio, recibir el patrocinio:**
-     - Basado en un resultado aleatorio, recibir el patrocinio de uno o más patrocinadores. 🎲💼
-  
-**. Mostrar el dinero recibido:**
-- Verificar la cantidad de dinero que se ha recibido de los patrocinadores. 💰💸
+     - Se muestra la decisión del patrocinador con el que se negoció. 🎲💼
+     - En caso de obtener el patrocinio, se debe mostrar el dinero actualizado del equipo.💰💸
+     - _[No se puede negociar de nuevo con un patrocinador con el que ya se negoció]_ 
+
 
 ## 📅 Planificar Calendario de Carreras 🏁
 
-**1. De acuerdo con el campeonato (cantidad de carreras), prepara todas:**
+**1. De acuerdo con el campeonato (cantidad de carreras), prepara todas antes de correrlas:**
 - Genera el calendario de carreras de acuerdo al número de carreras en el campeonato. 🗓️
+- _[Se debe verificar que los meses de distintas carreras no sean iguales, y no excedan los índices permitidos (de 1 a 12)]_
 
 **2. Mostrar opciones de Ciudad:**
 - Metodo en ciudad
 - Se crea la carrera
 - "Grand Prix de Ciudad"
+- _[Las opciones de las ciudades deben coincidir con el continente elegido]_
 
 1. Elegir el director de carrera:
     - Seleccionar un director de carrera que supervisará las carreras del campeonato. 👨‍🏫
 
 **3. Elegir mes:**
 - Para cada carrera, selecciona el mes en el que se llevará a cabo la carrera. 🗓️
+- _[Al final, al escoger todas las carreras, estas se deben organizar por mes]_
 
-**4. Elegir condiciones climáticas:**
-- Para cada carrera, elige las condiciones climáticas que afectarán las probabilidades de los pilotos. 🌦️❄️🌪️
-
-**5. Reservar Circuito (Opcional):**
+**4. Reservar Circuito (Opcional):**
 - Para cada carrera, se puede optar por reservar un circuito. Esta opción puede estar disponible o no.
   1. Elegir patrocinador: Selecciona un patrocinador para la carrera.
   2. Valor aleatorio: El patrocinador pagará un monto aleatorio basado en su valor.
 
-**6. Elegir dificultad de Carrera:**
+**5. Elegir dificultad de Carrera:**
 - Para cada carrera, define la dificultad de la carrera. Puedes elegir entre diferentes niveles que afectarán aspectos como la probabilidad de choques y adelantamientos.
   1. Niveles de dificultad disponibles: Fácil, Intermedio, Difícil. 🌟🌟🌟
+  2. _[El programa recibe un int del 1 al 3, y lo traduce en un double que luego se le suma a las cantidades mencionadas]_
 
 ## 🛠️ Tunear el Carro 🚗
 
@@ -246,9 +260,11 @@ Usuario (POV) 👤
 
 1. Mostrar carros disponibles para el equipo:
 - Visualiza la lista de carros disponibles para tu equipo. 🚗👀
+- _[Estos carros están serializados, es decir, no cambian]_
 
 2. Seleccionar el carro según el presupuesto:
 - Selecciona un carro de la lista de acuerdo a tu presupuesto. 💰🚗
+- _[Si el usuario no puede comprar ese carro, debe devolver un mensaje de error]_
 
 c. Mejoras o cambios al carro:
 1. Hay diferentes partes disponibles:
@@ -258,6 +274,7 @@ c. Mejoras o cambios al carro:
 2. Algunas partes aumentan la velocidad y otras la maniobrabilidad del vehículo. 🏁🔧
 3. Velocidad: Cuánto recorre en cuanto tiempo. 🏎️🕒
 4. Maniobrabilidad: Probabilidad de chocarse. 🚧🤞
+5. _[Cada vez que se cambien las piezas, deberían cambiar los atributos mencionados]_
 
 **2. Para carreras subsecuentes:**
 

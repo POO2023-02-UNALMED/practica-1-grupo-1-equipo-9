@@ -17,48 +17,10 @@ public class Main2 {
         tablaEquipos(Equipo.equipos);
         tablaDirectoresCarrera(DirectorCarrera.listaDirectores);
         tablaPatrocinadores(Patrocinador.listaPatrocinadores);
-        tablaPiezas(Pieza.piezas);
+        tablaPiezas(Pieza.getPiezas());
         
 	}
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         public double random() {
             Random random = new Random();
             double numeroAleatorio = 200 + random.nextDouble() * (500 - 200);

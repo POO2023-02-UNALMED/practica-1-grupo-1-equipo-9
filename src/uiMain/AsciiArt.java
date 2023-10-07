@@ -2,30 +2,6 @@ package uiMain;
 
 public interface AsciiArt {
 
-    static void banner(String championshipName, String year) {
-        String[] banner = {
-                "  _    _             /'_'_/.-''/",
-                "  \\`../ |o_..__     / /__   / /  -=" + championshipName + "=-   _\\=.o.=/_",
-                ".,(_)______(_).>  / ___/  / /                             |_|_____|_|",
-                "~~~~~~~~~~~~~~~~~~/_/~~~~~/_/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~jrei~~"
-        };
-
-        // Imprime el nombre del campeonato centrado
-        int bannerWidth = banner[0].length();
-        int nameLength = championshipName.length();
-        int padding = (bannerWidth - nameLength) / 2;
-        String centeredName = " ".repeat(padding) + championshipName + " ".repeat(padding);
-
-        banner[2] = banner[2].replace(championshipName, centeredName);
-
-        // Reemplaza "WORLD CHAMPIONSHIP" con el año
-        banner[1] = banner[1].replace("WORLD CHAMPIONSHIP", year);
-
-        // Imprime el banner completo
-        for (String line : banner) {
-            System.out.println(line);
-        }
-    }
 
     public static void car() {
         String art = "                         __\n" +
@@ -176,6 +152,22 @@ public interface AsciiArt {
         System.out.println(art);
     }
 
+    public static void banner(String titulo, String year) {
+        int tablaAncho = 50; // Ajusta el ancho deseado del banner
+
+        String tituloCentrado = String.format("%" + ((tablaAncho - titulo.length()) / 2) + "s%s%" + ((tablaAncho - titulo.length()) / 2) + "s", "", titulo, "");
+        String yearCentrado = String.format("%" + ((tablaAncho - year.length()) / 2) + "s%s%" + ((tablaAncho - year.length()) / 2) + "s", "", year, "");
+        String lineaSeparadora = "_".repeat(tablaAncho);
+
+        System.out.println("          " + lineaSeparadora + "");
+        System.out.println(" ________| " + " ".repeat(tituloCentrado.length())+ "|________");
+        System.out.println(" \\       | " + tituloCentrado + "|       /");
+        System.out.println("  \\      | " + yearCentrado + "|      /");
+        System.out.println("  /      |_" + "_".repeat(tituloCentrado.length()) + "|      \\");
+        System.out.println(" /__________) " + " ".repeat(tituloCentrado.length()-7) + " (__________\\");
+
+        //System.out.println(lineaSeparadora);
+    }
 
 }
 

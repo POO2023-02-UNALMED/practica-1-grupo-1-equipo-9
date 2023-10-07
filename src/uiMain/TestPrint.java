@@ -5,13 +5,13 @@ import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 import java.util.*;
 import uiMain.Tablas;
-import uiMain.AsciiArt;
 
 import java.util.Random;
 
 import static uiMain.AsciiArt.*;
 
 public class TestPrint {
+
 
     public static void main(String[] args) {
         Random rand = new Random();
@@ -270,6 +270,9 @@ public class TestPrint {
 //        System.out.println(" ");
 //        cards();
         //banner(campeonatoAfrica.getNombre());
-        System.out.println(Patrocinador.mostrarPatrocinadores());
+
+        String titulo = "CAMPEONATOS"; // Reemplaza con el título deseado
+        String year = "2023"; // Reemplaza con el año deseado
+        banner(titulo, year);
     }
 }

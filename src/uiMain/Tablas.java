@@ -10,14 +10,9 @@ import uiMain.AsciiArt.*;
 public interface Tablas {
     // Aqui es para poner el codigo de las tablas
 
-<<<<<<< Updated upstream
-    public static void tablaCampeonatos() {
-        ArrayList<Campeonato> campeonatos = Campeonato.campeonatos;
-        // Obtener la longitud m�xima de las cadenas en las columnas
-=======
+
     public static void tablaCampeonatos(ArrayList<Campeonato> campeonatos) {
-        // Obtener la longitud m�xima de las cadenas en las columnas
->>>>>>> Stashed changes
+        // Obtener la longitud mï¿½xima de las cadenas en las columnas
         int maxNombre = 0;
         for (Campeonato campeonato : campeonatos) {
             int nombre = campeonato.getNombre().length();
@@ -28,7 +23,7 @@ public interface Tablas {
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 10 + 7; // 7 para los espacios y los bordes
 
-        // Imprimir la tabla con el t�tulo centrado
+        // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   CAMPEONATOS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
@@ -45,7 +40,7 @@ public interface Tablas {
     
     // tablas para equipos
     public static void tablaEquipos(ArrayList<Equipo> equipos) {
-        // Obtener la longitud m�xima de las cadenas en las columnas
+        // Obtener la longitud mï¿½xima de las cadenas en las columnas
         int maxNombre = 0;
         int maxPais = 0;
         for (Equipo equipo : equipos) {
@@ -59,16 +54,16 @@ public interface Tablas {
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 10 + 7 + maxPais; // 7 para los espacios y los bordes
 
-        // Imprimir la tabla con el t�tulo centrado
+        // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   EQUIPOS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
-        System.out.printf("| %-"+maxNombre+"s | %-"+maxPais+"s | %-"+7+"s |\n ", "NOMBRE", "PAIS","OPCION");
+        System.out.printf("| %-"+maxNombre+"s | %-"+maxPais+"s | %-7s |\n", "NOMBRE", "PAIS","OPCION");
         System.out.println("-".repeat(tablaAncho));
 
         for (Equipo equipo : equipos) {
-            System.out.printf("| %-"+maxNombre+"s | %-"+maxPais+"s | %-"+7+"s |\n", equipo.getNombre(),equipo.getPais(), equipo.getId());
+            System.out.printf("| %-"+maxNombre+"s | %-"+maxPais+"s | %-7s |\n", equipo.getNombre(),equipo.getPais(), equipo.getId());
         }
 
         System.out.println("-".repeat(tablaAncho));
@@ -77,7 +72,7 @@ public interface Tablas {
     
     //tabla para directores de carrera
     public static void tablaDirectoresCarrera(ArrayList<DirectorCarrera> listaDirectores) {
-        // Obtener la longitud m�xima de las cadenas en las columnas
+        // Obtener la longitud mï¿½xima de las cadenas en las columnas
         int maxNombre = 0;
         int maxPais = 0;
         for (DirectorCarrera directorCarrera : listaDirectores) {
@@ -91,7 +86,7 @@ public interface Tablas {
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 10 + 7 + maxPais; // 7 para los espacios y los bordes
 
-        // Imprimir la tabla con el t�tulo centrado
+        // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   DIRECTORES", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
@@ -108,7 +103,7 @@ public interface Tablas {
     
     //tabla para patrocinadores
     public static void tablaPatrocinadores(ArrayList<Patrocinador> listaPatrocinadores) {
-        // Obtener la longitud m�xima de las cadenas en las columnas
+        // Obtener la longitud mï¿½xima de las cadenas en las columnas
         int maxNombre = 0;
         
         for (Patrocinador patrocinador : listaPatrocinadores) {
@@ -122,7 +117,7 @@ public interface Tablas {
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 10 + 7 +18; // 7 para los espacios y los bordes
 
-        // Imprimir la tabla con el t�tulo centrado
+        // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   DIRECTORES", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
@@ -139,7 +134,7 @@ public interface Tablas {
     
     //tabla para piezas
     public static void tablaPiezas(ArrayList<Pieza> piezas) {
-        // Obtener la longitud m�xima de las cadenas en las columnas
+        // Obtener la longitud mï¿½xima de las cadenas en las columnas
         int maxNombre = 0;
         
         for (Pieza pieza : piezas) {
@@ -154,7 +149,7 @@ public interface Tablas {
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 7 + 16 + 10 +7; // 7 para los espacios y los bordes
 
-        // Imprimir la tabla con el t�tulo centrado
+        // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   PIEZAS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);

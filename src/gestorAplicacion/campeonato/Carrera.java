@@ -93,7 +93,7 @@ public class Carrera {
         double upperBound = 0.2;
         this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
-    public Carrera(Ciudad ciudad, int mes, double dificultad){ //El chakalito
+    public Carrera(Ciudad ciudad, int mes, double dificultad){ //El chakalito y la chakalita xd
         this.id = idActual;
         Carrera.idActual++;
         Random rand = new Random();

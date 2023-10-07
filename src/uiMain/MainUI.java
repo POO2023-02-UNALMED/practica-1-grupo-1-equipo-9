@@ -12,8 +12,8 @@ import gestorAplicacion.paddock.Vehiculo;
 import java.util.Random;
 import java.util.Scanner;
 
-import static uiMain.AsciiArt.bienvenida;
-import static uiMain.Tablas.tablaCampeonatos;
+import static uiMain.AsciiArt.*;
+import static uiMain.Tablas.*;
 
 public class MainUI {
     static {
@@ -22,10 +22,10 @@ public class MainUI {
         // Esto despues se va a serliaizar
 
         // Campeonatos
-        Campeonato campeonatoEuropa = new Campeonato("Campeonato Europa", 2023, Ciudad.Continente.Europa, 5);
+        Campeonato campeonatoEuropa = new Campeonato("Campeonato Europa", 2023, Ciudad.Continente.Europa, 4);
         Campeonato campeonatoAsia = new Campeonato("Campeonato Asia", 2023, Ciudad.Continente.Asia, 4);
-        Campeonato campeonatoAmerica = new Campeonato("Campeonato América", 2023, Ciudad.Continente.America, 6);
-        Campeonato campeonatoAfrica = new Campeonato("Campeonato África", 2023, Ciudad.Continente.Africa, 3);
+        Campeonato campeonatoAmerica = new Campeonato("Campeonato América", 2023, Ciudad.Continente.America, 3);
+        Campeonato campeonatoAfrica = new Campeonato("Campeonato África", 2023, Ciudad.Continente.Africa, 2);
         Campeonato campeonatoOceania = new Campeonato("Campeonato Oceanía", 2023, Ciudad.Continente.Oceania, 2);
 
         // Ciudades y Carreras
@@ -264,14 +264,14 @@ public class MainUI {
         //System.out.println("Preparar el Campeonato");
         // Paso 1: Escoge un Campeonato
         System.out.println("Elige uno de los 5 campeonatos, escribe un numero del 1 al 5.");
-        tablaCampeonatos();
+        tablaCampeonatos(Campeonato.campeonatos);
         System.out.println("\n");
         boolean validaciones = false;
 
         while (!validaciones) {
             /*Descomentar
             int n = sc.nextInt();*/
-            int n = rand.nextInt(5);
+            int n = rand.nextInt(5); //Test
             // Validar que el numero sea del 1 al 5
             if (n < 1 || n > 5) {
                 // Si no es del 1 al 5, imprimir el mensaje de error
@@ -319,6 +319,7 @@ public class MainUI {
         // Paso 3: Selecciona tu Equipo
         System.out.println("Selecciona tu Escudería");
         // imprimir equipos
+        tablaEquipos(Equipo.equipos);
         System.out.println("Escoge una escudería para competir en el campeonato, escribe un numero del 1 al 5.");
         System.out.println("\n");
         validaciones = false;
@@ -415,7 +416,8 @@ public class MainUI {
 
         // Negociar: Equipos No elegidos
         for (Equipo equipo : Equipo.equipos) {
-            if (equipo != Equipo.equipoElegido) {
+            /*Descomentar
+            if (equipo != Equipo.equipoElegido) {*/
                 for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
                     if (equipo.getPlata() > 1000) {
                         break;
@@ -426,7 +428,7 @@ public class MainUI {
                         System.out.println("\n");
                     }
                 }
-            }
+//            }
         }
 
        /* for (Equipo equipo : Equipo.equipos) {
@@ -441,7 +443,10 @@ public class MainUI {
         //System.out.println(Patrocinador.mostrarPatrocinadores());
 
         String ans = "S";
-        validaciones = false;
+/*        Descomentar
+        validaciones = false;*/
+        validaciones = true;
+
 
         while (!validaciones) {
             if (ans.equals("S")) {
@@ -469,20 +474,25 @@ public class MainUI {
                         while (!validaciones3) {
                             if (cantidad < 0) {
                                 System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
-                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido.");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
                                 validaciones3 = true;
                             } else if (cantidad == 0) {
                                 System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
-                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido.");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
                                 validaciones3 = true;
                             } else if (cantidad > patrocinador.getDinero()) {
                                 patrocinador.setPatrocinando(true);
                                 System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador y nunca lo olvidara!");
                                 validaciones3 = true;
                             } else {
+                                double aux = Equipo.equipoElegido.getPlata();
                                 Equipo.equipoElegido.negociar(cantidad, patrocinador);
                                 System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + cantidad + " dólares.");
-                                System.out.println(Equipo.equipoElegido.getNombre() + " tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                                if (aux == Equipo.equipoElegido.getPlata()) {
+                                    System.out.println("El patrocinador no acepto.");
+                                } else {
+                                    System.out.println(Equipo.equipoElegido.getNombre() + " fue patrocinado y ahora tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                                }
                                 System.out.println("\n");
                                 validaciones3 = true;
                             }
@@ -502,16 +512,23 @@ public class MainUI {
             }
         }
 
-
-
-        // Paso 7: Verifica tu Dinero
-        System.out.println("Ahora, tu equipo tiene: " + "Dolares");
-        System.out.println("¿Quieres negociar con otro patrocinador? (S/N)");
-
-        System.out.println("Comprueba la cantidad de dinero que has recibido de los patrocinadores.");
+        // FUNCIONALIDAD Planificar Calendario de Carreras
 
         // Mensaje de despedida
         System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
+
+        banner("¡Que comience el " + Campeonato.campeonatoElegido.getNombre() +"!", String.valueOf(Campeonato.campeonatoElegido.getAno()));
+        System.out.println("\n");
+
+        // for de acuerdo al numero de carreras en le campeonato elegido
+        // Crear carreras
+        System.out.println("Es hora de preparar todas las carreras en las que competirás.");
+
+        for (int i = 0; i < Campeonato.campeonatoElegido.getCantidadMaxCarreras(); i++) {
+            System.out.println("Elige la cuidad en la que quieres que sea la carrera, escribe un numero de acuerdo a la opcion que quieras");
+            // TODO ciudaes en Continente
+            
+        }
 
         //TODO: Hacer idea del ciclo de cada carrera.
     }

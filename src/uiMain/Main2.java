@@ -1,11 +1,14 @@
 package uiMain;
 
 import gestorAplicacion.campeonato.*;
-import gestorAplicacion.paddock.*;
-import java.util.*;
+import gestorAplicacion.paddock.Patrocinador;
+import gestorAplicacion.paddock.Pieza;
+import gestorAplicacion.paddock.Piloto;
+import gestorAplicacion.paddock.Vehiculo;
+
+import java.util.Random;
 
 import static uiMain.Tablas.*;
-import static uiMain.AsciiArt.*;
 
 
 public class Main2 {

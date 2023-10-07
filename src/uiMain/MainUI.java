@@ -228,6 +228,9 @@ public class MainUI {
         equipo5.agregarVehiculo(vehiculo10);
     }
 
+    /**
+     * This is the "ui"
+     */
     public static void main(String[] args) {
         // Variables Necesarias
         Scanner sc = new Scanner(System.in);

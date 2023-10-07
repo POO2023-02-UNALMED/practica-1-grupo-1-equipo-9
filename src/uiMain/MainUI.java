@@ -1,134 +1,19 @@
 package uiMain;
 
-import gestorAplicacion.campeonato.Ciudad;
 import gestorAplicacion.campeonato.*;
-import gestorAplicacion.paddock.*;
-import java.util.*;
+import gestorAplicacion.paddock.Patrocinador;
+import gestorAplicacion.paddock.Pieza;
+import gestorAplicacion.paddock.Piloto;
+import gestorAplicacion.paddock.Vehiculo;
 
-import static uiMain.Tablas.*;
+import java.util.Random;
+import java.util.Scanner;
+import java.text.*;
+
 import static uiMain.AsciiArt.*;
+import static uiMain.Tablas.*;
 
 public class MainUI {
-    public static void main(String[] args) {
-        // Variables Necesarias
-        Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
-
-        System.out.println("\n");
-        // Mensaje de bienvenida
-        bienvenida();
-        System.out.println("\n");
-        sc.nextLine();
-
-        // Mensaje de introduccion
-        System.out.println("¡Hola! En este juego, serás un piloto de un equipo de carreras de Fórmula 1.");
-        System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deberás competir en carreras y obtener puntos.");
-        System.out.println("¡Buena suerte!");
-        System.out.println("\n");
-        sc.nextLine();
-
-
-        System.out.println("Primero debes preparar el campeonato en el que competirás.");
-        System.out.println("¡Comencemos!");
-        System.out.println("\n");
-        System.out.println("\n");
-
-        // FUNCIONALIDAD PREPARAR CAMPEONATO
-        // Pasos para Preparar el Campeonato
-        System.out.println("Preparar el Campeonato");
-        System.out.println("\n");
-        // Paso 1: Escoge un Campeonato
-        System.out.println("Escoge un Campeonato");
-        tablaCampeonatos(Campeonato.campeonatos);
-
-
-        boolean validaciones = false;
-
-        while (!validaciones) {
-            System.out.println("Elige uno de los 5 campeonatos, escribe un numero del 1 al 5.");
-            int n = sc.nextInt();
-            // Validar que el numero sea del 1 al 5
-            if (n < 1 || n > 5) {
-                // Si no es del 1 al 5, imprimir el mensaje de error
-                System.out.println("Por favor, escribe un numero del 1 al 5.");
-            } else {
-                // Si es del 1 al 5, imprimir el mensaje de exito
-                // Si es del 1 al 5, cambiar validaciones a true
-                Equipo.equipoElegido = Equipo.equipos.get(n - 1);
-                System.out.println("¡Campeonato elegido!");
-                validaciones = true;
-            }
-        }
-
-        // Paso 2: Elige el Año
-        System.out.println("Elige el Año");
-        System.out.println("Indica el año en el que quieres que se celebre el campeonato.");
-        int n = sc.nextInt();
-        validaciones = false;
-        // Validar que el numero sea mayor que 1950 y menor que 9999
-
-        while (!validaciones) {
-            if (n < 1950 || n > 9999) {
-                // Si no es mayor que 1950 y menor que 9999, imprimir el mensaje de error
-                System.out.println("Por favor, escribe un numero mayor que 1950 y menor que 9999.");
-                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
-            } else {
-                // Si es mayor que 1950 y menor que 9999, imprimir el mensaje de exito
-                System.out.println("¡Año elegido!");
-                validaciones = true;
-            }
-        }
-
-        System.out.println("¡Tu campeonato quedo configurado!");
-        // imprmir como se ve con tablitas
-
-
-
-
-        //banner("Campeonato 1", "2021");
-        // Paso 3: Selecciona tu Equipo
-        System.out.println("Selecciona tu Escudería");
-        // imprimir equipos
-        System.out.println("Escoge una escudería para competir en el campeonato, escribe un numero del 1 al 10.");
-
-
-        // Paso 4: Mira los Pilotos de tu Equipo
-        System.out.println("Mira los Pilotos de tu Escuderia");
-        // imprimir pilotos con stats
-
-        // Paso 5: Escoge tus Pilotos
-        System.out.println("Escoge tu Piloto");
-
-
-        System.out.println("Escoge tu compañero de equipo");
-
-        // Paso 6: Negocia con Patrocinadores
-        System.out.println("Actualmente, tu equipo no tiene dinero :(.");
-        System.out.println("Si deseas, puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
-        System.out.println("Mira la lista de patrocinadores disponibles:");
-        // imprimir patrocinadores con el dinero que estan dispuestos a dar
-
-        System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
-
-        System.out.println("Decide cuánto dinero quieres pedirle:");
-
-
-        // Paso 7: Verifica tu Dinero
-        System.out.println("Ahora, tu equipo tiene: " + "Dolares");
-        System.out.println("¿Quieres negociar con otro patrocinador? (S/N)");
-
-        System.out.println("Comprueba la cantidad de dinero que has recibido de los patrocinadores.");
-
-        // Mensaje de despedida
-        System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
-    }
-
-    public double random() {
-        Random random = new Random();
-        double numeroAleatorio = 200 + random.nextDouble() * (500 - 200);
-        return Math.round(numeroAleatorio * 100.0) / 100.0;
-    }
-    
     static {
         Random rand = new Random();
         // Podemos crear aqui los objetos para los tests
@@ -144,50 +29,31 @@ public class MainUI {
         // Ciudades y Carreras
         // Europa
         Ciudad ciudad1 = new Ciudad("Montecarlo", Ciudad.Continente.Europa);
-        Carrera carrera1 = new Carrera("Grand Prix de Mónaco", 260.0, 1000000.0, ciudad1, 4.2);
+
         Ciudad ciudad2 = new Ciudad("Monza", Ciudad.Continente.Europa);
-        Carrera carrera2 = new Carrera("Grand Prix de Italia", 306.0, 900000.0, ciudad2, 3.8);
+
         Ciudad ciudad3 = new Ciudad("Silverstone", Ciudad.Continente.Europa);
-        Carrera carrera3 = new Carrera("Grand Prix de Gran Bretaña", 308.0, 950000.0, ciudad3, 4.0);
         Ciudad ciudad4 = new Ciudad("Baku", Ciudad.Continente.Europa);
-        Carrera carrera4 = new Carrera("Grand Prix de Azerbaiyán", 306.0, 900000.0, ciudad4, 3.8);
         Ciudad ciudad5 = new Ciudad("Barcelona", Ciudad.Continente.Europa);
-        Carrera carrera5 = new Carrera("Grand Prix de España", 308.0, 950000.0, ciudad5, 4.0);
         // Asia
         Ciudad ciudad6 = new Ciudad("Shanghái", Ciudad.Continente.Asia);
-        Carrera carrera6 = new Carrera("Grand Prix de China", 305.0, 900000.0, ciudad6, 3.8);
         Ciudad ciudad7 = new Ciudad("Sakhir", Ciudad.Continente.Asia);
-        Carrera carrera7 = new Carrera("Grand Prix de Baréin", 308.0, 950000.0, ciudad7, 4.0);
         Ciudad ciudad8 = new Ciudad("Singapur", Ciudad.Continente.Asia);
-        Carrera carrera8 = new Carrera("Grand Prix de Singapur", 305.0, 900000.0, ciudad8, 3.8);
         Ciudad ciudad9 = new Ciudad("Jeddah", Ciudad.Continente.Asia);
-        Carrera carrera9 = new Carrera("Grand Prix de Arabia Saudita", 308.0, 950000.0, ciudad9, 4.0);
         // América
         Ciudad ciudad10 = new Ciudad("Austin", Ciudad.Continente.America);
-        Carrera carrera10 = new Carrera("Grand Prix de Estados Unidos", 305.0, 900000.0, ciudad10, 3.8);
-        Ciudad ciudad11 = new Ciudad("Monterrey", Ciudad.Continente.America);
-        Carrera carrera11 = new Carrera("Grand Prix de México", 308.0, 950000.0, ciudad11, 4.0);
-        Ciudad ciudad12 = new Ciudad("Sao Paulo", Ciudad.Continente.America);
-        Carrera carrera12 = new Carrera("Grand Prix de Brasil", 305.0, 900000.0, ciudad12, 3.8);
+        Ciudad ciudad11 = new Ciudad("Monterrey", Ciudad.Continente.America);Ciudad ciudad12 = new Ciudad("Sao Paulo", Ciudad.Continente.America);
         Ciudad ciudad13 = new Ciudad("Buenos Aires", Ciudad.Continente.America);
-        Carrera carrera13 = new Carrera("Grand Prix de Argentina", 308.0, 950000.0, ciudad13, 4.0);
         // África
         Ciudad ciudad14 = new Ciudad("Ciudad del Cabo", Ciudad.Continente.Africa);
-        Carrera carrera14 = new Carrera("Grand Prix de Sudáfrica", 305.0, 900000.0, ciudad14, 3.8);
         Ciudad ciudad15 = new Ciudad("El Cairo", Ciudad.Continente.Africa);
-        Carrera carrera15 = new Carrera("Grand Prix de Egipto", 308.0, 950000.0, ciudad15, 4.0);
         Ciudad ciudad16 = new Ciudad("Nairobi", Ciudad.Continente.Africa);
-        Carrera carrera16 = new Carrera("Grand Prix de Kenia", 305.0, 900000.0, ciudad16, 3.8);
 
         // Oceanía
         Ciudad ciudad17 = new Ciudad("Melbourne", Ciudad.Continente.Oceania);
-        Carrera carrera17 = new Carrera("Grand Prix de Australia", 308.0, 950000.0, ciudad17, 4.0);
         Ciudad ciudad18 = new Ciudad("Auckland", Ciudad.Continente.Oceania);
-        Carrera carrera18 = new Carrera("Grand Prix de Nueva Zelanda", 305.0, 900000.0, ciudad18, 3.8);
         Ciudad ciudad19 = new Ciudad("Sídney", Ciudad.Continente.Oceania);
-        Carrera carrera19 = new Carrera("Grand Prix de Australia", 308.0, 950000.0, ciudad19, 4.0);
         Ciudad ciudad20 = new Ciudad("Adelaida", Ciudad.Continente.Oceania);
-        Carrera carrera20 = new Carrera("Grand Prix de Australia", 305.0, 900000.0, ciudad20, 3.8);
 
         // Directores de Carrera
         DirectorCarrera director1 = new DirectorCarrera("Michael Schmidt", "Mónaco", 500000.0, true);
@@ -202,29 +68,38 @@ public class MainUI {
         DirectorCarrera director10 = new DirectorCarrera("John Smith", "Estados Unidos", 600000.0, true);
 
         // Patrocinadores
-        Patrocinador patrocinador1 = new Patrocinador("Red Bull", 10000.0);
-        Patrocinador patrocinador2 = new Patrocinador("Pirelli", 80000.0);
-        Patrocinador patrocinador3 = new Patrocinador("Shell", 90000.0);
-        Patrocinador patrocinador4 = new Patrocinador("MegaCorp", 10000.0);
-        Patrocinador patrocinador5 = new Patrocinador("Stark Industries", 20000.0);
-        Patrocinador patrocinador6 = new Patrocinador("Wayne Enterprises", 10000.0);
-        Patrocinador patrocinador7 = new Patrocinador("Acme Corporation", 55000.0);
-        Patrocinador patrocinador8 = new Patrocinador("Tech Innovations Ltd.", 30000.0);
-        Patrocinador patrocinador9 = new Patrocinador("Global Motorsport Group", 75000.0);
-        Patrocinador patrocinador10 = new Patrocinador("Puma", 150000.0);
+        Patrocinador patrocinador1 = new Patrocinador("Red Bull", 10000000.0);
+        Patrocinador patrocinador2 = new Patrocinador("Pirelli", 80000000.0);
+        Patrocinador patrocinador3 = new Patrocinador("Shell", 90000000.0);
+        Patrocinador patrocinador4 = new Patrocinador("MegaCorp", 10000000.0);
+        Patrocinador patrocinador5 = new Patrocinador("Stark Industries", 20000000.0);
+        Patrocinador patrocinador6 = new Patrocinador("Wayne Enterprises", 10000000.0);
+        Patrocinador patrocinador7 = new Patrocinador("Acme Corporation", 55000000.0);
+        Patrocinador patrocinador8 = new Patrocinador("Tech Innovations Ltd.", 30000000.0);
+        Patrocinador patrocinador9 = new Patrocinador("Global Motorsport Group", 75000000.0);
+        Patrocinador patrocinador10 = new Patrocinador("Puma", 150000000.0);
+        Patrocinador patrocinador11 = new Patrocinador("Nike", 100000000.0);
+        Patrocinador patrocinador12 = new Patrocinador("Adidas", 120000000.0);
+        Patrocinador patrocinador13 = new Patrocinador("Coca-Cola", 200000000.0);
+        Patrocinador patrocinador14 = new Patrocinador("Pepsi", 150000000.0);
+        Patrocinador patrocinador15 = new Patrocinador("Bridgestone", 100000000.0);
+        Patrocinador patrocinador16 = new Patrocinador("Goodyear", 100000000.0);
+        Patrocinador patrocinador17 = new Patrocinador("Michelin", 100000000.0);
+        Patrocinador patrocinador18 = new Patrocinador("Brembo", 100000000.0);
+        Patrocinador patrocinador19 = new Patrocinador("Bosch", 100000000.0);
+        Patrocinador patrocinador20 = new Patrocinador("Continental", 100000000.0);
+        Patrocinador patrocinador21 = new Patrocinador("Bridgestone", 100000000.0);
+        Patrocinador patrocinador22 = new Patrocinador("Goodyear", 100000000.0);
+        Patrocinador patrocinador23 = new Patrocinador("Michelin", 100000000.0);
+        Patrocinador patrocinador24 = new Patrocinador("Brembo", 100000000.0);
+        Patrocinador patrocinador25 = new Patrocinador("Bosch", 100000000.0);
 
         // Creación de equipos
-        Equipo equipo1 = new Equipo("Mercedes-AMG Petronas Formula One Team", "Alemania");
+        Equipo equipo1 = new Equipo("Mercedes-AMG", "Alemania");
         Equipo equipo2 = new Equipo("Scuderia Ferrari", "Italia");
         Equipo equipo3 = new Equipo("Red Bull Racing", "Austria");
         Equipo equipo4 = new Equipo("McLaren Racing", "Reino Unido");
-        Equipo equipo5 = new Equipo("Aston Martin Cognizant Formula One Team", "Reino Unido");
-        Equipo equipo6 = new Equipo("Alpine F1 Team", "Francia");
-        Equipo equipo7 = new Equipo("Williams Racing", "Reino Unido");
-        Equipo equipo8 = new Equipo("Alfa Romeo Racing", "Suiza");
-        Equipo equipo9 = new Equipo("Haas F1 Team", "Estados Unidos");
-        Equipo equipo10 = new Equipo("Alpha Tauri", "Austria");
-
+        Equipo equipo5 = new Equipo("Aston Martin", "Reino Unido");
 // Creación de pilotos para cada equipo
         Piloto piloto1Equipo1 = new Piloto("H. Ham", "GER", equipo1, Math.random() * 0.4);
         Piloto piloto2Equipo1 = new Piloto("V. Bot", "FIN", equipo1, Math.random() * 0.4);
@@ -255,36 +130,6 @@ public class MainUI {
         Piloto piloto3Equipo5 = new Piloto("L. Hld", "DEN", equipo5, Math.random() * 0.4);
         Piloto piloto4Equipo5 = new Piloto("Y. Tsu", "JPN", equipo5, Math.random() * 0.4);
         Piloto piloto5Equipo5 = new Piloto("P. Lbe", "GBR", equipo5, Math.random() * 0.4);
-
-        Piloto piloto1Equipo6 = new Piloto("F. Aco", "ESP", equipo6, Math.random() * 0.4);
-        Piloto piloto2Equipo6 = new Piloto("E. Oco", "FRA", equipo6, Math.random() * 0.4);
-        Piloto piloto3Equipo6 = new Piloto("G. Fee", "FRA", equipo6, Math.random() * 0.4);
-        Piloto piloto4Equipo6 = new Piloto("M. Oco", "SUI", equipo6, Math.random() * 0.4);
-        Piloto piloto5Equipo6 = new Piloto("N. Has", "GBR", equipo6, Math.random() * 0.4);
-
-        Piloto piloto1Equipo7 = new Piloto("G. Rus", "FIN", equipo7, Math.random() * 0.4);
-        Piloto piloto2Equipo7 = new Piloto("N. Lfe", "GBR", equipo7, Math.random() * 0.4);
-        Piloto piloto3Equipo7 = new Piloto("N. Maz", "CAN", equipo7, Math.random() * 0.4);
-        Piloto piloto4Equipo7 = new Piloto("A. Nor", "GBR", equipo7, Math.random() * 0.4);
-        Piloto piloto5Equipo7 = new Piloto("C. Rsl", "GBR", equipo7, Math.random() * 0.4);
-
-        Piloto piloto1Equipo8 = new Piloto("V. Bot", "FIN", equipo8, Math.random() * 0.4);
-        Piloto piloto2Equipo8 = new Piloto("N. Maz", "CAN", equipo8, Math.random() * 0.4);
-        Piloto piloto3Equipo8 = new Piloto("K. Rka", "FIN", equipo8, Math.random() * 0.4);
-        Piloto piloto4Equipo8 = new Piloto("A. Gio", "ITA", equipo8, Math.random() * 0.4);
-        Piloto piloto5Equipo8 = new Piloto("M. Ver", "NED", equipo8, Math.random() * 0.4);
-
-        Piloto piloto1Equipo9 = new Piloto("M. Sch", "GER", equipo9, Math.random() * 0.4);
-        Piloto piloto2Equipo9 = new Piloto("N. Lat", "LAT", equipo9, Math.random() * 0.4);
-        Piloto piloto3Equipo9 = new Piloto("C. Sci", "USA", equipo9, Math.random() * 0.4);
-        Piloto piloto4Equipo9 = new Piloto("L. For", "USA", equipo9, Math.random() * 0.4);
-        Piloto piloto5Equipo9 = new Piloto("C. Snt", "FRA", equipo9, Math.random() * 0.4);
-
-        Piloto piloto1Equipo10 = new Piloto("Y. Tsn", "JPN", equipo10, Math.random() * 0.4);
-        Piloto piloto2Equipo10 = new Piloto("P. Alx", "THA", equipo10, Math.random() * 0.4);
-        Piloto piloto3Equipo10 = new Piloto("Y. Szu", "RUS", equipo10, Math.random() * 0.4);
-        Piloto piloto4Equipo10 = new Piloto("N. Mak", "GBR", equipo10, Math.random() * 0.4);
-        Piloto piloto5Equipo10 = new Piloto("L. Nor", "GBR", equipo10, Math.random() * 0.4);
 
 
         // Agregar a equipo1
@@ -399,18 +244,245 @@ public class MainUI {
         equipo4.agregarVehiculo(vehiculo8);
         equipo5.agregarVehiculo(vehiculo9);
         equipo5.agregarVehiculo(vehiculo10);
-        equipo6.agregarVehiculo(vehiculo11);
-        equipo6.agregarVehiculo(vehiculo12);
-        equipo7.agregarVehiculo(vehiculo13);
-        equipo7.agregarVehiculo(vehiculo14);
-        equipo8.agregarVehiculo(vehiculo15);
-        equipo8.agregarVehiculo(vehiculo16);
-        equipo9.agregarVehiculo(vehiculo17);
-        equipo9.agregarVehiculo(vehiculo18);
-        equipo10.agregarVehiculo(vehiculo19);
-        equipo10.agregarVehiculo(vehiculo20);
+    }
+
+    public static void main(String[] args) {
+        // Variables Necesarias
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+
+        System.out.println("\n");
+        // Mensaje de bienvenida
+        bienvenida();
+        /*Descomentar
+        sc.nextLine();*/
+
+        // Mensaje de introduccion
+        System.out.println("¡Hola! En este juego, serás un piloto de un equipo de carreras de Fórmula 1.");
+        System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deberás competir en carreras y obtener puntos.");
+        System.out.println("¡Buena suerte!\n");
+
+        /*Descomentar
+        System.out.println("\n");
+        sc.nextLine();*/
+
+
+        System.out.println("Primero debes preparar el campeonato en el que competirás.");
+        System.out.println("¡Comencemos!");
+        System.out.println("\n");
+
+        // FUNCIONALIDAD PREPARAR CAMPEONATO
+        // Pasos para Preparar el Campeonato
+        //System.out.println("Preparar el Campeonato");
+        // Paso 1: Escoge un Campeonato
+        System.out.println("Elige uno de los 5 campeonatos, escribe un numero del 1 al 5.");
+        tablaCampeonatos();
+        System.out.println("\n");
+        boolean validaciones = false;
+
+        while (!validaciones) {
+            /*Descomentar
+            int n = sc.nextInt();*/
+            int n = rand.nextInt(5);
+            // Validar que el numero sea del 1 al 5
+            if (n < 1 || n > 5) {
+                // Si no es del 1 al 5, imprimir el mensaje de error
+                System.out.println("Por favor, escribe un numero del 1 al 5.");
+            } else {
+                // Si es del 1 al 5, imprimir el mensaje de exito
+                // Si es del 1 al 5, cambiar validaciones a true
+                Campeonato.campeonatoElegido = Campeonato.campeonatos.get(n - 1);
+                System.out.println("¡Campeonato elegido!");
+                // Imprimir campeonato actual con tabla
+                System.out.println("\n");
+                validaciones = true;
+            }
+        }
+
+        // Paso 2: Elige el Año
+        System.out.println("Elige el Año");
+        System.out.println("Indica el año en el que quieres que se celebre el campeonato.");
+        /*Descomentar
+        int n = sc.nextInt();*/
+        int n = 2023;
+        validaciones = false;
+        // Validar que el numero sea mayor que 1950 y menor que 9999
+
+        while (!validaciones) {
+            if (n < 1950 || n > 9999) {
+                // Si no es mayor que 1950 y menor que 9999, imprimir el mensaje de error
+                System.out.println("Por favor, escribe un numero mayor que 1950 y menor que 9999.");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                // Si es mayor que 1950 y menor que 9999, imprimir el mensaje de exito
+                System.out.println("¡Año elegido!");
+                System.out.println("\n");
+                validaciones = true;
+            }
+        }
+
+        System.out.println("¡Tu campeonato quedo configurado!");
+        // imprmir como se ve con tablitas
+        System.out.println("Campeonato actual: " + Campeonato.campeonatoElegido.getNombre() + " " + Campeonato.campeonatoElegido.getAno());
+        System.out.println("\n");
+
+
+        // TODO banner();
+        // Paso 3: Selecciona tu Equipo
+        System.out.println("Selecciona tu Escudería");
+        // imprimir equipos
+        System.out.println("Escoge una escudería para competir en el campeonato, escribe un numero del 1 al 5.");
+        System.out.println("\n");
+        validaciones = false;
+        // Validar que sea un numero del 1 al 10
+        /*Descomentar
+        n = sc.nextInt();*/
+        n = rand.nextInt(5) + 1;
+
+        while (!validaciones) {
+            if (n < 1 || n > 5) {
+                // Si no es del 1 al 10, imprimir el mensaje de error
+                System.out.println("Por favor, escribe un numero del 1 al 5.");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                Equipo.equipoElegido = Equipo.equipos.get(n - 1);
+                System.out.println("¡Escudería elegida!"); // Si es del 1 al 5, imprimir el mensaje de exito
+
+                System.out.println("\n");
+                validaciones = true; // Si es del 1 al 5, cambiar validaciones a true
+            }
+        }
+
+
+        // Paso 4: Mira los Pilotos de tu Equipo
+        System.out.println("Mira los Pilotos de tu Escuderia");
+        // imprimir pilotos con stats
+
+        // Paso 5: Escoge tus Pilotos
+        System.out.println("Escoge tu Piloto, escribe un numero del 1 al 5.");
+        System.out.println("\n");
+
+        validaciones = false;
+        // Validar que sea un numero del 1 al 5
+        /*Descomentar
+        n = sc.nextInt();*/
+        n = rand.nextInt(5) + 1;
+
+        while (!validaciones) {
+            if (n < 1 || n > 5) {
+                // Si no es del 1 al 5, imprimir el mensaje de error
+                System.out.println("Por favor, escribe un numero del 1 al 5.");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                Piloto.pilotoElegido = Equipo.equipoElegido.getPilotosDisponibles().get(n - 1);
+                Equipo.equipoElegido.getPilotosDisponibles().remove(Piloto.pilotoElegido);
+                Equipo.equipoElegido.setPiloto1(Piloto.pilotoElegido);
+                System.out.println("¡Piloto elegido!"); // Si es del 1 al 5, imprimir el mensaje de exito
+                System.out.println("\n");
+                validaciones = true; // Si es del 1 al 5, cambiar validaciones a true
+            }
+        }
+
+        System.out.println("Escoge tu compañero de equipo");
+        // imprimir pilotos con stats
+        // Paso 5: Escoge tus Pilotos
+        System.out.println("Escoge tu Piloto, escribe un numero del 1 al 4.");
+        System.out.println("\n");
+
+        validaciones = false;
+        // Validar que sea un numero del 1 al 4
+        /*Descomentar
+        n = sc.nextInt();*/
+        n = rand.nextInt(4) + 1;
+
+        while (!validaciones) {
+            if (n < 1 || n > 4) {
+                // Si no es del 1 al 4, imprimir el mensaje de error
+                System.out.println("Por favor, escribe un numero del 1 al 4.");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                Equipo.equipoElegido.setPiloto2(Equipo.equipoElegido.getPilotosDisponibles().get(n - 1));
+                Equipo.equipoElegido.getPilotosDisponibles().remove(Equipo.equipoElegido.getPiloto2());
+                System.out.println("¡Has elegido tu compañero de equipo!"); // Si es del 1 al 4, imprimir el mensaje de exito
+                System.out.println("\n");
+                validaciones = true; // Si es del 1 al 4, cambiar validaciones a true
+            }
+        }
+
+        // Imprimir equipo elegido con tabla linda
+        System.out.println(Equipo.equipoElegido + "\n"); // Borrar-tabla
+
+        // Elegir pilotos a competir de los otros equipos
+        for (Equipo equipo : Equipo.equipos) {
+            if (equipo != Equipo.equipoElegido) {
+                equipo.setPiloto1(equipo.getPilotosDisponibles().get(rand.nextInt(5)));
+                equipo.getPilotosDisponibles().remove(equipo.getPiloto1());
+                equipo.setPiloto2(equipo.getPilotosDisponibles().get(rand.nextInt(4)));
+                equipo.getPilotosDisponibles().remove(equipo.getPiloto2());
+                System.out.println(equipo+ "\n");
+            }
+        }
+
+        // Paso 6: Negocia con Patrocinadores
+
+        // Negociar: Equipos No elegidos
+        for (Equipo equipo : Equipo.equipos) {
+            if (equipo != Equipo.equipoElegido) {
+                while (equipo.getPlata() < 1000) {
+                    for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {;
+                        Equipo.equipoElegido.negociar(patrocinador.getDineroOfrecido(), patrocinador); //Se intenta
+                        System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
+                        System.out.println("El equipo " + Equipo.equipoElegido.getNombre() + " tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                        System.out.println("\n");
+                    }
+                }
+            }
+        }
+
+        System.out.println("Actualmente, tu equipo no tiene dinero :(.");
+        System.out.println("Si deseas, puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
+        System.out.println("Mira la lista de patrocinadores disponibles:");
+        // imprimir patrocinadores con el dinero que estan dispuestos a dar
+        //System.out.println(Patrocinador.mostrarPatrocinadores());
+
+        System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
+        validaciones = false;
+        sc.nextInt();
+        // Validar que sea un numero del 1 al 10
+        while (!validaciones) {
+            if (n < 1 || n > 10) {
+                // Si no es del 1 al 10, imprimir el mensaje de error
+                System.out.println("Por favor, escribe un numero del 1 al 10.");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                // Si es del 1 al 10, imprimir el mensaje de exito
+                Patrocinador patrocinador = Patrocinador.listaPatrocinadores.get(n - 1);
+                System.out.println("¡Patrocinador elegido!");
+                System.out.println("\n");
+                validaciones = true; // Si es del 1 al 10, cambiar validaciones a true
+            }
+        }
+        System.out.println("Decide cuánto dinero quieres pedirle:");
+        sc.nextDouble();
+
+
+
+        // Paso 7: Verifica tu Dinero
+        System.out.println("Ahora, tu equipo tiene: " + "Dolares");
+        System.out.println("¿Quieres negociar con otro patrocinador? (S/N)");
+
+        System.out.println("Comprueba la cantidad de dinero que has recibido de los patrocinadores.");
+
+        // Mensaje de despedida
+        System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
 
         //TODO: Hacer idea del ciclo de cada carrera.
-        //TODO: ESTE MAIN NO ME CORRE AYUDA POR FAVOR.
+        //TODO: ESTE MAIN NO ME CORRE AYUDA POR FAVOR. - Le cambie el parse con Math a ver
+    }
+
+    public double random() {
+        Random random = new Random();
+        double numeroAleatorio = 200 + random.nextDouble() * (500 - 200);
+        return Math.round(numeroAleatorio * 100.0) / 100.0;
     }
 }

@@ -10,7 +10,8 @@ import uiMain.AsciiArt.*;
 public interface Tablas {
     // Aqui es para poner el codigo de las tablas
 
-    public static void tablaCampeonatos(ArrayList<Campeonato> campeonatos) {
+    public static void tablaCampeonatos() {
+        ArrayList<Campeonato> campeonatos = Campeonato.campeonatos;
         // Obtener la longitud máxima de las cadenas en las columnas
         int maxNombre = 0;
         for (Campeonato campeonato : campeonatos) {

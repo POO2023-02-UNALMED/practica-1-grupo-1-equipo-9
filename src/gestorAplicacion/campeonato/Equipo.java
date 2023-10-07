@@ -6,6 +6,7 @@ import gestorAplicacion.paddock.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.text.*;
 
 public class Equipo {
     public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
@@ -93,17 +94,14 @@ public class Equipo {
         }
     }
 
+
     public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {
         //Sobrecarga: Esto es para ver si algún equipo que no es elegido por el usuario es patrocinado por algún patrocinador
         patrocinador.pensarNegocio(this);
     }
 
-    public Piloto elegirPiloto1(int id) {
-        return null;
-    }
-
-    public Piloto elegirPiloto2(int id) {
-        return null;
+    public String toString() {
+        return (this.nombre + " P1: " + this.piloto1.getNombre() + " P2: " + this.piloto2.getNombre());
     }
 
     public void agregarPiloto(Piloto piloto) {
@@ -145,7 +143,8 @@ public class Equipo {
     }
 
     public void setPlata(double plata) {
-        this.plata = plata;
+        double decimales = Math.round(this.plata * 100.0) / 100.0;
+        this.plata = decimales;
     }
 
     public int getPuntos() {

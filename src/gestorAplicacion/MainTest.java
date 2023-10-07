@@ -67,7 +67,6 @@ public class MainTest {
                 System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + val + " dólares.");
                 System.out.println("El equipo " + Equipo.equipoElegido.getNombre() + " tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
                 System.out.println("\n");
-
             }
         }
 

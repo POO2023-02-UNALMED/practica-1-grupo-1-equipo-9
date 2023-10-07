@@ -270,5 +270,6 @@ public class TestPrint {
 //        System.out.println(" ");
 //        cards();
         //banner(campeonatoAfrica.getNombre());
+        System.out.println(Patrocinador.mostrarPatrocinadores());
     }
 }

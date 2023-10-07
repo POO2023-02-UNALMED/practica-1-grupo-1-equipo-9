@@ -15,6 +15,7 @@ public class Ciudad {
     public Ciudad(String nombre, Continente continente) {
     	this.nombre=nombre;
     	this.continente=continente;
+		Ciudad.listaCiudades.add(this);
     	}
     
     //Metodos de instancia

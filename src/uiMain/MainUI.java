@@ -1,14 +1,9 @@
 package uiMain;
 
-import gestorAplicacion.campeonato.Campeonato;
-import gestorAplicacion.campeonato.Ciudad;
-import gestorAplicacion.campeonato.DirectorCarrera;
-import gestorAplicacion.campeonato.Equipo;
-import gestorAplicacion.paddock.Patrocinador;
-import gestorAplicacion.paddock.Pieza;
-import gestorAplicacion.paddock.Piloto;
-import gestorAplicacion.paddock.Vehiculo;
+import gestorAplicacion.campeonato.*;
+import gestorAplicacion.paddock.*;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -526,9 +521,99 @@ public class MainUI {
 
         for (int i = 0; i < Campeonato.campeonatoElegido.getCantidadMaxCarreras(); i++) {
             System.out.println("Elige la cuidad en la que quieres que sea la carrera, escribe un numero de acuerdo a la opcion que quieras");
-            // TODO ciudaes en Continente
+            // TODO ciudaes en Continente, cambiar a ciudad
+            ArrayList<Ciudad> ciudades = new ArrayList<>();
+            validaciones = false;
+            n = sc.nextInt();
+            Ciudad ciudad = null;
+            while (!validaciones) {
+                if (n < 1 || n > ciudades.size()) {
+                    System.out.println("Por favor, escribe un numero del 1 al " + ciudades.size() + ".");
+                    n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+                } else {
+                    ciudad = ciudades.get(n - 1);
+                    System.out.println("¡Ciudad elegida!");
+                    System.out.println("\n");
+                    validaciones = true;
+                }
+            }
+            // Elegir director de carrera
+            System.out.println("Elige el director de carrera, escribe un numero de acuerdo a la opcion que quieras");
+            // TODO tabla dir C
+            tablaDirectoresCarrera(DirectorCarrera.listaDirectores);
+            validaciones = false;
+            n = sc.nextInt();
+            DirectorCarrera directorCarrera = null;
+            while (!validaciones) {
+                if (n < 1 || n > DirectorCarrera.listaDirectores.size()) {
+                    System.out.println("Por favor, escribe un numero del 1 al " + DirectorCarrera.listaDirectores.size() + ".");
+                    n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+                } else {
+                    directorCarrera = DirectorCarrera.listaDirectores.get(n - 1);
+                    System.out.println("¡Director de carrera elegido!");
+                    System.out.println("\n");
+                    validaciones = true;
+                }
+            }
+            // Elegir mes de la carrera
+            System.out.println("Elige el mes en el que quieres que sea la carrera, escribe un numero del 1 al 12.");
+            System.out.println("Nota: Las carreras deben ser en meses distintos.");
+            validaciones = false;
+            n = sc.nextInt();
+            int mes = 0;
+            while (!validaciones) {
+                if (n < 1 || n > 12) {
+                    System.out.println("Por favor, escribe un numero del 1 al 12.");
+                    n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+                } else {
+                    mes = n;
+                    System.out.println("¡Mes elegido!");
+                    System.out.println("\n");
+                    validaciones = true;
+                }
+            }
+            // Elegir dificultad del 1 al 3
+            System.out.println("Elige la dificultad de la carrera, escribe un numero del 1 al 3.");
+            System.out.println("+------------------+-------+");
+            System.out.println("|   Dificultad    | Opción|");
+            System.out.println("+------------------+-------+");
+            System.out.println("|  Avanzado        |   1   |");
+            System.out.println("|  Experto         |   2   |");
+            System.out.println("|  Maestro         |   3   |");
+            System.out.println("+------------------+-------+");
+            validaciones = false;
+            n = sc.nextInt();
+
+            int dificultad = 0;
+            while (!validaciones) {
+                if (n < 1 || n > 3) {
+                    System.out.println("Por favor, escribe un numero del 1 al 3.");
+                    n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+                } else {
+                    dificultad = n;
+                    System.out.println("¡Dificultad elegida!");
+                    System.out.println("\n");
+                    validaciones = true;
+                }
+            }
+            // TODO: circuito de la carrera
+
+            Carrera carrera = new Carrera(ciudad, mes, dificultad);
+            carrera.setDirectorCarrera(directorCarrera);
+
+            System.out.println("Es momento de que elijas el circuito de la carrera.");
+
+            for (Circuito circuito : Circuito.values()) {
+                System.out.println("Circuito 1: " + circuito.getPrecio());
+                System.out.println(circuito.getPattern());
+                System.out.println("/n");
+            }
             
+
+            Campeonato.campeonatoElegido.agregarCarrera(carrera);
         }
+
+
 
         //TODO: Hacer idea del ciclo de cada carrera.
     }

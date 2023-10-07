@@ -2,6 +2,8 @@ package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Carrera;
 
+import java.util.ArrayList;
+
 public enum Circuito {
     PATTERN_1("                                                                                                    \n" +
                 "         .+#@@@@@@@@@@@@@@+                                                                      \n" +
@@ -114,7 +116,6 @@ public enum Circuito {
         this.pattern = pattern;
         this.Precio = Precio;
     }
-
     public String getPattern() {
             return pattern;
         }
@@ -123,6 +124,14 @@ public enum Circuito {
     }
     public void comprar() {
         Carrera.carreraActual.setCircuito(this);
+    }
+
+    public ArrayList<Circuito> getCircuitos() {
+        ArrayList<Circuito> circuitos = new ArrayList<>();
+        for (Circuito circuito : Circuito.values()) {
+            circuitos.add(circuito);
+        }
+        return circuitos;
     }
 
 }

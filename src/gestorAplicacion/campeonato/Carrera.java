@@ -1,18 +1,18 @@
 package gestorAplicacion.campeonato;
 
-import gestorAplicacion.campeonato.Ciudad.Continente;
 import gestorAplicacion.paddock.Circuito;
 import gestorAplicacion.paddock.Patrocinador;
-import gestorAplicacion.paddock.Vehiculo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Random;
 
 public class Carrera {
     public static Carrera carreraActual;     //Carrera actual durante el main
 
     public static ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
 
-    public static ArrayList<VehiculoCarrera>  terminados= new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
+    public static ArrayList<VehiculoCarrera> terminados = new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
 
     //Atributos
     private static int idActual = 1;
@@ -94,7 +94,8 @@ public class Carrera {
         double upperBound = 0.2;
         this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
-    public Carrera(Ciudad ciudad, int mes, double dificultad){ //El chakalito y la chakalita xd
+
+    public Carrera(Ciudad ciudad, int mes, double dificultad) { //El chakalito y la chakalita xd
         this.id = idActual;
         Carrera.idActual++;
         Random rand = new Random();
@@ -105,12 +106,12 @@ public class Carrera {
         this.ciudad = ciudad;
         this.mes = mes; //TODO: Hacer verificacion de que no hay meses repetidos
         this.dificultad = dificultad;
-        this.nombreCircuito = poolNombres.get(rand.nextInt(3))+this.ciudad.getNombre();
-        this.distancia = (rand.nextInt(11)+5)*1000;
-        this.premioEfectivo = (rand.nextInt(3)+1)*1000;
+        this.nombreCircuito = poolNombres.get(rand.nextInt(3)) + this.ciudad.getNombre();
+        this.distancia = (rand.nextInt(11) + 5) * 1000;
+        this.premioEfectivo = (rand.nextInt(3) + 1) * 1000;
         Random random = new Random();
         int randomNumber = random.nextInt(28) + 1;
-        this.fecha = randomNumber + "/" + String.valueOf(this.mes) + "/" + String.valueOf(Campeonato.campeonatoElegido.getAno());
+        this.fecha = randomNumber + "/" + this.mes + "/" + Campeonato.campeonatoElegido.getAno();
     }
 
     //Metodos de clase
@@ -129,18 +130,17 @@ public class Carrera {
     }
 
     public static void actualizarGasolina() { //Cada iteracion se debe actualizar la gasolina.
-        if (VehiculoCarrera.vehiculoElegido.getGasolina()>3) { //Si hay suficiente gasolina, se reduce el nivel.
-            VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina()-3);
-        }
-        else { //Si no hay suficiente gasolina, el carro choca.
+        if (VehiculoCarrera.vehiculoElegido.getGasolina() > 30) { //Si hay suficiente gasolina, se reduce el nivel.
+            VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina() - 30);
+        } else { //Si no hay suficiente gasolina, el carro choca.
             VehiculoCarrera.vehiculoElegido.chocar();
         }
     }
 
     public static void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones  TODO: Preguntar por imprimir dos tablas en paralelo durante el ciclo
-        for (VehiculoCarrera vehiculo: posiciones){
+        for (VehiculoCarrera vehiculo : posiciones) {
             vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
-            if (vehiculo.getDistanciaRecorrida()>= carreraActual.getDistancia()){
+            if (vehiculo.getDistanciaRecorrida() >= carreraActual.getDistancia()) {
                 terminados.add(vehiculo);
                 vehiculo.setTerminado(true);
                 posiciones.remove(vehiculo);
@@ -152,41 +152,62 @@ public class Carrera {
     public static ArrayList<Boolean> actualizarOpciones() { //Este metodo selecciona aleatoriamente que opciones se van a mostrar
         ArrayList<Boolean> listaOpciones = new ArrayList<Boolean>();
         Random rand = new Random();
-        for (int i=0 ; i<5 ; i++) {
-            int numRandom= rand.nextInt(10);
-            if (numRandom>=3) {
+        for (int i = 0; i < 5; i++) {
+            int numRandom = rand.nextInt(10);
+            if (numRandom >= 3) {
                 listaOpciones.add(true);
-            }
-            else {
+            } else {
                 listaOpciones.add(false);
             }
         }
         return listaOpciones; //Retorna lista de 5 posiciones donde puede haber "true" o "false"
     }
+
     //Metodos para el final de la carrera
-    public static boolean actualizarTerminado(){
-        boolean todosTerminados=true;
-        for (VehiculoCarrera vehiculoCarrera : posiciones){
-            if (!vehiculoCarrera.isTerminado()){
-                todosTerminados=false;
+    public static boolean actualizarTerminado() {
+        boolean todosTerminados = true;
+        for (VehiculoCarrera vehiculoCarrera : posiciones) {
+            if (!vehiculoCarrera.isTerminado()) {
+                todosTerminados = false;
                 break;
             }
         }
         return todosTerminados;
     }
-    public static void premiarCarrera(){ //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
+
+    public static void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {
+        Carrera.posiciones.add(vehiculoCarrera);
+    }
+
+    public static void premiarCarrera() { //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
         int puntosActuales = 8;
-        for (VehiculoCarrera vehiculo : terminados){
-            vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos()+puntosActuales);
+        for (VehiculoCarrera vehiculo : terminados) {
+            vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
             puntosActuales--;
         }
-        terminados.get(0).getPiloto().recibirPlata(carreraActual.getPremioEfectivo()*0.7);
+        terminados.get(0).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.7);
         for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
             patrocinador.recibirPlata(carreraActual.getPremioEfectivo() * 0.1);
         }
-        terminados.get(1).getPiloto().recibirPlata(carreraActual.getPremioEfectivo()*0.2);
-        terminados.get(2).getPiloto().recibirPlata(carreraActual.getPremioEfectivo()*0.1);
+        terminados.get(1).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.2);
+        terminados.get(2).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.1);
     } //TODO: Preguntar por la cantidad que gana cada equipo
+
+    public static Carrera getCarreraActual() {
+        return carreraActual;
+    }
+
+    public static void setCarreraActual(Carrera carreraActual) {
+        Carrera.carreraActual = carreraActual;
+    }
+
+    public static int getIdActual() {
+        return idActual;
+    }
+
+    public static void setIdActual(int idActual) {
+        Carrera.idActual = idActual;
+    }
 
     // Lista de metodos set y get
     public int getId() {
@@ -264,22 +285,6 @@ public class Carrera {
 
     public ArrayList<VehiculoCarrera> getPosiciones() {
         return posiciones;
-    }
-
-    public static Carrera getCarreraActual() {
-        return carreraActual;
-    }
-
-    public static void setCarreraActual(Carrera carreraActual) {
-        Carrera.carreraActual = carreraActual;
-    }
-
-    public static int getIdActual() {
-        return idActual;
-    }
-
-    public static void setIdActual(int idActual) {
-        Carrera.idActual = idActual;
     }
 
     public Circuito getCircuito() {

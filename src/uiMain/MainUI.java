@@ -412,16 +412,16 @@ public class MainUI {
         for (Equipo equipo : Equipo.equipos) {
             /*Descomentar
             if (equipo != Equipo.equipoElegido) {*/
-                for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
-                    if (equipo.getPlata() > 1000) {
-                        break;
-                    } else {
-                        equipo.negociar(patrocinador, true); //Se intenta
-                        System.out.println(equipo.getNombre() + " intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
-                        System.out.println("El equipo " + equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
-                        System.out.println("\n");
-                    }
+            for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
+                if (equipo.getPlata() > 1000) {
+                    break;
+                } else {
+                    equipo.negociar(patrocinador, true); //Se intenta
+                    System.out.println(equipo.getNombre() + " intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
+                    System.out.println("El equipo " + equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
+                    System.out.println("\n");
                 }
+            }
 //            }
         }
 
@@ -431,86 +431,14 @@ public class MainUI {
         }*/
 
         System.out.println("Actualmente, tu equipo no tiene dinero :(.");
-        System.out.println("Puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
-        System.out.println("Mira la lista de patrocinadores disponibles:");
-        // imprimir patrocinadores con el dinero que estan dispuestos a dar
-        //System.out.println(Patrocinador.mostrarPatrocinadores());
 
-        String ans = "S";
-/*        Descomentar
-        validaciones = false;*/
-        validaciones = true;
-
-
-        while (!validaciones) {
-            if (ans.equals("S")) {
-                // Si es S, volver al paso 6
-                System.out.println("Mira la lista de patrocinadores disponibles:");
-                // imprimir patrocinadores con el dinero que estan dispuestos a dar
-                //System.out.println(Patrocinador.mostrarPatrocinadores());
-                System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
-                boolean validaciones2 = false;
-                n = sc.nextInt();
-                // Validar que sea un numero del 1 al 10
-                while (!validaciones2) {
-                    if (n < 1 || n > 10) {
-                        // Si no es del 1 al 10, imprimir el mensaje de error
-                        System.out.println("Por favor, escribe un numero del 1 al 10.");
-                        n = sc.nextInt(); // Para que no se quede en un loop infinito xd
-                    } else {
-                        // Si es del 1 al 10, imprimir el mensaje de exito
-                        Patrocinador patrocinador = Patrocinador.listaPatrocinadores.get(n - 1);
-                        System.out.println("¡Patrocinador elegido!");
-                        System.out.println("\n");
-                        System.out.println("Decide cuánto dinero quieres pedirle:");
-                        double cantidad = sc.nextDouble();
-                        boolean validaciones3 = false;
-                        while (!validaciones3) {
-                            if (cantidad < 0) {
-                                System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
-                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
-                                validaciones3 = true;
-                            } else if (cantidad == 0) {
-                                System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
-                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
-                                validaciones3 = true;
-                            } else if (cantidad > patrocinador.getDinero()) {
-                                patrocinador.setPatrocinando(true);
-                                System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador y nunca lo olvidara!");
-                                validaciones3 = true;
-                            } else {
-                                double aux = Equipo.equipoElegido.getPlata();
-                                Equipo.equipoElegido.negociar(cantidad, patrocinador);
-                                System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + cantidad + " dólares.");
-                                if (aux == Equipo.equipoElegido.getPlata()) {
-                                    System.out.println("El patrocinador no acepto.");
-                                } else {
-                                    System.out.println(Equipo.equipoElegido.getNombre() + " fue patrocinado y ahora tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
-                                }
-                                System.out.println("\n");
-                                validaciones3 = true;
-                            }
-                        }
-                        validaciones2 = true; // Si es del 1 al 10, cambiar validaciones a true
-                    }
-                }
-                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
-            } else if (ans.equals("N")) {
-                // Si es N, continuar
-                System.out.println("\n");
-                validaciones = true;
-            } else {
-                // Si no es S o N, imprimir el mensaje de error
-                System.out.println("¿Quieres negociar con otro patrocinador?, escribe S o N.");
-                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
-            }
-        }
+        negociar();
 
         // FUNCIONALIDAD Planificar Calendario de Carreras
 
         System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
 
-        banner("¡Que comience el " + Campeonato.campeonatoElegido.getNombre() +"!", String.valueOf(Campeonato.campeonatoElegido.getAno()));
+        banner("¡Que comience el " + Campeonato.campeonatoElegido.getNombre() + "!", String.valueOf(Campeonato.campeonatoElegido.getAno()));
         System.out.println("\n");
 
         // for de acuerdo al numero de carreras en le campeonato elegido
@@ -617,7 +545,6 @@ public class MainUI {
                 System.out.println("\n");
             }
 
-
             Circuito circuito = null;
             validaciones = false;
             while (!validaciones) {
@@ -639,21 +566,194 @@ public class MainUI {
                     }
                 }
             }
-            Campeonato.campeonatoElegido.agregarCarrera(carrera);
+            Campeonato.campeonatoElegido.agregarCarrera(carrera); // agregar carrera al campeonato
         }
 
         // TODO: Calendario de carreras tabla
 
+        // ANTES DE INICIAR LA CARRERA
+        System.out.println("Es hora de elegir tu vehículo de carrera.");
+        System.out.println("¡Comencemos!");
+        System.out.println("\n");
+        System.out.println("Elige tu vehículo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
+        // Imprimir vehiculos
+        n = sc.nextInt();
+        validaciones = false;
+        VehiculoCarrera vehiculo1 = null;
+        while (!validaciones) {
+            if (n < 1 || n > Equipo.equipoElegido.getVehiculosDisponibles().size()) {
+                System.out.println("Por favor, escribe un numero del 1 al " + Equipo.equipoElegido.getVehiculosDisponibles().size() + ".");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                Vehiculo vehiculo = Equipo.equipoElegido.getVehiculosDisponibles().get(n - 1);
+                Carrera.agregarVehiculoCarrerra(VehiculoCarrera.vehiculoElegido);
+                vehiculo1 = VehiculoCarrera.vehiculoElegido;
+                System.out.println("¡Vehículo elegido!");
+                System.out.println("\n");
+                validaciones = true;
+            }
+        }
 
+        System.out.println("Es hora de elegir el vehículo de carrera de tu compañero de equipo.");
+        System.out.println("¡Comencemos!");
+        System.out.println("\n");
+        System.out.println("Elige tu vehículo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
+        // Imprimir vehiculos
+        n = sc.nextInt();
+        validaciones = false;
+        while (!validaciones) {
+            if (n < 1 || n > Equipo.equipoElegido.getVehiculosDisponibles().size()) {
+                System.out.println("Por favor, escribe un numero del 1 al " + Equipo.equipoElegido.getVehiculosDisponibles().size() + ".");
+                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+            } else {
+                Vehiculo vehiculo = Equipo.equipoElegido.getVehiculosDisponibles().get(n - 1);
+                vehiculo.comprar(Equipo.equipoElegido.getPiloto2());
+                System.out.println("¡Vehículo elegido!");
+                System.out.println("\n");
+                validaciones = true;
+            }
+        }
 
+        // elegir vehiculos de los otros equipos
+        for (Equipo equipo : Equipo.equipos) {
+            if (equipo != Equipo.equipoElegido) {
+                n = rand.nextInt(equipo.getVehiculosDisponibles().size()) + 1;
+                Vehiculo vehiculo = equipo.getVehiculosDisponibles().get(n - 1);
+                vehiculo.comprar(equipo.getPiloto1());
+                Carrera.agregarVehiculoCarrerra(VehiculoCarrera.vehiculoElegido);
+                n = rand.nextInt(equipo.getVehiculosDisponibles().size()) + 1;
+                vehiculo = equipo.getVehiculosDisponibles().get(n - 1);
+                vehiculo.comprar(equipo.getPiloto2());
+                Carrera.agregarVehiculoCarrerra(VehiculoCarrera.vehiculoElegido);
+            }
+        }
 
+        // Shuffle posiciones de los vehiculos
+        ArrayList<VehiculoCarrera> vehiculosCarrera = Carrera.posiciones;
+        Collections.shuffle(vehiculosCarrera);
+        Carrera.posiciones = vehiculosCarrera;
+        // Vehiculo de carrera del usuario
+        VehiculoCarrera.vehiculoElegido = vehiculo1;
 
-        //TODO: Hacer idea del ciclo de cada carrera.
+        for (Carrera carrera : Campeonato.campeonatoElegido.getListaCarreras()) {
+            Carrera.comenzarCarrera(carrera);
+            //Falta un dia para la carrera
+            System.out.println("Falta un día para la carrera en " + carrera.getCiudad().getNombre() + ".");
+            System.out.println("Todavia estas a tiempo de: ");
+            System.out.println("1. Revisar el calendario de carreras.");
+            System.out.println("2. Revisar tu vehiculo de carrera.");
+            System.out.println("3. Cultivar una amistad con el director de carrera y obtner favores especiales.");
+            System.out.println("4. Quiero comenzar la carrera, estoy listo.");
+
+            n = sc.nextInt();
+            switch (n) {
+                case 1:
+                    // TODO: Calendario de carreras tabla
+                    break;
+                case 2:
+                    //Tunear el carro
+                    break;
+                case 3:
+                    // Corrupcion
+                    break;
+                case 4:
+                    // Iniciar carrera
+                    break;
+            }
+
+            //TODO: Hacer idea del ciclo de cada carrera.
+        }
     }
 
-    public double random() {
-        Random random = new Random();
-        double numeroAleatorio = 200 + random.nextDouble() * (500 - 200);
-        return Math.round(numeroAleatorio * 100.0) / 100.0;
+    public static void negociar(){
+        boolean validaciones;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
+        System.out.println("Mira la lista de patrocinadores disponibles:");
+        // imprimir patrocinadores con el dinero que estan dispuestos a dar
+        //System.out.println(Patrocinador.mostrarPatrocinadores());
+
+        String ans = "S";
+/*        Descomentar
+        validaciones = false;*/
+        validaciones = true;
+        int n;
+
+
+        while (!validaciones) {
+            if (ans.equals("S")) {
+                // Si es S, volver al paso 6
+                System.out.println("Mira la lista de patrocinadores disponibles:");
+                // imprimir patrocinadores con el dinero que estan dispuestos a dar
+                //System.out.println(Patrocinador.mostrarPatrocinadores());
+                System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
+                boolean validaciones2 = false;
+                n = sc.nextInt();
+                // Validar que sea un numero del 1 al 10
+                while (!validaciones2) {
+                    if (n < 1 || n > 10) {
+                        // Si no es del 1 al 10, imprimir el mensaje de error
+                        System.out.println("Por favor, escribe un numero del 1 al 10.");
+                        n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+                    } else {
+                        // Si es del 1 al 10, imprimir el mensaje de exito
+                        Patrocinador patrocinador = Patrocinador.listaPatrocinadores.get(n - 1);
+                        System.out.println("¡Patrocinador elegido!");
+                        System.out.println("\n");
+                        System.out.println("Decide cuánto dinero quieres pedirle:");
+                        double cantidad = sc.nextDouble();
+                        boolean validaciones3 = false;
+                        while (!validaciones3) {
+                            if (cantidad < 0) {
+                                System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
+                                validaciones3 = true;
+                            } else if (cantidad == 0) {
+                                System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
+                                validaciones3 = true;
+                            } else if (cantidad > patrocinador.getDinero()) {
+                                patrocinador.setPatrocinando(true);
+                                System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador y nunca lo olvidara!");
+                                validaciones3 = true;
+                            } else {
+                                double aux = Equipo.equipoElegido.getPlata();
+                                Equipo.equipoElegido.negociar(cantidad, patrocinador);
+                                System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + cantidad + " dólares.");
+                                if (aux == Equipo.equipoElegido.getPlata()) {
+                                    System.out.println("El patrocinador no acepto.");
+                                } else {
+                                    System.out.println(Equipo.equipoElegido.getNombre() + " fue patrocinado y ahora tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                                }
+                                System.out.println("\n");
+                                validaciones3 = true;
+                            }
+                        }
+                        validaciones2 = true; // Si es del 1 al 10, cambiar validaciones a true
+                    }
+                }
+                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
+            } else if (ans.equals("N")) {
+                // Si es N, continuar
+                System.out.println("\n");
+                validaciones = true;
+            } else {
+                // Si no es S o N, imprimir el mensaje de error
+                System.out.println("¿Quieres negociar con otro patrocinador?, escribe S o N.");
+                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
+            }
+        }
+    }
+    public static void tunearCarro(){
+        Equipo equipo = Equipo.equipoElegido;
+        Vehiculo vehiculo = VehiculoCarrera.vehiculoElegido;
+        System.out.println("¡Es hora de tunear tu vehículo de carrera!");
+        System.out.println("¡Comencemos!");
+        System.out.println("\n");
+
+        System.out.println("Actualmente tu equipo dispone de un presupuesto de " + equipo.getPlata() + " dólares.");
+        System.out.println("\n");
+        System.out.println("");
+
     }
 }

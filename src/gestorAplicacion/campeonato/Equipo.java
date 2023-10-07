@@ -143,7 +143,7 @@ public class Equipo {
     }
 
     public void setPlata(double plata) {
-        double decimales = Math.round(this.plata * 100.0) / 100.0;
+        double decimales = Math.round(plata * 100.0) / 100.0;
         this.plata = decimales;
     }
 

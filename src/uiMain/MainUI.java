@@ -1,6 +1,9 @@
 package uiMain;
 
-import gestorAplicacion.campeonato.*;
+import gestorAplicacion.campeonato.Campeonato;
+import gestorAplicacion.campeonato.Ciudad;
+import gestorAplicacion.campeonato.DirectorCarrera;
+import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.paddock.Patrocinador;
 import gestorAplicacion.paddock.Pieza;
 import gestorAplicacion.paddock.Piloto;
@@ -8,10 +11,9 @@ import gestorAplicacion.paddock.Vehiculo;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.text.*;
 
-import static uiMain.AsciiArt.*;
-import static uiMain.Tablas.*;
+import static uiMain.AsciiArt.bienvenida;
+import static uiMain.Tablas.tablaCampeonatos;
 
 public class MainUI {
     static {
@@ -42,7 +44,8 @@ public class MainUI {
         Ciudad ciudad9 = new Ciudad("Jeddah", Ciudad.Continente.Asia);
         // América
         Ciudad ciudad10 = new Ciudad("Austin", Ciudad.Continente.America);
-        Ciudad ciudad11 = new Ciudad("Monterrey", Ciudad.Continente.America);Ciudad ciudad12 = new Ciudad("Sao Paulo", Ciudad.Continente.America);
+        Ciudad ciudad11 = new Ciudad("Monterrey", Ciudad.Continente.America);
+        Ciudad ciudad12 = new Ciudad("Sao Paulo", Ciudad.Continente.America);
         Ciudad ciudad13 = new Ciudad("Buenos Aires", Ciudad.Continente.America);
         // África
         Ciudad ciudad14 = new Ciudad("Ciudad del Cabo", Ciudad.Continente.Africa);
@@ -419,7 +422,7 @@ public class MainUI {
                 equipo.getPilotosDisponibles().remove(equipo.getPiloto1());
                 equipo.setPiloto2(equipo.getPilotosDisponibles().get(rand.nextInt(4)));
                 equipo.getPilotosDisponibles().remove(equipo.getPiloto2());
-                System.out.println(equipo+ "\n");
+                System.out.println(equipo + "\n");
             }
         }
 
@@ -429,16 +432,21 @@ public class MainUI {
         for (Equipo equipo : Equipo.equipos) {
             if (equipo != Equipo.equipoElegido) {
                 for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
-                    if (equipo.getPlata()>1000){
+                    if (equipo.getPlata() > 1000) {
                         break;
                     } else {
-                        equipo.negociar(patrocinador,true); //Se intenta
-                        System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
+                        equipo.negociar(patrocinador, true); //Se intenta
+                        System.out.println(equipo.getNombre() + " intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
                         System.out.println("El equipo " + equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
                         System.out.println("\n");
                     }
                 }
             }
+        }
+
+        for (Equipo equipo : Equipo.equipos) {
+            System.out.println(equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
+            System.out.println("\n");
         }
 
         System.out.println("Actualmente, tu equipo no tiene dinero :(.");
@@ -466,7 +474,6 @@ public class MainUI {
         }
         System.out.println("Decide cuánto dinero quieres pedirle:");
         sc.nextDouble();
-
 
 
         // Paso 7: Verifica tu Dinero

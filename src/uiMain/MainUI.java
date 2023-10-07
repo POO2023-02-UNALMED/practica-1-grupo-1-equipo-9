@@ -81,21 +81,6 @@ public class MainUI {
         Patrocinador patrocinador8 = new Patrocinador("Tech Innovations Ltd.", 30000000.0);
         Patrocinador patrocinador9 = new Patrocinador("Global Motorsport Group", 75000000.0);
         Patrocinador patrocinador10 = new Patrocinador("Puma", 150000000.0);
-        Patrocinador patrocinador11 = new Patrocinador("Nike", 100000000.0);
-        Patrocinador patrocinador12 = new Patrocinador("Adidas", 120000000.0);
-        Patrocinador patrocinador13 = new Patrocinador("Coca-Cola", 200000000.0);
-        Patrocinador patrocinador14 = new Patrocinador("Pepsi", 150000000.0);
-        Patrocinador patrocinador15 = new Patrocinador("Bridgestone", 100000000.0);
-        Patrocinador patrocinador16 = new Patrocinador("Goodyear", 100000000.0);
-        Patrocinador patrocinador17 = new Patrocinador("Michelin", 100000000.0);
-        Patrocinador patrocinador18 = new Patrocinador("Brembo", 100000000.0);
-        Patrocinador patrocinador19 = new Patrocinador("Bosch", 100000000.0);
-        Patrocinador patrocinador20 = new Patrocinador("Continental", 100000000.0);
-        Patrocinador patrocinador21 = new Patrocinador("Bridgestone", 100000000.0);
-        Patrocinador patrocinador22 = new Patrocinador("Goodyear", 100000000.0);
-        Patrocinador patrocinador23 = new Patrocinador("Michelin", 100000000.0);
-        Patrocinador patrocinador24 = new Patrocinador("Brembo", 100000000.0);
-        Patrocinador patrocinador25 = new Patrocinador("Bosch", 100000000.0);
 
         // Creación de equipos
         Equipo equipo1 = new Equipo("Mercedes-AMG", "Alemania");
@@ -444,36 +429,79 @@ public class MainUI {
             }
         }
 
-        for (Equipo equipo : Equipo.equipos) {
+       /* for (Equipo equipo : Equipo.equipos) {
             System.out.println(equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
             System.out.println("\n");
-        }
+        }*/
 
         System.out.println("Actualmente, tu equipo no tiene dinero :(.");
-        System.out.println("Si deseas, puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
+        System.out.println("Puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
         System.out.println("Mira la lista de patrocinadores disponibles:");
         // imprimir patrocinadores con el dinero que estan dispuestos a dar
         //System.out.println(Patrocinador.mostrarPatrocinadores());
 
-        System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
+        String ans = "S";
         validaciones = false;
-        sc.nextInt();
-        // Validar que sea un numero del 1 al 10
+
         while (!validaciones) {
-            if (n < 1 || n > 10) {
-                // Si no es del 1 al 10, imprimir el mensaje de error
-                System.out.println("Por favor, escribe un numero del 1 al 10.");
-                n = sc.nextInt(); // Para que no se quede en un loop infinito xd
-            } else {
-                // Si es del 1 al 10, imprimir el mensaje de exito
-                Patrocinador patrocinador = Patrocinador.listaPatrocinadores.get(n - 1);
-                System.out.println("¡Patrocinador elegido!");
+            if (ans.equals("S")) {
+                // Si es S, volver al paso 6
+                System.out.println("Mira la lista de patrocinadores disponibles:");
+                // imprimir patrocinadores con el dinero que estan dispuestos a dar
+                //System.out.println(Patrocinador.mostrarPatrocinadores());
+                System.out.println("Escoge un patrocinador para negociar, escribe un numero del 1 al 10.");
+                boolean validaciones2 = false;
+                n = sc.nextInt();
+                // Validar que sea un numero del 1 al 10
+                while (!validaciones2) {
+                    if (n < 1 || n > 10) {
+                        // Si no es del 1 al 10, imprimir el mensaje de error
+                        System.out.println("Por favor, escribe un numero del 1 al 10.");
+                        n = sc.nextInt(); // Para que no se quede en un loop infinito xd
+                    } else {
+                        // Si es del 1 al 10, imprimir el mensaje de exito
+                        Patrocinador patrocinador = Patrocinador.listaPatrocinadores.get(n - 1);
+                        System.out.println("¡Patrocinador elegido!");
+                        System.out.println("\n");
+                        System.out.println("Decide cuánto dinero quieres pedirle:");
+                        double cantidad = sc.nextDouble();
+                        boolean validaciones3 = false;
+                        while (!validaciones3) {
+                            if (cantidad < 0) {
+                                System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido.");
+                                validaciones3 = true;
+                            } else if (cantidad == 0) {
+                                System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido.");
+                                validaciones3 = true;
+                            } else if (cantidad > patrocinador.getDinero()) {
+                                patrocinador.setPatrocinando(true);
+                                System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador y nunca lo olvidara!");
+                                validaciones3 = true;
+                            } else {
+                                Equipo.equipoElegido.negociar(cantidad, patrocinador);
+                                System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + cantidad + " dólares.");
+                                System.out.println(Equipo.equipoElegido.getNombre() + " tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                                System.out.println("\n");
+                                validaciones3 = true;
+                            }
+                        }
+                        validaciones2 = true; // Si es del 1 al 10, cambiar validaciones a true
+                    }
+                }
+                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
+            } else if (ans.equals("N")) {
+                // Si es N, continuar
                 System.out.println("\n");
-                validaciones = true; // Si es del 1 al 10, cambiar validaciones a true
+                validaciones = true;
+            } else {
+                // Si no es S o N, imprimir el mensaje de error
+                System.out.println("¿Quieres negociar con otro patrocinador?, escribe S o N.");
+                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
             }
         }
-        System.out.println("Decide cuánto dinero quieres pedirle:");
-        sc.nextDouble();
+
 
 
         // Paso 7: Verifica tu Dinero

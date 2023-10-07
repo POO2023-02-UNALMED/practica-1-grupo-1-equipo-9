@@ -12,7 +12,7 @@ import java.util.function.ToDoubleBiFunction;
 
 public class DirectorCarrera extends Persona {
     //Lista directores de carrera
-    private ArrayList<DirectorCarrera> listaDirectores= new ArrayList<DirectorCarrera>(); 
+    public static ArrayList<DirectorCarrera> listaDirectores= new ArrayList<DirectorCarrera>();
 	
 	private double plata;
     private boolean licencia;
@@ -29,6 +29,7 @@ public class DirectorCarrera extends Persona {
         this.plata = plata;
         this.licencia = licencia;
         this.corrupcion = 0;
+        DirectorCarrera.listaDirectores.add(this);
     }
 
     public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera, int corrupcion) {
@@ -37,6 +38,7 @@ public class DirectorCarrera extends Persona {
         this.licencia = licencia;
         this.carrera = carrera;
         this.corrupcion = corrupcion;
+        DirectorCarrera.listaDirectores.add(this);
     }
     //Metodo abstracto heredado
     public void recibirPlata(double plata) {

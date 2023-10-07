@@ -19,6 +19,7 @@ public class Carrera {
     private static Campeonato campeonato;
     private int id;
     private String nombreCircuito;
+    private String fecha;
     private int mes; //El mes determina el orden de la carrera
     private double distancia; //Distancia de la carrera
     private double premioEfectivo; //Este premio se distribuye entre los 3 primeros puestos
@@ -107,6 +108,9 @@ public class Carrera {
         this.nombreCircuito = poolNombres.get(rand.nextInt(3))+this.ciudad.getNombre();
         this.distancia = (rand.nextInt(11)+5)*1000;
         this.premioEfectivo = (rand.nextInt(3)+1)*1000;
+        Random random = new Random();
+        int randomNumber = random.nextInt(28) + 1;
+        this.fecha = randomNumber + "/" + String.valueOf(this.mes) + "/" + String.valueOf(Campeonato.campeonatoElegido.getAno());
     }
 
     //Metodos de clase

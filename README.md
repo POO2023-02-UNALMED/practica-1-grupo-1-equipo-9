@@ -247,7 +247,7 @@ _Lógica (no POV) (Va en [Corchetes])_
 **4. Reservar Circuito (Opcional):**
 - Para cada carrera, se puede optar por reservar un circuito. Esta opción puede estar disponible o no.
   1. Elegir patrocinador: Selecciona un patrocinador para la carrera.
-  2. Valor aleatorio: El patrocinador pagará un monto aleatorio basado en su valor.
+  2. Valor aleatorio: El Director pagará un monto aleatorio basado en su valor.
 
 **5. Elegir dificultad de Carrera:**
 - Para cada carrera, define la dificultad de la carrera. Puedes elegir entre diferentes niveles que afectarán aspectos como la probabilidad de choques y adelantamientos.

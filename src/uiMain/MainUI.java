@@ -508,7 +508,6 @@ public class MainUI {
 
         // FUNCIONALIDAD Planificar Calendario de Carreras
 
-        // Mensaje de despedida
         System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
 
         banner("¡Que comience el " + Campeonato.campeonatoElegido.getNombre() +"!", String.valueOf(Campeonato.campeonatoElegido.getAno()));
@@ -606,13 +605,12 @@ public class MainUI {
                     validaciones = true;
                 }
             }
-            // TODO: circuito de la carrera
 
             Carrera carrera = new Carrera(ciudad, mes, dificultad);
             carrera.setDirectorCarrera(directorCarrera);
 
             System.out.println("Es momento de que elijas el circuito de la carrera.");
-
+            // Imprimir circuitos
             for (Circuito circuito : Circuito.values()) {
                 System.out.println("Circuito 1: $" + circuito.getPrecio());
                 System.out.println(circuito.getPattern());
@@ -630,6 +628,8 @@ public class MainUI {
                     int randomNumber = rand.nextInt(2) + 1;
                     if (randomNumber == 1) {
                         circuito = Circuito.values()[n - 1];
+                        carrera.setCircuito(circuito); // asignar circuito a la carrera
+                        carrera.getDirectorCarrera().setPlata(carrera.getDirectorCarrera().getPlata() - circuito.getPrecio()); // restar plata al director de carrera
                         System.out.println("¡Circuito elegido!");
                         System.out.println("\n");
                         validaciones = true;
@@ -642,7 +642,9 @@ public class MainUI {
             Campeonato.campeonatoElegido.agregarCarrera(carrera);
         }
 
-        // TODO: Calendario de carreras.
+        // TODO: Calendario de carreras tabla
+
+
 
 
 

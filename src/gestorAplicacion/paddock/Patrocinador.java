@@ -82,20 +82,15 @@ public class Patrocinador extends Persona {
     }
 
     public boolean pensarNegocio(Equipo equipo, boolean equipoNoElegido) { //Sobrecargar para que algunos equipos no elegidos por el usuario puedan ser patrocinados
-        Random rand = new Random();
-        double lowerBound = 0.0;
-        double upperBound = this.probAceptar;
-        double numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
-        if (numRandom < this.probAceptar) {
-            if (this.setEquipo(equipo)) {
-                return false;
-            } else {
-                this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata() + this.dineroOfrecer);
-                return true;
-            }
-        } else {
+        if (this.patrocinando){
             return false;
+        } else {
+            this.setEquipo(equipo);
+            this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata() + this.dineroOfrecer);
+            return true;
         }
+
+     
     }
 
     //Lista de metodos set y get

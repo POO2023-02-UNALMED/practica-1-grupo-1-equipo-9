@@ -428,11 +428,13 @@ public class MainUI {
         // Negociar: Equipos No elegidos
         for (Equipo equipo : Equipo.equipos) {
             if (equipo != Equipo.equipoElegido) {
-                while (equipo.getPlata() < 1000) {
-                    for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {;
-                        Equipo.equipoElegido.negociar(patrocinador.getDineroOfrecido(), patrocinador); //Se intenta
+                for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
+                    if (equipo.getPlata()>1000){
+                        break;
+                    } else {
+                        equipo.negociar(patrocinador,true); //Se intenta
                         System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
-                        System.out.println("El equipo " + Equipo.equipoElegido.getNombre() + " tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                        System.out.println("El equipo " + equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
                         System.out.println("\n");
                     }
                 }
@@ -477,7 +479,6 @@ public class MainUI {
         System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
 
         //TODO: Hacer idea del ciclo de cada carrera.
-        //TODO: ESTE MAIN NO ME CORRE AYUDA POR FAVOR. - Le cambie el parse con Math a ver
     }
 
     public double random() {

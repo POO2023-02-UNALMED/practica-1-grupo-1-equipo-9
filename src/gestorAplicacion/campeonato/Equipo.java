@@ -97,7 +97,7 @@ public class Equipo {
 
     public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {
         //Sobrecarga: Esto es para ver si algún equipo que no es elegido por el usuario es patrocinado por algún patrocinador
-        patrocinador.pensarNegocio(this);
+        patrocinador.pensarNegocio(this, equipoNoElegido);
     }
 
     public String toString() {

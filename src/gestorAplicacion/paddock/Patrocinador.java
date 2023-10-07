@@ -89,8 +89,6 @@ public class Patrocinador extends Persona {
             this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata() + this.dineroOfrecer);
             return true;
         }
-
-     
     }
 
     //Lista de metodos set y get

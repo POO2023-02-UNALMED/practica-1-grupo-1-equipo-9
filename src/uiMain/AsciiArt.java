@@ -162,7 +162,7 @@ public interface AsciiArt {
         System.out.println("          " + lineaSeparadora + "");
         System.out.println(" ________| " + " ".repeat(tituloCentrado.length())+ "|________");
         System.out.println(" \\       | " + tituloCentrado + "|       /");
-        System.out.println("  \\      | " + yearCentrado + "|      /");
+        System.out.println("  \\      |" + yearCentrado + "|      /");
         System.out.println("  /      |_" + "_".repeat(tituloCentrado.length()) + "|      \\");
         System.out.println(" /__________) " + " ".repeat(tituloCentrado.length()-7) + " (__________\\");
 

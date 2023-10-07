@@ -239,6 +239,7 @@ public class MainUI {
         System.out.println("\n");
         // Mensaje de bienvenida
         bienvenida();
+        System.out.println("\n");
         /*Descomentar
         sc.nextLine();*/
 
@@ -308,6 +309,7 @@ public class MainUI {
 
         System.out.println("¡Tu campeonato quedo configurado!");
         // imprmir como se ve con tablitas
+        // Descomentar -
         System.out.println("Campeonato actual: " + Campeonato.campeonatoElegido.getNombre() + " " + Campeonato.campeonatoElegido.getAno());
         System.out.println("\n");
 
@@ -433,9 +435,10 @@ public class MainUI {
             System.out.println("\n");
         }*/
 
+        /*Descomentar
         System.out.println("Actualmente, tu equipo no tiene dinero :(.");
+        MainUI.negociar();*/
 
-        negociar();
 
         // FUNCIONALIDAD Planificar Calendario de Carreras
 
@@ -672,14 +675,13 @@ public class MainUI {
         boolean validaciones;
         Scanner sc = new Scanner(System.in);
         System.out.println("Puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
-        System.out.println("Mira la lista de patrocinadores disponibles:");
         // imprimir patrocinadores con el dinero que estan dispuestos a dar
         //System.out.println(Patrocinador.mostrarPatrocinadores());
 
         String ans = "S";
 /*        Descomentar
         validaciones = false;*/
-        validaciones = true;
+        validaciones = false;
         int n;
 
 
@@ -748,6 +750,7 @@ public class MainUI {
         }
     }
     public static void tunearCarro(){
+        Scanner sc = new Scanner(System.in);
         Equipo equipo = Equipo.equipoElegido;
         Vehiculo vehiculo = VehiculoCarrera.vehiculoElegido;
         System.out.println("¡Es hora de tunear tu vehículo de carrera!");
@@ -756,7 +759,34 @@ public class MainUI {
 
         System.out.println("Actualmente tu equipo dispone de un presupuesto de " + equipo.getPlata() + " dólares.");
         System.out.println("\n");
-        System.out.println("");
+        System.out.println("¿Te gustaria obtener mas dinero para tunear tu vehículo de carrera? Escribe S o N.");
+        String ans = sc.nextLine();
+        boolean validaciones = false;
+
+        while (!validaciones) {
+            if (ans.equals("S")) {
+                negociar();
+            } else if (ans.equals("N")) {
+                System.out.println("¡Genial! ¡Comencemos a tunear tu vehículo de carrera!");
+                System.out.println("\n");
+                validaciones = true;
+            } else {
+                System.out.println("¿Quieres obtener mas dinero para tunear tu vehículo de carrera? Escribe S o N.");
+                ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
+            }
+        }
+
+        // imprimir stats del carro
+        System.out.println("Estos son los stats de tu vehículo de carrera:");
+        bigCar();
+        System.out.println("\n");
+
+        System.out.println("Escoge una opción para tunear tu vehículo de carrera");
+        System.out.println("1. Arreglar una parte del carro");
+        System.out.println("2. Comparar una parte del carro");
+        System.out.println("3. Volver al menú principal");
+        System.out.println("\n");
+        
 
     }
 }

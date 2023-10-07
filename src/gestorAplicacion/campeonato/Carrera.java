@@ -110,17 +110,6 @@ public class Carrera {
     }
 
     //Metodos de clase
-    public static ArrayList<Ciudad> mostrarCiudadesDisponibles() {
-        ArrayList<Ciudad> listaCompleta = Ciudad.getListaCiudades();
-        Continente continente = campeonato.getContinente();
-        ArrayList<Ciudad> listaDisponibles = new ArrayList<Ciudad>();
-        for (Ciudad ciudad : listaCompleta) {
-            if (ciudad.getContinente() == continente) {
-                listaDisponibles.add(ciudad);
-            }
-        }
-        return listaDisponibles;
-    }
 
     public static Campeonato getCampeonato() {
         return campeonato;

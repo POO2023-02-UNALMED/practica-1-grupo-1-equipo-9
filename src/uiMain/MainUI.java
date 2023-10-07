@@ -4,8 +4,7 @@ import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static uiMain.AsciiArt.*;
 import static uiMain.Tablas.*;
@@ -518,11 +517,20 @@ public class MainUI {
         // for de acuerdo al numero de carreras en le campeonato elegido
         // Crear carreras
         System.out.println("Es hora de preparar todas las carreras en las que competirás.");
+        System.out.println("¡Comencemos!");
+
+        // list of months
+        ArrayList<Integer> meses = new ArrayList<>();
+
+        // Add numbers from 1 to 12 to the ArrayList
+        for (int i = 1; i <= 12; i++) {
+            meses.add(i);
+        }
 
         for (int i = 0; i < Campeonato.campeonatoElegido.getCantidadMaxCarreras(); i++) {
             System.out.println("Elige la cuidad en la que quieres que sea la carrera, escribe un numero de acuerdo a la opcion que quieras");
-            // TODO ciudaes en Continente, cambiar a ciudad
-            ArrayList<Ciudad> ciudades = new ArrayList<>();
+
+            ArrayList<Ciudad> ciudades = Ciudad.mostrarCiudadesDisponibles(Campeonato.campeonatoElegido.getContinente());
             validaciones = false;
             n = sc.nextInt();
             Ciudad ciudad = null;
@@ -562,11 +570,13 @@ public class MainUI {
             n = sc.nextInt();
             int mes = 0;
             while (!validaciones) {
-                if (n < 1 || n > 12) {
+                if (n < 1 || n > 12 || meses.contains(n)) {
                     System.out.println("Por favor, escribe un numero del 1 al 12.");
+                    System.out.println("Nota: Las carreras deben ser en meses distintos.");
                     n = sc.nextInt(); // Para que no se quede en un loop infinito xd
                 } else {
                     mes = n;
+                    meses.remove(Integer.valueOf(n));
                     System.out.println("¡Mes elegido!");
                     System.out.println("\n");
                     validaciones = true;
@@ -604,14 +614,35 @@ public class MainUI {
             System.out.println("Es momento de que elijas el circuito de la carrera.");
 
             for (Circuito circuito : Circuito.values()) {
-                System.out.println("Circuito 1: " + circuito.getPrecio());
+                System.out.println("Circuito 1: $" + circuito.getPrecio());
                 System.out.println(circuito.getPattern());
-                System.out.println("/n");
+                System.out.println("\n");
             }
-            
 
+
+            Circuito circuito = null;
+            validaciones = false;
+            while (!validaciones) {
+                n = sc.nextInt();
+                if (n < 1 || n > Circuito.values().length) {
+                    System.out.println("Por favor, escribe un numero del 1 al " + Circuito.values().length + ".");
+                } else {
+                    int randomNumber = rand.nextInt(2) + 1;
+                    if (randomNumber == 1) {
+                        circuito = Circuito.values()[n - 1];
+                        System.out.println("¡Circuito elegido!");
+                        System.out.println("\n");
+                        validaciones = true;
+                    } else {
+                        System.out.println("¡Al director de carrera no le gusto el circuito! Intenta de nuevo.");
+                        System.out.println("\n");
+                    }
+                }
+            }
             Campeonato.campeonatoElegido.agregarCarrera(carrera);
         }
+
+        // TODO: Calendario de carreras.
 
 
 

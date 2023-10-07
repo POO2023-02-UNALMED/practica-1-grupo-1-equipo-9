@@ -49,6 +49,17 @@ public class Ciudad {
     	return continente;
     }
 
+	public static ArrayList<Ciudad> mostrarCiudadesDisponibles(Continente continente) {
+		ArrayList<Ciudad> listaCompleta = Ciudad.getListaCiudades();
+		ArrayList<Ciudad> listaDisponibles = new ArrayList<Ciudad>();
+		for (Ciudad ciudad : listaCompleta) {
+			if (ciudad.getContinente() == continente) {
+				listaDisponibles.add(ciudad);
+			}
+		}
+		return listaDisponibles;
+	}
+
     // Lista de metodos set y get
     public String getNombre() {return this.nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}

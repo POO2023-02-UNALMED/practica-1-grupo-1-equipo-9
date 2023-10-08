@@ -574,6 +574,8 @@ public class MainUI {
             }
             Campeonato.campeonatoElegido.agregarCarrera(carrera); // agregar carrera al campeonato
         }
+        //Organizar las carreras por mes
+        Campeonato.organizarCarreras();
 
         // TODO: Calendario de carreras tabla
 
@@ -644,32 +646,118 @@ public class MainUI {
         for (Carrera carrera : Campeonato.campeonatoElegido.getListaCarreras()) {
             Carrera.comenzarCarrera(carrera);
             //Falta un dia para la carrera
-            System.out.println("Falta un día para la carrera en " + carrera.getCiudad().getNombre() + ".");
-            System.out.println("Todavia estas a tiempo de: ");
-            System.out.println("1. Revisar el calendario de carreras.");
-            System.out.println("2. Revisar tu vehiculo de carrera.");
-            System.out.println("3. Cultivar una amistad con el director de carrera y obtner favores especiales.");
-            System.out.println("4. Quiero comenzar la carrera, estoy listo.");
+            Boolean comenzar = false;
+            while (!comenzar) {
+                System.out.println("Falta un día para la carrera en " + carrera.getCiudad().getNombre() + ".");
+                System.out.println("Todavia estas a tiempo de: ");
+                System.out.println("1. Revisar el calendario de carreras.");
+                System.out.println("2. Revisar tu vehiculo de carrera.");
+                System.out.println("3. Cultivar una amistad con el director de carrera y obtener favores especiales.");
+                System.out.println("4. Quiero comenzar la carrera, estoy listo.");
 
-            n = sc.nextInt();
-            switch (n) {
-                case 1:
-                    // TODO: Calendario de carreras tabla
-                    break;
-                case 2:
-                    //Tunear el carro
-                    break;
-                case 3:
-                    // Corrupcion
-                    break;
-                case 4:
-                    // Iniciar carrera
-                    break;
+                n = sc.nextInt();
+                switch (n) {
+                    case 1:
+                        // TODO: Calendario de carreras tabla
+                        break;
+                    case 2:
+                        //Tunear el carro
+                        break;
+                    case 3:
+                        // Corrupcion
+                        break;
+                    case 4:
+                        comenzar = true;
+                        break;
+                }
             }
+            //¡Inicia la carrera!
+            System.out.println("¡Ha comenzado el " + carrera.getNombreCircuito() + "!");
+            double probOpciones = 0.0; //Probabilidad que se muestren las opciones para el usuario
+            while (!Carrera.actualizarTerminado()) { //Mientras no todos esten terminados
+                Carrera.actualizarGasolina();
+                Carrera.actualizarPosiciones();
+                if (rand.nextDouble() > 1 - probOpciones && !VehiculoCarrera.vehiculoElegido.isMorido()) {
+                    //TODO: Imprimir tabla de posiciones y de terminados
+                    System.out.println("Tu vehiculo tiene: " + VehiculoCarrera.vehiculoElegido.getGasolina() + "% de gasolina.");
+                    ArrayList<Boolean> opcionesMostrar = Carrera.actualizarOpciones();
+                    for (int i = 0; i < 5; i++) {
+                        if (opcionesMostrar.get(i)) {
+                            switch (i) {
+                                case 0:
+                                    System.out.println("1. Aprovechar el DRS.");
+                                    break;
+                                case 1:
+                                    System.out.println("2. FRENA POR FAVOR TODOVAMUYRAPIDO (Debes frenar si deseas entrar a Pits).");
+                                    break;
+                                case 2:
+                                    System.out.println("3. Hacer Ultra-Mega-Super-Maniobra");
+                                    break;
+                                case 3:
+                                    System.out.println("4. Defender la posicion.");
+                                    break;
+                                case 4:
+                                    System.out.println("5. ¡Tokyo Drift!");
+                                    break;
+                            }
+                        }
+                    }
+                    if (VehiculoCarrera.vehiculoElegido.getVelocidadActual() < 100) {
+                        System.out.println("6. ¡Realizar Pit Stop!");
+                    }
+                    n = sc.nextInt();
+                    switch (n) {
+                        case 1:
+                            System.out.println("¡Aprovechas el DRS!");
+                            VehiculoCarrera.vehiculoElegido.aprovecharDRS();
+                            break;
+                        case 2:
+                            System.out.println("¡Frenaste!");
+                            VehiculoCarrera.vehiculoElegido.frenar();
+                            break;
+                        case 3:
+                            System.out.println("¡¡¡Realizas una Ultra-Mega-Super-Maniobra!!!");
+                            VehiculoCarrera.vehiculoElegido.hacerManiobra();
+                            break;
+                        case 4:
+                            System.out.println("Defiendes tu posicion");
+                            VehiculoCarrera.vehiculoElegido.defender();
+                            break;
+                        case 5:
+                            System.out.println("¡Derrapas!");
+                            VehiculoCarrera.vehiculoElegido.derrapar();
+                            break;
+                        case 6:
+                            System.out.println("¡Entras a Pit Stop!");
+                            //TODO: HACER PITSTOP
+                            break;
+                    }
+                    probOpciones = 0.0;
+                } else {
+                    probOpciones += 0.2;
+                }
+            }
+            System.out.println("¡Ha terminado el " + carrera.getNombreCircuito() + "!");
+            System.out.println("¡Los resultados de la carrera han quedado así!");
+            //TODO: Imprimir tabla de terminados
+            //Impresion temporal de resultados
+            int m=1;
+            System.out.println("+------------+----------------+------------+");
+            System.out.println("|   Equipo   |    Posicion    |   Tiempo   |");
+            System.out.println("+------------+----------------+------------+");
+            for (VehiculoCarrera vehiculo : Carrera.terminados){
+                System.out.println("|   " + vehiculo.getPiloto().getEquipo() + "   |    " + m + "    |   " + vehiculo.getTiempo() + "s   |");
+                m++;
+            }
+            System.out.println("+------------+----------------+------------+");
+            Carrera.premiarCarrera();
 
-            //TODO: Hacer idea del ciclo de cada carrera.
+            //TODO: Imprimir tabla de los puntos de los equipos
+            //Una vez terminada toda la carrera, se deben resetear todas las cosas.
+            MainUI.resetearCondicionesCarrera();
         }
     }
+
 
     public static void negociar(){
         boolean validaciones;
@@ -786,7 +874,19 @@ public class MainUI {
         System.out.println("2. Comparar una parte del carro");
         System.out.println("3. Volver al menú principal");
         System.out.println("\n");
-        
-
+    }
+    public static void resetearCondicionesCarrera(){ //Resetea las condiciones de la carrera
+        //Shuffle de las posiciones
+        ArrayList<VehiculoCarrera> nuevasPosiciones = Carrera.terminados;
+        Collections.shuffle(nuevasPosiciones);
+        Carrera.posiciones = nuevasPosiciones;
+        //Colocando cada uno de los atributos en sus puntos iniciales
+        for (VehiculoCarrera vehiculo : Carrera.posiciones){
+            vehiculo.setVelocidadActual(vehiculo.getVelocidadTuneao());
+            vehiculo.setTerminado(false);
+            vehiculo.setMorido(false);
+            vehiculo.setTiempo(0.0);
+            vehiculo.setDistanciaRecorrida(0.0);
+        }
     }
 }

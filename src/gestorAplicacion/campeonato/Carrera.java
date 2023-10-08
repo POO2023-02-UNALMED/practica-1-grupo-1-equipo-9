@@ -102,9 +102,8 @@ public class Carrera {
         ArrayList<String> poolNombres = new ArrayList<String>(); //TODO: Preguntar por estos nombres de carreras
         poolNombres.add("Grand Prix de ");
         poolNombres.add("Trofeo de ");
-        poolNombres.add("Carrera en las Calles de ");
         this.ciudad = ciudad;
-        this.mes = mes; //TODO: Hacer verificacion de que no hay meses repetidos
+        this.mes = mes;
         this.dificultad = dificultad;
         this.nombreCircuito = poolNombres.get(rand.nextInt(3)) + this.ciudad.getNombre();
         this.distancia = (rand.nextInt(11) + 5) * 1000;
@@ -130,8 +129,8 @@ public class Carrera {
     }
 
     public static void actualizarGasolina() { //Cada iteracion se debe actualizar la gasolina.
-        if (VehiculoCarrera.vehiculoElegido.getGasolina() > 30) { //Si hay suficiente gasolina, se reduce el nivel.
-            VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina() - 30);
+        if (VehiculoCarrera.vehiculoElegido.getGasolina() > 3) { //Si hay suficiente gasolina, se reduce el nivel.
+            VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina() - 3);
         } else { //Si no hay suficiente gasolina, el carro choca.
             VehiculoCarrera.vehiculoElegido.chocar();
         }
@@ -140,6 +139,7 @@ public class Carrera {
     public static void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones  TODO: Preguntar por imprimir dos tablas en paralelo durante el ciclo
         for (VehiculoCarrera vehiculo : posiciones) {
             vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
+            vehiculo.setTiempo(vehiculo.getTiempo()+1.0);
             if (vehiculo.getDistanciaRecorrida() >= carreraActual.getDistancia()) {
                 terminados.add(vehiculo);
                 vehiculo.setTerminado(true);
@@ -180,17 +180,17 @@ public class Carrera {
     }
 
     public static void premiarCarrera() { //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
-        int puntosActuales = 8;
+        int puntosActuales = 10;
         for (VehiculoCarrera vehiculo : terminados) {
             vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
             puntosActuales--;
         }
-        terminados.get(0).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.7);
+        terminados.get(0).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.9);
         for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
-            patrocinador.recibirPlata(carreraActual.getPremioEfectivo() * 0.1);
+            patrocinador.recibirPlata(carreraActual.getPremioEfectivo() * 0.3);
         }
-        terminados.get(1).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.2);
-        terminados.get(2).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.1);
+        terminados.get(1).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.3);
+        terminados.get(2).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.2);
     } //TODO: Preguntar por la cantidad que gana cada equipo
 
     public static Carrera getCarreraActual() {

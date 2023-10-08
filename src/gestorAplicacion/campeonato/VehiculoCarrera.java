@@ -47,6 +47,7 @@ public class VehiculoCarrera extends Vehiculo {
     //Métodos
     public void chocar() { //Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
         this.tiempo = 0;
+        this.setVelocidadActual(0);
         this.terminado = true;
         this.morido = true;
     }

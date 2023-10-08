@@ -7,7 +7,7 @@ import gestorAplicacion.campeonato.Ciudad.Continente;
 
 public class Campeonato {
     public static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde están todos los campeonatos disponibles
-	private ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
+	private static ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
     public static Campeonato campeonatoElegido; //Campeonato que elije el usuario
     
     // Atributos
@@ -54,8 +54,8 @@ public class Campeonato {
 //    	}
     }
 
-    public void organizarCarreras(Campeonato campeonato){ //TODO: Verificar que este metodo funcione
-        listaCarreras.sort(Comparator.comparing(Carrera::getMes));
+    public static void organizarCarreras(){ //TODO: Verificar que este metodo funcione
+        Campeonato.listaCarreras.sort(Comparator.comparing(Carrera::getMes));
     }
 
     //Metodos de clase    

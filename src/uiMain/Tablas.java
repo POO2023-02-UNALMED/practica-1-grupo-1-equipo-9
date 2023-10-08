@@ -340,14 +340,13 @@ public interface Tablas {
 
         System.out.println("-".repeat(tablaAncho));
     }
-    
+
+
+
     //tabla stats actuales
     public static void tablaStatsActuales(VehiculoCarrera vehiculoElegido) {
         // Obtener la longitud m�xima de las cadenas en las columnas
-        int maxNombre = 0;
-        
-
-
+        int maxNombre = 30;
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 7 + 16 + 10 + 7 + 5 +3; // 7 para los espacios y los bordes
 
@@ -358,18 +357,7 @@ public interface Tablas {
         System.out.println("-".repeat(tablaAncho));
         System.out.printf("| %-"+maxNombre+"s | %-"+16+"s | %-"+10+"s |%-"+10+"s | %-"+10+"s | %-"+10+"s |\n", "PILOTO", "VELOCIDAD","GASOLINA","ESTADO ALERON","ESTADO MOTOR", "ESTADO NEOMATICOS");
         System.out.println("-".repeat(tablaAncho));
-
-        
-        
-       
-
-        	
-        	System.out.printf("| %-"+maxNombre+"s | %-"+16+"s | %-"+10+"s | %-"+10+"s| %-"+10+"s | %-"+10+"s |\n", vehiculoElegido.getPiloto().getNombre() ,vehiculoElegido.getVelocidadActual(), vehiculoElegido.getGasolina(), vehiculoElegido.getAleron().isDanado(),vehiculoElegido.getMotor().isDanado(),vehiculoElegido.getNeumaticos().isDanado()                                            );
-        	
-        	
-        	
-        	
-        
+        System.out.printf("| %-"+maxNombre+"s | %-"+16+"s | %-"+10+"s | %-"+10+"s| %-"+10+"s | %-"+10+"s |\n", vehiculoElegido.getPiloto().getNombre() ,vehiculoElegido.getVelocidadActual(), vehiculoElegido.getGasolina(), vehiculoElegido.getAleron().isDanado(),vehiculoElegido.getMotor().isDanado(),vehiculoElegido.getNeumaticos().isDanado()                                            );
 
         System.out.println("-".repeat(tablaAncho));
     }

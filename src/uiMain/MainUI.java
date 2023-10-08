@@ -786,7 +786,7 @@ public class MainUI {
         System.out.println("2. Comparar una parte del carro");
         System.out.println("3. Volver al menú principal");
         System.out.println("\n");
-        
+
 
     }
 }

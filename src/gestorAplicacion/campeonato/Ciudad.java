@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Ciudad {
     //Lista de las ciudades
-	static ArrayList<Ciudad> listaCiudades = new ArrayList<Ciudad>();
+	public static ArrayList<Ciudad> listaCiudades = new ArrayList<Ciudad>();
 	
 	//Atributos
     private String nombre;
@@ -16,7 +16,7 @@ public class Ciudad {
     	this.nombre=nombre;
     	this.continente=continente;
 		Ciudad.listaCiudades.add(this);
-    	}
+	}
     
     //Metodos de instancia
     public String toString() {

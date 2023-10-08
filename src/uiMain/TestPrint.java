@@ -274,5 +274,20 @@ public class TestPrint {
         String titulo = "CAMPEONATOS"; // Reemplaza con el título deseado
         String year = "2023"; // Reemplaza con el año deseado
         banner(titulo, year);
+        pitStop();
+        car();
+        bienvenida();
+        raceFlag();
+        control();
+        ps5controller();
+        bigCar();
+        cup();
+        cards();
+        banner("hello", "test1");
+        city();
+        world();
+        sitAndTalk();
+        tools();
+        pitStop();
     }
 }

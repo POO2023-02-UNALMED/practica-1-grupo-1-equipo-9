@@ -5,7 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/gestorAplicacion/MainTest.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/gestorAplicacion/campeonato/Campeonato.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/gestorAplicacion/campeonato/VehiculoCarrera.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/uiMain/MainUI.java" charset="UTF-32" />
+    <file url="file://$PROJECT_DIR$/src/uiMain/MainUI.java" charset="windows-1252" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
 </project>

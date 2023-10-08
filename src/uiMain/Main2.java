@@ -78,7 +78,7 @@ public class Main2 {
 
         tablaPosiciones(veh);
         Collections.shuffle(veh);
-        tablaPosiciones(veh);
+        tablaPosicionesTiempos(veh);
         ArrayList<Carrera> carreras = new ArrayList<Carrera>();
         for (Ciudad ciudad : Ciudad.listaCiudades) {
             int mes = rand.nextInt(12) + 1;

@@ -4,7 +4,9 @@ import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
 
 import static uiMain.AsciiArt.*;
 import static uiMain.Tablas.*;
@@ -147,51 +149,51 @@ public class MainUI {
 
         // Partes
         // Alerones
-        Pieza aleronMercedes = new Pieza(false, 25.0, 0.20, "Aler?n Mercedes", rand.nextInt(301) + 200);
-        Pieza aleronFerrari = new Pieza(false, 25.0, 0.20, "Aler?n Ferrari", rand.nextInt(301) + 200);
-        Pieza aleronRedBull = new Pieza(false, 25.0, 0.20, "Aler?n Red Bull", rand.nextInt(301) + 200);
-        Pieza aleronMcLaren = new Pieza(false, 25.0, 0.20, "Aler?n McLaren", rand.nextInt(301) + 200);
-        Pieza aleronAstonMartin = new Pieza(false, 25.0, 0.20, "Aler?n Aston Martin", rand.nextInt(301) + 200);
-        Pieza aleronAlpine = new Pieza(false, 25.0, 0.20, "Aler?n Alpine", rand.nextInt(301) + 200);
-        Pieza aleronWilliams = new Pieza(false, 25.0, 0.20, "Aler?n Williams", rand.nextInt(301) + 200);
-        Pieza aleronAlfaRomeo = new Pieza(false, 25.0, 0.20, "Aler?n Alfa Romeo", rand.nextInt(301) + 200);
-        Pieza aleronHaas = new Pieza(false, 25.0, 0.20, "Aler?n Haas", rand.nextInt(301) + 200);
-        Pieza aleronUralkali = new Pieza(false, 25.0, 0.20, "Aler?n Uralkali", rand.nextInt(301) + 200);
+        Pieza aleronMercedes = new Pieza(false, 25.0, 0.20, "Aler?n Mercedes", rand.nextInt(301) + 200, "A");
+        Pieza aleronFerrari = new Pieza(false, 25.0, 0.20, "Aler?n Ferrari", rand.nextInt(301) + 200, "A");
+        Pieza aleronRedBull = new Pieza(false, 25.0, 0.20, "Aler?n Red Bull", rand.nextInt(301) + 200, "A");
+        Pieza aleronMcLaren = new Pieza(false, 25.0, 0.20, "Aler?n McLaren", rand.nextInt(301) + 200, "A");
+        Pieza aleronAstonMartin = new Pieza(false, 25.0, 0.20, "Aler?n Aston Martin", rand.nextInt(301) + 200, "A");
+        Pieza aleronAlpine = new Pieza(false, 25.0, 0.20, "Aler?n Alpine", rand.nextInt(301) + 200, "A");
+        Pieza aleronWilliams = new Pieza(false, 25.0, 0.20, "Aler?n Williams", rand.nextInt(301) + 200, "A");
+        Pieza aleronAlfaRomeo = new Pieza(false, 25.0, 0.20, "Aler?n Alfa Romeo", rand.nextInt(301) + 200, "A");
+        Pieza aleronHaas = new Pieza(false, 25.0, 0.20, "Aler?n Haas", rand.nextInt(301) + 200, "A");
+        Pieza aleronUralkali = new Pieza(false, 25.0, 0.20, "Aler?n Uralkali", rand.nextInt(301) + 200, "A");
         // Neumaticos
-        Pieza neumaticosMercedes = new Pieza(false, 10.0, 0.30, "Neum?ticos Mercedes", rand.nextInt(301) + 300);
-        Pieza neumaticosFerrari = new Pieza(false, 10.0, 0.30, "Neum?ticos Ferrari", rand.nextInt(301) + 300);
-        Pieza neumaticosRedBull = new Pieza(false, 10.0, 0.30, "Neum?ticos Red Bull", rand.nextInt(301) + 300);
-        Pieza neumaticosMcLaren = new Pieza(false, 10.0, 0.30, "Neum?ticos McLaren", rand.nextInt(301) + 300);
-        Pieza neumaticosAstonMartin = new Pieza(false, 10.0, 0.30, "Neum?ticos Aston Martin", rand.nextInt(301) + 300);
-        Pieza neumaticosAlpine = new Pieza(false, 10.0, 0.30, "Neum?ticos Alpine", rand.nextInt(301) + 300);
-        Pieza neumaticosWilliams = new Pieza(false, 10.0, 0.30, "Neum?ticos Williams", rand.nextInt(301) + 300);
-        Pieza neumaticosAlfaRomeo = new Pieza(false, 10.0, 0.30, "Neum?ticos Alfa Romeo", rand.nextInt(301) + 300);
-        Pieza neumaticosHaas = new Pieza(false, 10.0, 0.30, "Neum?ticos Haas", rand.nextInt(301) + 300);
-        Pieza neumaticosUralkali = new Pieza(false, 10.0, 0.30, "Neum?ticos Uralkali", rand.nextInt(301) + 300);
+        Pieza neumaticosMercedes = new Pieza(false, 10.0, 0.30, "Neum?ticos Mercedes", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosFerrari = new Pieza(false, 10.0, 0.30, "Neum?ticos Ferrari", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosRedBull = new Pieza(false, 10.0, 0.30, "Neum?ticos Red Bull", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosMcLaren = new Pieza(false, 10.0, 0.30, "Neum?ticos McLaren", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosAstonMartin = new Pieza(false, 10.0, 0.30, "Neum?ticos Aston Martin", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosAlpine = new Pieza(false, 10.0, 0.30, "Neum?ticos Alpine", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosWilliams = new Pieza(false, 10.0, 0.30, "Neum?ticos Williams", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosAlfaRomeo = new Pieza(false, 10.0, 0.30, "Neum?ticos Alfa Romeo", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosHaas = new Pieza(false, 10.0, 0.30, "Neum?ticos Haas", rand.nextInt(301) + 300, "N");
+        Pieza neumaticosUralkali = new Pieza(false, 10.0, 0.30, "Neum?ticos Uralkali", rand.nextInt(301) + 300, "N");
         // Motores
-        Pieza motorMercedes = new Pieza(false, 10.0, 0.10, "Motor Mercedes", rand.nextInt(301) + 200);
-        Pieza motorFerrari = new Pieza(false, 10.0, 0.10, "Motor Ferrari", rand.nextInt(301) + 200);
-        Pieza motorRedBull = new Pieza(false, 10.0, 0.10, "Motor Red Bull", rand.nextInt(301) + 200);
-        Pieza motorMcLaren = new Pieza(false, 10.0, 0.10, "Motor McLaren", rand.nextInt(301) + 200);
-        Pieza motorAstonMartin = new Pieza(false, 10.0, 0.10, "Motor Aston Martin", rand.nextInt(301) + 200);
-        Pieza motorAlpine = new Pieza(false, 10.0, 0.10, "Motor Alpine", rand.nextInt(301) + 200);
-        Pieza motorWilliams = new Pieza(false, 10.0, 0.10, "Motor Williams", rand.nextInt(301) + 200);
-        Pieza motorAlfaRomeo = new Pieza(false, 10.0, 0.10, "Motor Alfa Romeo", rand.nextInt(301) + 200);
-        Pieza motorHaas = new Pieza(false, 10.0, 0.10, "Motor Haas", rand.nextInt(301) + 200);
-        Pieza motorUralkali = new Pieza(false, 10.0, 0.10, "Motor Uralkali", rand.nextInt(301) + 200);
+        Pieza motorMercedes = new Pieza(false, 10.0, 0.10, "Motor Mercedes", rand.nextInt(301) + 200, "M");
+        Pieza motorFerrari = new Pieza(false, 10.0, 0.10, "Motor Ferrari", rand.nextInt(301) + 200, "M");
+        Pieza motorRedBull = new Pieza(false, 10.0, 0.10, "Motor Red Bull", rand.nextInt(301) + 200, "M");
+        Pieza motorMcLaren = new Pieza(false, 10.0, 0.10, "Motor McLaren", rand.nextInt(301) + 200, "M");
+        Pieza motorAstonMartin = new Pieza(false, 10.0, 0.10, "Motor Aston Martin", rand.nextInt(301) + 200, "M");
+        Pieza motorAlpine = new Pieza(false, 10.0, 0.10, "Motor Alpine", rand.nextInt(301) + 200, "M");
+        Pieza motorWilliams = new Pieza(false, 10.0, 0.10, "Motor Williams", rand.nextInt(301) + 200, "M");
+        Pieza motorAlfaRomeo = new Pieza(false, 10.0, 0.10, "Motor Alfa Romeo", rand.nextInt(301) + 200, "M");
+        Pieza motorHaas = new Pieza(false, 10.0, 0.10, "Motor Haas", rand.nextInt(301) + 200, "M");
+        Pieza motorUralkali = new Pieza(false, 10.0, 0.10, "Motor Uralkali", rand.nextInt(301) + 200, "M");
 
         // Piezas contrabando
-        Pieza motorContrabando1 = new Pieza(false, 10.0, 0.10, "Motor de Carrera Ilegal", rand.nextInt(301) + 200, true);
-        Pieza motorContrabando2 = new Pieza(false, 12.0, 0.08, "Motor Turbo Prohibido", rand.nextInt(301) + 200, true);
-        Pieza motorContrabando3 = new Pieza(false, 8.0, 0.12, "Motor Veloz Oscuro", rand.nextInt(301) + 200, true);
+        Pieza motorContrabando1 = new Pieza(false, 10.0, 0.10, "Motor de Carrera Ilegal", rand.nextInt(301) + 200, true, "M");
+        Pieza motorContrabando2 = new Pieza(false, 12.0, 0.08, "Motor Turbo Prohibido", rand.nextInt(301) + 200, true, "M");
+        Pieza motorContrabando3 = new Pieza(false, 8.0, 0.12, "Motor Veloz Oscuro", rand.nextInt(301) + 200, true, "M");
 
-        Pieza aleronContrabando1 = new Pieza(false, 6.0, 0.15, "Aler?n Sigiloso", rand.nextInt(301) + 200, true);
-        Pieza aleronContrabando2 = new Pieza(false, 8.0, 0.10, "Aler?n Furtivo", rand.nextInt(301) + 200, true);
-        Pieza aleronContrabando3 = new Pieza(false, 7.0, 0.12, "Aler?n Sombra R?pida", rand.nextInt(301) + 200, true);
+        Pieza aleronContrabando1 = new Pieza(false, 6.0, 0.15, "Aler?n Sigiloso", rand.nextInt(301) + 200, true, "A");
+        Pieza aleronContrabando2 = new Pieza(false, 8.0, 0.10, "Aler?n Furtivo", rand.nextInt(301) + 200, true, "A");
+        Pieza aleronContrabando3 = new Pieza(false, 7.0, 0.12, "Aler?n Sombra R?pida", rand.nextInt(301) + 200, true, "A");
 
-        Pieza neumaticoContrabando1 = new Pieza(false, 10.0, 0.08, "Neum?tico de Goma Nocturna", rand.nextInt(301) + 200, true);
-        Pieza neumaticoContrabando2 = new Pieza(false, 9.0, 0.09, "Neum?tico Misterioso", rand.nextInt(301) + 200, true);
-        Pieza neumaticoContrabando3 = new Pieza(false, 11.0, 0.07, "Neum?tico Fugitivo", rand.nextInt(301) + 200, true);
+        Pieza neumaticoContrabando1 = new Pieza(false, 10.0, 0.08, "Neum?tico de Goma Nocturna", rand.nextInt(301) + 200, true, "N");
+        Pieza neumaticoContrabando2 = new Pieza(false, 9.0, 0.09, "Neum?tico Misterioso", rand.nextInt(301) + 200, true, "N");
+        Pieza neumaticoContrabando3 = new Pieza(false, 11.0, 0.07, "Neum?tico Fugitivo", rand.nextInt(301) + 200, true, "N");
 
         // Vehiculos
         Vehiculo vehiculo1 = new Vehiculo("Mercedes", "AMG W11", 2021, aleronMercedes, neumaticosMercedes, motorMercedes, 350.0, 9.5, 200.0);
@@ -286,8 +288,8 @@ public class MainUI {
         }
 
         // Paso 2: Elige el A?o
-        System.out.println("Elige el A?o");
-        System.out.println("Indica el a?o en el que quieres que se celebre el campeonato.");
+        System.out.println("Elige el Anio");
+        System.out.println("Indica el anioo en el que quieres que se celebre el campeonato.");
         /*Descomentar
         int n = sc.nextInt();*/
         int n = 2023;
@@ -301,7 +303,7 @@ public class MainUI {
                 n = sc.nextInt(); // Para que no se quede en un loop infinito xd
             } else {
                 // Si es mayor que 1950 y menor que 9999, imprimir el mensaje de exito
-                System.out.println("?A?o elegido!");
+                System.out.println("Anio elegido!");
                 System.out.println("\n");
                 validaciones = true;
             }
@@ -316,10 +318,10 @@ public class MainUI {
 
         // TODO banner();
         // Paso 3: Selecciona tu Equipo
-        System.out.println("Selecciona tu Escuder?a");
+        System.out.println("Selecciona tu Escuderia");
         // imprimir equipos
         tablaEquipos(Equipo.equipos);
-        System.out.println("Escoge una escuder?a para competir en el campeonato, escribe un numero del 1 al 5.");
+        System.out.println("Escoge una escuderia para competir en el campeonato, escribe un numero del 1 al 5.");
         System.out.println("\n");
         validaciones = false;
         // Validar que sea un numero del 1 al 10
@@ -334,7 +336,7 @@ public class MainUI {
                 n = sc.nextInt(); // Para que no se quede en un loop infinito xd
             } else {
                 Equipo.equipoElegido = Equipo.equipos.get(n - 1);
-                System.out.println("?Escuder?a elegida!"); // Si es del 1 al 5, imprimir el mensaje de exito
+                System.out.println("Escuderia elegida!"); // Si es del 1 al 5, imprimir el mensaje de exito
 
                 System.out.println("\n");
                 validaciones = true; // Si es del 1 al 5, cambiar validaciones a true
@@ -344,7 +346,7 @@ public class MainUI {
 
         // Paso 4: Mira los Pilotos de tu Equipo
         System.out.println("Mira los Pilotos de tu Escuderia");
-        // imprimir pilotos con stats
+        // TODO imprimir pilotos con stats
 
         // Paso 5: Escoge tus Pilotos
         System.out.println("Escoge tu Piloto, escribe un numero del 1 al 5.");
@@ -479,8 +481,7 @@ public class MainUI {
                 }
             }
             // Elegir director de carrera
-            System.out.println("Elige el director de carrera, escribe un numero de acuerdo a la opcion que quieras");
-            // TODO tabla dir C
+            System.out.println("Elige el director de carrera, escribe un numero de acuerdo a la opcion que quieras \n");
             tablaDirectoresCarrera(DirectorCarrera.listaDirectores);
             validaciones = false;
             n = sc.nextInt();
@@ -503,7 +504,7 @@ public class MainUI {
             n = sc.nextInt();
             int mes = 0;
             while (!validaciones) {
-                if (n < 1 || n > 12 || meses.contains(n)) {
+                if (n < 1 || n > 12 || !meses.contains(n)) {
                     System.out.println("Por favor, escribe un numero del 1 al 12.");
                     System.out.println("Nota: Las carreras deben ser en meses distintos.");
                     n = sc.nextInt(); // Para que no se quede en un loop infinito xd
@@ -580,11 +581,12 @@ public class MainUI {
         // TODO: Calendario de carreras tabla
 
         // ANTES DE INICIAR LA CARRERA
-        System.out.println("Es hora de elegir tu veh?culo de carrera.");
+        System.out.println("Es hora de elegir tu vehiculo de carrera.");
         System.out.println("?Comencemos!");
         System.out.println("\n");
-        System.out.println("Elige tu veh?culo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
+        System.out.println("Elige tu vehiculo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
         // Imprimir vehiculos
+        tablaVehiculos(Equipo.equipoElegido.getVehiculosDisponibles());
         n = sc.nextInt();
         validaciones = false;
         VehiculoCarrera vehiculo1 = null;
@@ -602,11 +604,12 @@ public class MainUI {
             }
         }
 
-        System.out.println("Es hora de elegir el veh?culo de carrera de tu compa?ero de equipo.");
+        System.out.println("Es hora de elegir el vehiculo de carrera de tu compa?ero de equipo.");
         System.out.println("?Comencemos!");
         System.out.println("\n");
-        System.out.println("Elige tu veh?culo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
+        System.out.println("Elige tu vehiculo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
         // Imprimir vehiculos
+        tablaVehiculos(Equipo.equipoElegido.getVehiculosDisponibles());
         n = sc.nextInt();
         validaciones = false;
         while (!validaciones) {
@@ -656,110 +659,62 @@ public class MainUI {
                 System.out.println("4. Quiero comenzar la carrera, estoy listo.");
 
                 n = sc.nextInt();
+                System.out.println("\n");
                 switch (n) {
                     case 1:
-                        // TODO: Calendario de carreras tabla
+                        tablaCarreras(Campeonato.campeonatoElegido);
                         break;
                     case 2:
                         //Tunear el carro
+                        tunearCarro(VehiculoCarrera.vehiculoElegido);
                         break;
                     case 3:
+                        if (Piloto.pilotoElegido.getEquipo().getPlata() < 1000) {
+                            System.out.println("No estas a la altura del Director de Carrera");
+                            System.out.println("\n");
+                            break;
+                        } else {
+                            System.out.println("El Director de Carrera te ha invitado a su casa");
+                            System.out.println("\n");
+                            corrupcion(carrera);
+                            break;
+                        }
                         // Corrupcion
                         break;
                     case 4:
                         comenzar = true;
+                        simularCarrera(carrera);
                         break;
                 }
             }
-            //?Inicia la carrera!
-            System.out.println("?Ha comenzado el " + carrera.getNombreCircuito() + "!");
-            double probOpciones = 0.0; //Probabilidad que se muestren las opciones para el usuario
-            while (!Carrera.actualizarTerminado()) { //Mientras no todos esten terminados
-                Carrera.actualizarGasolina();
-                Carrera.actualizarPosiciones();
-                if (rand.nextDouble() > 1 - probOpciones && !VehiculoCarrera.vehiculoElegido.isMorido()) {
-                    //TODO: Imprimir tabla de posiciones y de terminados
-                    System.out.println("Tu vehiculo tiene: " + VehiculoCarrera.vehiculoElegido.getGasolina() + "% de gasolina.");
-                    ArrayList<Boolean> opcionesMostrar = Carrera.actualizarOpciones();
-                    for (int i = 0; i < 5; i++) {
-                        if (opcionesMostrar.get(i)) {
-                            switch (i) {
-                                case 0:
-                                    System.out.println("1. Aprovechar el DRS.");
-                                    break;
-                                case 1:
-                                    System.out.println("2. FRENA POR FAVOR TODOVAMUYRAPIDO (Debes frenar si deseas entrar a Pits).");
-                                    break;
-                                case 2:
-                                    System.out.println("3. Hacer Ultra-Mega-Super-Maniobra");
-                                    break;
-                                case 3:
-                                    System.out.println("4. Defender la posicion.");
-                                    break;
-                                case 4:
-                                    System.out.println("5. ?Tokyo Drift!");
-                                    break;
-                            }
-                        }
-                    }
-                    if (VehiculoCarrera.vehiculoElegido.getVelocidadActual() < 100) {
-                        System.out.println("6. ?Realizar Pit Stop!");
-                    }
-                    n = sc.nextInt();
-                    switch (n) {
-                        case 1:
-                            System.out.println("?Aprovechas el DRS!");
-                            VehiculoCarrera.vehiculoElegido.aprovecharDRS();
-                            break;
-                        case 2:
-                            System.out.println("?Frenaste!");
-                            VehiculoCarrera.vehiculoElegido.frenar();
-                            break;
-                        case 3:
-                            System.out.println("???Realizas una Ultra-Mega-Super-Maniobra!!!");
-                            VehiculoCarrera.vehiculoElegido.hacerManiobra();
-                            break;
-                        case 4:
-                            System.out.println("Defiendes tu posicion");
-                            VehiculoCarrera.vehiculoElegido.defender();
-                            break;
-                        case 5:
-                            System.out.println("?Derrapas!");
-                            VehiculoCarrera.vehiculoElegido.derrapar();
-                            break;
-                        case 6:
-                            System.out.println("?Entras a Pit Stop!");
-                            //TODO: HACER PITSTOP
-                            break;
-                    }
-                    probOpciones = 0.0;
-                } else {
-                    probOpciones += 0.2;
-                }
-            }
-            System.out.println("?Ha terminado el " + carrera.getNombreCircuito() + "!");
-            System.out.println("?Los resultados de la carrera han quedado as?!");
-            //TODO: Imprimir tabla de terminados
-            //Impresion temporal de resultados
-            int m=1;
-            System.out.println("+------------+----------------+------------+");
-            System.out.println("|   Equipo   |    Posicion    |   Tiempo   |");
-            System.out.println("+------------+----------------+------------+");
-            for (VehiculoCarrera vehiculo : Carrera.terminados){
-                System.out.println("|   " + vehiculo.getPiloto().getEquipo() + "   |    " + m + "    |   " + vehiculo.getTiempo() + "s   |");
-                m++;
-            }
-            System.out.println("+------------+----------------+------------+");
-            Carrera.premiarCarrera();
-
-            //TODO: Imprimir tabla de los puntos de los equipos
-            //Una vez terminada toda la carrera, se deben resetear todas las cosas.
-            MainUI.resetearCondicionesCarrera();
         }
     }
 
+    public static void corrupcion(Carrera carrera) {
+        System.out.println("No puedes llegar a donde el Director de Carrera sin un regalo");
+        System.out.println("Escribe tu presupuesto para el \"regalo\" del Director de Carrera");
+        Scanner sc = new Scanner(System.in);
+        boolean validaciones = false;
+        while (!validaciones) {
+            double presupuesto = sc.nextDouble();
+            if (presupuesto > Equipo.equipoElegido.getPlata()) {
+                System.out.println("No tienes suficiente dinero para sobornar al Director de Carrera");
+            } else if (presupuesto < 0) {
+                System.out.println("No puedes darle un regalo negativo al Director de Carrera");
+            } else if (presupuesto == 0) {
+                System.out.println("No puedes darle un regalo de 0 al Director de Carrera");
+            }else {
+                validaciones = true;
+                System.out.println("El Director de Carrera acepta tu regalo");
+                Equipo.equipoElegido.setPlata(Equipo.equipoElegido.getPlata() - presupuesto);
+                carrera.getDirectorCarrera().setPlata(carrera.getDirectorCarrera().getPlata());
+                System.out.println("El Director ha decidido invitarte a una reunion privada y exclusiva");
+                sitAndTalk();
+            }
+        }
 
-    public static void negociar(){
+    }
+    public static void negociar() {
         boolean validaciones;
         Scanner sc = new Scanner(System.in);
         System.out.println("Puedes realizar negociaciones con patrocinadores para obtener financiamiento.");
@@ -837,17 +792,18 @@ public class MainUI {
             }
         }
     }
-    public static void tunearCarro(){
+
+    public static void tunearCarro(VehiculoCarrera vehiculoC) {
         Scanner sc = new Scanner(System.in);
         Equipo equipo = Equipo.equipoElegido;
         Vehiculo vehiculo = VehiculoCarrera.vehiculoElegido;
-        System.out.println("?Es hora de tunear tu veh?culo de carrera!");
-        System.out.println("?Comencemos!");
+        System.out.println("Es hora de tunear tu vehiculo de carrera!");
+        System.out.println("Comencemos!");
         System.out.println("\n");
 
         System.out.println("Actualmente tu equipo dispone de un presupuesto de " + equipo.getPlata() + " d?lares.");
         System.out.println("\n");
-        System.out.println("?Te gustaria obtener mas dinero para tunear tu veh?culo de carrera? Escribe S o N.");
+        System.out.println("?Te gustaria obtener mas dinero para tunear tu vehiculo de carrera? Escribe S o N.");
         String ans = sc.nextLine();
         boolean validaciones = false;
 
@@ -855,40 +811,310 @@ public class MainUI {
             if (ans.equals("S")) {
                 negociar();
             } else if (ans.equals("N")) {
-                System.out.println("?Genial! ?Comencemos a tunear tu veh?culo de carrera!");
+                System.out.println("Genial! Comencemos a tunear tu vehiculo de carrera!");
                 System.out.println("\n");
                 validaciones = true;
             } else {
-                System.out.println("?Quieres obtener mas dinero para tunear tu veh?culo de carrera? Escribe S o N.");
+                System.out.println("Quieres obtener mas dinero para tunear tu vehiculo de carrera? Escribe S o N.");
                 ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
             }
         }
 
         // imprimir stats del carro
-        System.out.println("Estos son los stats de tu veh?culo de carrera:");
+        System.out.println("Estos son los stats de tu vehiculo de carrera:");
         bigCar();
-        System.out.println("\n");
 
-        System.out.println("Escoge una opci?n para tunear tu veh?culo de carrera");
-        System.out.println("1. Arreglar una parte del carro");
-        System.out.println("2. Comparar una parte del carro");
-        System.out.println("3. Volver al men? principal");
         System.out.println("\n");
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("Escoge una opcion para tunear tu vehiculo de carrera");
+            System.out.println("1. Arreglar una parte del carro");
+            System.out.println("2. Comparar una parte del carro");
+            System.out.println("3. Volver al menu principal");
+            System.out.println("\n");
+            int n = sc.nextInt();
+            double plata = equipo.getPlata();
+
+            switch (n) {
+                case 1: // Arreglar una parte del carro
+                    boolean salir1 = false;
+                    while (!salir1) {
+                        System.out.println("Escoge una parte del carro para arreglar");
+                        System.out.println("1. Motor: " + vehiculo.getMotor().getNombre() + " " + vehiculo.getMotor().getPrecio() + "$");
+                        System.out.println("2. Neumaticos: " + vehiculo.getNeumaticos().getNombre() + " " + vehiculo.getNeumaticos().getPrecio() + "$");
+                        System.out.println("3. Aleron " + vehiculo.getAleron().getNombre() + " " + vehiculo.getAleron().getPrecio() + "$");
+                        System.out.println("4. Arreglar el carro : 1000$");
+                        System.out.println("5. Llenar de Gasolina");
+                        System.out.println("6. Volver al menu principal");
+                        System.out.println("\n");
+
+                        int m = sc.nextInt();
+
+                        switch (m) {
+                            case 1: // Arreglar el motor
+                                if (plata >= vehiculoC.getMotor().getPrecio()) {
+                                    vehiculoC.getMotor().comprar(vehiculoC);
+                                    System.out.println("Motor arreglado!");
+                                } else {
+                                    System.out.println("No tienes suficiente dinero para arreglar el motor");
+                                }
+                                break;
+                            case 2: // Arreglar los neumaticos
+                                if (plata >= vehiculoC.getNeumaticos().getPrecio()) {
+                                    vehiculoC.getNeumaticos().comprar(vehiculoC);
+                                    System.out.println("Neumaticos arreglados!");
+                                } else {
+                                    System.out.println("No tienes suficiente dinero para arreglar los neumaticos");
+                                }
+                                break;
+                            case 3: // Arreglar el aleron
+                                if (plata >= vehiculoC.getAleron().getPrecio()) {
+                                    vehiculoC.getAleron().comprar(vehiculoC);
+                                    System.out.println("Aleron arreglado!");
+                                } else {
+                                    System.out.println("No tienes suficiente dinero para arreglar el aleron");
+                                }
+                                break;
+                            case 4: // Arreglar el carro
+                                if (plata >= 1000) {
+                                    vehiculoC.repararVehiculo();
+                                    System.out.println("Carro arreglado!");
+                                } else {
+                                    System.out.println("No tienes suficiente dinero para arreglar el carro");
+                                }
+                                break;
+                            case 5: // Llenar de gasolina
+                                vehiculoC.llenarGasolina();
+                                System.out.println("Gasolina llenada!");
+                                break;
+                            case 6: // Volver al menu principal
+                                salir1 = true;
+                                break;
+                        }
+                    }
+                    break;
+                case 2:
+                    boolean salir2 = false;
+                    while (!salir2) {
+                        System.out.println("Bienvenido a la tienda!");
+                        System.out.println("Estos son las piezas de carro disponibles:");
+                        tablaPiezas(Pieza.getPiezas());
+                        System.out.println("Escoge una pieza para comparar");
+                        System.out.println("1. Motor");
+                        System.out.println("2. Neumaticos");
+                        System.out.println("3. Aleron");
+                        System.out.println("4. Volver al menu principal");
+                        System.out.println("\n");
+
+                        int o = sc.nextInt();
+                        ArrayList<Pieza> motores = new ArrayList<>(); // Piezas de tipo motor
+                        for (Pieza pieza : Pieza.getPiezas()) {
+                            if ("M".equals(pieza.getTipo())) {
+                                motores.add(pieza);
+                            }
+                        }
+                        ArrayList<Pieza> neumaticos = new ArrayList<>(); // Piezas de tipo neumaticos
+                        for (Pieza pieza : Pieza.getPiezas()) {
+                            if ("N".equals(pieza.getTipo())) {
+                                motores.add(pieza);
+                            }
+                        }
+                        ArrayList<Pieza> aleron = new ArrayList<>(); // Piezas de tipo aleron
+                        for (Pieza pieza : Pieza.getPiezas()) {
+                            if ("A".equals(pieza.getTipo())) {
+                                motores.add(pieza);
+                            }
+                        }
+                        switch (o) {
+                            case 1:
+                                System.out.println("Estos son los motores disponibles:");
+                                tablaPiezas(motores);
+                                System.out.println("Escoge un motor para comparar ");
+                                int p = sc.nextInt();
+                                Pieza pieza = motores.get(p - 1);
+                                System.out.println("1. Comprar");
+                                System.out.println("2. Volver al menu principal");
+                                int q = sc.nextInt();
+                                switch (q) {
+                                    case 1:
+                                        if (plata >= pieza.getPrecio()) {
+                                            pieza.comprar(vehiculoC);
+                                            System.out.println("Motor comprado!");
+                                        } else {
+                                            System.out.println("No tienes suficiente dinero para comprar el motor");
+                                        }
+                                        break;
+                                    case 2:
+
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                System.out.println("Estos son los neumaticos disponibles:");
+                                tablaPiezas(neumaticos);
+                                System.out.println("Escoge unos neumaticos para comparar");
+                                p = sc.nextInt();
+                                pieza = neumaticos.get(p - 1);
+                                System.out.println("1. Comprar");
+                                System.out.println("2. Volver al menu principal");
+                                q = sc.nextInt();
+                                switch (q) {
+                                    case 1:
+                                        if (plata >= pieza.getPrecio()) {
+                                            pieza.comprar(vehiculoC);
+                                            System.out.println("Neumaticos comprados!");
+                                        } else {
+                                            System.out.println("No tienes suficiente dinero para comprar los neumaticos");
+                                        }
+                                        break;
+                                    case 2:
+
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                System.out.println("Estos son los alerones disponibles:");
+                                tablaPiezas(neumaticos);
+                                System.out.println("Escoge un aleron para comparar");
+                                p = sc.nextInt();
+                                pieza = neumaticos.get(p - 1);
+                                System.out.println("1. Comprar");
+                                System.out.println("2. Volver al menu principal");
+                                q = sc.nextInt();
+                                switch (q) {
+                                    case 1:
+                                        if (plata >= pieza.getPrecio()) {
+                                            pieza.comprar(vehiculoC);
+                                            System.out.println("Aleron comprado!");
+                                        } else {
+                                            System.out.println("No tienes suficiente dinero para comprar el aleron");
+                                        }
+                                        break;
+                                    case 2:
+
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                salir2 = true;
+                                break;
+                        }
+                    }
+                    break;
+                case 3:
+                    salir = true;
+                    break;
+
+            }
+        }
     }
-    public static void resetearCondicionesCarrera(){ //Resetea las condiciones de la carrera
+
+    public static void resetearCondicionesCarrera() { //Resetea las condiciones de la carrera
         //Shuffle de las posiciones
         ArrayList<VehiculoCarrera> nuevasPosiciones = Carrera.terminados;
         Collections.shuffle(nuevasPosiciones);
         Carrera.posiciones = nuevasPosiciones;
         //Colocando cada uno de los atributos en sus puntos iniciales
-        for (VehiculoCarrera vehiculo : Carrera.posiciones){
+        for (VehiculoCarrera vehiculo : Carrera.posiciones) {
             vehiculo.setVelocidadActual(vehiculo.getVelocidadTuneao());
             vehiculo.setTerminado(false);
             vehiculo.setMorido(false);
             vehiculo.setTiempo(0.0);
             vehiculo.setDistanciaRecorrida(0.0);
         }
-
-
     }
+
+    public static void simularCarrera(Carrera carrera) {
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+        int n;
+        System.out.println("Ha comenzado el " + carrera.getNombreCircuito() + "!");
+        double probOpciones = 0.0; //Probabilidad que se muestren las opciones para el usuario
+        while (!Carrera.actualizarTerminado()) { //Mientras no todos esten terminados
+            Carrera.actualizarGasolina();
+            Carrera.actualizarPosiciones();
+            if (rand.nextDouble() > 1 - probOpciones && !VehiculoCarrera.vehiculoElegido.isMorido()) {
+                //TODO: Imprimir tabla de posiciones y de terminados
+                tablaPosiciones(Carrera.posiciones);
+                tablaStatsActuales(VehiculoCarrera.vehiculoElegido);
+                ArrayList<Boolean> opcionesMostrar = Carrera.actualizarOpciones();
+                for (int i = 0; i < 5; i++) {
+                    if (opcionesMostrar.get(i)) {
+                        switch (i) {
+                            case 0:
+                                System.out.println("1. Aprovechar el DRS.");
+                                break;
+                            case 1:
+                                System.out.println("2. FRENA POR FAVOR TODOVAMUYRAPIDO (Debes frenar si deseas entrar a Pits).");
+                                break;
+                            case 2:
+                                System.out.println("3. Hacer Ultra-Mega-Super-Maniobra");
+                                break;
+                            case 3:
+                                System.out.println("4. Defender la posicion.");
+                                break;
+                            case 4:
+                                System.out.println("5. ?Tokyo Drift!");
+                                break;
+                        }
+                    }
+                }
+                if (VehiculoCarrera.vehiculoElegido.getVelocidadActual() < 100) {
+                    System.out.println("6. ?Realizar Pit Stop!");
+                }
+                n = sc.nextInt();
+                switch (n) {
+                    case 1:
+                        System.out.println("?Aprovechas el DRS!");
+                        VehiculoCarrera.vehiculoElegido.aprovecharDRS();
+                        break;
+                    case 2:
+                        System.out.println("?Frenaste!");
+                        VehiculoCarrera.vehiculoElegido.frenar();
+                        break;
+                    case 3:
+                        System.out.println("Realizas una Ultra-Mega-Super-Maniobra!!!");
+                        VehiculoCarrera.vehiculoElegido.hacerManiobra();
+                        break;
+                    case 4:
+                        System.out.println("Defiendes tu posicion");
+                        VehiculoCarrera.vehiculoElegido.defender();
+                        break;
+                    case 5:
+                        System.out.println("Derrapas!");
+                        VehiculoCarrera.vehiculoElegido.derrapar();
+                        break;
+                    case 6:
+                        System.out.println("Entras a Pit Stop!");
+                        //TODO: HACER PITSTOP
+                        break;
+                }
+                probOpciones = 0.0;
+            } else {
+                probOpciones += 0.2;
+            }
+        }
+        System.out.println("Ha terminado el " + carrera.getNombreCircuito() + "!");
+        System.out.println("Los resultados de la carrera han quedado as?!");
+        //TODO: Imprimir tabla de terminados
+        tablaPosicionesTiempos(Carrera.terminados);
+        //Impresion temporal de resultados
+       /* int m = 1;
+        System.out.println("+------------+----------------+------------+");
+        System.out.println("|   Equipo   |    Posicion    |   Tiempo   |");
+        System.out.println("+------------+----------------+------------+");
+        for (VehiculoCarrera vehiculo : Carrera.terminados) {
+            System.out.println("|   " + vehiculo.getPiloto().getEquipo() + "   |    " + m + "    |   " + vehiculo.getTiempo() + "s   |");
+            m++;
+        }
+        System.out.println("+------------+----------------+------------+");*/
+        Carrera.premiarCarrera();
+
+        //TODO: Imprimir tabla de los puntos de los equipos
+        //Una vez terminada toda la carrera, se deben resetear todas las cosas.
+        MainUI.resetearCondicionesCarrera();
+    }
+
+
 }

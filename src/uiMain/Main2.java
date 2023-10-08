@@ -81,10 +81,10 @@ public class Main2 {
         tablaPosicionesTiempos(veh);
         ArrayList<Carrera> carreras = new ArrayList<Carrera>();
         for (Ciudad ciudad : Ciudad.listaCiudades) {
-            int mes = rand.nextInt(12) + 1;
-            int dificultad = rand.nextInt(3) + 1;
+            int mes = rand.nextInt(12) ;
+            int dificultad = rand.nextInt(3) ;
             Carrera carrera = new Carrera(ciudad, mes, dificultad);
-            DirectorCarrera directorCarrera = DirectorCarrera.listaDirectores.get(rand.nextInt(10));
+            DirectorCarrera directorCarrera = DirectorCarrera.listaDirectores.get(rand.nextInt(2));
             carrera.setDirectorCarrera(directorCarrera);
             Circuito circuito = Circuito.PATTERN_1;
             carrera.setCircuito(circuito);

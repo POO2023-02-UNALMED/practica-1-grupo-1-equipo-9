@@ -77,7 +77,7 @@ public class VehiculoCarrera extends Vehiculo {
     }
 
     public void repararVehiculo() {
-        double precio = 100; //preguntar precio
+        double precio = 1000; //preguntar precio
         if (Equipo.equipoElegido.getPlata() >= precio) {
             Equipo.equipoElegido.setPlata(this.piloto.getEquipo().getPlata() - precio); // Cobrar
             //Arreglar piezas

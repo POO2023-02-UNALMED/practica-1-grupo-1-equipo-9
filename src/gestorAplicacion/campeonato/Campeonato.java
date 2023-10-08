@@ -110,4 +110,5 @@ public class Campeonato {
     public static void setCampeonatoElegido(Campeonato campeonatoElegido) {
         Campeonato.campeonatoElegido = campeonatoElegido;
     }
+
 }

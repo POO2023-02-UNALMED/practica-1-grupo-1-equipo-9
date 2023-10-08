@@ -15,9 +15,10 @@ public class Pieza {
     private double maniobrabilidadAnadida;
     private String nombre;
     private double precio;
+    private String tipo;
 
     // Constructores
-    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio) {
+    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio, String tipo) {
         this.id = idActual++;
         this.danado = danado;
         this.velocidadAnadida = velocidadAnadida;
@@ -27,7 +28,7 @@ public class Pieza {
         Pieza.piezas.add(this);
     }
 
-    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio, boolean contrabando) {
+    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio, boolean contrabando, String tipo) {
         this.id = idActual++;
         this.danado = danado;
         this.velocidadAnadida = velocidadAnadida;
@@ -89,10 +90,11 @@ public class Pieza {
         this.danado = false;
     }
 
-    public boolean comprar(VehiculoCarrera vehiculoCarrera, Equipo equipo) {
+    public boolean comprar(VehiculoCarrera vehiculoCarrera) {
+        Equipo equipo = vehiculoCarrera.getPiloto().getEquipo();
         if (this.precio <= equipo.getPlata()) {
             equipo.setPlata(equipo.getPlata() - this.precio);
-            vehiculoCarrera.setVelocidad(vehiculoCarrera.getVelocidad() + this.velocidadAnadida);
+            this.setDanado(false);
             vehiculoCarrera.setManiobrabilidad(vehiculoCarrera.getManiobrabilidad() + this.maniobrabilidadAnadida);
             return true;
         } else {
@@ -148,5 +150,13 @@ public class Pieza {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

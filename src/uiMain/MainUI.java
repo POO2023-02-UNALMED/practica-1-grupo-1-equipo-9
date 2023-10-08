@@ -18,9 +18,9 @@ public class MainUI {
         // Campeonatos
         Campeonato campeonatoEuropa = new Campeonato("Campeonato Europa", 2023, Ciudad.Continente.Europa, 4);
         Campeonato campeonatoAsia = new Campeonato("Campeonato Asia", 2023, Ciudad.Continente.Asia, 4);
-        Campeonato campeonatoAmerica = new Campeonato("Campeonato América", 2023, Ciudad.Continente.America, 3);
-        Campeonato campeonatoAfrica = new Campeonato("Campeonato África", 2023, Ciudad.Continente.Africa, 2);
-        Campeonato campeonatoOceania = new Campeonato("Campeonato Oceanía", 2023, Ciudad.Continente.Oceania, 2);
+        Campeonato campeonatoAmerica = new Campeonato("Campeonato Amï¿½rica", 2023, Ciudad.Continente.America, 3);
+        Campeonato campeonatoAfrica = new Campeonato("Campeonato ï¿½frica", 2023, Ciudad.Continente.Africa, 2);
+        Campeonato campeonatoOceania = new Campeonato("Campeonato Oceanï¿½a", 2023, Ciudad.Continente.Oceania, 2);
 
         // Ciudades y Carreras
         // Europa
@@ -32,35 +32,35 @@ public class MainUI {
         Ciudad ciudad4 = new Ciudad("Baku", Ciudad.Continente.Europa);
         Ciudad ciudad5 = new Ciudad("Barcelona", Ciudad.Continente.Europa);
         // Asia
-        Ciudad ciudad6 = new Ciudad("Shanghái", Ciudad.Continente.Asia);
+        Ciudad ciudad6 = new Ciudad("Shanghï¿½i", Ciudad.Continente.Asia);
         Ciudad ciudad7 = new Ciudad("Sakhir", Ciudad.Continente.Asia);
         Ciudad ciudad8 = new Ciudad("Singapur", Ciudad.Continente.Asia);
         Ciudad ciudad9 = new Ciudad("Jeddah", Ciudad.Continente.Asia);
-        // América
+        // Amï¿½rica
         Ciudad ciudad10 = new Ciudad("Austin", Ciudad.Continente.America);
         Ciudad ciudad11 = new Ciudad("Monterrey", Ciudad.Continente.America);
         Ciudad ciudad12 = new Ciudad("Sao Paulo", Ciudad.Continente.America);
         Ciudad ciudad13 = new Ciudad("Buenos Aires", Ciudad.Continente.America);
-        // África
+        // ï¿½frica
         Ciudad ciudad14 = new Ciudad("Ciudad del Cabo", Ciudad.Continente.Africa);
         Ciudad ciudad15 = new Ciudad("El Cairo", Ciudad.Continente.Africa);
         Ciudad ciudad16 = new Ciudad("Nairobi", Ciudad.Continente.Africa);
 
-        // Oceanía
+        // Oceanï¿½a
         Ciudad ciudad17 = new Ciudad("Melbourne", Ciudad.Continente.Oceania);
         Ciudad ciudad18 = new Ciudad("Auckland", Ciudad.Continente.Oceania);
-        Ciudad ciudad19 = new Ciudad("Sídney", Ciudad.Continente.Oceania);
+        Ciudad ciudad19 = new Ciudad("Sï¿½dney", Ciudad.Continente.Oceania);
         Ciudad ciudad20 = new Ciudad("Adelaida", Ciudad.Continente.Oceania);
 
         // Directores de Carrera
-        DirectorCarrera director1 = new DirectorCarrera("Michael Schmidt", "Mónaco", 500000.0, true);
+        DirectorCarrera director1 = new DirectorCarrera("Michael Schmidt", "Mï¿½naco", 500000.0, true);
         DirectorCarrera director2 = new DirectorCarrera("Luigi Rossi", "Italia", 450000.0, true);
         DirectorCarrera director3 = new DirectorCarrera("James Smith", "Reino Unido", 520000.0, true);
-        DirectorCarrera director4 = new DirectorCarrera("Javier Hernández", "España", 400000.0, true);
+        DirectorCarrera director4 = new DirectorCarrera("Javier Hernï¿½ndez", "Espaï¿½a", 400000.0, true);
         DirectorCarrera director5 = new DirectorCarrera("Pierre Lefebvre", "Francia", 480000.0, true);
-        DirectorCarrera director6 = new DirectorCarrera("Yoshiro Nakamura", "Japón", 600000.0, true);
+        DirectorCarrera director6 = new DirectorCarrera("Yoshiro Nakamura", "Japï¿½n", 600000.0, true);
         DirectorCarrera director7 = new DirectorCarrera("Chen Wei", "China", 550000.0, true);
-        DirectorCarrera director8 = new DirectorCarrera("Sergio Gutiérrez", "México", 450000.0, true);
+        DirectorCarrera director8 = new DirectorCarrera("Sergio Gutiï¿½rrez", "Mï¿½xico", 450000.0, true);
         DirectorCarrera director9 = new DirectorCarrera("Ricardo Silva", "Brasil", 500000.0, true);
         DirectorCarrera director10 = new DirectorCarrera("John Smith", "Estados Unidos", 600000.0, true);
 
@@ -76,13 +76,13 @@ public class MainUI {
         Patrocinador patrocinador9 = new Patrocinador("Global Motorsport Group", 75000000.0);
         Patrocinador patrocinador10 = new Patrocinador("Puma", 150000000.0);
 
-        // Creación de equipos
+        // Creaciï¿½n de equipos
         Equipo equipo1 = new Equipo("Mercedes-AMG", "Alemania");
         Equipo equipo2 = new Equipo("Scuderia Ferrari", "Italia");
         Equipo equipo3 = new Equipo("Red Bull Racing", "Austria");
         Equipo equipo4 = new Equipo("McLaren Racing", "Reino Unido");
         Equipo equipo5 = new Equipo("Aston Martin", "Reino Unido");
-// Creación de pilotos para cada equipo
+// Creaciï¿½n de pilotos para cada equipo
         Piloto piloto1Equipo1 = new Piloto("H. Ham", "GER", equipo1, Math.random() * 0.4);
         Piloto piloto2Equipo1 = new Piloto("V. Bot", "FIN", equipo1, Math.random() * 0.4);
         Piloto piloto3Equipo1 = new Piloto("G. Rus", "FIN", equipo1, Math.random() * 0.4);
@@ -147,27 +147,27 @@ public class MainUI {
 
         // Partes
         // Alerones
-        Pieza aleronMercedes = new Pieza(false, 25.0, 0.20, "Alerón Mercedes", rand.nextInt(301) + 200);
-        Pieza aleronFerrari = new Pieza(false, 25.0, 0.20, "Alerón Ferrari", rand.nextInt(301) + 200);
-        Pieza aleronRedBull = new Pieza(false, 25.0, 0.20, "Alerón Red Bull", rand.nextInt(301) + 200);
-        Pieza aleronMcLaren = new Pieza(false, 25.0, 0.20, "Alerón McLaren", rand.nextInt(301) + 200);
-        Pieza aleronAstonMartin = new Pieza(false, 25.0, 0.20, "Alerón Aston Martin", rand.nextInt(301) + 200);
-        Pieza aleronAlpine = new Pieza(false, 25.0, 0.20, "Alerón Alpine", rand.nextInt(301) + 200);
-        Pieza aleronWilliams = new Pieza(false, 25.0, 0.20, "Alerón Williams", rand.nextInt(301) + 200);
-        Pieza aleronAlfaRomeo = new Pieza(false, 25.0, 0.20, "Alerón Alfa Romeo", rand.nextInt(301) + 200);
-        Pieza aleronHaas = new Pieza(false, 25.0, 0.20, "Alerón Haas", rand.nextInt(301) + 200);
-        Pieza aleronUralkali = new Pieza(false, 25.0, 0.20, "Alerón Uralkali", rand.nextInt(301) + 200);
+        Pieza aleronMercedes = new Pieza(false, 25.0, 0.20, "Alerï¿½n Mercedes", rand.nextInt(301) + 200);
+        Pieza aleronFerrari = new Pieza(false, 25.0, 0.20, "Alerï¿½n Ferrari", rand.nextInt(301) + 200);
+        Pieza aleronRedBull = new Pieza(false, 25.0, 0.20, "Alerï¿½n Red Bull", rand.nextInt(301) + 200);
+        Pieza aleronMcLaren = new Pieza(false, 25.0, 0.20, "Alerï¿½n McLaren", rand.nextInt(301) + 200);
+        Pieza aleronAstonMartin = new Pieza(false, 25.0, 0.20, "Alerï¿½n Aston Martin", rand.nextInt(301) + 200);
+        Pieza aleronAlpine = new Pieza(false, 25.0, 0.20, "Alerï¿½n Alpine", rand.nextInt(301) + 200);
+        Pieza aleronWilliams = new Pieza(false, 25.0, 0.20, "Alerï¿½n Williams", rand.nextInt(301) + 200);
+        Pieza aleronAlfaRomeo = new Pieza(false, 25.0, 0.20, "Alerï¿½n Alfa Romeo", rand.nextInt(301) + 200);
+        Pieza aleronHaas = new Pieza(false, 25.0, 0.20, "Alerï¿½n Haas", rand.nextInt(301) + 200);
+        Pieza aleronUralkali = new Pieza(false, 25.0, 0.20, "Alerï¿½n Uralkali", rand.nextInt(301) + 200);
         // Neumaticos
-        Pieza neumaticosMercedes = new Pieza(false, 10.0, 0.30, "Neumáticos Mercedes", rand.nextInt(301) + 300);
-        Pieza neumaticosFerrari = new Pieza(false, 10.0, 0.30, "Neumáticos Ferrari", rand.nextInt(301) + 300);
-        Pieza neumaticosRedBull = new Pieza(false, 10.0, 0.30, "Neumáticos Red Bull", rand.nextInt(301) + 300);
-        Pieza neumaticosMcLaren = new Pieza(false, 10.0, 0.30, "Neumáticos McLaren", rand.nextInt(301) + 300);
-        Pieza neumaticosAstonMartin = new Pieza(false, 10.0, 0.30, "Neumáticos Aston Martin", rand.nextInt(301) + 300);
-        Pieza neumaticosAlpine = new Pieza(false, 10.0, 0.30, "Neumáticos Alpine", rand.nextInt(301) + 300);
-        Pieza neumaticosWilliams = new Pieza(false, 10.0, 0.30, "Neumáticos Williams", rand.nextInt(301) + 300);
-        Pieza neumaticosAlfaRomeo = new Pieza(false, 10.0, 0.30, "Neumáticos Alfa Romeo", rand.nextInt(301) + 300);
-        Pieza neumaticosHaas = new Pieza(false, 10.0, 0.30, "Neumáticos Haas", rand.nextInt(301) + 300);
-        Pieza neumaticosUralkali = new Pieza(false, 10.0, 0.30, "Neumáticos Uralkali", rand.nextInt(301) + 300);
+        Pieza neumaticosMercedes = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Mercedes", rand.nextInt(301) + 300);
+        Pieza neumaticosFerrari = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Ferrari", rand.nextInt(301) + 300);
+        Pieza neumaticosRedBull = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Red Bull", rand.nextInt(301) + 300);
+        Pieza neumaticosMcLaren = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos McLaren", rand.nextInt(301) + 300);
+        Pieza neumaticosAstonMartin = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Aston Martin", rand.nextInt(301) + 300);
+        Pieza neumaticosAlpine = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Alpine", rand.nextInt(301) + 300);
+        Pieza neumaticosWilliams = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Williams", rand.nextInt(301) + 300);
+        Pieza neumaticosAlfaRomeo = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Alfa Romeo", rand.nextInt(301) + 300);
+        Pieza neumaticosHaas = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Haas", rand.nextInt(301) + 300);
+        Pieza neumaticosUralkali = new Pieza(false, 10.0, 0.30, "Neumï¿½ticos Uralkali", rand.nextInt(301) + 300);
         // Motores
         Pieza motorMercedes = new Pieza(false, 10.0, 0.10, "Motor Mercedes", rand.nextInt(301) + 200);
         Pieza motorFerrari = new Pieza(false, 10.0, 0.10, "Motor Ferrari", rand.nextInt(301) + 200);
@@ -185,13 +185,13 @@ public class MainUI {
         Pieza motorContrabando2 = new Pieza(false, 12.0, 0.08, "Motor Turbo Prohibido", rand.nextInt(301) + 200, true);
         Pieza motorContrabando3 = new Pieza(false, 8.0, 0.12, "Motor Veloz Oscuro", rand.nextInt(301) + 200, true);
 
-        Pieza aleronContrabando1 = new Pieza(false, 6.0, 0.15, "Alerón Sigiloso", rand.nextInt(301) + 200, true);
-        Pieza aleronContrabando2 = new Pieza(false, 8.0, 0.10, "Alerón Furtivo", rand.nextInt(301) + 200, true);
-        Pieza aleronContrabando3 = new Pieza(false, 7.0, 0.12, "Alerón Sombra Rápida", rand.nextInt(301) + 200, true);
+        Pieza aleronContrabando1 = new Pieza(false, 6.0, 0.15, "Alerï¿½n Sigiloso", rand.nextInt(301) + 200, true);
+        Pieza aleronContrabando2 = new Pieza(false, 8.0, 0.10, "Alerï¿½n Furtivo", rand.nextInt(301) + 200, true);
+        Pieza aleronContrabando3 = new Pieza(false, 7.0, 0.12, "Alerï¿½n Sombra Rï¿½pida", rand.nextInt(301) + 200, true);
 
-        Pieza neumaticoContrabando1 = new Pieza(false, 10.0, 0.08, "Neumático de Goma Nocturna", rand.nextInt(301) + 200, true);
-        Pieza neumaticoContrabando2 = new Pieza(false, 9.0, 0.09, "Neumático Misterioso", rand.nextInt(301) + 200, true);
-        Pieza neumaticoContrabando3 = new Pieza(false, 11.0, 0.07, "Neumático Fugitivo", rand.nextInt(301) + 200, true);
+        Pieza neumaticoContrabando1 = new Pieza(false, 10.0, 0.08, "Neumï¿½tico de Goma Nocturna", rand.nextInt(301) + 200, true);
+        Pieza neumaticoContrabando2 = new Pieza(false, 9.0, 0.09, "Neumï¿½tico Misterioso", rand.nextInt(301) + 200, true);
+        Pieza neumaticoContrabando3 = new Pieza(false, 11.0, 0.07, "Neumï¿½tico Fugitivo", rand.nextInt(301) + 200, true);
 
         // Vehiculos
         Vehiculo vehiculo1 = new Vehiculo("Mercedes", "AMG W11", 2021, aleronMercedes, neumaticosMercedes, motorMercedes, 350.0, 9.5, 200.0);
@@ -244,17 +244,17 @@ public class MainUI {
         sc.nextLine();*/
 
         // Mensaje de introduccion
-        System.out.println("¡Hola! En este juego, serás un piloto de un equipo de carreras de Fórmula 1.");
-        System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deberás competir en carreras y obtener puntos.");
-        System.out.println("¡Buena suerte!\n");
+        System.out.println("ï¿½Hola! En este juego, serï¿½s un piloto de un equipo de carreras de Fï¿½rmula 1.");
+        System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deberï¿½s competir en carreras y obtener puntos.");
+        System.out.println("ï¿½Buena suerte!\n");
 
         /*Descomentar
         System.out.println("\n");
         sc.nextLine();*/
 
 
-        System.out.println("Primero debes preparar el campeonato en el que competirás.");
-        System.out.println("¡Comencemos!");
+        System.out.println("Primero debes preparar el campeonato en el que competirï¿½s.");
+        System.out.println("ï¿½Comencemos!");
         System.out.println("\n");
 
         // FUNCIONALIDAD PREPARAR CAMPEONATO
@@ -278,16 +278,16 @@ public class MainUI {
                 // Si es del 1 al 5, imprimir el mensaje de exito
                 // Si es del 1 al 5, cambiar validaciones a true
                 Campeonato.campeonatoElegido = Campeonato.campeonatos.get(n - 1);
-                System.out.println("¡Campeonato elegido!");
+                System.out.println("ï¿½Campeonato elegido!");
                 // Imprimir campeonato actual con tabla
                 System.out.println("\n");
                 validaciones = true;
             }
         }
 
-        // Paso 2: Elige el Año
-        System.out.println("Elige el Año");
-        System.out.println("Indica el año en el que quieres que se celebre el campeonato.");
+        // Paso 2: Elige el Aï¿½o
+        System.out.println("Elige el Aï¿½o");
+        System.out.println("Indica el aï¿½o en el que quieres que se celebre el campeonato.");
         /*Descomentar
         int n = sc.nextInt();*/
         int n = 2023;
@@ -301,13 +301,13 @@ public class MainUI {
                 n = sc.nextInt(); // Para que no se quede en un loop infinito xd
             } else {
                 // Si es mayor que 1950 y menor que 9999, imprimir el mensaje de exito
-                System.out.println("¡Año elegido!");
+                System.out.println("ï¿½Aï¿½o elegido!");
                 System.out.println("\n");
                 validaciones = true;
             }
         }
 
-        System.out.println("¡Tu campeonato quedo configurado!");
+        System.out.println("ï¿½Tu campeonato quedo configurado!");
         // imprmir como se ve con tablitas
         // Descomentar -
         System.out.println("Campeonato actual: " + Campeonato.campeonatoElegido.getNombre() + " " + Campeonato.campeonatoElegido.getAno());
@@ -316,10 +316,10 @@ public class MainUI {
 
         // TODO banner();
         // Paso 3: Selecciona tu Equipo
-        System.out.println("Selecciona tu Escudería");
+        System.out.println("Selecciona tu Escuderï¿½a");
         // imprimir equipos
         tablaEquipos(Equipo.equipos);
-        System.out.println("Escoge una escudería para competir en el campeonato, escribe un numero del 1 al 5.");
+        System.out.println("Escoge una escuderï¿½a para competir en el campeonato, escribe un numero del 1 al 5.");
         System.out.println("\n");
         validaciones = false;
         // Validar que sea un numero del 1 al 10
@@ -334,7 +334,7 @@ public class MainUI {
                 n = sc.nextInt(); // Para que no se quede en un loop infinito xd
             } else {
                 Equipo.equipoElegido = Equipo.equipos.get(n - 1);
-                System.out.println("¡Escudería elegida!"); // Si es del 1 al 5, imprimir el mensaje de exito
+                System.out.println("ï¿½Escuderï¿½a elegida!"); // Si es del 1 al 5, imprimir el mensaje de exito
 
                 System.out.println("\n");
                 validaciones = true; // Si es del 1 al 5, cambiar validaciones a true
@@ -365,13 +365,13 @@ public class MainUI {
                 Piloto.pilotoElegido = Equipo.equipoElegido.getPilotosDisponibles().get(n - 1);
                 Equipo.equipoElegido.getPilotosDisponibles().remove(Piloto.pilotoElegido);
                 Equipo.equipoElegido.setPiloto1(Piloto.pilotoElegido);
-                System.out.println("¡Piloto elegido!"); // Si es del 1 al 5, imprimir el mensaje de exito
+                System.out.println("ï¿½Piloto elegido!"); // Si es del 1 al 5, imprimir el mensaje de exito
                 System.out.println("\n");
                 validaciones = true; // Si es del 1 al 5, cambiar validaciones a true
             }
         }
 
-        System.out.println("Escoge tu compañero de equipo");
+        System.out.println("Escoge tu compaï¿½ero de equipo");
         // imprimir pilotos con stats
         // Paso 5: Escoge tus Pilotos
         System.out.println("Escoge tu Piloto, escribe un numero del 1 al 4.");
@@ -391,7 +391,7 @@ public class MainUI {
             } else {
                 Equipo.equipoElegido.setPiloto2(Equipo.equipoElegido.getPilotosDisponibles().get(n - 1));
                 Equipo.equipoElegido.getPilotosDisponibles().remove(Equipo.equipoElegido.getPiloto2());
-                System.out.println("¡Has elegido tu compañero de equipo!"); // Si es del 1 al 4, imprimir el mensaje de exito
+                System.out.println("ï¿½Has elegido tu compaï¿½ero de equipo!"); // Si es del 1 al 4, imprimir el mensaje de exito
                 System.out.println("\n");
                 validaciones = true; // Si es del 1 al 4, cambiar validaciones a true
             }
@@ -422,8 +422,8 @@ public class MainUI {
                     break;
                 } else {
                     equipo.negociar(patrocinador, true); //Se intenta
-                    System.out.println(equipo.getNombre() + " intentó negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dólares.");
-                    System.out.println("El equipo " + equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
+                    System.out.println(equipo.getNombre() + " intentï¿½ negociar con " + patrocinador.getNombre() + " por " + patrocinador.getDineroOfrecido() + " dï¿½lares.");
+                    System.out.println("El equipo " + equipo.getNombre() + " tiene " + equipo.getPlata() + " dï¿½lares.");
                     System.out.println("\n");
                 }
             }
@@ -431,7 +431,7 @@ public class MainUI {
         }
 
        /* for (Equipo equipo : Equipo.equipos) {
-            System.out.println(equipo.getNombre() + " tiene " + equipo.getPlata() + " dólares.");
+            System.out.println(equipo.getNombre() + " tiene " + equipo.getPlata() + " dï¿½lares.");
             System.out.println("\n");
         }*/
 
@@ -442,15 +442,15 @@ public class MainUI {
 
         // FUNCIONALIDAD Planificar Calendario de Carreras
 
-        System.out.println("¡Listo! Ahora estás preparado para comenzar tu emocionante campeonato de carreras. ¡Diviértete!");
+        System.out.println("ï¿½Listo! Ahora estï¿½s preparado para comenzar tu emocionante campeonato de carreras. ï¿½Diviï¿½rtete!");
 
-        banner("¡Que comience el " + Campeonato.campeonatoElegido.getNombre() + "!", String.valueOf(Campeonato.campeonatoElegido.getAno()));
+        banner("ï¿½Que comience el " + Campeonato.campeonatoElegido.getNombre() + "!", String.valueOf(Campeonato.campeonatoElegido.getAno()));
         System.out.println("\n");
 
         // for de acuerdo al numero de carreras en le campeonato elegido
         // Crear carreras
-        System.out.println("Es hora de preparar todas las carreras en las que competirás.");
-        System.out.println("¡Comencemos!");
+        System.out.println("Es hora de preparar todas las carreras en las que competirï¿½s.");
+        System.out.println("ï¿½Comencemos!");
 
         // list of months
         ArrayList<Integer> meses = new ArrayList<>();
@@ -473,7 +473,7 @@ public class MainUI {
                     n = sc.nextInt(); // Para que no se quede en un loop infinito xd
                 } else {
                     ciudad = ciudades.get(n - 1);
-                    System.out.println("¡Ciudad elegida!");
+                    System.out.println("ï¿½Ciudad elegida!");
                     System.out.println("\n");
                     validaciones = true;
                 }
@@ -491,7 +491,7 @@ public class MainUI {
                     n = sc.nextInt(); // Para que no se quede en un loop infinito xd
                 } else {
                     directorCarrera = DirectorCarrera.listaDirectores.get(n - 1);
-                    System.out.println("¡Director de carrera elegido!");
+                    System.out.println("ï¿½Director de carrera elegido!");
                     System.out.println("\n");
                     validaciones = true;
                 }
@@ -510,7 +510,7 @@ public class MainUI {
                 } else {
                     mes = n;
                     meses.remove(Integer.valueOf(n));
-                    System.out.println("¡Mes elegido!");
+                    System.out.println("ï¿½Mes elegido!");
                     System.out.println("\n");
                     validaciones = true;
                 }
@@ -518,7 +518,7 @@ public class MainUI {
             // Elegir dificultad del 1 al 3
             System.out.println("Elige la dificultad de la carrera, escribe un numero del 1 al 3.");
             System.out.println("+------------------+-------+");
-            System.out.println("|   Dificultad    | Opción|");
+            System.out.println("|   Dificultad    | Opciï¿½n|");
             System.out.println("+------------------+-------+");
             System.out.println("|  Avanzado        |   1   |");
             System.out.println("|  Experto         |   2   |");
@@ -534,7 +534,7 @@ public class MainUI {
                     n = sc.nextInt(); // Para que no se quede en un loop infinito xd
                 } else {
                     dificultad = n;
-                    System.out.println("¡Dificultad elegida!");
+                    System.out.println("ï¿½Dificultad elegida!");
                     System.out.println("\n");
                     validaciones = true;
                 }
@@ -563,11 +563,11 @@ public class MainUI {
                         circuito = Circuito.values()[n - 1];
                         carrera.setCircuito(circuito); // asignar circuito a la carrera
                         carrera.getDirectorCarrera().setPlata(carrera.getDirectorCarrera().getPlata() - circuito.getPrecio()); // restar plata al director de carrera
-                        System.out.println("¡Circuito elegido!");
+                        System.out.println("ï¿½Circuito elegido!");
                         System.out.println("\n");
                         validaciones = true;
                     } else {
-                        System.out.println("¡Al director de carrera no le gusto el circuito! Intenta de nuevo.");
+                        System.out.println("ï¿½Al director de carrera no le gusto el circuito! Intenta de nuevo.");
                         System.out.println("\n");
                     }
                 }
@@ -580,10 +580,10 @@ public class MainUI {
         // TODO: Calendario de carreras tabla
 
         // ANTES DE INICIAR LA CARRERA
-        System.out.println("Es hora de elegir tu vehículo de carrera.");
-        System.out.println("¡Comencemos!");
+        System.out.println("Es hora de elegir tu vehï¿½culo de carrera.");
+        System.out.println("ï¿½Comencemos!");
         System.out.println("\n");
-        System.out.println("Elige tu vehículo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
+        System.out.println("Elige tu vehï¿½culo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
         // Imprimir vehiculos
         n = sc.nextInt();
         validaciones = false;
@@ -596,16 +596,16 @@ public class MainUI {
                 Vehiculo vehiculo = Equipo.equipoElegido.getVehiculosDisponibles().get(n - 1);
                 Carrera.agregarVehiculoCarrerra(VehiculoCarrera.vehiculoElegido);
                 vehiculo1 = VehiculoCarrera.vehiculoElegido;
-                System.out.println("¡Vehículo elegido!");
+                System.out.println("ï¿½Vehï¿½culo elegido!");
                 System.out.println("\n");
                 validaciones = true;
             }
         }
 
-        System.out.println("Es hora de elegir el vehículo de carrera de tu compañero de equipo.");
-        System.out.println("¡Comencemos!");
+        System.out.println("Es hora de elegir el vehï¿½culo de carrera de tu compaï¿½ero de equipo.");
+        System.out.println("ï¿½Comencemos!");
         System.out.println("\n");
-        System.out.println("Elige tu vehículo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
+        System.out.println("Elige tu vehï¿½culo de carrera, escribe un numero de acuerdo a la opcion que quieras.");
         // Imprimir vehiculos
         n = sc.nextInt();
         validaciones = false;
@@ -616,7 +616,7 @@ public class MainUI {
             } else {
                 Vehiculo vehiculo = Equipo.equipoElegido.getVehiculosDisponibles().get(n - 1);
                 vehiculo.comprar(Equipo.equipoElegido.getPiloto2());
-                System.out.println("¡Vehículo elegido!");
+                System.out.println("ï¿½Vehï¿½culo elegido!");
                 System.out.println("\n");
                 validaciones = true;
             }
@@ -648,7 +648,7 @@ public class MainUI {
             //Falta un dia para la carrera
             Boolean comenzar = false;
             while (!comenzar) {
-                System.out.println("Falta un día para la carrera en " + carrera.getCiudad().getNombre() + ".");
+                System.out.println("Falta un dï¿½a para la carrera en " + carrera.getCiudad().getNombre() + ".");
                 System.out.println("Todavia estas a tiempo de: ");
                 System.out.println("1. Revisar el calendario de carreras.");
                 System.out.println("2. Revisar tu vehiculo de carrera.");
@@ -671,8 +671,8 @@ public class MainUI {
                         break;
                 }
             }
-            //¡Inicia la carrera!
-            System.out.println("¡Ha comenzado el " + carrera.getNombreCircuito() + "!");
+            //ï¿½Inicia la carrera!
+            System.out.println("ï¿½Ha comenzado el " + carrera.getNombreCircuito() + "!");
             double probOpciones = 0.0; //Probabilidad que se muestren las opciones para el usuario
             while (!Carrera.actualizarTerminado()) { //Mientras no todos esten terminados
                 Carrera.actualizarGasolina();
@@ -697,26 +697,26 @@ public class MainUI {
                                     System.out.println("4. Defender la posicion.");
                                     break;
                                 case 4:
-                                    System.out.println("5. ¡Tokyo Drift!");
+                                    System.out.println("5. ï¿½Tokyo Drift!");
                                     break;
                             }
                         }
                     }
                     if (VehiculoCarrera.vehiculoElegido.getVelocidadActual() < 100) {
-                        System.out.println("6. ¡Realizar Pit Stop!");
+                        System.out.println("6. ï¿½Realizar Pit Stop!");
                     }
                     n = sc.nextInt();
                     switch (n) {
                         case 1:
-                            System.out.println("¡Aprovechas el DRS!");
+                            System.out.println("ï¿½Aprovechas el DRS!");
                             VehiculoCarrera.vehiculoElegido.aprovecharDRS();
                             break;
                         case 2:
-                            System.out.println("¡Frenaste!");
+                            System.out.println("ï¿½Frenaste!");
                             VehiculoCarrera.vehiculoElegido.frenar();
                             break;
                         case 3:
-                            System.out.println("¡¡¡Realizas una Ultra-Mega-Super-Maniobra!!!");
+                            System.out.println("ï¿½ï¿½ï¿½Realizas una Ultra-Mega-Super-Maniobra!!!");
                             VehiculoCarrera.vehiculoElegido.hacerManiobra();
                             break;
                         case 4:
@@ -724,11 +724,11 @@ public class MainUI {
                             VehiculoCarrera.vehiculoElegido.defender();
                             break;
                         case 5:
-                            System.out.println("¡Derrapas!");
+                            System.out.println("ï¿½Derrapas!");
                             VehiculoCarrera.vehiculoElegido.derrapar();
                             break;
                         case 6:
-                            System.out.println("¡Entras a Pit Stop!");
+                            System.out.println("ï¿½Entras a Pit Stop!");
                             //TODO: HACER PITSTOP
                             break;
                     }
@@ -737,8 +737,8 @@ public class MainUI {
                     probOpciones += 0.2;
                 }
             }
-            System.out.println("¡Ha terminado el " + carrera.getNombreCircuito() + "!");
-            System.out.println("¡Los resultados de la carrera han quedado así!");
+            System.out.println("ï¿½Ha terminado el " + carrera.getNombreCircuito() + "!");
+            System.out.println("ï¿½Los resultados de la carrera han quedado asï¿½!");
             //TODO: Imprimir tabla de terminados
             //Impresion temporal de resultados
             int m=1;
@@ -791,32 +791,32 @@ public class MainUI {
                     } else {
                         // Si es del 1 al 10, imprimir el mensaje de exito
                         Patrocinador patrocinador = Patrocinador.listaPatrocinadores.get(n - 1);
-                        System.out.println("¡Patrocinador elegido!");
+                        System.out.println("ï¿½Patrocinador elegido!");
                         System.out.println("\n");
-                        System.out.println("Decide cuánto dinero quieres pedirle:");
+                        System.out.println("Decide cuï¿½nto dinero quieres pedirle:");
                         double cantidad = sc.nextDouble();
                         boolean validaciones3 = false;
                         while (!validaciones3) {
                             if (cantidad < 0) {
-                                System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
-                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
+                                System.out.println("Esa es una cantidad de dinero negativa. ï¿½Acaso piensas en patrocinar al patrocinador?");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \nï¿½No te preocupes, puedes intentarlo de nuevo!");
                                 validaciones3 = true;
                             } else if (cantidad == 0) {
-                                System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
-                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \n¡No te preocupes, puedes intentarlo de nuevo!");
+                                System.out.println("ï¿½Por quï¿½ 0? ï¿½Es que no quieres dinero?");
+                                System.out.println("Estas haciendo al patrocinador perder su tiempo y se ha ido. \nï¿½No te preocupes, puedes intentarlo de nuevo!");
                                 validaciones3 = true;
                             } else if (cantidad > patrocinador.getDinero()) {
                                 patrocinador.setPatrocinando(true);
-                                System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador y nunca lo olvidara!");
+                                System.out.println("ï¿½Eso es mï¿½s dinero del que puede dar! \n!Has asustado al patrocinador y nunca lo olvidara!");
                                 validaciones3 = true;
                             } else {
                                 double aux = Equipo.equipoElegido.getPlata();
                                 Equipo.equipoElegido.negociar(cantidad, patrocinador);
-                                System.out.println("Se intentó negociar con " + patrocinador.getNombre() + " por " + cantidad + " dólares.");
+                                System.out.println("Se intentï¿½ negociar con " + patrocinador.getNombre() + " por " + cantidad + " dï¿½lares.");
                                 if (aux == Equipo.equipoElegido.getPlata()) {
                                     System.out.println("El patrocinador no acepto.");
                                 } else {
-                                    System.out.println(Equipo.equipoElegido.getNombre() + " fue patrocinado y ahora tiene " + Equipo.equipoElegido.getPlata() + " dólares.");
+                                    System.out.println(Equipo.equipoElegido.getNombre() + " fue patrocinado y ahora tiene " + Equipo.equipoElegido.getPlata() + " dï¿½lares.");
                                 }
                                 System.out.println("\n");
                                 validaciones3 = true;
@@ -832,7 +832,7 @@ public class MainUI {
                 validaciones = true;
             } else {
                 // Si no es S o N, imprimir el mensaje de error
-                System.out.println("¿Quieres negociar con otro patrocinador?, escribe S o N.");
+                System.out.println("ï¿½Quieres negociar con otro patrocinador?, escribe S o N.");
                 ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
             }
         }
@@ -841,13 +841,13 @@ public class MainUI {
         Scanner sc = new Scanner(System.in);
         Equipo equipo = Equipo.equipoElegido;
         Vehiculo vehiculo = VehiculoCarrera.vehiculoElegido;
-        System.out.println("¡Es hora de tunear tu vehículo de carrera!");
-        System.out.println("¡Comencemos!");
+        System.out.println("ï¿½Es hora de tunear tu vehï¿½culo de carrera!");
+        System.out.println("ï¿½Comencemos!");
         System.out.println("\n");
 
-        System.out.println("Actualmente tu equipo dispone de un presupuesto de " + equipo.getPlata() + " dólares.");
+        System.out.println("Actualmente tu equipo dispone de un presupuesto de " + equipo.getPlata() + " dï¿½lares.");
         System.out.println("\n");
-        System.out.println("¿Te gustaria obtener mas dinero para tunear tu vehículo de carrera? Escribe S o N.");
+        System.out.println("ï¿½Te gustaria obtener mas dinero para tunear tu vehï¿½culo de carrera? Escribe S o N.");
         String ans = sc.nextLine();
         boolean validaciones = false;
 
@@ -855,24 +855,24 @@ public class MainUI {
             if (ans.equals("S")) {
                 negociar();
             } else if (ans.equals("N")) {
-                System.out.println("¡Genial! ¡Comencemos a tunear tu vehículo de carrera!");
+                System.out.println("ï¿½Genial! ï¿½Comencemos a tunear tu vehï¿½culo de carrera!");
                 System.out.println("\n");
                 validaciones = true;
             } else {
-                System.out.println("¿Quieres obtener mas dinero para tunear tu vehículo de carrera? Escribe S o N.");
+                System.out.println("ï¿½Quieres obtener mas dinero para tunear tu vehï¿½culo de carrera? Escribe S o N.");
                 ans = sc.nextLine(); // Para que no se quede en un loop infinito xd
             }
         }
 
         // imprimir stats del carro
-        System.out.println("Estos son los stats de tu vehículo de carrera:");
+        System.out.println("Estos son los stats de tu vehï¿½culo de carrera:");
         bigCar();
         System.out.println("\n");
 
-        System.out.println("Escoge una opción para tunear tu vehículo de carrera");
+        System.out.println("Escoge una opciï¿½n para tunear tu vehï¿½culo de carrera");
         System.out.println("1. Arreglar una parte del carro");
         System.out.println("2. Comparar una parte del carro");
-        System.out.println("3. Volver al menú principal");
+        System.out.println("3. Volver al menï¿½ principal");
         System.out.println("\n");
     }
     public static void resetearCondicionesCarrera(){ //Resetea las condiciones de la carrera
@@ -888,5 +888,7 @@ public class MainUI {
             vehiculo.setTiempo(0.0);
             vehiculo.setDistanciaRecorrida(0.0);
         }
+
+
     }
 }

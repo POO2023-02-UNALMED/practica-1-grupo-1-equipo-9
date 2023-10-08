@@ -294,4 +294,24 @@ public class Carrera {
     public void setCircuito(Circuito circuito) {
         this.circuito = circuito;
     }
+
+    public static void setPosiciones(ArrayList<VehiculoCarrera> posiciones) {
+        Carrera.posiciones = posiciones;
+    }
+
+    public static ArrayList<VehiculoCarrera> getTerminados() {
+        return terminados;
+    }
+
+    public static void setTerminados(ArrayList<VehiculoCarrera> terminados) {
+        Carrera.terminados = terminados;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 }

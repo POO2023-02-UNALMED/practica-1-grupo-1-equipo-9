@@ -1,17 +1,15 @@
 package gestorAplicacion.campeonato;
 
-import gestorAplicacion.paddock.Persona;
-import gestorAplicacion.paddock.Piloto;
-import gestorAplicacion.paddock.Pieza;
-import gestorAplicacion.campeonato.VehiculoCarrera;
+import gestorAplicacion.paddock.*;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.function.ToDoubleBiFunction;
+import java.io.Serializable;
+import java.util.*;
 
 
-public class DirectorCarrera extends Persona {
-    //Lista directores de carrera
+public class DirectorCarrera extends Persona implements Serializable{
+	private static final long serialVersionUID = -2602637847133906292L;
+
+	//Lista directores de carrera
     public static ArrayList<DirectorCarrera> listaDirectores= new ArrayList<DirectorCarrera>();
 	
 	private double plata;
@@ -44,7 +42,7 @@ public class DirectorCarrera extends Persona {
     public void recibirPlata(double plata) {
         this.setPlata(this.getPlata()+plata);
     }
-    // Métodos de instancia
+    // Mï¿½todos de instancia
     public void ponerSancion(Piloto piloto) {
         piloto.setSanciones(piloto.getSanciones() + 1);
     }
@@ -53,10 +51,10 @@ public class DirectorCarrera extends Persona {
         equipo.setPlata(equipo.getPlata() - plata); // Se le quita la plata al equipo
         ArrayList<String> favores = new ArrayList<>();
         favores.add("Ver stats de competidores");
-        favores.add("Cambiar posición inicial");
-        favores.add("Comprar partes de contrabando para el vehículo");
+        favores.add("Cambiar posiciï¿½n inicial");
+        favores.add("Comprar partes de contrabando para el vehï¿½culo");
         favores.add("Hacer chocar");
-        favores.add("Apuestas subterráneas");
+        favores.add("Apuestas subterrï¿½neas");
         return favores;
     }
 
@@ -128,8 +126,8 @@ public class DirectorCarrera extends Persona {
         this.corrupcion += 1;
         Equipo equipo = Equipo.equipoElegido;
         equipo.setPlata(equipo.getPlata() - plataMetida); // Se le quita la plata al equipo
-        Random random = new Random(); // Generador de números aleatorios
-        int randomNumber = random.nextInt(15) + 1; // Número aleatorio entre 1 y 15
+        Random random = new Random(); // Generador de nï¿½meros aleatorios
+        int randomNumber = random.nextInt(15) + 1; // Nï¿½mero aleatorio entre 1 y 15
         if (numero == randomNumber) {
             equipo.setPlata(equipo.getPlata() + plataMetida * 2); // Se le da el doble de plata al equipo
             return true;
@@ -169,4 +167,6 @@ public class DirectorCarrera extends Persona {
     public void setCorrupcion(int corrupcion) {
         this.corrupcion = corrupcion;
     }
+    
+    public static ArrayList<DirectorCarrera> getListaDirectores() {return DirectorCarrera.listaDirectores;}
 }

@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class Carrera {
-    public static Carrera carreraActual;     //Carrera actual durante el main
+	public static Carrera carreraActual;     //Carrera actual durante el main
 
     public static ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
 

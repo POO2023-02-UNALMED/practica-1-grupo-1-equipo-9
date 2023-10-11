@@ -2,12 +2,15 @@ package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.VehiculoCarrera;
+import java.io.Serializable;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Random;
+public class Vehiculo implements Serializable{
+	private static final long serialVersionUID = 7166096271225774034L;
 
-public class Vehiculo {
-    private String marca;
+	public static ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+	
+	private String marca;
     private String modelo;
     private int ano;
     private Pieza aleron;
@@ -28,6 +31,7 @@ public class Vehiculo {
         this.velocidad = velocidad;
         this.maniobrabilidad = maniobrabilidad;
         this.precioUtilizar = precioUtilizar;
+        Vehiculo.listaVehiculos.add(this);
     }
 
     public Vehiculo() {
@@ -44,7 +48,7 @@ public class Vehiculo {
 
     //Metodos de instancia
     public String toString() {
-        return "Marca: " + this.marca + "\nModelo: " + this.modelo + "\nAño: " + this.ano + "\nAlerón: " + this.aleron.toString() + "\nNeumáticos: " + this.neumaticos.toString() + "\nMotor: " + this.motor.toString() + "\nVelocidad: " + this.velocidad + "\nManiobrabilidad: " + this.maniobrabilidad + "\nPrecio de utilización: " + this.precioUtilizar;
+        return "Marca: " + this.marca + "\nModelo: " + this.modelo + "\nAï¿½o: " + this.ano + "\nAlerï¿½n: " + this.aleron.toString() + "\nNeumï¿½ticos: " + this.neumaticos.toString() + "\nMotor: " + this.motor.toString() + "\nVelocidad: " + this.velocidad + "\nManiobrabilidad: " + this.maniobrabilidad + "\nPrecio de utilizaciï¿½n: " + this.precioUtilizar;
     } // vamos a usar la interfaz para imprimir los stats lindos en tablas
 
     //comprar vehiculo: se crea el vehiculo de carrera
@@ -136,5 +140,9 @@ public class Vehiculo {
 
     public void setPrecioUtilizar(double precioUtilizar) {
         this.precioUtilizar = precioUtilizar;
+    }
+    
+    public static ArrayList<Vehiculo> getListaVehiculos(){
+    	return Vehiculo.listaVehiculos;
     }
 }

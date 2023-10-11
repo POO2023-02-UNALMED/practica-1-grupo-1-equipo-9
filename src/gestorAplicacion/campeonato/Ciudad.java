@@ -1,9 +1,12 @@
 package gestorAplicacion.campeonato;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Ciudad {
-    //Lista de las ciudades
+public class Ciudad implements Serializable{
+	private static final long serialVersionUID = -8026803019433813720L;
+
+	//Lista de las ciudades
 	public static ArrayList<Ciudad> listaCiudades = new ArrayList<Ciudad>();
 	
 	//Atributos

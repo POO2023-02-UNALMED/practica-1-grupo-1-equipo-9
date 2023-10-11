@@ -1,15 +1,18 @@
 package gestorAplicacion.campeonato;
 
 import gestorAplicacion.paddock.Patrocinador;
+
 import gestorAplicacion.paddock.Piloto;
 import gestorAplicacion.paddock.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.text.*;
+import java.io.Serializable;
 
-public class Equipo {
-    public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
+public class Equipo implements Serializable{
+	private static final long serialVersionUID = 6129409994157579682L;
+
+	public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
 
     //Atributos
     static int idActual = 0;
@@ -18,7 +21,7 @@ public class Equipo {
     private String pais;
     private double plata;
     private int puntos; //TODO: Preguntar si los puntos son generales (serializados) o son unicos a cada campeonato y luego se borran
-    private ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehículos disponibles
+    private ArrayList<Vehiculo> vehiculosDisponibles = new ArrayList<Vehiculo>(); // Lista de vehï¿½culos disponibles
     public static Equipo equipoElegido; //Este es el equipo que tiene el ususario
     private ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>(); // Lista de pilotos disponibles
     private Piloto piloto1;
@@ -62,7 +65,7 @@ public class Equipo {
         this.pilotosDisponibles = Objects.requireNonNullElseGet(pilotosDisponibles, ArrayList::new);
     }
 
-    // Métodos de clase
+    // Mï¿½todos de clase
     public static ArrayList<Equipo> getEquipos() {
         return null;
     }
@@ -71,7 +74,7 @@ public class Equipo {
         Equipo.equipos = equipos;
     }
 
-    // Métodos de instancia
+    // Mï¿½todos de instancia
     public boolean negociar(Patrocinador patrocinador) {
         //Esto es para aceptar las probabilidades de que acepte un patrocinador
         return patrocinador.pensarNegocio(this);
@@ -79,24 +82,24 @@ public class Equipo {
 
     public String negociar(double cantidad, Patrocinador patrocinador) {//Sobrecarga para cambiar el dinero que se le pide al patrocinador. A menor cantidad, mayor probabilidad de aceptar.
         if (cantidad < 0) {
-            //System.out.println("Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?");
-            return "Esa es una cantidad de dinero negativa. ¿Acaso piensas en patrocinar al patrocinador?";
+            //System.out.println("Esa es una cantidad de dinero negativa. ï¿½Acaso piensas en patrocinar al patrocinador?");
+            return "Esa es una cantidad de dinero negativa. ï¿½Acaso piensas en patrocinar al patrocinador?";
         } else if (cantidad == 0) {
-            //System.out.println("¿Por qué 0? ¿Es que no quieres dinero?");
-            return "¿Por qué 0? ¿Es que no quieres dinero?";
+            //System.out.println("ï¿½Por quï¿½ 0? ï¿½Es que no quieres dinero?");
+            return "ï¿½Por quï¿½ 0? ï¿½Es que no quieres dinero?";
         } else if (cantidad > patrocinador.getDinero()) {
             patrocinador.setPatrocinando(true);
-            //System.out.println("¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!");
-            return "¡Eso es más dinero del que puede dar! \n!Has asustado al patrocinador!";
+            //System.out.println("ï¿½Eso es mï¿½s dinero del que puede dar! \n!Has asustado al patrocinador!");
+            return "ï¿½Eso es mï¿½s dinero del que puede dar! \n!Has asustado al patrocinador!";
         } else {
             this.negociar(patrocinador);
-            return "¡Se ha evaluado la opcion de patrocinar a tu equipo!";
+            return "ï¿½Se ha evaluado la opcion de patrocinar a tu equipo!";
         }
     }
 
 
     public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {
-        //Sobrecarga: Esto es para ver si algún equipo que no es elegido por el usuario es patrocinado por algún patrocinador
+        //Sobrecarga: Esto es para ver si algï¿½n equipo que no es elegido por el usuario es patrocinado por algï¿½n patrocinador
         patrocinador.pensarNegocio(this, equipoNoElegido);
     }
 
@@ -113,7 +116,7 @@ public class Equipo {
     }
 
 
-    // Lista de métodos set y get
+    // Lista de mï¿½todos set y get
     public int getId() {
         return this.id;
     }

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import gestorAplicacion.campeonato.Ciudad.Continente;
+import java.io.*;
 
-public class Campeonato {
-    public static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde están todos los campeonatos disponibles
+public class Campeonato implements Serializable{
+	private static final long serialVersionUID = -2490361864090903222L;
+	
+	public static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde estï¿½n todos los campeonatos disponibles
 	private static ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
     public static Campeonato campeonatoElegido; //Campeonato que elije el usuario
     
@@ -47,10 +50,10 @@ public class Campeonato {
     
     public void agregarCarrera(Carrera carrerita) {
     	if (this.getNumCarreras()<this.cantidadMaxCarreras) {
-    		this.listaCarreras.add(carrerita);
+    		Campeonato.listaCarreras.add(carrerita);
     	}
 //        else {
-//    		System.out.println("Se ha alcanzado el máximo número de carreras para el campeonato, no se ha añadido la carrera.");
+//    		System.out.println("Se ha alcanzado el mï¿½ximo nï¿½mero de carreras para el campeonato, no se ha aï¿½adido la carrera.");
 //    	}
     }
 
@@ -84,19 +87,19 @@ public class Campeonato {
     public int getCantidadMaxCarreras() {return this.cantidadMaxCarreras;}
     public void setCantidadMaxCarreras(int cantidadCarreras) {this.cantidadMaxCarreras=cantidadCarreras;}
     
-    public int getNumCarreras() {return this.listaCarreras.size();}
+    public int getNumCarreras() {return Campeonato.listaCarreras.size();}
     
     public double getPremio() {return this.premio;}
     public void setPremio(double premio) {this.premio = premio;}
     
-    public ArrayList<Carrera> getListaCarreras() {return listaCarreras;}
+    public ArrayList<Carrera> getListaCarreras() {return Campeonato.listaCarreras;}
 
     public static void setCampeonatos(ArrayList<Campeonato> campeonatos) {
         Campeonato.campeonatos = campeonatos;
     }
 
     public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
-        this.listaCarreras = listaCarreras;
+        Campeonato.listaCarreras = listaCarreras;
     }
 
     public static void setIdActual(int idActual) {

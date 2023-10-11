@@ -3,10 +3,13 @@ package gestorAplicacion.paddock;
 import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.VehiculoCarrera;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pieza {
-    static int idActual = 0;
+public class Pieza implements Serializable{
+	private static final long serialVersionUID = 3981603915201008050L;
+	
+	static int idActual = 0;
     static ArrayList<Pieza> piezas = new ArrayList<Pieza>();
     static ArrayList<Pieza> piezasContrabando = new ArrayList<Pieza>();
     private int id;

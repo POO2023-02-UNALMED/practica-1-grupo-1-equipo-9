@@ -2,7 +2,7 @@ package uiMain;
 
 import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
-
+import baseDatos.*;
 import java.util.*;
 import java.util.Random;
 
@@ -119,9 +119,7 @@ public class Main2 {
         // Ciudades y Carreras
         // Europa
         Ciudad ciudad1 = new Ciudad("Montecarlo", Ciudad.Continente.Europa);
-
         Ciudad ciudad2 = new Ciudad("Monza", Ciudad.Continente.Europa);
-
         Ciudad ciudad3 = new Ciudad("Silverstone", Ciudad.Continente.Europa);
         Ciudad ciudad4 = new Ciudad("Baku", Ciudad.Continente.Europa);
         Ciudad ciudad5 = new Ciudad("Barcelona", Ciudad.Continente.Europa);
@@ -320,6 +318,8 @@ public class Main2 {
         equipo4.agregarVehiculo(vehiculo8);
         equipo5.agregarVehiculo(vehiculo9);
         equipo5.agregarVehiculo(vehiculo10);
+        
+        
     }
 	}
 

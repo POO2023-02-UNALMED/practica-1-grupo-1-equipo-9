@@ -2,9 +2,12 @@ package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.Campeonato;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Piloto extends Persona {
+public class Piloto extends Persona implements Serializable{
+	private static final long serialVersionUID = 2266843321181044951L;
+	
 	private Equipo equipo;
     private int puntos; //Puntos en el campeonato 
     private int sanciones;
@@ -12,6 +15,9 @@ public class Piloto extends Persona {
     private boolean disponible;
     public static Piloto pilotoElegido; //Este es el piloto que tiene el usuario
     private ArrayList<String> victorias;
+    //Lista de pilotos
+	public static ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
+
 
     //Constructores
     public Piloto(String nombre, String pais, Equipo equipo, double habilidad) {
@@ -19,6 +25,7 @@ public class Piloto extends Persona {
     	this.equipo=equipo;
     	this.habilidad=habilidad;
     	equipo.agregarPiloto(this);
+    	Piloto.listaPilotos.add(this);
     }
     
     //Atributos de instancia
@@ -37,7 +44,7 @@ public class Piloto extends Persona {
     
     //Atributos de clase 
     
-    // Lista de métodos set y get
+    // Lista de mï¿½todos set y get
     public Equipo getEquipo() {return this.equipo;}
     public void setEquipo(Equipo equipo) {this.equipo = equipo;}
 
@@ -54,5 +61,7 @@ public class Piloto extends Persona {
     public void setDisponible(boolean disp) {this.disponible = disp;}
 
     public ArrayList<String> getVictorias() {return victorias;}
+    
+    public static ArrayList<Piloto> getListaPilotos() {return Piloto.listaPilotos;}
 
 }

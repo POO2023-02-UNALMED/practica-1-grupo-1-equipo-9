@@ -2,11 +2,14 @@ package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Equipo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Patrocinador extends Persona {
-    //Lista de patrocinadores
+public class Patrocinador extends Persona implements Serializable{
+	private static final long serialVersionUID = -3407371441746326606L;
+	
+	//Lista de patrocinadores
     public static ArrayList<Patrocinador> listaPatrocinadores = new ArrayList<Patrocinador>();
     //Atributos
     private double dineroDisponible;
@@ -32,7 +35,7 @@ public class Patrocinador extends Persona {
         lowerBound = 1.0 - this.dineroOfrecer / dineroDisponible;
         upperBound = 1.0;
         numRandom = lowerBound + (upperBound - lowerBound) * rand.nextDouble();
-        this.probAceptar = numRandom; //Se le asigna una probabilidad entre 100% menos la proporción del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, más alta la probabilidad de aceptar).
+        this.probAceptar = numRandom; //Se le asigna una probabilidad entre 100% menos la proporciï¿½n del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, mï¿½s alta la probabilidad de aceptar).
         Patrocinador.listaPatrocinadores.add(this);
     }
 
@@ -42,9 +45,9 @@ public class Patrocinador extends Persona {
         for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
             if (patrocinador.isPatrocinando()) {
                 if (patrocinador.getEquipo() == null) {
-                    tabla += patrocinador + "(\n¡No está dispuesto a patrocinar!";
+                    tabla += patrocinador + "(\nï¿½No estï¿½ dispuesto a patrocinar!";
                 } else {
-                    tabla += patrocinador + "(\n¡Sin equipo patrocinado!";
+                    tabla += patrocinador + "(\nï¿½Sin equipo patrocinado!";
                 }
             } else {
                 tabla += patrocinador + "(\nPatrocinando a:" + patrocinador.getEquipo() + ")";
@@ -109,7 +112,7 @@ public class Patrocinador extends Persona {
         Random rand = new Random();
         double lowerBound = 1.0 - this.dineroOfrecer / dineroDisponible;
         double upperBound = 1.0;
-        this.probAceptar = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asigna una probabilidad entre 100% menos la proporción del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, más alta la probabilidad de aceptar).
+        this.probAceptar = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asigna una probabilidad entre 100% menos la proporciï¿½n del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, mï¿½s alta la probabilidad de aceptar).
     }
 
 

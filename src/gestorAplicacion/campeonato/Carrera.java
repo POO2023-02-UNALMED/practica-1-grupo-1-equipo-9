@@ -2,21 +2,26 @@ package gestorAplicacion.campeonato;
 
 import gestorAplicacion.paddock.Circuito;
 import gestorAplicacion.paddock.Patrocinador;
+import gestorAplicacion.paddock.Piloto;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
 public class Carrera {
-	public static Carrera carreraActual;     //Carrera actual durante el main
 
-    public static ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
 
-    public static ArrayList<VehiculoCarrera> terminados = new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
+    public  ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
+
+    public  ArrayList<VehiculoCarrera> terminados = new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
+
+    public static ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Lista de carreras
+
+    private ArrayList<Equipo> equiposBeneficiados = new ArrayList<Equipo>(); //Lista de pilotos que tienen trato preferencial
 
     //Atributos
     private static int idActual = 1;
-    private static Campeonato campeonato;
+    private Campeonato campeonato;
     private int id;
     private String nombreCircuito;
     private String fecha;
@@ -26,7 +31,7 @@ public class Carrera {
     private Ciudad ciudad;
     private DirectorCarrera directorCarrera;
     private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
-    private double dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
+    private int dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
 
     private Circuito circuito;
 
@@ -41,11 +46,26 @@ public class Carrera {
         this.ciudad = ciudad;
         this.directorCarrera = director;
         director.setCarrera(this);
-        this.dificultad = dificultad;
+        this.dificultad = (int) dificultad;
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
         this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
+    }
+
+    public Carrera(Campeonato campeonato, int id, String nombreCircuito, String fecha, int mes, double distancia, double premioEfectivo, Ciudad ciudad, DirectorCarrera directorCarrera, double clima, int dificultad, Circuito circuito) {
+        this.campeonato = campeonato;
+        this.id = id;
+        this.nombreCircuito = nombreCircuito;
+        this.fecha = fecha;
+        this.mes = mes;
+        this.distancia = distancia;
+        this.premioEfectivo = premioEfectivo;
+        this.ciudad = ciudad;
+        this.directorCarrera = directorCarrera;
+        this.clima = clima;
+        this.dificultad = dificultad;
+        this.circuito = circuito;
     }
 
     public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director) {
@@ -56,7 +76,6 @@ public class Carrera {
         this.distancia = distancia;
         this.premioEfectivo = premio;
         this.ciudad = ciudad;
-        ciudad.setCarrera(this);
         this.directorCarrera = director;
         director.setCarrera(this);
         Random rand = new Random();
@@ -74,7 +93,7 @@ public class Carrera {
         this.ciudad = ciudad;
         this.directorCarrera = director;
         director.setCarrera(this);
-        this.dificultad = dificultad;
+        this.dificultad = (int) dificultad;
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
@@ -88,59 +107,50 @@ public class Carrera {
         this.distancia = distancia;
         this.premioEfectivo = premio;
         this.ciudad = ciudad;
-        this.dificultad = dificultad;
+        this.dificultad = (int) dificultad;
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = 0.2;
         this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
-    public Carrera(Ciudad ciudad, int mes, double dificultad) { //El chakalito y la chakalita xd
-        this.id = idActual;
-        Carrera.idActual++;
+    public Carrera(Ciudad ciudad, double dificultad, Campeonato campeonato, Circuito circuito, int mes, DirectorCarrera directorCarrera) { //El chakalito y la chakalita xd
+        this.id = idActual++;
         Random rand = new Random();
         ArrayList<String> poolNombres = new ArrayList<String>(); //TODO: Preguntar por estos nombres de carreras
         poolNombres.add("Grand Prix de ");
         poolNombres.add("Trofeo de ");
         this.ciudad = ciudad;
         this.mes = mes;
-        this.dificultad = dificultad;
+        this.dificultad = (int) dificultad;
+        this.campeonato = campeonato;
+        this.circuito = circuito;
+        this.directorCarrera = directorCarrera;
         this.nombreCircuito = poolNombres.get(rand.nextInt(2)) + this.ciudad.getNombre();
         this.distancia = (rand.nextInt(11) + 5) * 1000;
         this.premioEfectivo = (rand.nextInt(3) + 1) * 1000;
         Random random = new Random();
         int randomNumber = random.nextInt(28) + 1;
-        this.fecha = randomNumber + "/" + this.mes + "/" + Campeonato.campeonatoElegido.getAno();
+        this.fecha = randomNumber + "/" + this.mes + "/" + campeonato.getAno();
     }
 
     //Metodos de clase
 
-    public static Campeonato getCampeonato() {
-        return campeonato;
-    }
 
-    public static void setCampeonato(Campeonato campeonatico) {
-        campeonato = campeonatico;
-    }
 
-    //Metodos para el ciclo de la carrera
-    public static void comenzarCarrera(Carrera carrera) { //Metodo para comenzar cada carrera. Cada carrera se trabajara estaticamente.
-        carreraActual = carrera;
-    }
-
-    public static void actualizarGasolina() { //Cada iteracion se debe actualizar la gasolina.
+    /*public static void actualizarGasolina() { //Cada iteracion se debe actualizar la gasolina.
         if (VehiculoCarrera.vehiculoElegido.getGasolina() > 3) { //Si hay suficiente gasolina, se reduce el nivel.
             VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina() - 3);
         } else { //Si no hay suficiente gasolina, el carro choca.
             VehiculoCarrera.vehiculoElegido.chocar();
         }
-    }
+    }*/
 
-    public static void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones  TODO: Preguntar por imprimir dos tablas en paralelo durante el ciclo
-        for (VehiculoCarrera vehiculo : posiciones) {
+    public void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones  TODO: Preguntar por imprimir dos tablas en paralelo durante el ciclo
+        for (VehiculoCarrera vehiculo : this.posiciones) {
             vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
             vehiculo.setTiempo(vehiculo.getTiempo() + 1.0);
-            if (vehiculo.getDistanciaRecorrida() >= carreraActual.getDistancia()) {
+            if (vehiculo.getDistanciaRecorrida() >= this.getDistancia()) {
                 terminados.add(vehiculo);
                 vehiculo.setTerminado(true);
                 posiciones.remove(vehiculo);
@@ -164,7 +174,7 @@ public class Carrera {
     }
 
     //Metodos para el final de la carrera
-    public static boolean actualizarTerminado() {
+    public boolean actualizarTerminado() {
         boolean todosTerminados = true;
         for (VehiculoCarrera vehiculoCarrera : posiciones) {
             if (!vehiculoCarrera.isTerminado()) {
@@ -175,11 +185,11 @@ public class Carrera {
         return todosTerminados;
     }
 
-    public static void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {
-        Carrera.posiciones.add(vehiculoCarrera);
+    public void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {
+        this.posiciones.add(vehiculoCarrera);
     }
 
-    public static void premiarCarrera() { //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
+    public void premiarCarrera() { //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
         int puntosActuales = 25;
         int factor = 5;
         for (VehiculoCarrera vehiculo : terminados) {
@@ -189,21 +199,14 @@ public class Carrera {
                 factor--;
             }
         }
-        terminados.get(0).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.9);
+        terminados.get(0).getPiloto().recibirPlata(this.getPremioEfectivo() * 0.9);
         for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
-            patrocinador.recibirPlata(carreraActual.getPremioEfectivo() * 0.3);
+            patrocinador.recibirPlata(this.getPremioEfectivo() * 0.3);
         }
-        terminados.get(1).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.3);
-        terminados.get(2).getPiloto().recibirPlata(carreraActual.getPremioEfectivo() * 0.2);
+        terminados.get(1).getPiloto().recibirPlata(this.getPremioEfectivo() * 0.3);
+        terminados.get(2).getPiloto().recibirPlata(this.getPremioEfectivo() * 0.2);
     } //TODO: Preguntar por la cantidad que gana cada equipo
 
-    public static Carrera getCarreraActual() {
-        return carreraActual;
-    }
-
-    public static void setCarreraActual(Carrera carreraActual) {
-        Carrera.carreraActual = carreraActual;
-    }
 
     public static int getIdActual() {
         return idActual;
@@ -213,12 +216,12 @@ public class Carrera {
         Carrera.idActual = idActual;
     }
 
-    public static ArrayList<VehiculoCarrera> getTerminados() {
+    public ArrayList<VehiculoCarrera> getTerminados() {
         return terminados;
     }
 
-    public static void setTerminados(ArrayList<VehiculoCarrera> terminados) {
-        Carrera.terminados = terminados;
+    public void setTerminados(ArrayList<VehiculoCarrera> terminados) {
+        this.terminados = terminados;
     }
 
     // Lista de metodos set y get
@@ -287,11 +290,11 @@ public class Carrera {
         this.clima = clima;
     }
 
-    public double getDificultad() {
+    public int getDificultad() {
         return this.dificultad;
     }
 
-    public void setDificultad(double dificultad) {
+    public void setDificultad(int dificultad) {
         this.dificultad = dificultad;
     }
 
@@ -299,8 +302,8 @@ public class Carrera {
         return posiciones;
     }
 
-    public static void setPosiciones(ArrayList<VehiculoCarrera> posiciones) {
-        Carrera.posiciones = posiciones;
+    public void setPosiciones(ArrayList<VehiculoCarrera> posiciones) {
+        this.posiciones = posiciones;
     }
 
     public Circuito getCircuito() {
@@ -318,4 +321,29 @@ public class Carrera {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public Campeonato getCampeonato() {
+        return campeonato;
+    }
+
+    public void setCampeonato(Campeonato campeonato) {
+        this.campeonato = campeonato;
+    }
+
+    public static ArrayList<Carrera> getListaCarreras() {
+        return listaCarreras;
+    }
+
+    public static void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+        Carrera.listaCarreras = listaCarreras;
+    }
+
+    public ArrayList<Equipo> getEquiposBeneficiados() {
+        return equiposBeneficiados;
+    }
+
+    public void setEquiposBeneficiados(ArrayList<Equipo> equiposBeneficiados) {
+        this.equiposBeneficiados = equiposBeneficiados;
+    }
+
 }

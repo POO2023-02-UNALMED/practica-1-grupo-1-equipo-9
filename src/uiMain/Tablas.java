@@ -1,6 +1,5 @@
 package uiMain;
 
-import gestorAplicacion.*;
 import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 import java.util.*;
@@ -48,9 +47,9 @@ public interface Tablas {
         int maxPais = 0;
         for (Equipo equipo : equipos) {
             int nombre = equipo.getNombre().length();
-            int pais = equipo.getPais().length();
+            //int pais = equipo.getPais().length();
             int opcion = String.valueOf(equipo.getId()).length();
-            maxPais = Math.max(maxPais, pais);
+            //maxPais = Math.max(maxPais, pais);
             maxNombre = Math.max(maxNombre, nombre);
         }
 
@@ -72,7 +71,8 @@ public interface Tablas {
         int i = 1;
         for (Equipo equipo : equipos) {
 
-            System.out.printf("| %-"+7+"s | %-"+maxNombre+"s | %-"+maxPais+"s |\n",i ,equipo.getNombre(),equipo.getPais());
+            //System.out.printf("| %-"+7+"s | %-"+maxNombre+"s | %-"+maxPais+"s |\n",i ,equipo.getNombre(),equipo.getPais());
+            System.out.printf("| %-"+7+"s | %-"+maxNombre+"s | %-"+maxPais+"s |\n",i ,equipo.getNombre());
             i++;
 
             
@@ -81,18 +81,49 @@ public interface Tablas {
 
         System.out.println("-".repeat(tablaAncho));
     }
-    
-    
+
+    public static void tablaEquipos1(ArrayList<Equipo> equipos) {
+        // Obtener la longitud máxima de las cadenas en las columnas
+        int maxNombre = 0;
+        for (Equipo equipo : equipos) {
+            int nombre = equipo.getNombre().length();
+            maxNombre = Math.max(maxNombre, nombre);
+        }
+
+        // Calcular el ancho total de la tabla
+        int tablaAncho = maxNombre + 10 + 7; // 7 para los espacios y los bordes
+
+        // Imprimir la tabla con el título centrado
+        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   EQUIPOS", "");
+        System.out.println("-".repeat(tablaAncho));
+        System.out.println(tituloCentrado);
+        System.out.println("-".repeat(tablaAncho));
+
+        System.out.printf("| %-"+7+"s | %-"+maxNombre+"s |\n", "OPCION", "NOMBRE");
+
+        System.out.println("-".repeat(tablaAncho));
+
+        int i = 1;
+        for (Equipo equipo : equipos) {
+            System.out.printf("| %-"+7+"s | %-"+maxNombre+"s |\n", i, equipo.getNombre());
+            i++;
+        }
+
+        System.out.println("-".repeat(tablaAncho));
+    }
+
+
+
     //tabla para directores de carrera
     public static void tablaDirectoresCarrera(ArrayList<DirectorCarrera> listaDirectores) {
         // Obtener la longitud mï¿½xima de las cadenas en las columnas
-        int maxNombre = 0;
-        int maxPais = 0;
+        int maxNombre = 1;
+        int maxPais = 1;
         for (DirectorCarrera directorCarrera : listaDirectores) {
             int nombre = directorCarrera.getNombre().length();
-            int pais = directorCarrera.getPais().length();
+            //int pais = directorCarrera.getPais().length();
             int opcion = String.valueOf(directorCarrera.getId()).length();
-            maxPais = Math.max(maxPais, pais);
+            //maxPais = Math.max(maxPais, pais);
             maxNombre = Math.max(maxNombre, nombre);
         }
 
@@ -123,7 +154,7 @@ public interface Tablas {
         
         for (Patrocinador patrocinador : listaPatrocinadores) {
             int nombre = patrocinador.getNombre().length();
-            double dinero = patrocinador.getDinero();
+            double dinero = patrocinador.getPlata();
             int opcion = String.valueOf(patrocinador.getId()).length();
             
             maxNombre = Math.max(maxNombre, nombre);
@@ -142,7 +173,7 @@ public interface Tablas {
 
         int i = 1;
         for (Patrocinador patrocinador : listaPatrocinadores) {
-            System.out.printf("| %-"+7+"s | %-"+maxNombre+"s | %-"+10+"s |\n", i, patrocinador.getNombre(), patrocinador.getDinero()+"$", i);
+            System.out.printf("| %-"+7+"s | %-"+maxNombre+"s | %-"+10+"s |\n", i, patrocinador.getNombre(), patrocinador.getPlata()+"$", i);
             i++;
         }
 
@@ -220,7 +251,7 @@ public interface Tablas {
     }
     
     //tabla vehiculos
-    public static void tablaVehiculos(ArrayList<Vehiculo> vehiculosDisponibles) {
+    /*public static void tablaVehiculos(ArrayList<Vehiculo> vehiculosDisponibles) {
         // Obtener la longitud m�xima de las cadenas en las columnas
         int maxNombre = 0;
         
@@ -258,7 +289,7 @@ public interface Tablas {
 
         System.out.println("-".repeat(tablaAncho));
     }
-    
+    */
     
     //tabla posiciones
     public static void tablaPosiciones(ArrayList<VehiculoCarrera> posiciones) {
@@ -381,6 +412,44 @@ public interface Tablas {
         System.out.println("-".repeat(tablaAncho));
     }
 
+    public static void tablaCarreras1(ArrayList<Carrera> carreras) {
+        // Obtener la longitud m�xima de las cadenas en las columnas
+        int maxNombre = 1;
+
+        for (Carrera carrera : carreras) {
+            int nombre = carrera.getNombreCircuito().length();
+            int ciudad = carrera.getCiudad().getNombre().length();
+            double dificultad = carrera.getDificultad();
+
+
+            maxNombre = Math.max(maxNombre, nombre);
+        }
+
+        // Calcular el ancho total de la tabla
+        int tablaAncho = maxNombre + 7 + 16 + 10 + 7 + 5 +3; // 7 para los espacios y los bordes
+
+        // Imprimir la tabla con el t�tulo centrado
+        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "CALENDARIO DE CARRERAS", "");
+        System.out.println("-".repeat(tablaAncho));
+        System.out.println(tituloCentrado);
+        System.out.println("-".repeat(tablaAncho));
+        System.out.printf("| %-"+maxNombre+"s | %-"+16+"s | %-"+10+"s |%-"+7+"s |\n", "CARRERA", "CIUDAD","FECHA","DIFICULTAD");
+        System.out.println("-".repeat(tablaAncho));
+
+
+
+        for (Carrera carrera : carreras) {
+
+
+            System.out.printf("| %-"+maxNombre+"s | %-"+16+"s | %-"+10+"s | %-"+10+"s|\n", carrera.getNombreCircuito() ,carrera.getCiudad().getNombre(), carrera.getFecha(),carrera.getDificultad());
+
+
+
+
+        }
+
+        System.out.println("-".repeat(tablaAncho));
+    }
 
 
     //tabla stats actuales
@@ -392,6 +461,7 @@ public interface Tablas {
     	System.out.print("-------------------------------------\n");
     	
     	System.out.printf("| %-"+15+"s | %-"+15+"s |\n", "PILOTO", vehiculoElegido.getPiloto().getNombre() );
+        System.out.printf("| %-"+15+"s | %-"+15+"s |\n", "VELOCIDAD", vehiculoElegido.getVelocidadActual() );
     	System.out.printf("| %-"+15+"s | %-"+15+"s |\n", "GASOLINA", vehiculoElegido.getGasolina() );
     	if(vehiculoElegido.getAleron().isDanado() == true) {
     		System.out.printf("| %-"+15+"s  | %-"+15+"s |\n", "ALERON","DAÑADO" );

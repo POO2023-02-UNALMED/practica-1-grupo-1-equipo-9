@@ -97,7 +97,7 @@ public class Serializado {
     	fileOutputStream.close();
 	}
 	
-	public static void serializarVehiculos(ArrayList<Vehiculo> vehiculos) throws IOException {
+	public static void serializarVehiculos(ArrayList<Chasis> vehiculos) throws IOException {
 		
 		FileOutputStream fileOutputStream = new FileOutputStream("src\\baseDatos\\temp.txt");
     	ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

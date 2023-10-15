@@ -1,7 +1,10 @@
 package gestorAplicacion.campeonato;
 
+import gestorAplicacion.paddock.Patrocinador;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ciudad implements Serializable{
 	private static final long serialVersionUID = -8026803019433813720L;
@@ -12,13 +15,24 @@ public class Ciudad implements Serializable{
 	//Atributos
     private String nombre;
     private Continente continente;
-	private Carrera carrera;
-    
+
+	private Patrocinador host;
+	private double precioEstadia;
+
+	Random random = new Random();
     //Constructores
     public Ciudad(String nombre, Continente continente) {
     	this.nombre=nombre;
     	this.continente=continente;
 		Ciudad.listaCiudades.add(this);
+		// seleccionar host
+		this.host = Patrocinador.listaPatrocinadores.get(random.nextInt(Patrocinador.listaPatrocinadores.size()));
+		this.precioEstadia = (double) (random.nextInt(500) + 100);
+	}
+
+	public Ciudad(String nombre) {
+		this.nombre=nombre;
+		this.continente=Continente.values()[random.nextInt(5)];
 	}
     
     //Metodos de instancia
@@ -30,7 +44,7 @@ public class Ciudad implements Serializable{
     public static ArrayList<Ciudad> getListaCiudades() {
     	return listaCiudades;
     }
-    public static Continente convertirContinente(char id) { //Convierte un caracter del 1 al 5 en su continente correspondiente 
+    public static Continente convertirContinente(int id) { //Convierte un caracter del 1 al 5 en su continente correspondiente
     	Continente continente = null;
     	switch(id) {
     	case 1:
@@ -52,7 +66,7 @@ public class Ciudad implements Serializable{
     	return continente;
     }
 
-	public static ArrayList<Ciudad> mostrarCiudadesDisponibles(Continente continente) {
+	public static ArrayList<Ciudad> ciudadesContinente(Continente continente) {
 		ArrayList<Ciudad> listaCompleta = Ciudad.getListaCiudades();
 		ArrayList<Ciudad> listaDisponibles = new ArrayList<Ciudad>();
 		for (Ciudad ciudad : listaCompleta) {
@@ -61,6 +75,26 @@ public class Ciudad implements Serializable{
 			}
 		}
 		return listaDisponibles;
+	}
+
+	public void estadia(Carrera carrera) {
+		Campeonato campeonato = carrera.getCampeonato();
+		for (Equipo equipo : campeonato.getListaEquipos()) {
+			double precio = carrera.getCiudad().getPrecioEstadia() * equipo.getCrewMembers();
+			this.host.setDinero(this.host.getPlata() - precio);
+		}
+	}
+
+	public void hostRosca(Carrera carrera) {
+		Campeonato campeonato = carrera.getCampeonato();
+		ArrayList<Equipo> equipos = campeonato.getListaEquipos();
+		ArrayList<Equipo> equiposBeneficiados = new ArrayList<Equipo>();
+		for (Equipo equipo : campeonato.getListaEquipos()) {
+			if (equipo.getPatrocinadoresEquipo().contains(this.host)) {
+				equiposBeneficiados.add(equipo);
+			}
+		}
+		carrera.setEquiposBeneficiados(equiposBeneficiados);
 	}
 
     // Lista de metodos set y get
@@ -74,16 +108,19 @@ public class Ciudad implements Serializable{
 		Ciudad.listaCiudades = listaCiudades;
 	}
 
-	public Carrera getCarrera() {
-		return carrera;
+	public Patrocinador getHost() {
+		return host;
 	}
 
-	public void setCarrera(Carrera carrera) {
-		this.carrera = carrera;
+	public void setHost(Patrocinador host) {
+		this.host = host;
 	}
 
-	// Lista de continentes
-    public enum Continente {
-        Africa, America, Asia, Europa, Oceania
-    }
+	public double getPrecioEstadia() {
+		return precioEstadia;
+	}
+
+	public void setPrecioEstadia(double precioEstadia) {
+		this.precioEstadia = precioEstadia;
+	}
 }

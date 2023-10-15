@@ -1,3 +1,4 @@
+/*
 package uiMain;
 
 import gestorAplicacion.campeonato.*;
@@ -230,9 +231,11 @@ public class MainUI_BACKUP {
         equipo5.agregarVehiculo(vehiculo10);
     }
 
-    /**
+    */
+/**
      * This is the "ui"
-     */
+     *//*
+
     public static void main(String[] args) {
         // Variables Necesarias
         Scanner sc = new Scanner(System.in);
@@ -242,17 +245,21 @@ public class MainUI_BACKUP {
         // Mensaje de bienvenida
         bienvenida();
         System.out.println("\n");
-        /*Descomentar
-        sc.nextLine();*/
+        */
+/*Descomentar
+        sc.nextLine();*//*
+
 
         // Mensaje de introduccion
         System.out.println("�Hola! En este juego, ser�s un piloto de un equipo de carreras de F�rmula 1.");
         System.out.println("Tu objetivo es ganar el campeonato de carreras, para ello, deber�s competir en carreras y obtener puntos.");
         System.out.println("�Buena suerte!\n");
 
-        /*Descomentar
+        */
+/*Descomentar
         System.out.println("\n");
-        sc.nextLine();*/
+        sc.nextLine();*//*
+
 
 
         System.out.println("Primero debes preparar el campeonato en el que competir�s.");
@@ -269,8 +276,10 @@ public class MainUI_BACKUP {
         boolean validaciones = false;
 
         while (!validaciones) {
-            /*Descomentar
-            int n = sc.nextInt();*/
+            */
+/*Descomentar
+            int n = sc.nextInt();*//*
+
             int n = rand.nextInt(5); //Test
             // Validar que el numero sea del 1 al 5
             if (n < 1 || n > 5) {
@@ -290,8 +299,10 @@ public class MainUI_BACKUP {
         // Paso 2: Elige el A�o
         System.out.println("Elige el A�o");
         System.out.println("Indica el a�o en el que quieres que se celebre el campeonato.");
-        /*Descomentar
-        int n = sc.nextInt();*/
+        */
+/*Descomentar
+        int n = sc.nextInt();*//*
+
         int n = 2023;
         validaciones = false;
         // Validar que el numero sea mayor que 1950 y menor que 9999
@@ -325,8 +336,10 @@ public class MainUI_BACKUP {
         System.out.println("\n");
         validaciones = false;
         // Validar que sea un numero del 1 al 10
-        /*Descomentar
-        n = sc.nextInt();*/
+        */
+/*Descomentar
+        n = sc.nextInt();*//*
+
         n = rand.nextInt(5) + 1;
 
         while (!validaciones) {
@@ -354,8 +367,10 @@ public class MainUI_BACKUP {
 
         validaciones = false;
         // Validar que sea un numero del 1 al 5
-        /*Descomentar
-        n = sc.nextInt();*/
+        */
+/*Descomentar
+        n = sc.nextInt();*//*
+
         n = rand.nextInt(5) + 1;
 
         while (!validaciones) {
@@ -381,8 +396,10 @@ public class MainUI_BACKUP {
 
         validaciones = false;
         // Validar que sea un numero del 1 al 4
-        /*Descomentar
-        n = sc.nextInt();*/
+        */
+/*Descomentar
+        n = sc.nextInt();*//*
+
         n = rand.nextInt(4) + 1;
 
         while (!validaciones) {
@@ -417,8 +434,10 @@ public class MainUI_BACKUP {
 
         // Negociar: Equipos No elegidos
         for (Equipo equipo : Equipo.equipos) {
-            /*Descomentar
-            if (equipo != Equipo.equipoElegido) {*/
+            */
+/*Descomentar
+            if (equipo != Equipo.equipoElegido) {*//*
+
             for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
                 if (equipo.getPlata() > 1000) {
                     break;
@@ -432,14 +451,18 @@ public class MainUI_BACKUP {
 //            }
         }
 
-       /* for (Equipo equipo : Equipo.equipos) {
+       */
+/* for (Equipo equipo : Equipo.equipos) {
             System.out.println(equipo.getNombre() + " tiene " + equipo.getPlata() + " d�lares.");
             System.out.println("\n");
-        }*/
+        }*//*
 
-        /*Descomentar
+
+        */
+/*Descomentar
         System.out.println("Actualmente, tu equipo no tiene dinero :(.");
-        MainUI.negociar();*/
+        MainUI.negociar();*//*
+
 
 
         // FUNCIONALIDAD Planificar Calendario de Carreras
@@ -769,8 +792,10 @@ public class MainUI_BACKUP {
         //System.out.println(Patrocinador.mostrarPatrocinadores());
 
         String ans = "S";
+*/
 /*        Descomentar
-        validaciones = false;*/
+        validaciones = false;*//*
+
         validaciones = false;
         int n;
 
@@ -894,3 +919,4 @@ public class MainUI_BACKUP {
 
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package gestorAplicacion;
 
 import java.io.IOException;
@@ -150,3 +151,4 @@ public class MainTest {
         
     }
 }
+*/

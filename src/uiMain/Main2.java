@@ -1,3 +1,4 @@
+/*
 package uiMain;
 
 import gestorAplicacion.campeonato.*;
@@ -39,8 +40,10 @@ public class Main2 {
         boolean validaciones = false;
 
         while (!validaciones) {
-            /*Descomentar
-            int n = sc.nextInt();*/
+            */
+/*Descomentar
+            int n = sc.nextInt();*//*
+
             int n = rand.nextInt(5); //Test
             // Validar que el numero sea del 1 al 5
             if (n < 1 || n > 5) {
@@ -58,8 +61,10 @@ public class Main2 {
         }
 
 
-        /*Descomentar
-        int n = sc.nextInt();*/
+        */
+/*Descomentar
+        int n = sc.nextInt();*//*
+
         int n = 2023;
         validaciones = false;
         // Validar que el numero sea mayor que 1950 y menor que 9999
@@ -331,3 +336,4 @@ public class Main2 {
 	
 	
 
+*/

@@ -11,8 +11,7 @@ public class DirectorCarrera extends Persona implements Serializable{
 
 	//Lista directores de carrera
     public static ArrayList<DirectorCarrera> listaDirectores= new ArrayList<DirectorCarrera>();
-	
-	private double plata;
+
     private boolean licencia;
     private Carrera carrera;
     private int corrupcion;
@@ -22,17 +21,28 @@ public class DirectorCarrera extends Persona implements Serializable{
         super();
     }
 
-    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia) {
-        super(nombre, pais);
-        this.plata = plata;
+    public DirectorCarrera(String nombre, double plata, boolean licencia, Carrera carrera) {
+        super(nombre, plata);
         this.licencia = licencia;
+        this.carrera = carrera;
+    }
+
+    public DirectorCarrera(String nombre, String pais, double plata, boolean licencia) {
+        super(nombre, pais, plata);
+        this.licencia = licencia;
+        this.corrupcion = 0;
+        DirectorCarrera.listaDirectores.add(this);
+    }
+
+    public DirectorCarrera(String nombre) {
+        super(nombre, random.nextDouble(40001) + 10000);
+        this.licencia = true;
         this.corrupcion = 0;
         DirectorCarrera.listaDirectores.add(this);
     }
 
     public DirectorCarrera(String nombre, String pais, double plata, boolean licencia, Carrera carrera, int corrupcion) {
         super(nombre, pais);
-        this.plata = plata;
         this.licencia = licencia;
         this.carrera = carrera;
         this.corrupcion = corrupcion;
@@ -41,6 +51,9 @@ public class DirectorCarrera extends Persona implements Serializable{
     //Metodo abstracto heredado
     public void recibirPlata(double plata) {
         this.setPlata(this.getPlata()+plata);
+    }
+    public void sinPlata() {
+        this.setPlata(random.nextDouble(40001) + 10000);
     }
     // M�todos de instancia
     public void ponerSancion(Piloto piloto) {
@@ -58,7 +71,17 @@ public class DirectorCarrera extends Persona implements Serializable{
         return favores;
     }
 
-    public ArrayList<ArrayList<String>> verStatsCompetidores() {
+    public static ArrayList<DirectorCarrera> dcDisponibles(){
+    	ArrayList<DirectorCarrera> disponibles = new ArrayList<DirectorCarrera>();
+    	for (DirectorCarrera dc: DirectorCarrera.listaDirectores) {
+    		if (dc.isLicencia()) {
+    			disponibles.add(dc);
+    		}
+    	}
+    	return disponibles;
+    }
+
+    /*public ArrayList<ArrayList<String>> verStatsCompetidores() {
         double precio = 1000000;
         ArrayList<ArrayList<String>> listaStats = new ArrayList<>();
         if (Equipo.equipoElegido.getPlata() >= precio) {
@@ -76,9 +99,9 @@ public class DirectorCarrera extends Persona implements Serializable{
             }
         }
         return listaStats;
-    }
+    }*/
 
-    public ArrayList<VehiculoCarrera> cambiarPosIniciales(int posicion) {
+    /*public ArrayList<VehiculoCarrera> cambiarPosIniciales(int posicion) {
         double precio = 1000000;
         Equipo equipo = Equipo.equipoElegido;
         if (Equipo.equipoElegido.getPlata() >= precio) {
@@ -88,11 +111,11 @@ public class DirectorCarrera extends Persona implements Serializable{
             // TODO
         }
         return this.carrera.getPosiciones();
-    }
+    }*/
 
     // Para tunear Shaddy primero hay que comprar la pieza de contrabando
     // El proceso es el mismo que comprar una pieza normal
-    public void tunearShaddy(Pieza pieza, int parte) {
+    /*public void tunearShaddy(Pieza pieza, int parte) {
         double precio = 1000000;
         Equipo equipo = Equipo.equipoElegido;
         if (Equipo.equipoElegido.getPlata() >= precio) {
@@ -110,19 +133,19 @@ public class DirectorCarrera extends Persona implements Serializable{
                     break;
             }
         }
-    }
+    }*/
 
     //Para hacer chocar primero hay que elegir a quien se va a chocar de la lista de puestos
-    public void hacerChocar(VehiculoCarrera vehiculo) {
+/*    public void hacerChocar(VehiculoCarrera vehiculo) {
         double precio = 1000000;
         if (Equipo.equipoElegido.getPlata() >= precio) {
             this.corrupcion += 1;
             Equipo.equipoElegido.setPlata(Equipo.equipoElegido.getPlata() - precio); // Cobrar
             vehiculo.chocar();
         }
-    }
+    }*/
 
-    public boolean apuestasSub(double plataMetida, int numero) {
+/*    public boolean apuestasSub(double plataMetida, int numero) {
         this.corrupcion += 1;
         Equipo equipo = Equipo.equipoElegido;
         equipo.setPlata(equipo.getPlata() - plataMetida); // Se le quita la plata al equipo
@@ -134,15 +157,7 @@ public class DirectorCarrera extends Persona implements Serializable{
         } else {
             return false;
         }
-    }
-
-    public double getPlata() {
-        return plata;
-    }
-
-    public void setPlata(double plata) {
-        this.plata = plata;
-    }
+    }*/
 
     public boolean isLicencia() {
         return licencia;
@@ -169,4 +184,6 @@ public class DirectorCarrera extends Persona implements Serializable{
     }
     
     public static ArrayList<DirectorCarrera> getListaDirectores() {return DirectorCarrera.listaDirectores;}
+
+    static Random random = new Random();
 }

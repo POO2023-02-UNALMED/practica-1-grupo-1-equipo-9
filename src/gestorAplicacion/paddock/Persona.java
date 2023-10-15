@@ -6,6 +6,7 @@ public abstract class Persona {
     private int id;
     private String nombre;
     private String pais;
+    private double plata;
 
     // Constructores
     public Persona(String nombre, String pais) {
@@ -13,21 +14,39 @@ public abstract class Persona {
         this.nombre = nombre;
         this.pais = pais;
         Persona.idActual++;
+        this.plata = 0;
+    }
+    public Persona(String nombre, String pais, double plata) {
+        this.id = Persona.getIdActual();
+        this.nombre = nombre;
+        this.pais = pais;
+        Persona.idActual++;
+        this.plata = plata;
     }
     
     public Persona(String nombre) {
     	this.id = Persona.getIdActual();
     	this.nombre = nombre;
         Persona.idActual++;
+        this.plata = 0;
+    }
+
+    public Persona(String nombre, double plata) {
+        this.id = Persona.getIdActual();
+        this.nombre = nombre;
+        Persona.idActual++;
+        this.plata = plata;
     }
     
     public Persona() {
         this.id = Persona.getIdActual();
         Persona.idActual++;
+        this.plata = 0;
     }
 
     //Metodos abstractos
     public abstract void recibirPlata(double plata); //TODO: Dime que este metodo esta bien hecho :sob:
+    public abstract void sinPlata();
 
     //Metodos de clase
     public static int getIdActual() {
@@ -45,4 +64,16 @@ public abstract class Persona {
     public String getPais() {return this.pais;}
 
     public void setPais(String pais) {this.pais = pais;}
+
+    public static void setIdActual(int idActual) {
+        Persona.idActual = idActual;
+    }
+
+    public double getPlata() {
+        return plata;
+    }
+
+    public void setPlata(double plata) {
+        this.plata = plata;
+    }
 }

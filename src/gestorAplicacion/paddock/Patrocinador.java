@@ -83,22 +83,6 @@ public class Patrocinador extends Persona implements Serializable{
     }
 
     //Metodos de clase
-/*    public static String mostrarPatrocinadores() { //TODO: Preguntar si quieren una tabla diferente
-        String tabla = null;
-        for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
-            if (patrocinador.isPatrocinando()) {
-                if (patrocinador.getEquipo() == null) {
-                    tabla += patrocinador + "(\n�No est� dispuesto a patrocinar!";
-                } else {
-                    tabla += patrocinador + "(\n�Sin equipo patrocinado!";
-                }
-            } else {
-                tabla += patrocinador + "(\nPatrocinando a:" + patrocinador.getEquipo() + ")";
-            }
-        }
-        return tabla;
-    }*/
-
     public static ArrayList<Patrocinador> getListaPatrocinadores() {
         return listaPatrocinadores;
     }
@@ -192,16 +176,6 @@ public class Patrocinador extends Persona implements Serializable{
     public void sinPlata() {
         this.setDinero((Math.random() * 9000001) + 10000000);
     }
-
-/*    public boolean pensarNegocio(Equipo equipo, boolean equipoNoElegido) { //Sobrecargar para que algunos equipos no elegidos por el usuario puedan ser patrocinados
-        if (this.patrocinando){
-            return false;
-        } else {
-            this.setEquipo(equipo);
-            this.equipoPatrocinado.setPlata(this.equipoPatrocinado.getPlata() + this.dineroOfrecer);
-            return true;
-        }
-    }*/
 
     //Lista de metodos set y get
 

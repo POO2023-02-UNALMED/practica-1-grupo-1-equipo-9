@@ -45,7 +45,7 @@ public abstract class Persona {
     }
 
     //Metodos abstractos
-    public abstract void recibirPlata(double plata); //TODO: Dime que este metodo esta bien hecho :sob:
+    public abstract void recibirPlata(double plata);
     public abstract void sinPlata();
 
     //Metodos de clase

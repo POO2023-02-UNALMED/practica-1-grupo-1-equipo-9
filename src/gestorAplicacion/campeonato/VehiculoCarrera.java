@@ -19,7 +19,7 @@ public class VehiculoCarrera extends Chasis {
     private boolean morido; // Si está morido, lo manda al final de la lista de posiciones.
     private double velocidadTuneao; //Velocidad del vehículo + velocidad de las piezas
     private double velocidadCircumstancias; // velocidad de las circunstancias
-    private double velocidadActual; //Velocidad actual del vehículo, velocidad tuneada +- situaciones //TODO: IMPORTANTE: La velocidad en que unidades (o numeros) deberiamos trabajarla (no pueden ser horas).
+    private double velocidadActual; //Velocidad actual del vehículo, velocidad tuneada +- situaciones
     private double probabilidadChoque;
     private Pieza motor;
     private Pieza neumaticos;
@@ -154,8 +154,8 @@ public class VehiculoCarrera extends Chasis {
         this.llenarGasolina();
     }
 
-    public void repararVehiculo() {
-        double precio = 1000; //preguntar precio
+    public boolean repararVehiculo() {
+        double precio = (this.motor.getPrecio()+this.aleron.getPrecio()+this.neumaticos.getPrecio())/2;
         Equipo equipo =  this.getPiloto().getEquipo();
         if (equipo.getPlata() >= precio) {
             equipo.setPlata(this.piloto.getEquipo().getPlata() - precio); // Cobrar
@@ -163,7 +163,8 @@ public class VehiculoCarrera extends Chasis {
             this.getAleron().arreglar();
             this.getMotor().arreglar();
             this.getNeumaticos().arreglar();
-        }
+            return true;
+        } else {return false;}
     }
 
     public void llenarGasolina() {
@@ -293,6 +294,21 @@ public class VehiculoCarrera extends Chasis {
         }
     }
 
+    public static ArrayList<VehiculoCarrera> maldecirVehiculos(VehiculoCarrera vehiculoMaldito, VehiculoCarrera vehiculoUsuario, ArrayList<Piloto> pilotosDesfavorecidos, double plata, DirectorCarrera directorCarrera){
+        Random rand = new Random();
+        ArrayList<VehiculoCarrera> posicionesCorruptas = new ArrayList<VehiculoCarrera>();
+        vehiculoUsuario.setDistanciaRecorrida(50 + (double) ((100) * (1 + rand.nextInt(10))) /10);
+        vehiculoMaldito.setDistanciaRecorrida(-50 - (double) ((200) * (1 + rand.nextInt(10))) /10);
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
+            if (pilotosDesfavorecidos.contains(vehiculoCarrera.getPiloto())){
+                vehiculoCarrera.setDistanciaRecorrida(-10 - (double) ((50) * (1 + rand.nextInt(10))) /10);
+            }
+            if (directorCarrera.getCarrera().getCampeonato().getListaPilotos().contains(vehiculoCarrera.getPiloto())){
+                posicionesCorruptas.add(vehiculoCarrera);
+            }
+        }
+        return posicionesCorruptas;
+    }
 
 
     // Ligadura Dinamica

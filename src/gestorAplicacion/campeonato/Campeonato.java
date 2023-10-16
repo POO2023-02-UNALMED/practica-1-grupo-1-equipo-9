@@ -85,6 +85,14 @@ public class Campeonato implements Serializable{
     }
 
     // Metodos de instancia
+
+    public void premiarCampeones(ArrayList<Equipo> equiposPuntuados){
+        for (Piloto piloto : this.getListaPilotos()){
+            if (equiposPuntuados.get(0)==piloto.getEquipo()){
+                piloto.agregarVictoria(this);
+            }
+        }
+    }
     public String toString() {
     	return (this.nombre + " " + this.ano);
     }
@@ -152,9 +160,7 @@ public class Campeonato implements Serializable{
         patrocinador.setPlata(patrocinador.getPlata() - presupuesto);
     }
 
-    //Metodos de clase    
-    public static ArrayList<Campeonato> getCampeonatos() {return campeonatos;}
-    
+    //Metodos de clase
     public static ArrayList<Campeonato> campeonatosContinente(Continente continente) {
     	ArrayList<Campeonato> campeonatosContinente = new ArrayList<Campeonato>();
     	for (Campeonato campeonato : campeonatos) {

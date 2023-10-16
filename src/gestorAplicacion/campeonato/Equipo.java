@@ -5,6 +5,7 @@ import gestorAplicacion.paddock.Piloto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 
@@ -21,7 +22,7 @@ public class Equipo implements Serializable {
     private int puntos; //Puntos que lleva el equipo en el campeonato
     private boolean ocupado = false; //Si el equipo esta ocupado, se puede jugar
     private ArrayList<Ciudad> sedes = new ArrayList<Ciudad>(); //Lista de ciudades donde se puede ubicar la sede del equipo
-    private ArrayList<Patrocinador> patrocinadoresEquipo = new ArrayList<Patrocinador>(); //Lista de patrocinadores que patrocinan al equipo TODO: Perdon, toque tu clase :,(
+    private ArrayList<Patrocinador> patrocinadoresEquipo = new ArrayList<Patrocinador>(); //Lista de patrocinadores que patrocinan al equipo
 
     private boolean elegido = false;
     private int crewMembers = 5;
@@ -87,9 +88,14 @@ public class Equipo implements Serializable {
     }
 
 
-    // M�todos de clase
-    public static ArrayList<Equipo> getEquipos() {
-        return null;
+    // Metodos de clase
+    public static ArrayList<Equipo> organizarEquiposPuntos(Campeonato campeonato) {
+        ArrayList<Equipo> listaOrganizada = new ArrayList<Equipo>();
+        for (Equipo equipo : campeonato.getListaEquipos()){
+            listaOrganizada.add(equipo);
+        }
+        listaOrganizada.sort(Comparator.comparing(equipo->equipo.getPuntos()));
+        return listaOrganizada;
     }
 
     public static void setEquipos(ArrayList<Equipo> equipos) {
@@ -172,35 +178,6 @@ public class Equipo implements Serializable {
         return contrincantes;
     }
 
-    // M�todos de instancia
-    /*public boolean negociar(Patrocinador patrocinador) {
-        //Esto es para aceptar las probabilidades de que acepte un patrocinador
-        return patrocinador.pensarNegocio(this);
-    }*/
-
-/*    public String negociar(double cantidad, Patrocinador patrocinador) {//Sobrecarga para cambiar el dinero que se le pide al patrocinador. A menor cantidad, mayor probabilidad de aceptar.
-        if (cantidad < 0) {
-            //System.out.println("Esa es una cantidad de dinero negativa. �Acaso piensas en patrocinar al patrocinador?");
-            return "Esa es una cantidad de dinero negativa. �Acaso piensas en patrocinar al patrocinador?";
-        } else if (cantidad == 0) {
-            //System.out.println("�Por qu� 0? �Es que no quieres dinero?");
-            return "�Por qu� 0? �Es que no quieres dinero?";
-        } else if (cantidad > patrocinador.getDinero()) {
-            patrocinador.setPatrocinando(true);
-            //System.out.println("�Eso es m�s dinero del que puede dar! \n!Has asustado al patrocinador!");
-            return "�Eso es m�s dinero del que puede dar! \n!Has asustado al patrocinador!";
-        } else {
-            this.negociar(patrocinador);
-            return "�Se ha evaluado la opcion de patrocinar a tu equipo!";
-        }
-    }*/
-
-
-/*    public void negociar(Patrocinador patrocinador, boolean equipoNoElegido) {
-        //Sobrecarga: Esto es para ver si alg�n equipo que no es elegido por el usuario es patrocinado por alg�n patrocinador
-        patrocinador.pensarNegocio(this, equipoNoElegido);
-    }*/
-
     public static int getIdActual() {
         return idActual;
     }
@@ -209,6 +186,40 @@ public class Equipo implements Serializable {
         Equipo.idActual = idActual;
     }
 
+    public static void puntuarEquipos(ArrayList<VehiculoCarrera> terminados, double plata, Campeonato campeonato){
+        int puntosActuales = 13;
+        for (VehiculoCarrera vehiculo : terminados) {
+            if (!vehiculo.isMorido()){
+                vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
+                vehiculo.getPiloto().getEquipo().recalcularPuntos(campeonato);
+                if (puntosActuales>=8){
+                    puntosActuales-=2;
+                } else {
+                    puntosActuales--;
+                }
+            }
+            if (vehiculo.getPiloto().getSanciones()!=0){
+                vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
+            }
+        }
+        terminados.get(0).getPiloto().recibirPlata(plata * 0.9);
+        for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
+            patrocinador.recibirPlata(plata * 0.5);
+        }
+        terminados.get(1).getPiloto().recibirPlata(plata * 0.3);
+        terminados.get(2).getPiloto().recibirPlata(plata * 0.2);
+    }
+
+    //Metodos de instancia
+    public void recalcularPuntos(Campeonato campeonato){
+        int nuevosPuntos = 0;
+        for (Piloto piloto : campeonato.getListaPilotos()) {
+            if (piloto.isElegido() && piloto.getEquipo()==this){
+                nuevosPuntos+=piloto.getPuntos();
+            }
+        }
+        this.setPuntos(nuevosPuntos);
+    }
     public void recibirPlata(double plata) {
         this.setPlata(this.getPlata() + plata);
     }
@@ -246,7 +257,7 @@ public class Equipo implements Serializable {
         this.sedes.add(ciudad);
     }
 
-    // Lista de m�todos set y get
+    // Lista de metodos set y get
     public int getId() {
         return this.id;
     }

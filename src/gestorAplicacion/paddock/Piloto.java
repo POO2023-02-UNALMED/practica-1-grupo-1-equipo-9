@@ -1,7 +1,10 @@
 package gestorAplicacion.paddock;
 
+import gestorAplicacion.campeonato.DirectorCarrera;
 import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.Campeonato;
+import gestorAplicacion.campeonato.VehiculoCarrera;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -71,7 +74,7 @@ public class Piloto extends Persona implements Serializable{
         Piloto.listaPilotos.add(this);
     }
     
-    //Atributos de instancia
+    //Metodos de instancia
     public void sumarPuntos(int puntos) {
     	this.puntos+=puntos;
     }
@@ -80,13 +83,39 @@ public class Piloto extends Persona implements Serializable{
     	victorias.add(campeonato.toString());
     }
 
+    public void contratar(Equipo equipo) {
+        equipo.setPlata(equipo.getPlata()-this.valorContrato);
+        this.setPresupuestoVehiculo(this.valorContrato * this.habilidad * 10);
+    }
+
+    public VehiculoCarrera maldecirPiloto(double plata, Piloto piloto, DirectorCarrera directorCarrera){
+        //Busqueda del carro
+        VehiculoCarrera vehiculoMaldito = null;
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
+            if (vehiculoCarrera.getPiloto().equals(this)) {
+                vehiculoMaldito = vehiculoCarrera;
+            }
+        }
+        //Maldecir al piloto y al vehiculo
+        double difHabilidad = this.getHabilidad();
+        if (plata>=this.getValorContrato()){
+            this.setHabilidad(0);
+            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque()+difHabilidad);
+        } else if(plata>=this.getValorContrato()/2) {
+            this.setHabilidad(this.getHabilidad()/2);
+            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque()+difHabilidad/2);
+        } else {
+            directorCarrera.ponerSancion(piloto);
+        }
+        return vehiculoMaldito;
+    }
+
     //Metodo abstracto heredado
     public void recibirPlata(double plata){
         this.getEquipo().setPlata(this.getEquipo().getPlata()+plata);
     }
     
     // Metodos de clase
-
     public static Piloto pilotoAleatorio() {
     	int n = (int) (Math.random()*Piloto.listaPilotos.size());
     	return Piloto.listaPilotos.get(n);
@@ -137,14 +166,7 @@ public class Piloto extends Persona implements Serializable{
         return piloto;
     }
 
-    public void contratar(Equipo equipo) {
-    	equipo.setPlata(equipo.getPlata()-this.valorContrato);
-        this.setPresupuestoVehiculo(this.valorContrato * this.habilidad * 10);
-    }
-
-    // Lista de m�todos set y get
-
-
+    // Lista de metodos set y get
     public void setVictorias(ArrayList<String> victorias) {
         this.victorias = victorias;
     }
@@ -224,6 +246,6 @@ public class Piloto extends Persona implements Serializable{
     static Random random = new Random();
 
     public void sinPlata() {
-        this.setPlata(0);
+        this.getEquipo().recibirPlata((Math.random() * 90000) + 10000);
     }
 }

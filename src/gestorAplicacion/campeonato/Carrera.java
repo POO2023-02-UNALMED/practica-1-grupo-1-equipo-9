@@ -117,7 +117,7 @@ public class Carrera {
     public Carrera(Ciudad ciudad, double dificultad, Campeonato campeonato, Circuito circuito, int mes, DirectorCarrera directorCarrera) { //El chakalito y la chakalita xd
         this.id = idActual++;
         Random rand = new Random();
-        ArrayList<String> poolNombres = new ArrayList<String>(); //TODO: Preguntar por estos nombres de carreras
+        ArrayList<String> poolNombres = new ArrayList<String>();
         poolNombres.add("Grand Prix de ");
         poolNombres.add("Trofeo de ");
         this.ciudad = ciudad;
@@ -134,19 +134,22 @@ public class Carrera {
         this.fecha = randomNumber + "/" + this.mes + "/" + campeonato.getAno();
     }
 
-    //Metodos de clase
 
-
-
-    /*public static void actualizarGasolina() { //Cada iteracion se debe actualizar la gasolina.
-        if (VehiculoCarrera.vehiculoElegido.getGasolina() > 3) { //Si hay suficiente gasolina, se reduce el nivel.
-            VehiculoCarrera.vehiculoElegido.setGasolina(VehiculoCarrera.vehiculoElegido.getGasolina() - 3);
-        } else { //Si no hay suficiente gasolina, el carro choca.
-            VehiculoCarrera.vehiculoElegido.chocar();
+    public void actualizarGasolina(Piloto piloto) { //Cada iteracion se debe actualizar la gasolina.
+        VehiculoCarrera carroElegidoCarrerra = null;
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
+            if (vehiculoCarrera.getPiloto()==piloto){
+                carroElegidoCarrerra = vehiculoCarrera;
+            }
         }
-    }*/
+        if (carroElegidoCarrerra.getGasolina() > 3) { //Si hay suficiente gasolina, se reduce el nivel.
+            carroElegidoCarrerra.setGasolina(carroElegidoCarrerra.getGasolina() - 3);
+        } else { //Si no hay suficiente gasolina, el carro choca.
+            carroElegidoCarrerra.chocar();
+        }
+    }
 
-    public void actualizarPosiciones() { //Cada iteracion del ciclo, se deben actualizar las posiciones  TODO: Preguntar por imprimir dos tablas en paralelo durante el ciclo
+    public void actualizarPosiciones() {
         for (VehiculoCarrera vehiculo : this.posiciones) {
             vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
             vehiculo.setTiempo(vehiculo.getTiempo() + 1.0);
@@ -159,7 +162,7 @@ public class Carrera {
         posiciones.sort(Comparator.comparing(VehiculoCarrera::getDistanciaRecorrida));
     }
 
-    public static ArrayList<Boolean> actualizarOpciones() { //Este metodo selecciona aleatoriamente que opciones se van a mostrar
+    public ArrayList<Boolean> actualizarOpciones() { //Este metodo selecciona aleatoriamente que opciones se van a mostrar
         ArrayList<Boolean> listaOpciones = new ArrayList<Boolean>();
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
@@ -185,28 +188,17 @@ public class Carrera {
         return todosTerminados;
     }
 
+    public void verificarPorChoques(){
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
+            if (vehiculoCarrera.isMorido() && this.getCampeonato().getListaPilotos().contains(vehiculoCarrera.getPiloto())){
+                this.terminados.add(vehiculoCarrera);
+            }
+        }
+    }
+
     public void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {
         this.posiciones.add(vehiculoCarrera);
     }
-
-    public void premiarCarrera() { //Metodo para otorgar los puntos y el premio en efectivo al final de cada carrera
-        int puntosActuales = 25;
-        int factor = 5;
-        for (VehiculoCarrera vehiculo : terminados) {
-            vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales * factor);
-            puntosActuales--;
-            if (factor != 1) {
-                factor--;
-            }
-        }
-        terminados.get(0).getPiloto().recibirPlata(this.getPremioEfectivo() * 0.9);
-        for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
-            patrocinador.recibirPlata(this.getPremioEfectivo() * 0.3);
-        }
-        terminados.get(1).getPiloto().recibirPlata(this.getPremioEfectivo() * 0.3);
-        terminados.get(2).getPiloto().recibirPlata(this.getPremioEfectivo() * 0.2);
-    } //TODO: Preguntar por la cantidad que gana cada equipo
-
 
     public static int getIdActual() {
         return idActual;

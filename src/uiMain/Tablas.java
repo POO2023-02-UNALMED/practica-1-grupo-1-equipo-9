@@ -11,7 +11,7 @@ public interface Tablas {
 
 
     public static void tablaCampeonatos(ArrayList<Campeonato> campeonatos) {
-        // Obtener la longitud mï¿½xima de las cadenas en las columnas
+        // Obtener la longitud maxima de las cadenas en las columnas
 
         int maxNombre = 0;
         for (Campeonato campeonato : campeonatos) {
@@ -56,7 +56,7 @@ public interface Tablas {
         // Calcular el ancho total de la tabla
         int tablaAncho = maxNombre + 10 + 7 + maxPais; // 7 para los espacios y los bordes
 
-        // Imprimir la tabla con el tï¿½tulo centrado
+        // Imprimir la tabla con el titulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   EQUIPOS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
@@ -116,7 +116,7 @@ public interface Tablas {
 
     //tabla para directores de carrera
     public static void tablaDirectoresCarrera(ArrayList<DirectorCarrera> listaDirectores) {
-        // Obtener la longitud mï¿½xima de las cadenas en las columnas
+        // Obtener la longitud maxima de las cadenas en las columnas
         int maxNombre = 1;
         int maxPais = 1;
         for (DirectorCarrera directorCarrera : listaDirectores) {

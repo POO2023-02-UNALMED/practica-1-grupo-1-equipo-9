@@ -1,19 +1,18 @@
 package gestorAplicacion.campeonato;
 
-import gestorAplicacion.paddock.*;
+import gestorAplicacion.paddock.Persona;
+import gestorAplicacion.paddock.Piloto;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 
-public class DirectorCarrera extends Persona implements Serializable{
-	private static final long serialVersionUID = -2602637847133906292L;
-
+public class DirectorCarrera extends Persona implements Serializable {
+    private static final long serialVersionUID = -2602637847133906292L;
+    //Lista directores de carrera
+    public static ArrayList<DirectorCarrera> listaDirectores = new ArrayList<DirectorCarrera>();
     static Random random = new Random();
-
-	//Lista directores de carrera
-    public static ArrayList<DirectorCarrera> listaDirectores= new ArrayList<DirectorCarrera>();
-
     private boolean licencia;
     private Carrera carrera;
     private int corrupcion;
@@ -54,39 +53,37 @@ public class DirectorCarrera extends Persona implements Serializable{
         DirectorCarrera.listaDirectores.add(this);
     }
     //Metodo abstracto heredado
-    public void recibirPlata(double plata) {
-        this.setPlata(this.getPlata()+plata);
+
+    public static ArrayList<DirectorCarrera> dcDisponibles() {
+        ArrayList<DirectorCarrera> disponibles = new ArrayList<DirectorCarrera>();
+        for (DirectorCarrera dc : DirectorCarrera.listaDirectores) {
+            if (dc.isLicencia()) {
+                disponibles.add(dc);
+            }
+        }
+        return disponibles;
     }
+
+    public static ArrayList<DirectorCarrera> getListaDirectores() {
+        return DirectorCarrera.listaDirectores;
+    }
+
+    public void recibirPlata(double plata, Piloto piloto) {
+        this.setPlata(this.getPlata() + plata);
+        piloto.getEquipo().setPlata(piloto.getEquipo().getPlata() - plata);
+    }
+
+    public void recibirPlata(double plata) {
+        this.setPlata(this.getPlata() + plata);
+    }
+
     public void sinPlata() {
         this.setPlata(random.nextDouble(40001) + 10000);
     }
+
     // Metodos de instancia
     public void ponerSancion(Piloto piloto) {
         piloto.setSanciones(piloto.getSanciones() + 1);
-    }
-
-    public ArrayList<Piloto> pilotosDesfavorecidos(double plata, Piloto piloto) {
-        ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
-        for (Equipo equipo : this.carrera.getCampeonato().getListaEquipos()){
-            if (equipo!=piloto.getEquipo() && !this.getCarrera().getEquiposBeneficiados().contains(equipo)){
-                for (Piloto piloto1 : Piloto.getListaPilotos()){
-                    if (piloto1.isElegido() && piloto1.getValorContrato()>=piloto.getValorContrato()){
-                        pilotosDesfavorecidos.add(piloto1);
-                    }
-                }
-            }
-        }
-        return pilotosDesfavorecidos;
-    }
-
-    public static ArrayList<DirectorCarrera> dcDisponibles(){
-    	ArrayList<DirectorCarrera> disponibles = new ArrayList<DirectorCarrera>();
-    	for (DirectorCarrera dc: DirectorCarrera.listaDirectores) {
-    		if (dc.isLicencia()) {
-    			disponibles.add(dc);
-    		}
-    	}
-    	return disponibles;
     }
 
     /*public ArrayList<ArrayList<String>> verStatsCompetidores() {
@@ -167,6 +164,20 @@ public class DirectorCarrera extends Persona implements Serializable{
         }
     }*/
 
+    public ArrayList<Piloto> pilotosDesfavorecidos(double plata, Piloto piloto) {
+        ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
+        for (Equipo equipo : this.carrera.getCampeonato().getListaEquipos()) {
+            if (equipo != piloto.getEquipo() && !this.getCarrera().getEquiposBeneficiados().contains(equipo)) {
+                for (Piloto piloto1 : Piloto.getListaPilotos()) {
+                    if (piloto1.isElegido() && piloto1.getValorContrato() >= piloto.getValorContrato()) {
+                        pilotosDesfavorecidos.add(piloto1);
+                    }
+                }
+            }
+        }
+        return pilotosDesfavorecidos;
+    }
+
     public boolean isLicencia() {
         return licencia;
     }
@@ -190,8 +201,6 @@ public class DirectorCarrera extends Persona implements Serializable{
     public void setCorrupcion(int corrupcion) {
         this.corrupcion = corrupcion;
     }
-    
-    public static ArrayList<DirectorCarrera> getListaDirectores() {return DirectorCarrera.listaDirectores;}
 
     public ArrayList<VehiculoCarrera> getPosicionesCorruptas() {
         return posicionesCorruptas;

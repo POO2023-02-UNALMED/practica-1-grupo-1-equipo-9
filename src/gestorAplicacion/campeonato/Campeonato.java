@@ -200,6 +200,28 @@ public class Campeonato implements Serializable{
         }
         return campeonatosDesbloqueados;
     }
+
+    public static Campeonato campeonatoPiloto(Piloto piloto) {
+        Campeonato campeonatoElegido = null;
+        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
+            for (Piloto pilotico : campeonato.getListaPilotos()) {
+                if (pilotico.isElegido() && pilotico.equals(piloto)) {
+                    campeonatoElegido = campeonato;
+                    break;
+                }
+            }
+            if (campeonatoElegido!=null){break;}
+        }
+        return campeonatoElegido;
+    }
+
+    public static ArrayList<DirectorCarrera> directoresCarrera(Campeonato campeonatoElegido) {
+        ArrayList<DirectorCarrera> maestrosDeCarrera = new ArrayList<DirectorCarrera>();
+        for (Carrera carrera : campeonatoElegido.getListaCarreras()){
+            maestrosDeCarrera.add(carrera.getDirectorCarrera());
+        }
+        return maestrosDeCarrera;
+    }
     
     public static int getIdActual() {return idActual;}
 

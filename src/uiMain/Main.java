@@ -5,11 +5,11 @@ import gestorAplicacion.paddock.*;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.Random;
 import java.util.Scanner;
 
 import static uiMain.AsciiArt.bienvenida;
+import static uiMain.AsciiArt.sitAndTalk;
 import static uiMain.Tablas.*;
 
 public class Main {
@@ -501,7 +501,7 @@ public class Main {
                 ArrayList<ArrayList<Pieza>> combinaciones = Pieza.combinaciones(vehiculoCarrera);
                 System.out.println("Estos son los neumaticos disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto");
                 // elegir llantas
-                ArrayList<Pieza> llantasDisponibles = new ArrayList<Pieza>() ;
+                ArrayList<Pieza> llantasDisponibles = new ArrayList<Pieza>();
                 if (piezasCambiar.isEmpty()) {
                     llantasDisponibles = Pieza.filterNeumaticos(combinaciones);
                 } else {
@@ -565,7 +565,7 @@ public class Main {
         System.out.println("\n");
     }
 
-    private static void corrupcion(){
+    private static void corrupcion() {
         System.out.println("Asi que decidiste forjar una alianza con el Maestro de Carreras. Esperamos que no te arrepientas...");
         System.out.println("Primero, debemos escoger que piloto desea formar una amistad con el Maestro de Carreras");
         System.out.println("De acuerdo a los campeonatos desbloqueados, estan disponibles los siguientes pilotos");
@@ -575,55 +575,56 @@ public class Main {
         System.out.println("Elige un piloto");
         n = validaciones(1, pilotosDisponibles.size());
         Piloto piloto = pilotosDisponibles.get(n - 1);
+
         System.out.println("De las carreras del campeonato del piloto elegido, estan los siguientes Maestros de Carrera");
         //Elegir carreras y Directores de Carrera disponibles
-        Campeonato campeonatoElegido = null;
-        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
-            for (Piloto pilotico : campeonato.getListaPilotos()) {
-                if (pilotico.isElegido() && pilotico.equals(piloto)) {
-                    campeonatoElegido = campeonato;
-                    break;
-                }
-            }
-            if (campeonatoElegido!=null){break;}
-        }
-        ArrayList<DirectorCarrera> maestrosDeCarrera = new ArrayList<DirectorCarrera>();
-        for (Carrera carrera : campeonatoElegido.getListaCarreras()){
-            maestrosDeCarrera.add(carrera.getDirectorCarrera());
-        }
+        Campeonato campeonatoElegido = Campeonato.campeonatoPiloto(piloto);
+        ArrayList<DirectorCarrera> maestrosDeCarrera = Campeonato.directoresCarrera(campeonatoElegido);
         Tablas.tablaDirectoresCarrera(maestrosDeCarrera);
         System.out.println("Elige un maestro de carrera");
         n = validaciones(1, maestrosDeCarrera.size());
         DirectorCarrera maestroDeCarrera = maestrosDeCarrera.get(n - 1);
+
         //Iniciando minifuncionalidad 1: Apuesta Ilegal
         System.out.println("Al acercarse al Maestro de Carrera, te habla de ciertos 'problemas economicos' que lo tienen pensando");
+        sitAndTalk();
         System.out.println("Quizas darle un 'incentivo' pueda llamar su atencion");
-        System.out.println("Ofrece una cantidad de dinero (Tu equipo tiene " + (int)piloto.getEquipo().getPlata() + ")");
-        n = validaciones(0,(int)piloto.getEquipo().getPlata());
+
+        System.out.println("Ofrece una cantidad de dinero (Tu equipo tiene " + (int) piloto.getEquipo().getPlata() + ")");
+        n = validaciones(0, (int) piloto.getEquipo().getPlata());
         int plataOfrecida = n;
-        piloto.getEquipo().setPlata(piloto.getEquipo().getPlata()-plataOfrecida);
+
+
         System.out.println("El maestro de carrera " + maestroDeCarrera.getNombre() + " te ha propuesto (" + piloto.getNombre() + ") ir a un lugar mas tranquilo.");
         System.out.println("Llegan a un lugar con poca luz, te invita a sentarte, y pronto, tienes 25 cartas delante tuyo");
         AsciiArt.cards();
+
         System.out.println("El Maestro de Carrera te dice que elijas una de ellas");
-        int cartaElegida = rand.nextInt(24)+1;
+        int cartaElegida = rand.nextInt(24) + 1;
         double multiplicadorGanancia = 5.5;
         int[] cartasYaEscogidas = new int[5];
         int contador = 0;
-        while (true){
+        while (true) {
             while (true) {
-                n = validaciones(1,25);
+                n = validaciones(1, 25);
                 boolean elegido = false;
-                for (int i : cartasYaEscogidas){if (i==n){elegido = true;break;}}
-                if (!elegido){break;}
+                for (int i : cartasYaEscogidas) {
+                    if (i == n) {
+                        elegido = true;
+                        break;
+                    }
+                }
+                if (!elegido) {
+                    break;
+                }
             }
-            if (n==cartaElegida){
+            if (n == cartaElegida) {
                 break;
-            } else if(cartasYaEscogidas[5]!=0) {
+            } else if (cartasYaEscogidas[5] != 0) {
                 System.out.println("Te has equivocado. Poco a poco vas perdiendo el dinero que ofreciste");
-                multiplicadorGanancia-=1.00;
-                contador+=1;
-                cartasYaEscogidas[contador]=n;
+                multiplicadorGanancia -= 1.00;
+                contador += 1;
+                cartasYaEscogidas[contador] = n;
                 System.out.println("Intentalo de nuevo");
             } else {
                 System.out.println("Te has quedado sin intentos. Has perdido la mitad de dinero que ofreciste");
@@ -636,30 +637,30 @@ public class Main {
         //Iniciando minifuncionalidad 2: Negociar para Maldecir Piloto
         System.out.println("El Maestro de Carrera te muestra una lista de los pilotos que esta dispuesto a 'castigar'. Elije uno");
         //TODO: Tabla pilotos
-        n = validaciones (1, pilotosDesfavorecidos.size());
-        Piloto pilotoMaldito = pilotosDesfavorecidos.get(n-1);
+        n = validaciones(1, pilotosDesfavorecidos.size());
+        Piloto pilotoMaldito = pilotosDesfavorecidos.get(n - 1);
         VehiculoCarrera vehiculoMaldito = pilotoMaldito.maldecirPiloto(plataGanada, piloto, maestroDeCarrera);
         //Iniciando minifuncionalidad 3: Negociar para Manipular la Carrera
         System.out.println("Decidiste maldecir a " + pilotoMaldito.getNombre());
         System.out.println("El Maestro de Carrera te informa que el vehiculo del piloto al que decidiste castigar tendra una penalizacion");
         //Buscar el vehiculo del usuario
         VehiculoCarrera vehiculoUsuario = null;
-        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
-            if (vehiculoCarrera.getPiloto()==piloto){
-                vehiculoUsuario=vehiculoCarrera;
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()) {
+            if (vehiculoCarrera.getPiloto() == piloto) {
+                vehiculoUsuario = vehiculoCarrera;
             }
         }
-        maestroDeCarrera.setPosicionesCorruptas(VehiculoCarrera.maldecirVehiculos(vehiculoMaldito,vehiculoUsuario,pilotosDesfavorecidos,plataGanada,maestroDeCarrera));
+        maestroDeCarrera.setPosicionesCorruptas(VehiculoCarrera.maldecirVehiculos(vehiculoMaldito, vehiculoUsuario, pilotosDesfavorecidos, plataGanada, maestroDeCarrera));
     }
 
-    private static void simulacionGranPrix(){
+    private static void simulacionGranPrix() {
         System.out.println("Decidiste comenzar a correr las carreras. Alla vamos!");
         System.out.println("Primero, debes elegir que campeonato deseas");
         ArrayList<Campeonato> listaDesbloqueadosConCarreras = new ArrayList<Campeonato>();
         ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
-       //Campeonatos desbloqueados y con carreras
-        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()){
-            if (campeonato.getListaCarreras().get(0)!=null){
+        //Campeonatos desbloqueados y con carreras
+        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
+            if (campeonato.getListaCarreras().get(0) != null) {
                 listaDesbloqueadosConCarreras.add(campeonato);
             }
         }
@@ -691,13 +692,13 @@ public class Main {
         System.out.println("Ahora, comenzaremos a correr todas las carreras del campeonato");
 
         //Iniciando minifuncionalidad 1: Correr Carreras
-        for (Carrera carrera : campeonato.getListaCarreras()){
+        for (Carrera carrera : campeonato.getListaCarreras()) {
             DirectorCarrera directorCarrera = carrera.getDirectorCarrera();
-            if (!directorCarrera.getPosicionesCorruptas().isEmpty()){
+            if (!directorCarrera.getPosicionesCorruptas().isEmpty()) {
                 carrera.setPosiciones(directorCarrera.getPosicionesCorruptas());
             } else {
-                for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
-                    if (campeonato.getListaPilotos().contains(vehiculoCarrera.getPiloto())){
+                for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()) {
+                    if (campeonato.getListaPilotos().contains(vehiculoCarrera.getPiloto())) {
                         carrera.getPosiciones().add(vehiculoCarrera);
                     }
                 }
@@ -706,16 +707,16 @@ public class Main {
             System.out.println("En sus marcas, listos, fuera!");
             VehiculoCarrera carroElegido = null;
             for (VehiculoCarrera vehiculoCarrera : carrera.posiciones)
-                if (vehiculoCarrera.getPiloto()==piloto){
+                if (vehiculoCarrera.getPiloto() == piloto) {
                     carroElegido = vehiculoCarrera;
                 }
             double probOpciones = 0.0;
-            while (!carrera.actualizarTerminado()){
+            while (!carrera.actualizarTerminado()) {
                 carrera.actualizarPosiciones();
                 carrera.actualizarGasolina(piloto);
-                if (!carroElegido.isMorido()){
+                if (!carroElegido.isMorido()) {
                     System.out.println("La carrera transcurre...");
-                    if (1-probOpciones<rand.nextDouble()){
+                    if (1 - probOpciones < rand.nextDouble()) {
                         System.out.println("Oh my god! Es tu momento de actuar!");
                         System.out.println("El nivel de la gasolina del vehiculo es " + carroElegido.getGasolina());
                         System.out.println("Hasta ahora, las posiciones en la carrera son las siguientes");
@@ -724,9 +725,9 @@ public class Main {
                         //TODO: Tabla de Terminados
                         ArrayList<Boolean> listaOpciones = carrera.actualizarOpciones();
                         System.out.println("Tienes una oportunidad! Escoge una de las siguientes opciones");
-                        for (int j = 0 ; j < 5 ; j++){
-                            if (listaOpciones.get(j)){
-                                switch (j){
+                        for (int j = 0; j < 5; j++) {
+                            if (listaOpciones.get(j)) {
+                                switch (j) {
                                     case 0:
                                         System.out.println("1. Aprovechar DRS");
                                         break;
@@ -745,11 +746,11 @@ public class Main {
                                 }
                             }
                         }
-                        if (carroElegido.getVelocidadActual()<150){
+                        if (carroElegido.getVelocidadActual() < 150) {
                             System.out.println("6. Entrar a la Pit Stop");
                         }
-                        n = validaciones(1,6);
-                        switch (n){
+                        n = validaciones(1, 6);
+                        switch (n) {
                             case 1:
                                 System.out.println("El piloto comienza a acelerar!");
                                 carroElegido.aprovecharDRS();
@@ -779,13 +780,13 @@ public class Main {
                                     System.out.println("1. Llenar gasolina");
                                     System.out.println("2. Reparar Auto");
                                     System.out.println("3. Ya quiero seguir manejando! (Salir)");
-                                    n = validaciones(1,3);
-                                    switch(n){
+                                    n = validaciones(1, 3);
+                                    switch (n) {
                                         case 1:
                                             carroElegido.llenarGasolina();
                                             break;
                                         case 2:
-                                            if (carroElegido.repararVehiculo()){
+                                            if (carroElegido.repararVehiculo()) {
 
                                             } else {
                                                 System.out.println("Tu equipo no tiene suficiente dinero! No se han podido reparar las piezas.");
@@ -799,7 +800,7 @@ public class Main {
                                 break;
                         }
                     } else {
-                        probOpciones+=0.1;
+                        probOpciones += 0.1;
                     }
                 }
             }
@@ -809,21 +810,21 @@ public class Main {
             Tablas.tablaPosicionesTiempos(carrera.terminados);
             //Iniciando minifuncionalidad 2: Puntuaciones y Sanciones equipos
             System.out.println("Procederemos a puntuar a los equipos");
-            if (piloto.getSanciones()!=0){
+            if (piloto.getSanciones() != 0) {
                 System.out.println("Oops, parece que el piloto " + piloto.getNombre() + " tiene sanciones.");
                 System.out.println("Sin embargo, tienes la opcion de reducir el numero de las sanciones");
                 System.out.println("Escribe Y o N segun lo que desees hacer");
-                if (validacionesYN()){
+                if (validacionesYN()) {
                     System.out.println("Esto es muy sencillo, solo escoge un numero del 1 al 5, y si es correcto, se le quitara una sancion al piloto");
-                    n = validaciones(1,5);
-                    if (n==rand.nextInt(4)+1){
-                        piloto.setSanciones(piloto.getSanciones()-1);
+                    n = validaciones(1, 5);
+                    if (n == rand.nextInt(4) + 1) {
+                        piloto.setSanciones(piloto.getSanciones() - 1);
                     }
                 } else {
                     System.out.println("Bueno, parece que hay gente a la que que no le gusta tomar las oportunidades~");
                 }
             }
-            Equipo.puntuarEquipos(carrera.terminados,carrera.getPremioEfectivo(),campeonato);
+            Equipo.puntuarEquipos(carrera.terminados, carrera.getPremioEfectivo(), campeonato);
             //TODO: Tabla de puntos: Tabla que muestre los equipos del campeonato con los puntos
         }
         System.out.println("Se han acabado todas las carreras!");

@@ -73,6 +73,18 @@ public class Piloto extends Persona implements Serializable{
         this.valorContrato = (int) (Math.random() * 4001) + 1000;
         Piloto.listaPilotos.add(this);
     }
+
+    public static ArrayList<Piloto> pilotosDesbloqueados() {
+        ArrayList<Piloto> pilotosDesbloqueados = new ArrayList<Piloto>();
+        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
+            for (Piloto piloto : campeonato.getListaPilotos()) {
+                if (piloto.isElegido()) {
+                    pilotosDesbloqueados.add(piloto);
+                }
+            }
+        }
+        return pilotosDesbloqueados;
+    }
     
     //Metodos de instancia
     public void sumarPuntos(int puntos) {

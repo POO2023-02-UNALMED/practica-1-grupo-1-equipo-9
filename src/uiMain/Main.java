@@ -392,14 +392,8 @@ public class Main {
 
     private static void tunearCarro() {
         // elegir pilotos disponibles
-        ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
-        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
-            for (Piloto piloto : campeonato.getListaPilotos()) {
-                if (piloto.isElegido()) {
-                    pilotosDisponibles.add(piloto);
-                }
-            }
-        }
+        ArrayList<Piloto> pilotosDisponibles = Piloto.pilotosDesbloqueados();
+
         System.out.println("Es momento de tunear tu vehiculo de carreras. Primero, veamos a que piloto le vas a personalizar el vehiculo");
         System.out.println("De acuerdo a los campeonatos desbloqueados, estan disponibles los siguientes pilotos");
         // TODO pilotos tabla
@@ -576,14 +570,7 @@ public class Main {
         System.out.println("Primero, debemos escoger que piloto desea formar una amistad con el Maestro de Carreras");
         System.out.println("De acuerdo a los campeonatos desbloqueados, estan disponibles los siguientes pilotos");
         //Elegir pilotos disponibles
-        ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
-        for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
-            for (Piloto piloto : campeonato.getListaPilotos()) {
-                if (piloto.isElegido()) {
-                    pilotosDisponibles.add(piloto);
-                }
-            }
-        }
+        ArrayList<Piloto> pilotosDisponibles = Piloto.pilotosDesbloqueados();
         // TODO pilotos tabla
         System.out.println("Elige un piloto");
         n = validaciones(1, pilotosDisponibles.size());

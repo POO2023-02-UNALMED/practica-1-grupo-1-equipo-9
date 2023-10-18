@@ -1,15 +1,12 @@
 package gestorAplicacion.campeonato;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import java.util.function.*;
 
 import gestorAplicacion.campeonato.Continente;
 import gestorAplicacion.paddock.Patrocinador;
 import gestorAplicacion.paddock.Piloto;
 import java.io.*;
-import java.util.Random;
 
 public class Campeonato implements Serializable{
 
@@ -38,7 +35,7 @@ public class Campeonato implements Serializable{
     private double premio; //Premio total que se lleva el equipo cuando se gana el campeonato
     private boolean desbloqueado = false; //Si el campeonato esta desbloqueado, se puede jugar
     private Patrocinador patrocinadorCampeonato;
-
+    private ArrayList<Integer> mesesCarreras = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
 
     public Campeonato(ArrayList<Carrera> listaCarreras, ArrayList<Equipo> listaEquipos, ArrayList<Piloto> listaPilotos, int id, String nombre, int ano, Continente continente, int cantCarreras, double premio, boolean desbloqueado) {
         this.listaCarreras = listaCarreras;
@@ -129,6 +126,10 @@ public class Campeonato implements Serializable{
                 return carrera1.getFecha().compareTo(carrera2.getFecha());
             }
         });
+    }
+
+    public void actualizarMesCarreras(int mes) {
+        this.mesesCarreras.removeIf(num -> num == mes);
     }
 
     public void logisticaPremios(double premio, double presupuesto, ArrayList<Carrera> carrerasPreferidas) {
@@ -304,5 +305,17 @@ public class Campeonato implements Serializable{
 
     public void setPatrocinadorCampeonato(Patrocinador patrocinadorCampeonato) {
         this.patrocinadorCampeonato = patrocinadorCampeonato;
+    }
+
+    public static ArrayList<Campeonato> getCampeonatos() {
+        return campeonatos;
+    }
+
+    public ArrayList<Integer> getMesesCarreras() {
+        return mesesCarreras;
+    }
+
+    public void setMesesCarreras(ArrayList<Integer> mesesCarreras) {
+        this.mesesCarreras = mesesCarreras;
     }
 }

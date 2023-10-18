@@ -264,6 +264,7 @@ public class Main {
         ArrayList<Circuito> circuitosVender = null;
 
         // para la cantidad de carreras en el campeonato
+
         for (int i = 0; i < campeonato.getCantCarreras(); i++) {
 
             boolean again = true;
@@ -287,17 +288,33 @@ public class Main {
                     again = false;
                 }
             }
-            // elegir circuito
+
             boolean repetir = true;
             Circuito circuito = null;
+
             int mes = 0;
             while (repetir) {
                 // elegir mes
-                System.out.println("Escribe el numero del mes en el que quieres reservar el circuito");
-                n = validaciones(1, 12);
-                mes = n;
+                mes = 0;
 
+                boolean validaciones = false;
 
+                // verificar que el mes no este ocupado
+                while (!validaciones) {
+                    if (!campeonato.getMesesCarreras().contains(mes)) {
+                        System.out.println("Escribe el numero del mes en el que quieres reservar el circuito");
+                        System.out.println("Nota: Las carreras deben ser en meses distintos.");
+                        mes =validaciones(1, 12); // Para que no se quede en un loop infinito xd
+                    } else {
+                        mes = n;
+                        campeonato.actualizarMesCarreras(mes);
+                        System.out.println("Mes elegido!");
+                        System.out.println("\n");
+                        validaciones = true;
+                    }
+                }
+
+                // elegir circuito
                 ArrayList<Circuito> circuitosDisponibles = Circuito.circuitosDisponibles(mes, circuitosVender);
 
                 if (circuitosDisponibles.isEmpty()) {

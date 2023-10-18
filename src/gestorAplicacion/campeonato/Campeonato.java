@@ -12,7 +12,13 @@ import java.io.*;
 import java.util.Random;
 
 public class Campeonato implements Serializable{
-	private static final long serialVersionUID = -2490361864090903222L;
+
+    /**
+     *  Esta clase representa un campeonato, el cual tiene una lista de carreras, una lista de equipos, una lista de pilotos, un id, un nombre, un a�o, un continente, una cantidad de carreras, un premio y un booleano que indica si el campeonato esta desbloqueado o no.
+     *
+     **/
+
+    private static final long serialVersionUID = -2490361864090903222L;
     private static int idActual = 1;
 	
 	public static ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>(); //Esta es la lista donde est�n todos los campeonatos disponibles

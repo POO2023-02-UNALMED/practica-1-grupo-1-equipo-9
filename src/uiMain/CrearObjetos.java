@@ -451,7 +451,7 @@ public interface CrearObjetos {
         new Piloto("Roland Ratzenberger");
         new Piloto("Tomas Scheckter");
         new Piloto("Max Chilton");
-        new Piloto("René Arnoux");
+        new Piloto("Renï¿½ Arnoux");
         new Piloto("Henri Pescarolo");
         new Piloto("Johnny Servoz-Gavin");
         new Piloto("Maurice Trintignant");
@@ -478,7 +478,7 @@ public interface CrearObjetos {
         DirectorCarrera dc13 = new DirectorCarrera("Paul Gutjahr");
         DirectorCarrera dc14 = new DirectorCarrera("Yves Bacquelaine");
         DirectorCarrera dc15 = new DirectorCarrera("Nick Craw");
-        DirectorCarrera dc16 = new DirectorCarrera("Björn Nilsson");
+        DirectorCarrera dc16 = new DirectorCarrera("Bjï¿½rn Nilsson");
         DirectorCarrera dc17 = new DirectorCarrera("Roger Peart");
         DirectorCarrera dc18 = new DirectorCarrera("Jean-Claude Lefebvre");
         DirectorCarrera dc19 = new DirectorCarrera("Tony Scott-Andrews");
@@ -498,11 +498,11 @@ public interface CrearObjetos {
         DirectorCarrera dc33 = new DirectorCarrera("Manfred Scheuer");
         DirectorCarrera dc34 = new DirectorCarrera("Steve Stringwell");
         DirectorCarrera dc35 = new DirectorCarrera("Yasumasa Arai");
-        DirectorCarrera dc36 = new DirectorCarrera("Jorge H. Bañados");
+        DirectorCarrera dc36 = new DirectorCarrera("Jorge H. Baï¿½ados");
         DirectorCarrera dc37 = new DirectorCarrera("Walter Aeschlimann");
         DirectorCarrera dc38 = new DirectorCarrera("Eugenio Farcas");
         DirectorCarrera dc39 = new DirectorCarrera("Enzo Spano");
-        DirectorCarrera dc40 = new DirectorCarrera("Joaquín Verdegay");
+        DirectorCarrera dc40 = new DirectorCarrera("Joaquï¿½n Verdegay");
         DirectorCarrera dc41 = new DirectorCarrera("Niels Wittich");
         DirectorCarrera dc42 = new DirectorCarrera("Michel Boeri");
         DirectorCarrera dc43 = new DirectorCarrera("Hassan Al-Thawadi");
@@ -511,7 +511,7 @@ public interface CrearObjetos {
         DirectorCarrera dc46 = new DirectorCarrera("Oscar Stafanini");
 
 
-        new Circuito("Circuito del Dragón");
+        new Circuito("Circuito del Dragï¿½n");
         new Circuito("Circuito Estelar");
         new Circuito("Circuito del Horizonte");
         new Circuito("Circuito de la Velocidad Suprema");
@@ -521,29 +521,29 @@ public interface CrearObjetos {
         new Circuito("Circuito del Sol Eterno");
         new Circuito("Circuito de las Estrellas Doradas");
         new Circuito("Circuito de la Victoria Infinita");
-        new Circuito("Circuito del Viento Rápido");
+        new Circuito("Circuito del Viento Rï¿½pido");
         new Circuito("Circuito del Rayo Veloz");
-        new Circuito("Circuito de la Maravilla Mecánica");
+        new Circuito("Circuito de la Maravilla Mecï¿½nica");
         new Circuito("Circuito del Rugido del Motor");
-        new Circuito("Circuito de la Curva del Dragón");
+        new Circuito("Circuito de la Curva del Dragï¿½n");
         new Circuito("Circuito de la Recta Sin Fin");
         new Circuito("Circuito de la Sombra Luminosa");
-        new Circuito("Circuito del Desafío Supremo");
-        new Circuito("Circuito de la Pasión Veloz");
+        new Circuito("Circuito del Desafï¿½o Supremo");
+        new Circuito("Circuito de la Pasiï¿½n Veloz");
         new Circuito("Circuito de la Aventura Extrema");
         new Circuito("Circuito de la Noche Estrellada");
         new Circuito("Circuito del Laberinto");
         new Circuito("Circuito de las Dunas Ardientes");
         new Circuito("Circuito del Oasis Veloz");
-        new Circuito("Circuito del Vórtice");
+        new Circuito("Circuito del Vï¿½rtice");
         new Circuito("Circuito de la Selva Secreta");
-        new Circuito("Circuito de la Magia Mecánica");
+        new Circuito("Circuito de la Magia Mecï¿½nica");
         new Circuito("Circuito de la Euforia Veloz");
         new Circuito("Circuito de la Lluvia de Estrellas");
-        new Circuito("Circuito de la Perfección Veloz");
+        new Circuito("Circuito de la Perfecciï¿½n Veloz");
 
 
-
+/* 
 
         // TODO Los campeonatos hechos
 
@@ -620,5 +620,7 @@ public interface CrearObjetos {
         pilotos2.add(p20);
 
         Piloto.asignarEquipo();
+
+        */
     }
 }

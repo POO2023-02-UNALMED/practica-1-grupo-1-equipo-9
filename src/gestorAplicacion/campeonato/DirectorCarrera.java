@@ -209,4 +209,10 @@ public class DirectorCarrera extends Persona  {
     public void setPosicionesCorruptas(ArrayList<VehiculoCarrera> posicionesCorruptas) {
         this.posicionesCorruptas = posicionesCorruptas;
     }
+
+    public static void setListaDirectores(ArrayList<DirectorCarrera> directoresCarrera) {
+
+        DirectorCarrera.listaDirectores = directoresCarrera;
+        
+    }
 }

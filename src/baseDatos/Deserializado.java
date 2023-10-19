@@ -6,7 +6,7 @@ import gestorAplicacion.paddock.*;
 
 public class Deserializado {
 
-	public static void main(String[] args) {
+	public static void deserialización() {
 		
 		
 		//////////////////////////CAMPEONATOS  //////////////////////////
@@ -36,6 +36,9 @@ public class Deserializado {
 	    
 	    ArrayList<DirectorCarrera> directoresCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosDirectores.txt");
 
+
+		DirectorCarrera.setListaDirectores(directoresCarrera);
+		
 	    if (directoresCarrera != null) {
 	        for (DirectorCarrera directorCarrera : directoresCarrera) {
 	        	System.out.println(directorCarrera);	        }

@@ -183,6 +183,7 @@ public class Main {
                 System.out.println("Elige a el companero de equipo");
                 n = validaciones(1, pilotosEquipo.size());
                 Piloto pilotoNo2 = pilotosEquipo.get(n - 1);
+                pilotoNo2.noEsElegido();
                 pilotosEquipo.remove(pilotoNo2);
                 pilotosParticipar.add(pilotoNo2);
                 System.out.println("Has elegido " + pilotoNo2.getNombre());
@@ -191,13 +192,14 @@ public class Main {
                 // elegir contrincantes aleatoriamente
                 // piloto 1
                 Piloto pilotoN = Piloto.pilotoAleatorio();
-                pilotoN.setElegido(false);
+                //
+                pilotoN.noEsElegido();
                 pilotosParticipar.add(pilotoN);
                 pilotosEquipo.remove(pilotoN);
 
                 // piloto 2
                 pilotoN = Piloto.pilotoAleatorio();
-                pilotoN.setElegido(false);
+                pilotoN.noEsElegido();
                 pilotosParticipar.add(pilotoN);
                 pilotosEquipo.remove(pilotoN);
             }

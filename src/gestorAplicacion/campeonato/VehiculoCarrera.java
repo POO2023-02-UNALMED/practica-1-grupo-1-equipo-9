@@ -94,6 +94,31 @@ public class VehiculoCarrera extends Chasis {
         return vehiculosPiloto;
     }
 
+    public static void crearVehiculoPilotosNoElegidos(Piloto piloto){
+        Random rand = new Random();
+        String modelo = String.valueOf(cantidadVehiculosDefault() + 1);
+        int velocidad = rand.nextInt(50) + 200;
+        double precio = ((Math.random() * 4001) + 1000) * 3;
+        Chasis chasis = new Chasis("Default", modelo, velocidad, velocidad, precio);
+        VehiculoCarrera vehiculo = new VehiculoCarrera(chasis, piloto);
+        Pieza aleron = Pieza.piezaNoElegida("A");
+        Pieza neumaticos = Pieza.piezaNoElegida("N");
+        Pieza motor = Pieza.piezaNoElegida("M");
+        vehiculo.setAleron(aleron);
+        vehiculo.setNeumaticos(neumaticos);
+        vehiculo.setMotor(motor);
+    }
+
+    public static int cantidadVehiculosDefault(){
+        int cantidad = 0;
+        for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos){
+            if (vehiculo.getMarca().equals("Default")){
+                cantidad++;
+            }
+        }
+        return cantidad;
+    }
+
 
 
     //Métodos

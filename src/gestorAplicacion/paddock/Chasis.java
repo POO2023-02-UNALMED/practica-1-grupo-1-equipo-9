@@ -13,7 +13,7 @@ public class Chasis implements Serializable{
     private String marca;
     private String modelo;
     private double velocidad; //Cantidad que se mueve en cada segundo de la carrera
-    private double maniobrabilidad; //Probabilidad de que se choque
+    private double maniobrabilidad; //Probabilidad de que se choque, numero entre 0.1 y 0.3
     private double precio; //Precio inicial de uso
 
     //Constructores

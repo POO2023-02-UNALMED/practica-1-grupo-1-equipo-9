@@ -5,10 +5,10 @@ import java.io.Serializable;
 public abstract class Persona implements Serializable{
     // Atributos
     static int idActual = 1;
-    private int id;
-    private String nombre;
-    private String pais;
-    private double plata;
+    protected int id;
+    protected String nombre;
+    protected String pais;
+    protected double plata;
 
     // Constructores
     public Persona(String nombre, String pais) {

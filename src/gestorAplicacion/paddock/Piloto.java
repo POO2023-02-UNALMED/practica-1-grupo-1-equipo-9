@@ -18,7 +18,7 @@ public class Piloto extends Persona {
     private int puntos; //Puntos en el campeonato 
     private int sanciones;
     private double habilidad; //Probabilidad de chocarse
-    private ArrayList<String> victorias = new ArrayList<String>();
+    public ArrayList<String> victorias = new ArrayList<String>();
     //Lista de pilotos
 	public static ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
     private boolean lesionado = false; //Si el piloto esta disponible, se puede contratar

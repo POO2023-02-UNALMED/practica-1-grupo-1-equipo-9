@@ -13,7 +13,7 @@ public class Chasis implements Serializable{
     private String marca;
     private String modelo;
     private double velocidad; //Cantidad que se mueve en cada segundo de la carrera
-    private double maniobrabilidad; //Probabilidad de que se choque
+    private double maniobrabilidad; //Probabilidad de que se choque, numero entre 0.1 y 0.3
     private double precio; //Precio inicial de uso
 
     //Constructores
@@ -32,6 +32,16 @@ public class Chasis implements Serializable{
         this.velocidad = velocidad;
         this.maniobrabilidad = maniobrabilidad;
         this.precio = 0;
+        Chasis.listaChasis.add(this);
+    }
+
+    public Chasis(String marca, String modelo) {
+        Random random = new Random();
+        this.marca = marca;
+        this.modelo = modelo;
+        this.velocidad = (double) (random.nextInt(50) + 200);
+        this.maniobrabilidad = 0.1 + (0.4 - 0.1) * random.nextDouble();
+        this.precio = ((Math.random() * 4001) + 1000) * 3;
         Chasis.listaChasis.add(this);
     }
 

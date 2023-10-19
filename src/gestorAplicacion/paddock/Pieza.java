@@ -5,6 +5,7 @@ import gestorAplicacion.campeonato.VehiculoCarrera;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Pieza implements Serializable{
 	private static final long serialVersionUID = 3981603915201008050L;
@@ -16,6 +17,7 @@ public class Pieza implements Serializable{
     private boolean danado;
     private double velocidadAnadida;
     private double maniobrabilidadAnadida;
+    private String marca; // esta es la marca
     private String nombre;
     private double precio;
     private String tipo;
@@ -24,23 +26,44 @@ public class Pieza implements Serializable{
     // Constructores
 
 
-    public Pieza(int id, boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio, String tipo) {
-        this.id = id;
-        this.danado = danado;
-        this.velocidadAnadida = velocidadAnadida;
-        this.maniobrabilidadAnadida = maniobrabilidadAnadida;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.tipo = tipo;
-    }
-
-    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String nombre, double precio, String tipo) {
+    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String marca, String nombre, double precio, String tipo) {
         this.id = idActual++;
         this.danado = danado;
         this.velocidadAnadida = velocidadAnadida;
         this.maniobrabilidadAnadida = maniobrabilidadAnadida;
+        this.marca = marca;
         this.nombre = nombre;
         this.precio = precio;
+        this.tipo = tipo;
+        Pieza.piezas.add(this);
+    }
+
+    public Pieza(boolean danado, double velocidadAnadida, double maniobrabilidadAnadida, String marca, String nombre, double precio, String tipo, boolean contrabando) {
+        this.id = idActual++;
+        this.danado = danado;
+        this.velocidadAnadida = velocidadAnadida;
+        this.maniobrabilidadAnadida = maniobrabilidadAnadida;
+        this.marca = marca;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.tipo = tipo;
+        if (contrabando) {
+            Pieza.piezasContrabando.add(this);
+        } else {
+            Pieza.piezas.add(this);
+        }
+    }
+
+    public Pieza(String nombre, String tipo, String marca){
+        Random random = new Random();
+        this.id = idActual++;
+        this.marca = marca;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.maniobrabilidadAnadida = 0.1 + (0.4 - 0.1) * random.nextDouble();
+        this.precio = Math.random() * 1000;
+        this.danado = false;
+        this.velocidadAnadida = Math.random() * 20;
         Pieza.piezas.add(this);
     }
 
@@ -118,6 +141,11 @@ public class Pieza implements Serializable{
         }
     }
 
+    public static Pieza piezaNoElegida(String tipo) {
+        Random random = new Random();
+        // crear pieza de marca default con atributos random
+        return new Pieza(false, Math.random() * 20, 0.1 + (0.4 - 0.1) * random.nextDouble(), "Default", "", 0, tipo);
+    }
 
     public static ArrayList<ArrayList<Pieza>> combinacionesDisponibles(VehiculoCarrera vehiculoCarrera, Pieza neumatico) {
         ArrayList<ArrayList<Pieza>> combinaciones = new ArrayList<ArrayList<Pieza>>();
@@ -220,7 +248,7 @@ public class Pieza implements Serializable{
         ArrayList<Pieza> motoresDisponibles = new ArrayList<Pieza>();
         ArrayList<Pieza> piezasDisponibles = Pieza.piezasDisponibles();
         for (Pieza pieza : piezasDisponibles) {
-            if (pieza.getTipo().equals("M") && pieza.getNombre().equals(marca)) {
+            if (pieza.getTipo().equals("M") && pieza.getMarca().equals(marca)) {
                 motoresDisponibles.add(pieza);
             }
         }
@@ -231,7 +259,7 @@ public class Pieza implements Serializable{
         ArrayList<Pieza> neumaticosDisponibles = new ArrayList<Pieza>();
         ArrayList<Pieza> piezasDisponibles = Pieza.piezasDisponibles();
         for (Pieza pieza : piezasDisponibles) {
-            if (pieza.getTipo().equals("N") && pieza.getNombre().equals(marca)) {
+            if (pieza.getTipo().equals("N") && pieza.getMarca().equals(marca)) {
                 neumaticosDisponibles.add(pieza);
             }
         }
@@ -242,7 +270,7 @@ public class Pieza implements Serializable{
         ArrayList<Pieza> aleronesDisponibles = new ArrayList<Pieza>();
         ArrayList<Pieza> piezasDisponibles = Pieza.piezasDisponibles();
         for (Pieza pieza : piezasDisponibles) {
-            if (pieza.getTipo().equals("A") && pieza.getNombre().equals(marca)) {
+            if (pieza.getTipo().equals("A") && pieza.getMarca().equals(marca)) {
                 aleronesDisponibles.add(pieza);
             }
         }
@@ -283,15 +311,6 @@ public class Pieza implements Serializable{
         this.maniobrabilidadAnadida = maniobrabilidadAnadida;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -314,5 +333,21 @@ public class Pieza implements Serializable{
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

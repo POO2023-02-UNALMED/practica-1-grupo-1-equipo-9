@@ -178,6 +178,11 @@ public class Piloto extends Persona implements Serializable{
         return piloto;
     }
 
+    public void noEsElegido(){
+        this.setElegido(false);
+        VehiculoCarrera.crearVehiculoPilotosNoElegidos(this);
+    }
+
     // Lista de metodos set y get
     public void setVictorias(ArrayList<String> victorias) {
         this.victorias = victorias;

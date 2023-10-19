@@ -194,14 +194,14 @@ public interface CrearObjetos {
         new Equipo("Ligier");
         new Equipo("Jordan Grand Prix");
         new Equipo("Prost Grand Prix");
-        new Equipo("Stewart Grand Prix");
+       /* new Equipo("Stewart Grand Prix");
         new Equipo("Tyrrell Racing");
         new Equipo("Benetton Formula");
         new Equipo("Brabham");
         new Equipo("Lotus");
         new Equipo("Matra");
         new Equipo("March Engineering");
-        new Equipo("Shadow Racing Cars");
+        new Equipo("Shadow Racing Cars");*/
 
 
         // campenatos
@@ -542,6 +542,7 @@ public interface CrearObjetos {
         new Circuito("Circuito de la Lluvia de Estrellas");
         new Circuito("Circuito de la Perfecci�n Veloz");
 
+        Piloto.asignarEquipo();
 
 /* 
 
@@ -618,8 +619,6 @@ public interface CrearObjetos {
         pilotos2.add(p18);
         pilotos2.add(p19);
         pilotos2.add(p20);
-
-        Piloto.asignarEquipo();
 
         */
     }

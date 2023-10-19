@@ -5,6 +5,7 @@ import gestorAplicacion.campeonato.VehiculoCarrera;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Pieza implements Serializable{
 	private static final long serialVersionUID = 3981603915201008050L;
@@ -54,14 +55,15 @@ public class Pieza implements Serializable{
     }
 
     public Pieza(String nombre, String tipo, String marca){
+        Random random = new Random();
         this.id = idActual++;
-        this.danado = false;
-        this.velocidadAnadida = 0;
-        this.maniobrabilidadAnadida = 0;
         this.marca = marca;
         this.nombre = nombre;
-        this.precio = 0;
         this.tipo = tipo;
+        this.maniobrabilidadAnadida = 0.1 + (0.4 - 0.1) * random.nextDouble();
+        this.precio = Math.random() * 1000;
+        this.danado = false;
+        this.velocidadAnadida = Math.random() * 20;
         Pieza.piezas.add(this);
     }
 
@@ -140,8 +142,9 @@ public class Pieza implements Serializable{
     }
 
     public static Pieza piezaNoElegida(String tipo) {
+        Random random = new Random();
         // crear pieza de marca default con atributos random
-        return new Pieza(false, Math.random() * 20, Math.random() * 0.5, "Default", "", 0, tipo);
+        return new Pieza(false, Math.random() * 20, 0.1 + (0.4 - 0.1) * random.nextDouble(), "Default", "", 0, tipo);
     }
 
     public static ArrayList<ArrayList<Pieza>> combinacionesDisponibles(VehiculoCarrera vehiculoCarrera, Pieza neumatico) {

@@ -35,6 +35,16 @@ public class Chasis implements Serializable{
         Chasis.listaChasis.add(this);
     }
 
+    public Chasis(String marca, String modelo) {
+        Random random = new Random();
+        this.marca = marca;
+        this.modelo = modelo;
+        this.velocidad = (double) (random.nextInt(50) + 200);
+        this.maniobrabilidad = 0.1 + (0.4 - 0.1) * random.nextDouble();
+        this.precio = ((Math.random() * 4001) + 1000) * 3;
+        Chasis.listaChasis.add(this);
+    }
+
     public static ArrayList<Chasis> chasisDisponible(Piloto piloto){
         double precioMaximo = piloto.getPresupuestoVehiculo() * 0.6;
         ArrayList<Chasis> listaChasis = new ArrayList<Chasis>();

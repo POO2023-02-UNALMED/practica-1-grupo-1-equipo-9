@@ -67,6 +67,19 @@ public class VehiculoCarrera extends Chasis {
         this.velocidadActual = velocidadTuneao + velocidadCircumstancias;
     }
 
+    public VehiculoCarrera(Chasis chasis) {
+        super(chasis.getMarca(), chasis.getModelo(), chasis.getVelocidad(), chasis.getManiobrabilidad(), chasis.getPrecio());
+        this.tiempo = 0;
+        this.distanciaRecorrida = 0;
+        this.terminado = false;
+        this.morido = false;
+        this.velocidadTuneao = 0;
+        this.probabilidadChoque = Math.max( 1 - piloto.getHabilidad() - chasis.getManiobrabilidad(), 0.3);
+        this.gasolina = 100;
+        this.velocidadCircumstancias = 0;
+        this.velocidadActual = velocidadTuneao + velocidadCircumstancias;
+    }
+
 
     /*public VehiculoCarrera(String marca, String modelo, double velocidad, double maniobrabilidad, double precioUtilizar, Piloto piloto, Pieza neumaticos, Pieza aleron, Pieza motor) {
         super(marca, modelo, velocidad, maniobrabilidad, precioUtilizar);
@@ -99,6 +112,7 @@ public class VehiculoCarrera extends Chasis {
         String modelo = String.valueOf(cantidadVehiculosDefault() + 1);
         int velocidad = rand.nextInt(50) + 200;
         double precio = ((Math.random() * 4001) + 1000) * 3;
+        double maniobrabilidad = rand.nextDouble() * 0.3;
         Chasis chasis = new Chasis("Default", modelo, velocidad, velocidad, precio);
         VehiculoCarrera vehiculo = new VehiculoCarrera(chasis, piloto);
         Pieza aleron = Pieza.piezaNoElegida("A");

@@ -6,7 +6,7 @@ import gestorAplicacion.paddock.*;
 
 public class Deserializado {
 
-	public static void deserialización() {
+	public static void deserializacion() {
 		
 		
 		//////////////////////////CAMPEONATOS  //////////////////////////

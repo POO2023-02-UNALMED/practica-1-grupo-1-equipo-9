@@ -502,7 +502,7 @@ public interface CrearObjetos {
         DirectorCarrera dc37 = new DirectorCarrera("Walter Aeschlimann");
         DirectorCarrera dc38 = new DirectorCarrera("Eugenio Farcas");
         DirectorCarrera dc39 = new DirectorCarrera("Enzo Spano");
-        DirectorCarrera dc40 = new DirectorCarrera("Joaqu�n Verdegay");
+        DirectorCarrera dc40 = new DirectorCarrera("Joaquin Verdegay");
         DirectorCarrera dc41 = new DirectorCarrera("Niels Wittich");
         DirectorCarrera dc42 = new DirectorCarrera("Michel Boeri");
         DirectorCarrera dc43 = new DirectorCarrera("Hassan Al-Thawadi");
@@ -621,5 +621,397 @@ public interface CrearObjetos {
         pilotos2.add(p20);
 
         */
+        
+        // Chasis
+        
+        Chasis chasisF1_1 = new Chasis("Mercedes", "W12");
+        Chasis chasisF1_2 = new Chasis("Red Bull Racing", "RB16B");
+        Chasis chasisF1_3 = new Chasis("Ferrari", "SF21");
+        Chasis chasisF1_4 = new Chasis("McLaren", "MCL35M");
+        Chasis chasisF1_5 = new Chasis("Aston Martin", "AMR21");
+        Chasis chasisF1_6 = new Chasis("Alpine", "A521");
+        Chasis chasisF1_7 = new Chasis("AlphaTauri", "AT02");
+        Chasis chasisF1_8 = new Chasis("Williams", "FW43B");
+        Chasis chasisF1_9 = new Chasis("Alfa Romeo", "C41");
+        Chasis chasisF1_10 = new Chasis("Haas", "VF-21");
+        Chasis chasisF1_11 = new Chasis("Mercedes", "W12");
+        Chasis chasisF1_12 = new Chasis("Red Bull Racing", "RB16B");
+        Chasis chasisF1_13 = new Chasis("Ferrari", "SF21");
+        Chasis chasisF1_14 = new Chasis("McLaren", "MCL35M");
+        Chasis chasisF1_15 = new Chasis("Aston Martin", "AMR21");
+        Chasis chasisF1_16 = new Chasis("Alpine", "A521");
+        Chasis chasisF1_17 = new Chasis("AlphaTauri", "AT02");
+        Chasis chasisF1_18 = new Chasis("Williams", "FW43B");
+        Chasis chasisF1_19 = new Chasis("Alfa Romeo", "C41");
+        Chasis chasisF1_20 = new Chasis("Haas", "VF-21");
+        Chasis chasisF1_21 = new Chasis("Mercedes", "W12");
+        Chasis chasisF1_22 = new Chasis("Red Bull Racing", "RB16B");
+        Chasis chasisF1_23 = new Chasis("Ferrari", "SF21");
+        Chasis chasisF1_24 = new Chasis("McLaren", "MCL35M");
+        Chasis chasisF1_25 = new Chasis("Aston Martin", "AMR21");
+        Chasis chasisF1_26 = new Chasis("Alpine", "A521");
+        Chasis chasisF1_27 = new Chasis("AlphaTauri", "AT02");
+        Chasis chasisF1_28 = new Chasis("Williams", "FW43B");
+        Chasis chasisF1_29 = new Chasis("Alfa Romeo", "C41");
+        Chasis chasisF1_30 = new Chasis("Haas", "VF-21");
+        Chasis chasisF1_31 = new Chasis("Mercedes", "W12");
+        Chasis chasisF1_32 = new Chasis("Red Bull Racing", "RB16B");
+        Chasis chasisF1_33 = new Chasis("Ferrari", "SF21");
+        Chasis chasisF1_34 = new Chasis("McLaren", "MCL35M");
+        Chasis chasisF1_35 = new Chasis("Aston Martin", "AMR21");
+        Chasis chasisF1_36 = new Chasis("Alpine", "A521");
+        Chasis chasisF1_37 = new Chasis("AlphaTauri", "AT02");
+        Chasis chasisF1_38 = new Chasis("Williams", "FW43B");
+        Chasis chasisF1_39 = new Chasis("Alfa Romeo", "C41");
+        Chasis chasisF1_40 = new Chasis("Haas", "VF-21");
+        
+        //Piezas Mercedes
+        
+        Pieza aleron1 = new Pieza("WingMaster 9000", "aleron", "Mercedes");
+        Pieza aleron2 = new Pieza("Aeroflare X1", "aleron", "Mercedes");
+        Pieza aleron3 = new Pieza("TurboWing Zephyr", "aleron", "Mercedes");
+        Pieza aleron4 = new Pieza("EcoWing Blade", "aleron", "Mercedes");
+        Pieza aleron5 = new Pieza("HyperWing Fury", "aleron", "Mercedes");
+        Pieza aleron6 = new Pieza("MegaFlow Glide", "aleron", "Mercedes");
+        Pieza aleron7 = new Pieza("AeroDynamics X", "aleron", "Mercedes");
+        Pieza aleron8 = new Pieza("TurboJetstream 500", "aleron", "Mercedes");
+        Pieza aleron9 = new Pieza("SkySlicer Aero", "aleron", "Mercedes");
+        Pieza aleron10 = new Pieza("AeroWing Infinity", "aleron", "Mercedes");
+
+        Pieza motor1 = new Pieza("TurboThunder V8", "motor", "Mercedes");
+        Pieza motor2 = new Pieza("PowerBeast Pro", "motor", "Mercedes");
+        Pieza motor3 = new Pieza("NitroCharger Elite", "motor", "Mercedes");
+        Pieza motor4 = new Pieza("TurboBoost X12", "motor", "Mercedes");
+        Pieza motor5 = new Pieza("ThunderDrive 2000", "motor", "Mercedes");
+        Pieza motor6 = new Pieza("HyperVelocity Engine", "motor", "Mercedes");
+        Pieza motor7 = new Pieza("TurboJet 9000X", "motor", "Mercedes");
+        Pieza motor8 = new Pieza("PowerPulse Pro", "motor", "Mercedes");
+        Pieza motor9 = new Pieza("TurboDrive XL", "motor", "Mercedes");
+        Pieza motor10 = new Pieza("RocketForce 3000", "motor", "Mercedes");
+
+        Pieza llantas1 = new Pieza("AeroGlide Thunder", "llantas", "Mercedes");
+        Pieza llantas2 = new Pieza("GripMaster Ultra", "llantas", "Mercedes");
+        Pieza llantas3 = new Pieza("TurboTread Exceed", "llantas", "Mercedes");
+        Pieza llantas4 = new Pieza("TrackThriller Max", "llantas", "Mercedes");
+        Pieza llantas5 = new Pieza("SpeedDive Storm", "llantas", "Mercedes");
+        Pieza llantas6 = new Pieza("AeroWheel X1", "llantas", "Mercedes");
+        Pieza llantas7 = new Pieza("SuperGrip Elite", "llantas", "Mercedes");
+        Pieza llantas8 = new Pieza("TurboGlide Pro", "llantas", "Mercedes");
+        Pieza llantas9 = new Pieza("MegaTraction Grip", "llantas", "Mercedes");
+        Pieza llantas10 = new Pieza("SpeedBlitz Thunder", "llantas", "Mercedes");
+        
+        // Piezas Red Bull Racing
+        Pieza aleron11 = new Pieza("AirMax Raptor", "aleron", "Red Bull Racing");
+        Pieza aleron12 = new Pieza("AeroFlex Thunder", "aleron", "Red Bull Racing");
+        Pieza aleron13 = new Pieza("SkyWing Storm", "aleron", "Red Bull Racing");
+        Pieza aleron14 = new Pieza("TurboFlow Wingmaster", "aleron", "Red Bull Racing");
+        Pieza aleron15 = new Pieza("AeroJet Thrust", "aleron", "Red Bull Racing");
+        Pieza aleron16 = new Pieza("HyperGlide Speedster", "aleron", "Red Bull Racing");
+        Pieza aleron17 = new Pieza("AirSlicer BladeX", "aleron", "Red Bull Racing");
+        Pieza aleron18 = new Pieza("AeroFury Maxima", "aleron", "Red Bull Racing");
+        Pieza aleron19 = new Pieza("SkyForce AeroTech", "aleron", "Red Bull Racing");
+        Pieza aleron110 = new Pieza("TurboWing X7", "aleron", "Red Bull Racing");
+
+        Pieza motor11 = new Pieza("NitroBeast X3", "motor", "Red Bull Racing");
+        Pieza motor12 = new Pieza("TurboCharger Storm", "motor", "Red Bull Racing");
+        Pieza motor13 = new Pieza("PowerGlide ProX", "motor", "Red Bull Racing");
+        Pieza motor14 = new Pieza("ThunderDrive X4", "motor", "Red Bull Racing");
+        Pieza motor15 = new Pieza("SpeedPulse Elite", "motor", "Red Bull Racing");
+        Pieza motor16 = new Pieza("TurboForce ThunderX", "motor", "Red Bull Racing");
+        Pieza motor17 = new Pieza("NitroJet Mach 7", "motor", "Red Bull Racing");
+        Pieza motor18 = new Pieza("PowerThriller X1", "motor", "Red Bull Racing");
+        Pieza motor19 = new Pieza("HyperBoost Maxima", "motor", "Red Bull Racing");
+        Pieza motor110 = new Pieza("TurboDrive Thunderstorm", "motor", "Red Bull Racing");
+
+        Pieza llantas11 = new Pieza("GripMaster Thunderbolt", "llantas", "Red Bull Racing");
+        Pieza llantas12 = new Pieza("TurboGlide Blaze", "llantas", "Red Bull Racing");
+        Pieza llantas13 = new Pieza("AeroWheel Thunderstrike", "llantas", "Red Bull Racing");
+        Pieza llantas14 = new Pieza("SpeedBlitz StormRider", "llantas", "Red Bull Racing");
+        Pieza llantas15 = new Pieza("SkyGrip EliteX", "llantas", "Red Bull Racing");
+        Pieza llantas16 = new Pieza("TurboTread Thrustmaster", "llantas", "Red Bull Racing");
+        Pieza llantas17 = new Pieza("AeroGlide Thunderstrike", "llantas", "Red Bull Racing");
+        Pieza llantas18 = new Pieza("SpeedForce BlazeX", "llantas", "Red Bull Racing");
+        Pieza llantas19 = new Pieza("SkyBlitz StormRider", "llantas", "Red Bull Racing");
+        Pieza llantas110 = new Pieza("TurboSpeed EliteX", "llantas", "Red Bull Racing");
+        
+        // Piezas Ferrari
+        
+        Pieza aleron21 = new Pieza("Scuderia AeroMaster", "aleron", "Ferrari");
+        Pieza aleron22 = new Pieza("TurboWing RedFire", "aleron", "Ferrari");
+        Pieza aleron23 = new Pieza("AeroFlow Thunderbolt", "aleron", "Ferrari");
+        Pieza aleron24 = new Pieza("Fireblade AeroX", "aleron", "Ferrari");
+        Pieza aleron25 = new Pieza("HyperAero Flame", "aleron", "Ferrari");
+        Pieza aleron26 = new Pieza("ThunderWing Inferno", "aleron", "Ferrari");
+        Pieza aleron27 = new Pieza("Firestorm AeroTech", "aleron", "Ferrari");
+        Pieza aleron28 = new Pieza("TurboFlare Maxima", "aleron", "Ferrari");
+        Pieza aleron29 = new Pieza("FireRider AeroBlitz", "aleron", "Ferrari");
+        Pieza aleron210 = new Pieza("AeroFury RedFusion", "aleron", "Ferrari");
+
+        Pieza motor21 = new Pieza("FireBoost ThunderMax", "motor", "Ferrari");
+        Pieza motor22 = new Pieza("TurboFlame InfernoX", "motor", "Ferrari");
+        Pieza motor23 = new Pieza("AeroPower BlazeForce", "motor", "Ferrari");
+        Pieza motor24 = new Pieza("ThunderDrive FireStorm", "motor", "Ferrari");
+        Pieza motor25 = new Pieza("FirePulse FlameX", "motor", "Ferrari");
+        Pieza motor26 = new Pieza("HyperFlame InfernoStorm", "motor", "Ferrari");
+        Pieza motor27 = new Pieza("FireJet ThunderX", "motor", "Ferrari");
+        Pieza motor28 = new Pieza("TurboInferno BlazeRider", "motor", "Ferrari");
+        Pieza motor29 = new Pieza("FireTech ThunderBlitz", "motor", "Ferrari");
+        Pieza motor210 = new Pieza("TurboFusion BlazeMaster", "motor", "Ferrari");
+
+        Pieza llantas21 = new Pieza("GripBlaze Thunderstrike", "llantas", "Ferrari");
+        Pieza llantas22 = new Pieza("TurboRider FireGlide", "llantas", "Ferrari");
+        Pieza llantas23 = new Pieza("AeroBlaze InfernoWheel", "llantas", "Ferrari");
+        Pieza llantas24 = new Pieza("SpeedInferno ThunderRider", "llantas", "Ferrari");
+        Pieza llantas25 = new Pieza("FireGlide BlazeX", "llantas", "Ferrari");
+        Pieza llantas26 = new Pieza("TurboThunder FlameSpeed", "llantas", "Ferrari");
+        Pieza llantas27 = new Pieza("AeroFlame InfernoStorm", "llantas", "Ferrari");
+        Pieza llantas28 = new Pieza("SpeedBlitz BlazeTech", "llantas", "Ferrari");
+        Pieza llantas29 = new Pieza("FireSpeed ThunderBlitz", "llantas", "Ferrari");
+        Pieza llantas210 = new Pieza("TurboStorm InfernoX", "llantas", "Ferrari");
+        
+        // Piezas McLaren
+        
+        Pieza aleron31 = new Pieza("MegaFlow Airexcel", "aleron", "McLaren");
+        Pieza aleron32 = new Pieza("TurboJet Wingblaze", "aleron", "McLaren");
+        Pieza aleron33 = new Pieza("SkyRider AeroJet", "aleron", "McLaren");
+        Pieza aleron34 = new Pieza("AeroDynamics ProWing", "aleron", "McLaren");
+        Pieza aleron35 = new Pieza("HyperWing ThunderGlide", "aleron", "McLaren");
+        Pieza aleron36 = new Pieza("AeroMaster JetStorm", "aleron", "McLaren");
+        Pieza aleron37 = new Pieza("TurboFlare AeroFlow", "aleron", "McLaren");
+        Pieza aleron38 = new Pieza("AeroX ThunderBlitz", "aleron", "McLaren");
+        Pieza aleron39 = new Pieza("SkyForce AeroFury", "aleron", "McLaren");
+        Pieza aleron310 = new Pieza("TurboWing Infinity", "aleron", "McLaren");
+
+        Pieza motor31 = new Pieza("TurboThunder EngineX", "motor", "McLaren");
+        Pieza motor32 = new Pieza("PowerBeast ThunderFire", "motor", "McLaren");
+        Pieza motor33 = new Pieza("NitroCharger StormBlade", "motor", "McLaren");
+        Pieza motor34 = new Pieza("TurboBoost FireX", "motor", "McLaren");
+        Pieza motor35 = new Pieza("ThunderDrive VelocityX", "motor", "McLaren");
+        Pieza motor36 = new Pieza("HyperVelocity TurboJet", "motor", "McLaren");
+        Pieza motor37 = new Pieza("TurboJet FlameThunder", "motor", "McLaren");
+        Pieza motor38 = new Pieza("PowerPulse ThunderForce", "motor", "McLaren");
+        Pieza motor39 = new Pieza("TurboDrive BlazeSpeed", "motor", "McLaren");
+        Pieza motor310 = new Pieza("RocketForce VelocityStorm", "motor", "McLaren");
+
+        Pieza llantas31 = new Pieza("AeroGlide BlazeSpeed", "llantas", "McLaren");
+        Pieza llantas32 = new Pieza("GripMaster ThunderJet", "llantas", "McLaren");
+        Pieza llantas33 = new Pieza("TurboTread VelocityTech", "llantas", "McLaren");
+        Pieza llantas34 = new Pieza("TrackThriller ThunderX", "llantas", "McLaren");
+        Pieza llantas35 = new Pieza("SpeedDive BlazeGlide", "llantas", "McLaren");
+        Pieza llantas36 = new Pieza("AeroWheel ThunderRider", "llantas", "McLaren");
+        Pieza llantas37 = new Pieza("SuperGrip VelocityMax", "llantas", "McLaren");
+        Pieza llantas38 = new Pieza("TurboGlide BlazeStorm", "llantas", "McLaren");
+        Pieza llantas39 = new Pieza("MegaTraction ThunderBlitz", "llantas", "McLaren");
+        Pieza llantas310 = new Pieza("SpeedBlitz BlazeTech", "llantas", "McLaren");
+        
+        // Piezas Aston Martin
+        
+        Pieza aleron41 = new Pieza("AeroMaster VantageX", "aleron", "Aston Martin");
+        Pieza aleron42 = new Pieza("TurboWing RapidStorm", "aleron", "Aston Martin");
+        Pieza aleron43 = new Pieza("SkyRider AeroVantage", "aleron", "Aston Martin");
+        Pieza aleron44 = new Pieza("AeroDynamics StormVantage", "aleron", "Aston Martin");
+        Pieza aleron45 = new Pieza("HyperWing ThunderVantage", "aleron", "Aston Martin");
+        Pieza aleron46 = new Pieza("AeroJet StormMaster", "aleron", "Aston Martin");
+        Pieza aleron47 = new Pieza("TurboFlare AeroBolt", "aleron", "Aston Martin");
+        Pieza aleron48 = new Pieza("AeroX ThunderWave", "aleron", "Aston Martin");
+        Pieza aleron49 = new Pieza("SkyForce AeroVortex", "aleron", "Aston Martin");
+        Pieza aleron410 = new Pieza("TurboWing VantageBlitz", "aleron", "Aston Martin");
+
+        Pieza motor41 = new Pieza("TurboThunder VantagePro", "motor", "Aston Martin");
+        Pieza motor42 = new Pieza("PowerBeast RapidFire", "motor", "Aston Martin");
+        Pieza motor43 = new Pieza("NitroCharger StormBolt", "motor", "Aston Martin");
+        Pieza motor44 = new Pieza("TurboBoost VantageX", "motor", "Aston Martin");
+        Pieza motor45 = new Pieza("ThunderDrive Thunderbolt", "motor", "Aston Martin");
+        Pieza motor46 = new Pieza("HyperVelocity TurboWave", "motor", "Aston Martin");
+        Pieza motor47 = new Pieza("TurboJet StormVortex", "motor", "Aston Martin");
+        Pieza motor48 = new Pieza("PowerPulse ThunderBolt", "motor", "Aston Martin");
+        Pieza motor49 = new Pieza("TurboDrive VantageMax", "motor", "Aston Martin");
+        Pieza motor410 = new Pieza("RocketForce StormBlitz", "motor", "Aston Martin");
+
+        Pieza llantas41 = new Pieza("AeroGlide RapidSpeed", "llantas", "Aston Martin");
+        Pieza llantas42 = new Pieza("GripMaster ThunderVortex", "llantas", "Aston Martin");
+        Pieza llantas43 = new Pieza("TurboTread VantageTech", "llantas", "Aston Martin");
+        Pieza llantas44 = new Pieza("TrackThriller ThunderBlitz", "llantas", "Aston Martin");
+        Pieza llantas45 = new Pieza("SpeedDive RapidGlide", "llantas", "Aston Martin");
+        Pieza llantas46 = new Pieza("AeroWheel ThunderMaster", "llantas", "Aston Martin");
+        Pieza llantas47 = new Pieza("SuperGrip VantageMaxima", "llantas", "Aston Martin");
+        Pieza llantas48 = new Pieza("TurboGlide StormRider", "llantas", "Aston Martin");
+        Pieza llantas49 = new Pieza("MegaTraction ThunderTech", "llantas", "Aston Martin");
+        Pieza llantas410 = new Pieza("SpeedBlitz VantageTechX", "llantas", "Aston Martin");
+
+        // Piezas Alpine
+        
+        Pieza aleron51 = new Pieza("AeroMaster AlpineX", "aleron", "Alpine");
+        Pieza aleron52 = new Pieza("TurboWing GlacierStorm", "aleron", "Alpine");
+        Pieza aleron53 = new Pieza("SkyRider AeroFrost", "aleron", "Alpine");
+        Pieza aleron54 = new Pieza("AeroDynamics IceGlide", "aleron", "Alpine");
+        Pieza aleron55 = new Pieza("HyperWing FrostBolt", "aleron", "Alpine");
+        Pieza aleron56 = new Pieza("AeroJet SnowRider", "aleron", "Alpine");
+        Pieza aleron57 = new Pieza("TurboFlare IcyWave", "aleron", "Alpine");
+        Pieza aleron58 = new Pieza("AeroX AlpineBlitz", "aleron", "Alpine");
+        Pieza aleron59 = new Pieza("SkyForce FrostVortex", "aleron", "Alpine");
+        Pieza aleron510 = new Pieza("TurboWing GlacierBlade", "aleron", "Alpine");
+
+        Pieza motor51 = new Pieza("TurboThunder FrostMaster", "motor", "Alpine");
+        Pieza motor52 = new Pieza("PowerBeast IceStorm", "motor", "Alpine");
+        Pieza motor53 = new Pieza("NitroCharger SnowBolt", "motor", "Alpine");
+        Pieza motor54 = new Pieza("TurboBoost AlpineX", "motor", "Alpine");
+        Pieza motor55 = new Pieza("ThunderDrive Frostbolt", "motor", "Alpine");
+        Pieza motor56 = new Pieza("HyperVelocity SnowJet", "motor", "Alpine");
+        Pieza motor57 = new Pieza("TurboJet IceVortex", "motor", "Alpine");
+        Pieza motor58 = new Pieza("PowerPulse FrostBlitz", "motor", "Alpine");
+        Pieza motor59 = new Pieza("TurboDrive AlpineTech", "motor", "Alpine");
+        Pieza motor510 = new Pieza("RocketForce SnowRider", "motor", "Alpine");
+
+        Pieza llantas51 = new Pieza("AeroGlide FrostSpeed", "llantas", "Alpine");
+        Pieza llantas52 = new Pieza("GripMaster SnowVortex", "llantas", "Alpine");
+        Pieza llantas53 = new Pieza("TurboTread AlpineTech", "llantas", "Alpine");
+        Pieza llantas54 = new Pieza("TrackThriller SnowBlitz", "llantas", "Alpine");
+        Pieza llantas55 = new Pieza("SpeedDive FrostGlide", "llantas", "Alpine");
+        Pieza llantas56 = new Pieza("AeroWheel IceMaster", "llantas", "Alpine");
+        Pieza llantas57 = new Pieza("SuperGrip AlpineMaxima", "llantas", "Alpine");
+        Pieza llantas58 = new Pieza("TurboGlide SnowTech", "llantas", "Alpine");
+        Pieza llantas59 = new Pieza("MegaTraction FrostBlade", "llantas", "Alpine");
+        Pieza llantas510 = new Pieza("SpeedBlitz AlpineStorm", "llantas", "Alpine");
+        
+        // Piezas AlphaTauri
+
+        Pieza aleron61 = new Pieza("AeroMaster AlphaFlow", "aleron", "AlphaTauri");
+        Pieza aleron62 = new Pieza("TurboWing TauriStorm", "aleron", "AlphaTauri");
+        Pieza aleron63 = new Pieza("SkyRider AeroBolt", "aleron", "AlphaTauri");
+        Pieza aleron64 = new Pieza("AeroDynamics StormFlow", "aleron", "AlphaTauri");
+        Pieza aleron65 = new Pieza("HyperWing TauriBlade", "aleron", "AlphaTauri");
+        Pieza aleron66 = new Pieza("AeroJet BoltMaster", "aleron", "AlphaTauri");
+        Pieza aleron67 = new Pieza("TurboFlare AlphaX", "aleron", "AlphaTauri");
+        Pieza aleron68 = new Pieza("AeroX TauriBlitz", "aleron", "AlphaTauri");
+        Pieza aleron69 = new Pieza("SkyForce AeroFury", "aleron", "AlphaTauri");
+        Pieza aleron610 = new Pieza("TurboWing StormWave", "aleron", "AlphaTauri");
+
+        Pieza motor61 = new Pieza("TurboThunder TauriMaster", "motor", "AlphaTauri");
+        Pieza motor62 = new Pieza("PowerBeast StormJet", "motor", "AlphaTauri");
+        Pieza motor63 = new Pieza("NitroCharger AlphaBolt", "motor", "AlphaTauri");
+        Pieza motor64 = new Pieza("TurboBoost TauriBlitz", "motor", "AlphaTauri");
+        Pieza motor65 = new Pieza("ThunderDrive StormFlow", "motor", "AlphaTauri");
+        Pieza motor66 = new Pieza("HyperVelocity AlphaJet", "motor", "AlphaTauri");
+        Pieza motor67 = new Pieza("TurboJet BoltX", "motor", "AlphaTauri");
+        Pieza motor68 = new Pieza("PowerPulse TauriTech", "motor", "AlphaTauri");
+        Pieza motor69 = new Pieza("TurboDrive StormBlitz", "motor", "AlphaTauri");
+        Pieza motor610 = new Pieza("RocketForce AlphaRider", "motor", "AlphaTauri");
+
+        Pieza llantas61 = new Pieza("AeroGlide TauriSpeed", "llantas", "AlphaTauri");
+        Pieza llantas62 = new Pieza("GripMaster StormVortex", "llantas", "AlphaTauri");
+        Pieza llantas63 = new Pieza("TurboTread AlphaTech", "llantas", "AlphaTauri");
+        Pieza llantas64 = new Pieza("TrackThriller TauriBlitz", "llantas", "AlphaTauri");
+        Pieza llantas65 = new Pieza("SpeedDive StormGlide", "llantas", "AlphaTauri");
+        Pieza llantas66 = new Pieza("AeroWheel BoltMaster", "llantas", "AlphaTauri");
+        Pieza llantas67 = new Pieza("SuperGrip TauriMaxima", "llantas", "AlphaTauri");
+        Pieza llantas68 = new Pieza("TurboGlide StormTech", "llantas", "AlphaTauri");
+        Pieza llantas69 = new Pieza("MegaTraction AlphaBlade", "llantas","AlphaTauri");
+        Pieza llantas610 = new Pieza("SpeedBlitz TauriStormX", "llantas", "AlphaTauri");
+        
+        // Piezas Williams
+        
+        Pieza aleron71 = new Pieza("AeroMaster SpeedWing", "aleron", "Williams");
+        Pieza aleron72 = new Pieza("TurboWing VelocityStorm", "aleron", "Williams");
+        Pieza aleron73 = new Pieza("SkyRider AeroBolt", "aleron", "Williams");
+        Pieza aleron74 = new Pieza("AeroDynamics StormFlow", "aleron", "Williams");
+        Pieza aleron75 = new Pieza("HyperWing ThunderBolt", "aleron", "Williams");
+        Pieza aleron76 = new Pieza("AeroJet BoltMaster", "aleron", "Williams");
+        Pieza aleron77 = new Pieza("TurboFlare SpeedX", "aleron", "Williams");
+        Pieza aleron78 = new Pieza("AeroX WilliamsBlitz", "aleron", "Williams");
+        Pieza aleron79 = new Pieza("SkyForce AeroFury", "aleron", "Williams");
+        Pieza aleron710 = new Pieza("TurboWing VelocityWave", "aleron", "Williams");
+
+        Pieza motor71 = new Pieza("TurboThunder WilliamsMaster", "motor", "Williams");
+        Pieza motor72 = new Pieza("PowerBeast VelocityJet", "motor", "Williams");
+        Pieza motor73 = new Pieza("NitroCharger AeroBolt", "motor", "Williams");
+        Pieza motor74 = new Pieza("TurboBoost WilliamsBlitz", "motor", "Williams");
+        Pieza motor75 = new Pieza("ThunderDrive VelocityFlow", "motor", "Williams");
+        Pieza motor76 = new Pieza("HyperVelocity AeroJet", "motor", "Williams");
+        Pieza motor77 = new Pieza("TurboJet BoltX", "motor", "Williams");
+        Pieza motor78 = new Pieza("PowerPulse WilliamsTech", "motor", "Williams");
+        Pieza motor79 = new Pieza("TurboDrive VelocityBlitz", "motor", "Williams");
+        Pieza motor710 = new Pieza("RocketForce AeroRider", "motor", "Williams");
+
+        Pieza llantas71 = new Pieza("AeroGlide WilliamsSpeed", "llantas", "Williams");
+        Pieza llantas72 = new Pieza("GripMaster VelocityVortex", "llantas", "Williams");
+        Pieza llantas73 = new Pieza("TurboTread AeroTech", "llantas", "Williams");
+        Pieza llantas74 = new Pieza("TrackThriller WilliamsBlitz", "llantas", "Williams");
+        Pieza llantas75 = new Pieza("SpeedDive VelocityGlide", "llantas", "Williams");
+        Pieza llantas76 = new Pieza("AeroWheel BoltMaster", "llantas", "Williams");
+        Pieza llantas77 = new Pieza("SuperGrip WilliamsMaxima", "llantas", "Williams");
+        Pieza llantas78 = new Pieza("TurboGlide VelocityTech", "llantas", "Williams");
+        Pieza llantas79 = new Pieza("MegaTraction AeroBlade", "llantas", "Williams");
+        Pieza llantas710 = new Pieza("SpeedBlitz WilliamsStorm", "llantas", "Williams");
+        
+        // Piezas Alfa Romeo
+        
+        Pieza aleron81 = new Pieza("AeroMaster AlfaFlow", "aleron", "Alfa Romeo");
+        Pieza aleron82 = new Pieza("TurboWing RomeoStorm", "aleron", "Alfa Romeo");
+        Pieza aleron83 = new Pieza("SkyRider AeroBolt", "aleron", "Alfa Romeo");
+        Pieza aleron84 = new Pieza("AeroDynamics StormFlow", "aleron", "Alfa Romeo");
+        Pieza aleron85 = new Pieza("HyperWing ThunderBolt", "aleron", "Alfa Romeo");
+        Pieza aleron86 = new Pieza("AeroJet BoltMaster", "aleron", "Alfa Romeo");
+        Pieza aleron87 = new Pieza("TurboFlare AlfaX", "aleron", "Alfa Romeo");
+        Pieza aleron88 = new Pieza("AeroX RomeoBlitz", "aleron", "Alfa Romeo");
+        Pieza aleron89 = new Pieza("SkyForce AeroFury", "aleron", "Alfa Romeo");
+        Pieza aleron810 = new Pieza("TurboWing RomeoWave", "aleron", "Alfa Romeo");
+
+        Pieza motor81 = new Pieza("TurboThunder RomeoMaster", "motor", "Alfa Romeo");
+        Pieza motor82 = new Pieza("PowerBeast RomeoJet", "motor", "Alfa Romeo");
+        Pieza motor83 = new Pieza("NitroCharger AeroBolt", "motor", "Alfa Romeo");
+        Pieza motor84 = new Pieza("TurboBoost RomeoBlitz", "motor", "Alfa Romeo");
+        Pieza motor85 = new Pieza("ThunderDrive StormFlow", "motor", "Alfa Romeo");
+        Pieza motor86 = new Pieza("HyperVelocity AlfaJet", "motor", "Alfa Romeo");
+        Pieza motor87 = new Pieza("TurboJet BoltX", "motor", "Alfa Romeo");
+        Pieza motor88 = new Pieza("PowerPulse RomeoTech", "motor", "Alfa Romeo");
+        Pieza motor89 = new Pieza("TurboDrive StormBlitz", "motor", "Alfa Romeo");
+        Pieza motor810 = new Pieza("RocketForce AlfaRider", "motor", "Alfa Romeo");
+
+        Pieza llantas81 = new Pieza("AeroGlide RomeoSpeed", "llantas", "Alfa Romeo");
+        Pieza llantas82 = new Pieza("GripMaster StormVortex", "llantas", "Alfa Romeo");
+        Pieza llantas83 = new Pieza("TurboTread AlfaTech", "llantas", "Alfa Romeo");
+        Pieza llantas84 = new Pieza("TrackThriller RomeoBlitz", "llantas", "Alfa Romeo");
+        Pieza llantas85 = new Pieza("SpeedDive StormGlide", "llantas", "Alfa Romeo");
+        Pieza llantas86 = new Pieza("AeroWheel BoltMaster", "llantas", "Alfa Romeo");
+        Pieza llantas87 = new Pieza("SuperGrip RomeoMaxima", "llantas", "Alfa Romeo");
+        Pieza llantas88 = new Pieza("TurboGlide StormTech", "llantas", "Alfa Romeo");
+        Pieza llantas89 = new Pieza("MegaTraction AlfaBlade", "llantas", "Alfa Romeo");
+        Pieza llantas810 = new Pieza("SpeedBlitz RomeoStormX", "llantas", "Alfa Romeo");
+        
+        // Piezas Haas
+        
+        Pieza aleron91 = new Pieza("AeroMaster HaasFlow", "aleron", "Haas");
+        Pieza aleron92 = new Pieza("TurboWing VelocityStorm", "aleron", "Haas");
+        Pieza aleron93 = new Pieza("SkyRider AeroBolt", "aleron", "Haas");
+        Pieza aleron94 = new Pieza("AeroDynamics StormFlow", "aleron", "Haas");
+        Pieza aleron95 = new Pieza("HyperWing ThunderBolt", "aleron", "Haas");
+        Pieza aleron96 = new Pieza("AeroJet BoltMaster", "aleron", "Haas");
+        Pieza aleron97 = new Pieza("TurboFlare HaasX", "aleron", "Haas");
+        Pieza aleron98 = new Pieza("AeroX HaasBlitz", "aleron", "Haas");
+        Pieza aleron99 = new Pieza("SkyForce AeroFury", "aleron", "Haas");
+        Pieza aleron910 = new Pieza("TurboWing VelocityWave", "aleron", "Haas");
+
+        Pieza motor91 = new Pieza("TurboThunder HaasMaster", "motor", "Haas");
+        Pieza motor92 = new Pieza("PowerBeast VelocityJet", "motor", "Haas");
+        Pieza motor93 = new Pieza("NitroCharger AeroBolt", "motor", "Haas");
+        Pieza motor94 = new Pieza("TurboBoost HaasBlitz", "motor", "Haas");
+        Pieza motor95 = new Pieza("ThunderDrive StormFlow", "motor", "Haas");
+        Pieza motor96 = new Pieza("HyperVelocity HaasJet", "motor", "Haas");
+        Pieza motor97 = new Pieza("TurboJet BoltX", "motor", "Haas");
+        Pieza motor98 = new Pieza("PowerPulse HaasTech", "motor", "Haas");
+        Pieza motor99 = new Pieza("TurboDrive StormBlitz", "motor", "Haas");
+        Pieza motor910 = new Pieza("RocketForce HaasRider", "motor", "Haas");
+
+        Pieza llantas91 = new Pieza("AeroGlide HaasSpeed", "llantas", "Haas");
+        Pieza llantas92 = new Pieza("GripMaster StormVortex", "llantas", "Haas");
+        Pieza llantas93 = new Pieza("TurboTread HaasTech", "llantas", "Haas");
+        Pieza llantas94 = new Pieza("TrackThriller HaasBlitz", "llantas", "Haas");
+        Pieza llantas95 = new Pieza("SpeedDive StormGlide", "llantas", "Haas");
+        Pieza llantas96 = new Pieza("AeroWheel BoltMaster", "llantas", "Haas");
+        Pieza llantas97 = new Pieza("SuperGrip HaasMaxima", "llantas", "Haas");
+        Pieza llantas98 = new Pieza("TurboGlide StormTech", "llantas", "Haas");
+        Pieza llantas99 = new Pieza("MegaTraction HaasBlade", "llantas", "Haas");
+        Pieza llantas910 = new Pieza("SpeedBlitz HaasStormX", "llantas", "Haas");
     }
 }

@@ -24,7 +24,7 @@ public class Main {
 
     static {
 
-        //Deserializado.deserialización();
+        //Deserializado.deserializacion();
         CrearObjetos.crearObjetos();
     }
 

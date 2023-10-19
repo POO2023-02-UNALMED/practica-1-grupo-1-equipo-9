@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import baseDatos.Deserializado;
+
 import static uiMain.AsciiArt.bienvenida;
 import static uiMain.AsciiArt.sitAndTalk;
 import static uiMain.Tablas.*;
@@ -21,6 +23,8 @@ public class Main {
     static int n;
 
     static {
+
+        //Deserializado.deserialización();
         CrearObjetos.crearObjetos();
     }
 

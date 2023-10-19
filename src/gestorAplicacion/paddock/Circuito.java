@@ -4,7 +4,7 @@ import gestorAplicacion.campeonato.*;
 
 import java.util.*;
 
-public class Circuito {
+public class Circuito implements java.io.Serializable{
 
     public static ArrayList<Circuito> circuitos = new ArrayList<Circuito>();
     private String nombre;

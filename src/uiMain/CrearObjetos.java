@@ -664,7 +664,51 @@ public interface CrearObjetos {
         Chasis chasisF1_38 = new Chasis("Williams", "FW43B");
         Chasis chasisF1_39 = new Chasis("Alfa Romeo", "C41");
         Chasis chasisF1_40 = new Chasis("Haas", "VF-21");
+
+        // vehiculosCarrera
+/* 
+        VehiculoCarrera vehiculoCarrera1 = new VehiculoCarrera(chasisF1_1);
+        VehiculoCarrera vehiculoCarrera2 = new VehiculoCarrera(chasisF1_2);
+        VehiculoCarrera vehiculoCarrera3 = new VehiculoCarrera(chasisF1_3);
+        VehiculoCarrera vehiculoCarrera4 = new VehiculoCarrera(chasisF1_4);
+        VehiculoCarrera vehiculoCarrera5 = new VehiculoCarrera(chasisF1_5);
+        VehiculoCarrera vehiculoCarrera6 = new VehiculoCarrera(chasisF1_6);
+        VehiculoCarrera vehiculoCarrera7 = new VehiculoCarrera(chasisF1_7);
+        VehiculoCarrera vehiculoCarrera8 = new VehiculoCarrera(chasisF1_8);
+        VehiculoCarrera vehiculoCarrera9 = new VehiculoCarrera(chasisF1_9);
+        VehiculoCarrera vehiculoCarrera10 = new VehiculoCarrera(chasisF1_10);
+        VehiculoCarrera vehiculoCarrera11 = new VehiculoCarrera(chasisF1_11);
+        VehiculoCarrera vehiculoCarrera12 = new VehiculoCarrera(chasisF1_12);
+        VehiculoCarrera vehiculoCarrera13 = new VehiculoCarrera(chasisF1_13);
+        VehiculoCarrera vehiculoCarrera14 = new VehiculoCarrera(chasisF1_14);
+        VehiculoCarrera vehiculoCarrera15 = new VehiculoCarrera(chasisF1_15);
+        VehiculoCarrera vehiculoCarrera16 = new VehiculoCarrera(chasisF1_16);
+        VehiculoCarrera vehiculoCarrera17 = new VehiculoCarrera(chasisF1_17);
+        VehiculoCarrera vehiculoCarrera18 = new VehiculoCarrera(chasisF1_18);
+        VehiculoCarrera vehiculoCarrera19 = new VehiculoCarrera(chasisF1_19);
+        VehiculoCarrera vehiculoCarrera20 = new VehiculoCarrera(chasisF1_20);
+        VehiculoCarrera vehiculoCarrera21 = new VehiculoCarrera(chasisF1_21);
+        VehiculoCarrera vehiculoCarrera22 = new VehiculoCarrera(chasisF1_22);
+        VehiculoCarrera vehiculoCarrera23 = new VehiculoCarrera(chasisF1_23);
+        VehiculoCarrera vehiculoCarrera24 = new VehiculoCarrera(chasisF1_24);
+        VehiculoCarrera vehiculoCarrera25 = new VehiculoCarrera(chasisF1_25);
+        VehiculoCarrera vehiculoCarrera26 = new VehiculoCarrera(chasisF1_26);
+        VehiculoCarrera vehiculoCarrera27 = new VehiculoCarrera(chasisF1_27);
+        VehiculoCarrera vehiculoCarrera28 = new VehiculoCarrera(chasisF1_28);
+        VehiculoCarrera vehiculoCarrera29 = new VehiculoCarrera(chasisF1_29);
+        VehiculoCarrera vehiculoCarrera30 = new VehiculoCarrera(chasisF1_30);
+        VehiculoCarrera vehiculoCarrera31 = new VehiculoCarrera(chasisF1_31);
+        VehiculoCarrera vehiculoCarrera32 = new VehiculoCarrera(chasisF1_32);
+        VehiculoCarrera vehiculoCarrera33 = new VehiculoCarrera(chasisF1_33);
+        VehiculoCarrera vehiculoCarrera34 = new VehiculoCarrera(chasisF1_34);
+        VehiculoCarrera vehiculoCarrera35 = new VehiculoCarrera(chasisF1_35);
+        VehiculoCarrera vehiculoCarrera36 = new VehiculoCarrera(chasisF1_36);
+        VehiculoCarrera vehiculoCarrera37 = new VehiculoCarrera(chasisF1_37);
+        VehiculoCarrera vehiculoCarrera38 = new VehiculoCarrera(chasisF1_38);
+        VehiculoCarrera vehiculoCarrera39 = new VehiculoCarrera(chasisF1_39);
+        VehiculoCarrera vehiculoCarrera40 = new VehiculoCarrera(chasisF1_40);
         
+        */
         //Piezas Mercedes
         
         Pieza aleron1 = new Pieza("WingMaster 9000", "aleron", "Mercedes");

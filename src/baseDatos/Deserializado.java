@@ -14,12 +14,7 @@ public class Deserializado {
 	    ArrayList<Campeonato> campeonatos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCampeonatos.txt");
 
 	    Campeonato.setCampeonatos(campeonatos);
-	    
-	    if (campeonatos != null) {
-	        for (Campeonato campeonato : campeonatos) {
-	        	System.out.println(campeonato);
-	        }
-	    }
+
 	    
 	    ////////////////////////// CIUDADES  //////////////////////////
 	    
@@ -27,10 +22,6 @@ public class Deserializado {
 
 	    Ciudad.setListaCiudades(ciudades);
 	    
-	    if (ciudades != null) {
-	        for (Ciudad ciudad : ciudades) {
-	        	System.out.println(ciudad);	        }
-	    }
 	    
 	    ////////////////////////// DIRECTORES  //////////////////////////
 	    
@@ -39,10 +30,6 @@ public class Deserializado {
 
 		DirectorCarrera.setListaDirectores(directoresCarrera);
 		
-	    if (directoresCarrera != null) {
-	        for (DirectorCarrera directorCarrera : directoresCarrera) {
-	        	System.out.println(directorCarrera);	        }
-	    }
 	    
 	    ////////////////////////// EQUIPOS  //////////////////////////
 	    
@@ -50,43 +37,28 @@ public class Deserializado {
 
 	    Equipo.setEquipos(equipos);
 	    
-	    if (equipos != null) {
-	        for (Equipo equipo : equipos) {
-	        	System.out.println(equipo);	        }
-	    }
-	    
+
 	    ////////////////////////// PATROCINADORES  //////////////////////////
 
 	    ArrayList<Patrocinador> patrocinadores = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPatrocinadores.txt");
 
 	    Patrocinador.setListaPatrocinadores(patrocinadores);
-	    
-	    if (patrocinadores != null) {
-	        for (Patrocinador patrocinador : patrocinadores) {
-	        	System.out.println(patrocinador);	        }
-	    }  
+
 	    
 	    ////////////////////////// PIEZAS  //////////////////////////
 	    
 	    ArrayList<Pieza> piezas = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPiezas.txt");
 
 	    Pieza.setPiezas(piezas);
-	    
-	    if (piezas != null) {
-	        for (Pieza pieza : piezas) {
-	        	System.out.println(pieza);	        }
-	    }
-	    
-	    ////////////////////////// PIEZAS CONTRABANDO  //////////////////////////
-	    
-	    ArrayList<Pieza> piezasContrabando = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPiezasContrabando.txt");
 
-	    Pieza.setPiezasContrabando(piezasContrabando);
 	    
-	    if (piezasContrabando != null) {
-	    	for (Pieza piezaContrabando : piezasContrabando) {
-	    		System.out.println(piezaContrabando);	    	}
-	    }	    
+	  /* ////////////////////////// VEHICULO CARRERA  //////////////////////////
+	    
+	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculosCarrera.txt");
+
+		VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
+
+	*/
 	    
 	    ////////////////////////// PILOTOS  //////////////////////////
 	    
@@ -94,24 +66,19 @@ public class Deserializado {
 
 	    Piloto.setListaPilotos(pilotos);
 	    
-	    if (pilotos != null) {
-	        for (Piloto piloto : pilotos) {
-	        	System.out.println(piloto);	        }
-	    }
 
-	    ////////////////////////// VEHICULOS  //////////////////////////
+	    ////////////////////////// CHASIS  //////////////////////////
 
-	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculos.txt");
+	    ArrayList<Chasis> chasis = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosChasis.txt");
 
-	    VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
-	    
-	    if (vehiculosCarrera != null) {
-	        for (VehiculoCarrera vehiculoCarrera : vehiculosCarrera) {
-	        	System.out.println(vehiculoCarrera);
-	        }
-	    }
-	    
-	    
+		Chasis.setListaChasis(chasis);
+
+		////////////////////////// CIRCUITOS  //////////////////////////
+
+		ArrayList<Circuito> circuitos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCircuitos.txt");
+
+		Circuito.setCircuitos(circuitos);
+
 	    
 	}
 }

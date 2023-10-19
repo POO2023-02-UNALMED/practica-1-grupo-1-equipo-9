@@ -83,15 +83,6 @@ public class Serializado {
     objectOutputStream6.close();
     fileOutputStream6.close();
 
-    ////////////////////////// PIEZAS CONTRABANDO  //////////////////////////
-
-    FileOutputStream fileOutputStream7 = new FileOutputStream("src\\baseDatos\\temp\\datosPiezasContrabando.txt");
-    ObjectOutputStream objectOutputStream7 = new ObjectOutputStream(fileOutputStream7);
-        
-    objectOutputStream7.writeObject(Pieza.getPiezasContrabando());
-        
-    objectOutputStream7.close();
-    fileOutputStream7.close();
 
     ////////////////////////// PILOTOS  //////////////////////////
     
@@ -105,15 +96,38 @@ public class Serializado {
     fileOutputStream8.close();
 
 
-    ////////////////////////// VEHICULOS  //////////////////////////
+    ////////////////////////// CHASIS  //////////////////////////
     
-    FileOutputStream fileOutputStream9 = new FileOutputStream("src\\baseDatos\\temp\\datosVehiculos.txt");
+    FileOutputStream fileOutputStream9 = new FileOutputStream("src\\baseDatos\\temp\\datosChasis.txt");
     ObjectOutputStream objectOutputStream9 = new ObjectOutputStream(fileOutputStream9);
         
-    objectOutputStream9.writeObject(VehiculoCarrera.listaVehiculos);
+    objectOutputStream9.writeObject(Chasis.listaChasis);
         
     objectOutputStream9.close();
     fileOutputStream9.close();
+
+ /*    ////////////////////////// VEHICULO CARRERA  //////////////////////////
+
+    FileOutputStream fileOutputStream10 = new FileOutputStream("src\\baseDatos\\temp\\datosVehiculosCarrera.txt");
+    ObjectOutputStream objectOutputStream10 = new ObjectOutputStream(fileOutputStream10);
+
+    objectOutputStream10.writeObject(VehiculoCarrera.getListaVehiculosCarrera());
+
+    objectOutputStream10.close();
+    fileOutputStream10.close();
+
+    */
+
+  ////////////////////////// CIRCUITOS  //////////////////////////
+
+    FileOutputStream fileOutputStream11 = new FileOutputStream("src\\baseDatos\\temp\\datosCircuitos.txt");
+    ObjectOutputStream objectOutputStream11 = new ObjectOutputStream(fileOutputStream11);
+
+    objectOutputStream11.writeObject(Circuito.getCircuitos());
+
+    objectOutputStream11.close();
+    fileOutputStream11.close();
+
 
     }
 

@@ -13,6 +13,8 @@ public class Deserializado {
 		
 	    ArrayList<Campeonato> campeonatos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCampeonatos.txt");
 
+	    Campeonato.setCampeonatos(campeonatos);
+	    
 	    if (campeonatos != null) {
 	        for (Campeonato campeonato : campeonatos) {
 	        	System.out.println(campeonato);
@@ -23,6 +25,8 @@ public class Deserializado {
 	    
 	    ArrayList<Ciudad> ciudades = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCiudades.txt");
 
+	    Ciudad.setListaCiudades(ciudades);
+	    
 	    if (ciudades != null) {
 	        for (Ciudad ciudad : ciudades) {
 	        	System.out.println(ciudad);	        }
@@ -41,6 +45,8 @@ public class Deserializado {
 	    
 	    ArrayList<Equipo> equipos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosEquipos.txt");
 
+	    Equipo.setEquipos(equipos);
+	    
 	    if (equipos != null) {
 	        for (Equipo equipo : equipos) {
 	        	System.out.println(equipo);	        }
@@ -50,6 +56,8 @@ public class Deserializado {
 
 	    ArrayList<Patrocinador> patrocinadores = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPatrocinadores.txt");
 
+	    Patrocinador.setListaPatrocinadores(patrocinadores);
+	    
 	    if (patrocinadores != null) {
 	        for (Patrocinador patrocinador : patrocinadores) {
 	        	System.out.println(patrocinador);	        }
@@ -59,6 +67,8 @@ public class Deserializado {
 	    
 	    ArrayList<Pieza> piezas = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPiezas.txt");
 
+	    Pieza.setPiezas(piezas);
+	    
 	    if (piezas != null) {
 	        for (Pieza pieza : piezas) {
 	        	System.out.println(pieza);	        }
@@ -68,6 +78,8 @@ public class Deserializado {
 	    
 	    ArrayList<Pieza> piezasContrabando = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPiezasContrabando.txt");
 
+	    Pieza.setPiezasContrabando(piezasContrabando);
+	    
 	    if (piezasContrabando != null) {
 	    	for (Pieza piezaContrabando : piezasContrabando) {
 	    		System.out.println(piezaContrabando);	    	}
@@ -77,6 +89,8 @@ public class Deserializado {
 	    
 	    ArrayList<Piloto> pilotos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPilotos.txt");
 
+	    Piloto.setListaPilotos(pilotos);
+	    
 	    if (pilotos != null) {
 	        for (Piloto piloto : pilotos) {
 	        	System.out.println(piloto);	        }
@@ -86,6 +100,8 @@ public class Deserializado {
 
 	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculos.txt");
 
+	    VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
+	    
 	    if (vehiculosCarrera != null) {
 	        for (VehiculoCarrera vehiculoCarrera : vehiculosCarrera) {
 	        	System.out.println(vehiculoCarrera);

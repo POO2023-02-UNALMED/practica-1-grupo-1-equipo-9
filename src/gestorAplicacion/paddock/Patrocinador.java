@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-public class Patrocinador extends Persona implements Serializable{
+public class Patrocinador extends Persona {
 	private static final long serialVersionUID = -3407371441746326606L;
 	
 	//Lista de patrocinadores

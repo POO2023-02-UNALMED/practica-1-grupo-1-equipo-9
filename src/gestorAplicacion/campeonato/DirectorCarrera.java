@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class DirectorCarrera extends Persona implements Serializable {
+public class DirectorCarrera extends Persona  {
     private static final long serialVersionUID = -2602637847133906292L;
     //Lista directores de carrera
     public static ArrayList<DirectorCarrera> listaDirectores = new ArrayList<DirectorCarrera>();

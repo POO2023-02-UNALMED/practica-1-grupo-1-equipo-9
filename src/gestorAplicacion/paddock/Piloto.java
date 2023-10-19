@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-public class Piloto extends Persona implements Serializable{
+public class Piloto extends Persona {
 	private static final long serialVersionUID = 2266843321181044951L;
 	
 	private Equipo contrato;

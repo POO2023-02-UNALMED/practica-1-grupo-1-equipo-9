@@ -1,6 +1,8 @@
 package gestorAplicacion.paddock;
 
-public abstract class Persona {
+import java.io.Serializable;
+
+public abstract class Persona implements Serializable{
     // Atributos
     static int idActual = 1;
     private int id;
@@ -53,7 +55,7 @@ public abstract class Persona {
         return idActual;
     }
     
-    // Lista de métodos set y get
+    // Lista de mï¿½todos set y get
     public int getId() {return this.id;}
     public void setId(int id) {this.id = id;}
 

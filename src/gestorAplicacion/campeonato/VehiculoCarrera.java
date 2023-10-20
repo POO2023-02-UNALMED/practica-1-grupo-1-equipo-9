@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class VehiculoCarrera extends Chasis {
+public class VehiculoCarrera extends Chasis implements Decimales {
     public static ArrayList<VehiculoCarrera> listaVehiculos = new ArrayList<VehiculoCarrera>();
 
     //Atributos
@@ -475,5 +475,13 @@ public class VehiculoCarrera extends Chasis {
 
     public void setPiezasComprar(ArrayList<Pieza> piezasComprar) {
         this.piezasComprar = piezasComprar;
+    }
+
+    @Override
+    public void redondear() {
+        this.probabilidadChoque = dosDecimales(this.probabilidadChoque);
+    }
+    {
+        this.redondear();
     }
 }

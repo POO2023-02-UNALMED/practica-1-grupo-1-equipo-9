@@ -123,13 +123,14 @@ public class Main {
         Equipo equipo = equiposDisponibles.get(n - 1);
         System.out.println("Has elegido " + equipo.getNombre());
         equipo.setElegido(true);
+        System.out.println("\n");
 
         // elegir equipos competidores
         ArrayList<Equipo> participantes = Equipo.elegirContrincantes(equipo, campeonato, equiposDisponibles);
-        System.out.println("Estos son los equipos que competiran en el campeonato");
+        System.out.println("Estos son los equipos que competiran en el campeonato, presiona enter para continuar");
         tablaEquipos1(participantes);
         campeonato.setListaEquipos(participantes);
-
+        sc.nextLine();
 
         // elegir pilotos del los equipos
         // se eligen los pilotos disponibles
@@ -156,6 +157,7 @@ public class Main {
 
         // elegir piloto 2
         System.out.println("Elige a tu companero de equipo");
+        Tablas.tablaPilotosEquipo(pilotosEquipo);
         n = validaciones(1, pilotosEquipo.size());
         Piloto piloto2 = pilotosEquipo.get(n - 1);
         piloto2.setElegido(false);
@@ -175,6 +177,7 @@ public class Main {
         for (Equipo equipo1 : participantes) {
             pilotosEquipo = Piloto.pilotosEquipo(equipo1, pilotosDisponibles);
             if (elegir) {
+                System.out.println("\n");
                 System.out.println("Mira los Pilotos de la Escuderia " + equipo1.getNombre());
                 // TODO tabla de pilotos
                 Tablas.tablaPilotosEquipo(pilotosEquipo);
@@ -239,6 +242,8 @@ public class Main {
                     // hacer negociacion
                     if (patrocinador.pensarNegocio(piloto)) {
                         System.out.println("Se ha llegado a un acuerdo con " + patrocinador.getNombre() + "\n");
+                        System.out.println("Presiona enter para continuar");
+                        sc.nextLine();
                         repetir = false;
                     } else {
                         System.out.println("No se ha llegado a un acuerdo con " + patrocinador.getNombre() + "\n");
@@ -321,7 +326,6 @@ public class Main {
                         System.out.println("Nota: Las carreras deben ser en meses distintos.");
                         mes =validaciones(1, 12); // Para que no se quede en un loop infinito xd
                     } else {
-                        mes = n;
                         campeonato.actualizarMesCarreras(mes);
                         System.out.println("Mes elegido!");
                         System.out.println("\n");
@@ -333,7 +337,7 @@ public class Main {
                 ArrayList<Circuito> circuitosDisponibles = Circuito.circuitosDisponibles(mes, circuitosVender);
 
                 if (circuitosDisponibles.isEmpty()) {
-                    System.out.println("No hay circuitos disponibles en el mes " + mes);
+                    System.out.println("No hay circuitos disponibles en este mes ");
                     System.out.println("Quieres intentar en otro mes?");
                 } else {
                     System.out.println("Estos son los circuitos disponibles en el mes " + mes + " que puede pagar el director de carrera en el continente " + campeonato.getContinente());
@@ -382,7 +386,7 @@ public class Main {
 
         // carreras preferidas
         ArrayList<Carrera> carrerasPreferidas = campeonato.carrerasPreferidas();
-        ArrayList<Carrera> carrerasPreferidasU = null;
+        ArrayList<Carrera> carrerasPreferidasU = new ArrayList<Carrera>();
         if (carrerasPreferidas.isEmpty()) {
             System.out.println("No hay carreras preferidas por el patrocinador del campeonato en este campeonato");
         } else {
@@ -405,11 +409,11 @@ public class Main {
         }
 
         // Elegir premio en efectivo para las carreras
-        System.out.println("Elige el valor del premio del ganador del campeonato");
+        System.out.println("Elige el valor del premio del ganador del campeonato, debe ser menor a " + campeonato.getPatrocinadorCampeonato().getPlata());
         n = validaciones(1, (int) campeonato.getPatrocinadorCampeonato().getPlata());
         double premio = n;
         System.out.println("\n");
-        System.out.println("Elige el premio en efectivo destinado para premiar todas las carreras");
+        System.out.println("Elige el premio en efectivo destinado para premiar todas las carreras, debe ser menor a " + campeonato.getPatrocinadorCampeonato().getPlata());
         System.out.println("El premio en efectivo debe ser menor a " + campeonato.getPatrocinadorCampeonato().getPlata());
         n = validaciones(1, (int) campeonato.getPatrocinadorCampeonato().getPlata());
         double presupuesto = n;
@@ -420,7 +424,7 @@ public class Main {
 
         System.out.println("Este es el calendario de carreras del campeonato");
         // TODO tabla de carreras
-        tablaCarreras(campeonato);
+        tablaCarrerasCalencario(campeonato.getListaCarreras());
         System.out.println("\n");
     }
 

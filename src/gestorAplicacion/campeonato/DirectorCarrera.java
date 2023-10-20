@@ -5,10 +5,11 @@ import gestorAplicacion.paddock.Piloto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
-public class DirectorCarrera extends Persona  {
+public class DirectorCarrera extends Persona implements Decimales, Serializable {
     private static final long serialVersionUID = -2602637847133906292L;
     //Lista directores de carrera
     public static ArrayList<DirectorCarrera> listaDirectores = new ArrayList<DirectorCarrera>();
@@ -64,6 +65,22 @@ public class DirectorCarrera extends Persona  {
         return disponibles;
     }
 
+    {
+        List<String> paises = new ArrayList<>();
+        paises.add("Estados Unidos");
+        paises.add("Canada");
+        paises.add("Reino Unido");
+        paises.add("Francia");
+        paises.add("Alemania");
+        paises.add("Japon");
+        paises.add("China");
+        paises.add("Brasil");
+        paises.add("Australia");
+        paises.add("India");
+        this.setPais(paises.get(random.nextInt(10)));
+        super.redondear();
+    }
+
     public static ArrayList<DirectorCarrera> getListaDirectores() {
         return DirectorCarrera.listaDirectores;
     }
@@ -84,6 +101,10 @@ public class DirectorCarrera extends Persona  {
     // Metodos de instancia
     public void ponerSancion(Piloto piloto) {
         piloto.setSanciones(piloto.getSanciones() + 1);
+    }
+
+    public void redondear() {
+        this.setPlata(dosDecimales(this.getPlata()));
     }
 
     /*public ArrayList<ArrayList<String>> verStatsCompetidores() {

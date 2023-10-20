@@ -4,7 +4,7 @@ import gestorAplicacion.campeonato.*;
 
 import java.util.*;
 
-public class Circuito implements java.io.Serializable{
+public class Circuito implements java.io.Serializable, Decimales{
 
     public static ArrayList<Circuito> circuitos = new ArrayList<Circuito>();
     private String nombre;
@@ -77,6 +77,14 @@ public class Circuito implements java.io.Serializable{
     public void venderCircuito(DirectorCarrera dir, int mes){
         dir.setPlata(dir.getPlata() - this.getPrecio());
         this.getDisponibilidad().removeIf(num -> num == mes);
+    }
+
+    public void redondear() {
+        this.Precio = dosDecimales(this.Precio);
+    }
+
+    {
+        this.redondear();
     }
 
     public boolean verDisponibilidad(int dia) {

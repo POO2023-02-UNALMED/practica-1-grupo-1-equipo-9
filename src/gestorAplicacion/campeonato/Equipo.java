@@ -79,7 +79,7 @@ public class Equipo implements Serializable {
         this.puntos = 0;
         Random random = new Random();
         for (Ciudad ciudad : Ciudad.getListaCiudades()) {
-            if (random.nextInt(5) == 3) {
+            if (random.nextInt(8) == 3) {
                 this.agregarSede(ciudad);
             }
         }

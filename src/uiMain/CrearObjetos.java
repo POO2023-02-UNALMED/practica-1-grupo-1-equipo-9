@@ -251,7 +251,7 @@ public interface CrearObjetos {
         new Campeonato("Carrera en el Desierto de los Faraones", 6, Continente.Africa);
         new Campeonato("Gran Carrera de las Americas", 11, Continente.America);
         new Campeonato("Carrera en el Lejano Oriente", 8, Continente.Asia);
-        new Campeonato("Campeonato Europeo de la Velocidad Extrema", 10, Continente.Europa);
+        new Campeonato("Campeonato Europa a toda Velocidad", 10, Continente.Europa);
         new Campeonato("Carrera en la Costa Australiana", 9, Continente.Oceania);
         new Campeonato("Campeonato de las Arenas", 8, Continente.Africa);
 

@@ -1,11 +1,12 @@
 package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Equipo;
+import gestorAplicacion.campeonato.Decimales;
 import gestorAplicacion.campeonato.VehiculoCarrera;
 import java.io.Serializable;
 import java.util.*;
 
-public class Chasis implements Serializable{
+public class Chasis implements Serializable, Decimales{
     private static final long serialVersionUID = 7166096271225774034L;
 
     public static ArrayList<Chasis> listaChasis = new ArrayList<Chasis>();
@@ -54,6 +55,16 @@ public class Chasis implements Serializable{
             }
         }
         return listaChasis;
+    }
+
+    public void redondear() {
+        this.velocidad = dosDecimales(this.velocidad);
+        this.maniobrabilidad = dosDecimales(this.maniobrabilidad);
+        this.precio = dosDecimales(this.precio);
+    }
+
+    {
+        this.redondear();
     }
 
     public static ArrayList<Chasis> getListaChasis() {

@@ -1,5 +1,6 @@
 package gestorAplicacion.paddock;
 
+import gestorAplicacion.campeonato.Decimales;
 import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.VehiculoCarrera;
 
@@ -7,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Pieza implements Serializable{
+public class Pieza implements Serializable, Decimales {
 	private static final long serialVersionUID = 3981603915201008050L;
 	
 	static int idActual = 0;
@@ -284,6 +285,16 @@ public class Pieza implements Serializable{
         }
         vehiculoCarrera.setPiezasComprar(piezas);
         return precioTotal;
+    }
+
+    public void redondear() {
+        this.precio = dosDecimales(this.precio);
+        this.velocidadAnadida = dosDecimales(this.velocidadAnadida);
+        this.maniobrabilidadAnadida = dosDecimales(this.maniobrabilidadAnadida);
+    }
+
+    {
+        this.redondear();
     }
 
     // Getters y setters

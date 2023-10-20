@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Ciudad implements Serializable{
+public class Ciudad implements Serializable, Decimales{
 	private static final long serialVersionUID = -8026803019433813720L;
 
 	//Lista de las ciudades
@@ -95,6 +95,14 @@ public class Ciudad implements Serializable{
 			}
 		}
 		carrera.setEquiposBeneficiados(equiposBeneficiados);
+	}
+
+	public void redondear() {
+		this.precioEstadia = dosDecimales(this.precioEstadia);
+	}
+
+	{
+		this.redondear();
 	}
 
     // Lista de metodos set y get

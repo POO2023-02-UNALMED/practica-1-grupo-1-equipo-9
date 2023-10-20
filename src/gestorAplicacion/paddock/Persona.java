@@ -1,8 +1,9 @@
 package gestorAplicacion.paddock;
 
+import gestorAplicacion.campeonato.Decimales;
 import java.io.Serializable;
 
-public abstract class Persona implements Serializable{
+public abstract class Persona implements Serializable, Decimales {
     // Atributos
     static int idActual = 1;
     protected int id;
@@ -44,6 +45,14 @@ public abstract class Persona implements Serializable{
         this.id = Persona.getIdActual();
         Persona.idActual++;
         this.plata = 0;
+    }
+
+    public void redondear() {
+    	this.plata = dosDecimales(this.plata);
+    }
+
+    {
+        this.redondear();
     }
 
     //Metodos abstractos

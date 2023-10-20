@@ -2,6 +2,7 @@ package gestorAplicacion.paddock;
 
 import gestorAplicacion.campeonato.Ciudad;
 import gestorAplicacion.campeonato.Equipo;
+import gestorAplicacion.campeonato.Decimales;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-public class Patrocinador extends Persona {
+public class Patrocinador extends Persona implements Serializable, Decimales{
 	private static final long serialVersionUID = -3407371441746326606L;
 	
 	//Lista de patrocinadores
@@ -56,7 +57,7 @@ public class Patrocinador extends Persona {
     }
 
     public Patrocinador(String nombre) {
-        super(nombre, (Math.random() * 90001) + 10000);
+        super(nombre, ((random.nextDouble() * 9000.0) + 20000.0));
         Random rand = new Random();
         double lowerBound = 0.2;
         double upperBound = 0.8;
@@ -64,9 +65,7 @@ public class Patrocinador extends Persona {
 		/*DecimalFormat formato = new DecimalFormat("#.##");
         //this.dineroOfrecer = dineroDisponible*numRandom; //Se le asigna una cantidad del 20% al 80% del dinero que tiene el patrocinador para que lo ofrezca.
 		this.dineroOfrecer = Double.parseDouble(formato.format(dineroDisponible*numRandom));*/
-        double dineroOfrecer = this.getPlata() * numRandom;
-        double dineroOfrecerDecimales = Math.round(dineroOfrecer * 100.0) / 100.0;
-        this.dineroOfrecer = dineroOfrecerDecimales; // A ver si asi te corre
+        this.dineroOfrecer = this.getPlata() * numRandom; // A ver si asi te corre
         this.probAceptar = 0.2 + (0.9 - 0.2) * new java.util.Random().nextDouble();;
         //Se le asigna una probabilidad entre 100% menos la proporci�n del dinero ofrecido/disponible y 100% (Entre menos dinero ofrecido, m�s alta la probabilidad de aceptar).
         Patrocinador.listaPatrocinadores.add(this);
@@ -205,6 +204,17 @@ public class Patrocinador extends Persona {
         this.setPlata(this.getPlata() * 5000);
     }
 
+    public void redondear() {
+        this.dineroOfrecer = dosDecimales(this.dineroOfrecer);
+        this.probAceptar = dosDecimales(this.probAceptar);
+        this.dineroOfrecer = dosDecimales(this.dineroOfrecer);
+        super.redondear();
+    }
+
+    {
+        this.redondear();
+    }
+
     public void setDineroOfrecido(double dinero) {
         this.dineroOfrecer = dinero;
 //        Random rand = new Random();
@@ -272,4 +282,5 @@ public class Patrocinador extends Persona {
     public void setCiudadesPreferidas(ArrayList<Ciudad> ciudadesPreferidas) {
         this.ciudadesPreferidas = ciudadesPreferidas;
     }
+    public static Random random = new Random();
 }

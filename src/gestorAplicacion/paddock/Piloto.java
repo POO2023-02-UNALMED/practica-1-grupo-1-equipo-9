@@ -4,14 +4,14 @@ import gestorAplicacion.campeonato.DirectorCarrera;
 import gestorAplicacion.campeonato.Equipo;
 import gestorAplicacion.campeonato.Campeonato;
 import gestorAplicacion.campeonato.VehiculoCarrera;
+import gestorAplicacion.campeonato.Decimales;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-public class Piloto extends Persona {
+public class Piloto extends Persona implements Serializable, Decimales {
 	private static final long serialVersionUID = 2266843321181044951L;
 	
 	private Equipo contrato;
@@ -26,9 +26,9 @@ public class Piloto extends Persona {
     private boolean desbloqueado = false; // Si el piloto esta desbloqueado, se puede jugar
     private boolean elegido = false;
 
-    private double valorContrato;
+    private double valorContrato = 0;
 
-    private double presupuestoVehiculo;
+    private double presupuestoVehiculo = 0;
     private Patrocinador patrocinador;
 
 
@@ -198,6 +198,16 @@ public class Piloto extends Persona {
 
     public void setDesbloqueado(boolean desbloqueado) {
         this.desbloqueado = desbloqueado;
+    }
+
+    public void redondear() {
+        this.habilidad = dosDecimales(this.habilidad);
+        this.valorContrato = dosDecimales(this.valorContrato);
+        this.presupuestoVehiculo = dosDecimales(this.presupuestoVehiculo);
+    }
+
+    {
+        this.redondear();
     }
 
     public int getPuntos() {return this.puntos;}

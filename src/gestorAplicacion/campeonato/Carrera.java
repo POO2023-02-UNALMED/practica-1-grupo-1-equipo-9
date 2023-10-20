@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
-public class Carrera {
+public class Carrera implements Decimales {
 
 
     public  ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
@@ -26,12 +26,12 @@ public class Carrera {
     private String nombreCircuito;
     private String fecha;
     private int mes; //El mes determina el orden de la carrera
-    private double distancia; //Distancia de la carrera
-    private double premioEfectivo; //Este premio se distribuye entre los 3 primeros puestos
+    private double distancia = 0; //Distancia de la carrera
+    private double premioEfectivo = 0; //Este premio se distribuye entre los 3 primeros puestos
     private Ciudad ciudad;
     private DirectorCarrera directorCarrera;
-    private double clima; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
-    private int dificultad; //Se le suma a la probabilidad de chocarse del vehiculo
+    private double clima = 0 ; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
+    private int dificultad = 0; //Se le suma a la probabilidad de chocarse del vehiculo
 
     private Circuito circuito;
 
@@ -194,6 +194,18 @@ public class Carrera {
                 this.terminados.add(vehiculoCarrera);
             }
         }
+    }
+
+    @Override
+
+    public void redondear() {
+        this.distancia = dosDecimales(this.distancia);
+        this.premioEfectivo = dosDecimales(this.premioEfectivo);
+        this.clima = dosDecimales(this.clima);
+    }
+
+    {
+        this.redondear();
     }
 
     public void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {

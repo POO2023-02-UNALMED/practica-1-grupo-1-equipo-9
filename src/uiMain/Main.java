@@ -90,6 +90,7 @@ public class Main {
         System.out.println("Has decidido crear preparar un nuevo campeonato. Comencemos.");
         System.out.println("Elige un continente donde se llevara a cabo");
         // TODO tabla de continentes
+        Tablas.tablaContinentes();
         n = validaciones(1, 5);
         Continente continente = Ciudad.convertirContinente(n);
         System.out.println("Has elegido " + continente);
@@ -141,6 +142,9 @@ public class Main {
         ArrayList<Piloto> pilotosEquipo = Piloto.pilotosEquipo(equipo, pilotosDisponibles);
         System.out.println("Mira los Pilotos de tu Escuderia");
         // TODO tabla de pilotos
+
+        Tablas.tablaPilotosEquipo(pilotosEquipo);
+
         // elegir piloto 1
         System.out.println("Elige tu piloto");
         n = validaciones(1, pilotosEquipo.size());
@@ -173,6 +177,7 @@ public class Main {
             if (elegir) {
                 System.out.println("Mira los Pilotos de la Escuderia " + equipo1.getNombre());
                 // TODO tabla de pilotos
+                Tablas.tablaPilotosEquipo(pilotosEquipo);
                 // elegir piloto 1
                 System.out.println("Elige un piloto");
                 n = validaciones(1, pilotosEquipo.size());
@@ -184,6 +189,9 @@ public class Main {
 
                 // elegir piloto 2
                 // TODO tabla de pilotos
+
+                Tablas.tablaPilotosEquipo(pilotosEquipo);
+
                 System.out.println("Elige a el companero de equipo");
                 n = validaciones(1, pilotosEquipo.size());
                 Piloto pilotoNo2 = pilotosEquipo.get(n - 1);
@@ -252,6 +260,7 @@ public class Main {
         // Mostrar como quedo el campeonto con sus participantes
         System.out.println("Este es el campeonato que has creado");
         // TODO tabla de pilotos
+        Tablas.tablaPilotosParticipantes(pilotosParticipar);
         System.out.println("\n");
     }
 
@@ -329,6 +338,7 @@ public class Main {
                 } else {
                     System.out.println("Estos son los circuitos disponibles en el mes " + mes + " que puede pagar el director de carrera en el continente " + campeonato.getContinente());
                     // TODO tabla con circuitos
+                    Tablas.tablaCircuitos(circuitosDisponibles);
                     System.out.println("Elige un circuito");
                     n = validaciones(1, circuitosVender.size());
                     circuito = circuitosVender.get(n - 1);
@@ -351,6 +361,7 @@ public class Main {
             ArrayList<Ciudad> ciudades = Ciudad.ciudadesContinente(campeonato.getContinente());
             System.out.println("Estas son las ciudades disponibles en el continente " + campeonato.getContinente());
             // TODO tabla de ciudades
+            Tablas.tablaCiudades(ciudades);
             System.out.println("Elige una ciudad");
             n = validaciones(1, ciudades.size());
             Ciudad ciudad = ciudades.get(n - 1);
@@ -420,6 +431,7 @@ public class Main {
         System.out.println("Es momento de tunear tu vehiculo de carreras. Primero, veamos a que piloto le vas a personalizar el vehiculo");
         System.out.println("De acuerdo a los campeonatos desbloqueados, estan disponibles los siguientes pilotos");
         // TODO pilotos tabla
+        Tablas.tablaPilotosEquipo(pilotosDisponibles);
         System.out.println("Elige un piloto");
         n = validaciones(1, pilotosDisponibles.size());
         Piloto piloto = pilotosDisponibles.get(n - 1);
@@ -496,6 +508,7 @@ public class Main {
         } else { // si tiene vehiculos asociados
             System.out.println("Estos son los vehiculos disponibles para " + piloto.getNombre());
             // TODO tabla de vehiculos
+            Tablas.tablaVehiculos(vehiculos);
             System.out.println("Elige un vehiculo");
             n = validaciones(1, vehiculos.size());
             vehiculoCarrera = vehiculos.get(n - 1);
@@ -595,6 +608,7 @@ public class Main {
         //Elegir pilotos disponibles
         ArrayList<Piloto> pilotosDisponibles = Piloto.pilotosDesbloqueados();
         // TODO pilotos tabla
+        Tablas.tablaPilotosEquipo(pilotosDisponibles);
         System.out.println("Elige un piloto");
         n = validaciones(1, pilotosDisponibles.size());
         Piloto piloto = pilotosDisponibles.get(n - 1);
@@ -660,6 +674,7 @@ public class Main {
         //Iniciando minifuncionalidad 2: Negociar para Maldecir Piloto
         System.out.println("El Maestro de Carrera te muestra una lista de los pilotos que esta dispuesto a 'castigar'. Elije uno");
         //TODO: Tabla pilotos
+        Tablas.tablaPilotosEquipo(pilotosDisponibles);
         n = validaciones(1, pilotosDesfavorecidos.size());
         Piloto pilotoMaldito = pilotosDesfavorecidos.get(n - 1);
         VehiculoCarrera vehiculoMaldito = pilotoMaldito.maldecirPiloto(plataGanada, piloto, maestroDeCarrera);
@@ -705,6 +720,7 @@ public class Main {
 
         System.out.println("De acuerdo al campeonato que elejiste, estan disponibles los siguientes pilotos");
         // TODO pilotos tabla
+        Tablas.tablaPilotosEquipo(pilotosDisponibles);
         System.out.println("Elige un piloto");
         n = validaciones(1, pilotosDisponibles.size());
 

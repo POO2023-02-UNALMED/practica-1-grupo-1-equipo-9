@@ -5,6 +5,7 @@ import gestorAplicacion.paddock.*;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -128,6 +129,7 @@ public class Main {
         // elegir equipos competidores
         ArrayList<Equipo> participantes = Equipo.elegirContrincantes(equipo, campeonato, equiposDisponibles);
         System.out.println("Estos son los equipos que competiran en el campeonato, presiona enter para continuar");
+        Equipo.equiposOcupados(participantes);
         tablaEquipos1(participantes);
         campeonato.setListaEquipos(participantes);
         sc.nextLine();
@@ -136,14 +138,12 @@ public class Main {
         // se eligen los pilotos disponibles
         ArrayList<Piloto> pilotosDisponibles = Piloto.pilotosDisponibles();
 
-
         boolean elegir = false;
         ArrayList<Piloto> pilotosParticipar = new ArrayList<Piloto>();
 
         ArrayList<Piloto> pilotosEquipo = Piloto.pilotosEquipo(equipo, pilotosDisponibles);
         System.out.println("Mira los Pilotos de tu Escuderia");
         // TODO tabla de pilotos
-
         Tablas.tablaPilotosEquipo(pilotosEquipo);
 
         // elegir piloto 1
@@ -153,6 +153,7 @@ public class Main {
         pilotosEquipo.remove(piloto1);
         pilotosParticipar.add(piloto1);
         piloto1.setElegido(true);
+        piloto1.setDesbloqueado(true);
         System.out.println("Has elegido " + piloto1.getNombre());
 
         // elegir piloto 2
@@ -204,16 +205,17 @@ public class Main {
                 System.out.println("Has elegido " + pilotoNo2.getNombre());
                 System.out.println("\n");
             } else {
+                equipo1.setElegido(false);
                 // elegir contrincantes aleatoriamente
                 // piloto 1
-                Piloto pilotoN = Piloto.pilotoAleatorio();
+                Piloto pilotoN = pilotosEquipo.get(rand.nextInt(pilotosEquipo.size()));
                 //
                 pilotoN.noEsElegido();
                 pilotosParticipar.add(pilotoN);
                 pilotosEquipo.remove(pilotoN);
 
                 // piloto 2
-                pilotoN = Piloto.pilotoAleatorio();
+                pilotoN = pilotosEquipo.get(rand.nextInt(pilotosEquipo.size()));
                 pilotoN.noEsElegido();
                 pilotosParticipar.add(pilotoN);
                 pilotosEquipo.remove(pilotoN);
@@ -265,8 +267,22 @@ public class Main {
         // Mostrar como quedo el campeonto con sus participantes
         System.out.println("Este es el campeonato que has creado");
         // TODO tabla de pilotos
-        Tablas.tablaPilotosParticipantes(pilotosParticipar);
+        Piloto.desbloquearPilotos(pilotosParticipar);
+        Tablas.tablaPilotosParticipantes(pilotosParticipar, campeonato);
         System.out.println("\n");
+
+
+        // Reset variables
+        campeonato = null;
+        continente = null;
+        equipos = null;
+        equiposDisponibles = null;
+        pilotosParticipar = null;
+        pilotosDisponibles = null;
+        participantes = null;
+        patrocinadoresDisponibles = null;
+
+
     }
 
     private static void calendarioCarreras() {
@@ -284,6 +300,8 @@ public class Main {
         ArrayList<Circuito> circuitosVender = null;
 
         // para la cantidad de carreras en el campeonato
+
+        System.out.println("Tienes que preparar " + campeonato.getCantCarreras() + " carreras");
 
         for (int i = 0; i < campeonato.getCantCarreras(); i++) {
 
@@ -424,6 +442,7 @@ public class Main {
 
         System.out.println("Este es el calendario de carreras del campeonato");
         // TODO tabla de carreras
+        campeonato.organizarCarreras();
         tablaCarrerasCalencario(campeonato.getListaCarreras());
         System.out.println("\n");
     }
@@ -451,6 +470,7 @@ public class Main {
             ArrayList<Chasis> chasisDisponibles = Chasis.chasisDisponible(piloto);
             System.out.println("Estos son los chasis disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto");
             // TODO tabla de chasis
+            tablaChasis(chasisDisponibles);
             System.out.println("Elige un chasis");
             n = validaciones(1, chasisDisponibles.size());
             Chasis chasis = chasisDisponibles.get(n - 1);
@@ -498,7 +518,7 @@ public class Main {
             if (descuento) {
                 System.out.println("Has impresionado a los proveedores");
                 double porcentaje = equipo.calcularDescuento(precioTotal, vehiculoCarrera);
-                System.out.println("Les han hecho un descuento del " + porcentaje + "% debido a tus habilidades y el dinero del equipo");
+                System.out.println("Les han hecho un descuento del " + Decimales.dosDecimalesP(porcentaje) + "% debido a tus habilidades y el dinero del equipo");
                 equipo.comprarPiezas(precioTotal, vehiculoCarrera);
             } else {
                 System.out.println("No has impresionado a los proveedores, no te han hecho descuento");
@@ -601,6 +621,8 @@ public class Main {
             System.out.println("\n");
         }
         System.out.println("Este es tu vehiculo personalizado");
+        vehiculoCarrera.actualizarVelicidadActual();
+        vehiculoCarrera.actualizarVelocidadT();
         tablaStatsActuales(vehiculoCarrera);
         System.out.println("\n");
     }
@@ -640,35 +662,30 @@ public class Main {
         System.out.println("Llegan a un lugar con poca luz, te invita a sentarte, y pronto, tienes 25 cartas delante tuyo");
         AsciiArt.cards();
 
-        System.out.println("El Maestro de Carrera te dice que elijas una de ellas");
+        System.out.println("El Maestro de Carrera te dice que elijas una de ellas (elige un numero del 1 al 25)");
         int cartaElegida = rand.nextInt(24) + 1;
         double multiplicadorGanancia = 5.5;
-        int[] cartasYaEscogidas = new int[5];
-        int contador = 0;
+        ArrayList<Integer> cartasYaEscogidas = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25));
         while (true) {
             while (true) {
                 n = validaciones(1, 25);
-                boolean elegido = false;
-                for (int i : cartasYaEscogidas) {
-                    if (i == n) {
-                        elegido = true;
-                        break;
-                    }
-                }
-                if (!elegido) {
+                if (cartasYaEscogidas.contains((Integer) n)){
+                    cartasYaEscogidas.remove((Integer) n);
                     break;
+                } else {
+                    System.out.println("Esa carta ya fue escogida. Elige otra");
                 }
             }
             if (n == cartaElegida) {
                 break;
-            } else if (cartasYaEscogidas[5] != 0) {
+            } else if (cartasYaEscogidas.size()>20) {
                 System.out.println("Te has equivocado. Poco a poco vas perdiendo el dinero que ofreciste");
-                multiplicadorGanancia -= 1.00;
-                contador += 1;
-                cartasYaEscogidas[contador] = n;
+                multiplicadorGanancia -= 0.15;
+                cartasYaEscogidas.remove((Integer) n);
                 System.out.println("Intentalo de nuevo");
             } else {
                 System.out.println("Te has quedado sin intentos. Has perdido la mitad de dinero que ofreciste");
+                multiplicadorGanancia = 0.5;
                 break;
             }
         }
@@ -678,7 +695,7 @@ public class Main {
         //Iniciando minifuncionalidad 2: Negociar para Maldecir Piloto
         System.out.println("El Maestro de Carrera te muestra una lista de los pilotos que esta dispuesto a 'castigar'. Elije uno");
         //TODO: Tabla pilotos
-        Tablas.tablaPilotosEquipo(pilotosDisponibles);
+        Tablas.tablaPilotosDesfavorecidos(pilotosDesfavorecidos);
         n = validaciones(1, pilotosDesfavorecidos.size());
         Piloto pilotoMaldito = pilotosDesfavorecidos.get(n - 1);
         VehiculoCarrera vehiculoMaldito = pilotoMaldito.maldecirPiloto(plataGanada, piloto, maestroDeCarrera);
@@ -914,7 +931,7 @@ public class Main {
         boolean validaciones = false;
         boolean decision = false;
         while (!validaciones) {
-            opcionYN = sc.nextLine();
+            opcionYN = sc.nextLine().toUpperCase();
             if (opcionYN.equals("Y")) {
                 decision = true;
                 validaciones = true;

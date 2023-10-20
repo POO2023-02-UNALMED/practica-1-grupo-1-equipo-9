@@ -33,6 +33,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         this.motor = motor;
         this.neumaticos = neumaticos;
         this.aleron = aleron;
+        VehiculoCarrera.listaVehiculos.add(this);
     }
 
     public VehiculoCarrera(String marca, String modelo, double velocidad, double maniobrabilidad, double precioUtilizar, Piloto piloto, double tiempo, double distanciaRecorrida, boolean terminado, boolean morido, double velocidadTuneao, double velocidadCircumstancias, double velocidadActual, double probabilidadChoque, Pieza motor, Pieza neumaticos, Pieza aleron, int gasolina) {
@@ -65,6 +66,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         this.gasolina = 100;
         this.velocidadCircumstancias = 0;
         this.velocidadActual = velocidadTuneao + velocidadCircumstancias;
+        VehiculoCarrera.listaVehiculos.add(this);
     }
 
     public VehiculoCarrera(Chasis chasis) {
@@ -78,6 +80,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         this.gasolina = 100;
         this.velocidadCircumstancias = 0;
         this.velocidadActual = velocidadTuneao + velocidadCircumstancias;
+        VehiculoCarrera.listaVehiculos.add(this);
     }
 
 
@@ -100,7 +103,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
     public static ArrayList<VehiculoCarrera> vehiculosPiloto(Piloto piloto) {
         ArrayList<VehiculoCarrera> vehiculosPiloto = new ArrayList<VehiculoCarrera>();
         for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos) {
-            if (vehiculo.getPiloto().equals(piloto)) {
+            if (vehiculo.getPiloto() == piloto) {
                 vehiculosPiloto.add(vehiculo);
             }
         }
@@ -177,12 +180,15 @@ public class VehiculoCarrera extends Chasis implements Decimales {
             case "A":
                 this.setAleron(pieza); //Cambiar alerón
                 this.actualizarVelocidadT(); //Actualizar velocidad tuneada
+                break;
             case "N":
                 this.setNeumaticos(pieza); //Cambiar neumáticos
                 this.actualizarVelocidadT(); //Actualizar velocidad tuneada
+                break;
             case "M":
                 this.setMotor(pieza); //Cambiar motor
                 this.actualizarVelocidadT(); //Actualizar velocidad tuneada
+                break;
         }
     }
 
@@ -211,15 +217,22 @@ public class VehiculoCarrera extends Chasis implements Decimales {
     }
 
     public void actualizarVelocidadT() { //Actualiza la velocidad tuneada para cuando se cambie una pieza
-        if (!this.getAleron().isDanado()) {
-            this.velocidadTuneao = this.getVelocidad() + this.getAleron().getVelocidadAnadida();
+        if (this.getAleron() != null) {
+            if (!this.getAleron().isDanado()) {
+                this.velocidadTuneao = this.getVelocidad() + this.getAleron().getVelocidadAnadida();
+            }
         }
-        if (!this.getNeumaticos().isDanado()) {
-            this.velocidadTuneao = this.getVelocidad() + this.getNeumaticos().getVelocidadAnadida();
+        if (this.getNeumaticos() != null) {
+            if (!this.getNeumaticos().isDanado()) {
+                this.velocidadTuneao = this.getVelocidad() + this.getNeumaticos().getVelocidadAnadida();
+            }
         }
-        if (!this.getMotor().isDanado()) {
-            this.velocidadTuneao = this.getVelocidad() + this.getMotor().getVelocidadAnadida();
+        if (this.getMotor() != null) {
+            if (!this.getMotor().isDanado()) {
+                this.velocidadTuneao = this.getVelocidad() + this.getMotor().getVelocidadAnadida();
+            }
         }
+        //this.actualizarVelicidadActual(); // Actualizar velocidad actual
     }
 
     public void actualizarVelicidadActual() {
@@ -337,14 +350,14 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         Random rand = new Random();
         ArrayList<VehiculoCarrera> posicionesCorruptas = new ArrayList<VehiculoCarrera>();
         vehiculoUsuario.setDistanciaRecorrida(50 + (double) ((100) * (1 + rand.nextInt(10))) /10);
+        posicionesCorruptas.add(vehiculoUsuario);
         vehiculoMaldito.setDistanciaRecorrida(-50 - (double) ((200) * (1 + rand.nextInt(10))) /10);
+        posicionesCorruptas.add(vehiculoMaldito);
         for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
             if (pilotosDesfavorecidos.contains(vehiculoCarrera.getPiloto())){
                 vehiculoCarrera.setDistanciaRecorrida(-10 - (double) ((50) * (1 + rand.nextInt(10))) /10);
             }
-            if (directorCarrera.getCarrera().getCampeonato().getListaPilotos().contains(vehiculoCarrera.getPiloto())){
                 posicionesCorruptas.add(vehiculoCarrera);
-            }
         }
         return posicionesCorruptas;
     }

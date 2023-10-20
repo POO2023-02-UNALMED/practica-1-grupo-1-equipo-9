@@ -170,12 +170,14 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<ArrayList<Pieza>> combinacionesDisponibles(VehiculoCarrera vehiculoCarrera, Pieza aleron, ArrayList<ArrayList<Pieza>> combinaciones) {
+        ArrayList<ArrayList<Pieza>> combinacionesDisponibles = new ArrayList<ArrayList<Pieza>>();
+        combinacionesDisponibles.addAll(combinaciones);
         for (ArrayList<Pieza> combinacion : combinaciones) {
              if(!combinacion.contains(aleron)){
-                 combinaciones.remove(combinacion);
+                 combinacionesDisponibles.remove(combinacion);
              }
         }
-        return combinaciones;
+        return combinacionesDisponibles;
     }
 
     public static ArrayList<ArrayList<Pieza>> combinaciones(VehiculoCarrera vehiculoCarrera) {
@@ -191,8 +193,11 @@ public class Pieza implements Serializable, Decimales {
                     combinacion.add(aleron);
                     combinacion.add(neumatico);
                     if (motor.getPrecio() + aleron.getPrecio() + neumatico.getPrecio() <= vehiculoCarrera.getPiloto().getEquipo().getPlata()) {
-                        combinaciones.add(combinacion);
+                        if (!combinaciones.contains(combinacion)) {
+                            combinaciones.add(combinacion);
+                        }
                     }
+
                 }
             }
         }
@@ -208,7 +213,14 @@ public class Pieza implements Serializable, Decimales {
                 }
             }
         }
-        return alerones;
+        // alerones distintos
+        ArrayList<Pieza> aleronesDistintos = new ArrayList<Pieza>();
+        for (Pieza aleron : alerones) {
+            if (!aleronesDistintos.contains(aleron)) {
+                aleronesDistintos.add(aleron);
+            }
+        }
+        return aleronesDistintos;
     }
 
     public static ArrayList<Pieza> filterNeumaticos(ArrayList<ArrayList<Pieza>> combinaciones) {
@@ -220,7 +232,14 @@ public class Pieza implements Serializable, Decimales {
                 }
             }
         }
-        return neumaticos;
+        // neumaticos distintos
+        ArrayList<Pieza> neumaticosDistintos = new ArrayList<Pieza>();
+        for (Pieza neumatico : neumaticos) {
+            if (!neumaticosDistintos.contains(neumatico)) {
+                neumaticosDistintos.add(neumatico);
+            }
+        }
+        return neumaticosDistintos;
     }
 
     public static ArrayList<Pieza> filterMotores(ArrayList<ArrayList<Pieza>> combinaciones) {
@@ -232,7 +251,14 @@ public class Pieza implements Serializable, Decimales {
                 }
             }
         }
-        return motores;
+        // motores distintos
+        ArrayList<Pieza> motoresDistintos = new ArrayList<Pieza>();
+        for (Pieza motor : motores) {
+            if (!motoresDistintos.contains(motor)) {
+                motoresDistintos.add(motor);
+            }
+        }
+        return motoresDistintos;
     }
 
     public static ArrayList<Pieza> piezasDisponibles() {

@@ -173,7 +173,7 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public void sinPlata() {
-        this.setDinero((Math.random() * 9000001) + 10000000);
+        this.setDinero((Math.random() * 90001) + 1000);
     }
 
     //Lista de metodos set y get

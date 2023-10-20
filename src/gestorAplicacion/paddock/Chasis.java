@@ -50,7 +50,7 @@ public class Chasis implements Serializable, Decimales{
         double precioMaximo = piloto.getPresupuestoVehiculo() * 0.6;
         ArrayList<Chasis> listaChasis = new ArrayList<Chasis>();
         for (Chasis chasis : Chasis.listaChasis) {
-            if (chasis.getPrecio() > precioMaximo) {
+            if (chasis.getPrecio() > precioMaximo && !chasis.getMarca().equals("Default")) {
                 listaChasis.add(chasis);
             }
         }

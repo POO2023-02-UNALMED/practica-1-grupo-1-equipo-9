@@ -67,9 +67,10 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public Campeonato(String nombre, int cantCarrera, Continente continente) {
+        Random rand = new Random();
         this.id = idActual++;
         this.nombre = nombre;
-        this.cantCarreras = cantCarrera;
+        this.cantCarreras = rand.nextInt(3) + 4;
         this.continente = continente;
         this.desbloqueado = false;
         campeonatos.add(this);
@@ -157,7 +158,13 @@ public class Campeonato implements Serializable, Decimales {
         for (Carrera carrera : campeonatoElegido.getListaCarreras()) {
             maestrosDeCarrera.add(carrera.getDirectorCarrera());
         }
-        return maestrosDeCarrera;
+        ArrayList<DirectorCarrera> maestrosDeCarreraDiferentes = new ArrayList<DirectorCarrera>();
+        for (DirectorCarrera directorCarrera : maestrosDeCarrera) {
+            if (!maestrosDeCarreraDiferentes.contains(directorCarrera)) {
+                maestrosDeCarreraDiferentes.add(directorCarrera);
+            }
+        }
+        return maestrosDeCarreraDiferentes;
     }
 
     public static int getIdActual() {
@@ -343,6 +350,13 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public void setListaPilotos(ArrayList<Piloto> listaPilotos) {
+        ArrayList<Piloto> listaPilotosElegidos = new ArrayList<Piloto>();
+        // Revisar que los nombres de los pilotos sean diferentes
+        for (Piloto piloto : listaPilotos) {
+            if (!listaPilotosElegidos.contains(piloto)) {
+                listaPilotosElegidos.add(piloto);
+            }
+        }
         this.listaPilotos = listaPilotos;
     }
 

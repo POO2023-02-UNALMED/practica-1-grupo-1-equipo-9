@@ -154,6 +154,12 @@ public class Piloto extends Persona implements Serializable, Decimales {
 
     }
 
+    public static void desbloquearPilotos(ArrayList<Piloto> pilotos) {
+    	for (Piloto piloto : pilotos) {
+    		piloto.setDesbloqueado(true);
+    	}
+    }
+
     public static void asignarEquipo(){
         ArrayList<Piloto> pilotos = Piloto.listaPilotos;
         Collections.shuffle(pilotos);

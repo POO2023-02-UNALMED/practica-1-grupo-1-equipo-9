@@ -13,6 +13,7 @@ public class Equipo implements Serializable {
     private static final long serialVersionUID = 6129409994157579682L;
 
     public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
+    public static Equipo equipoElegido;
 
     //Atributos
     static int idActual = 0;
@@ -79,7 +80,7 @@ public class Equipo implements Serializable {
         this.puntos = 0;
         Random random = new Random();
         for (Ciudad ciudad : Ciudad.getListaCiudades()) {
-            if (random.nextInt(8) == 3) {
+            if (random.nextInt(10) == 3) {
                 this.agregarSede(ciudad);
             }
         }
@@ -153,12 +154,18 @@ public class Equipo implements Serializable {
         return equiposContrato;
     }
 
+    public static void equiposOcupados(ArrayList<Equipo> equipos) {
+        for (Equipo equipo : equipos) {
+            equipo.setOcupado(true);
+        }
+    }
+
     public static ArrayList<Equipo> elegirContrincantes(Equipo equipo, Campeonato campeonato, ArrayList<Equipo> equipos) {
         ArrayList<Equipo> contrincantes = new ArrayList<Equipo>();
 
         // Elegir 9 contrincantes
         int n = 0;
-        while (n < 5) {
+        while (n < 4) {
             int i = (int) (Math.random() * equipos.size());
             Equipo contrincante = equipos.get(i);
             if (contrincante != equipo && !contrincantes.contains(contrincante)) {
@@ -239,7 +246,7 @@ public class Equipo implements Serializable {
             // calcular porcentaje
             porcentaje = descuento / precioTotal;
         }
-        return porcentaje;
+        return porcentaje * 100;
     }
 
     public void comprarPiezas(double precioTotal, VehiculoCarrera vehiculoCarrera) {

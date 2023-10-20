@@ -186,11 +186,12 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
     }*/
 
     public ArrayList<Piloto> pilotosDesfavorecidos(double plata, Piloto piloto) {
+        // buscar pilotos que participan en el campeonato donde el piloto es elegido
         ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
-        for (Equipo equipo : this.carrera.getCampeonato().getListaEquipos()) {
-            if (equipo != piloto.getEquipo() && !this.getCarrera().getEquiposBeneficiados().contains(equipo)) {
-                for (Piloto piloto1 : Piloto.getListaPilotos()) {
-                    if (piloto1.isElegido() && piloto1.getValorContrato() >= piloto.getValorContrato()) {
+        for (Campeonato campeonato: Campeonato.campeonatos) {
+            if (campeonato.getListaPilotos().contains(piloto)) {
+                for (Piloto piloto1 : campeonato.getListaPilotos()) {
+                    if (piloto.getEquipo() != piloto1.getEquipo()) {
                         pilotosDesfavorecidos.add(piloto1);
                     }
                 }

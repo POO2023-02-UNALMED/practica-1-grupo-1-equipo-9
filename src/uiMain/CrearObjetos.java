@@ -570,7 +570,7 @@ public interface CrearObjetos {
         Chasis chasisF1_40 = new Chasis("Haas", "VF-21");
 
         // vehiculosCarrera
-
+    /*
         VehiculoCarrera vehiculoCarrera1 = new VehiculoCarrera(chasisF1_1);
         VehiculoCarrera vehiculoCarrera2 = new VehiculoCarrera(chasisF1_2);
         VehiculoCarrera vehiculoCarrera3 = new VehiculoCarrera(chasisF1_3);
@@ -611,7 +611,7 @@ public interface CrearObjetos {
         VehiculoCarrera vehiculoCarrera38 = new VehiculoCarrera(chasisF1_38);
         VehiculoCarrera vehiculoCarrera39 = new VehiculoCarrera(chasisF1_39);
         VehiculoCarrera vehiculoCarrera40 = new VehiculoCarrera(chasisF1_40);
-        
+        */
         //Piezas Mercedes
         
         Pieza aleron1 = new Pieza("WingMaster 9000", "aleron", "Mercedes");

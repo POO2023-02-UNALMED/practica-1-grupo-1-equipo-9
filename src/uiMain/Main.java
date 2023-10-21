@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import baseDatos.Deserializado;
+import baseDatos.serializador;
 
 import static uiMain.AsciiArt.bienvenida;
 import static uiMain.AsciiArt.sitAndTalk;
@@ -27,6 +28,7 @@ public class Main {
 
         //Deserializado.deserializacion();
         CrearObjetos.crearObjetos();
+        serializador.serializar();
     }
 
     public static void main(String[] args) {
@@ -271,6 +273,7 @@ public class Main {
         Tablas.tablaPilotosParticipantes(pilotosParticipar, campeonato);
         System.out.println("\n");
 
+        serializador.serializar();
 
         // Reset variables
         campeonato = null;

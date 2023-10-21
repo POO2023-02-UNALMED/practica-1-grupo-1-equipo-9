@@ -16,9 +16,9 @@ import gestorAplicacion.paddock.Piloto;
 
 public class serializador {
 
-    PrintWriter pw;
+    static PrintWriter pw;
 
-    public void serializar(){
+    public static void serializar(){
 
         		
         //////////////////////////CAMPEONATOS  //////////////////////////
@@ -148,7 +148,7 @@ public class serializador {
 
 	    
 	   ////////////////////////// VEHICULO CARRERA  /////////////////////////
-       }
+       
 
 	    
 	    ////////////////////////// PILOTOS  //////////////////////////
@@ -213,8 +213,8 @@ public class serializador {
         } catch (IOException a17) {
         a17.printStackTrace();
 
+        }
     }
-
     
 }
 

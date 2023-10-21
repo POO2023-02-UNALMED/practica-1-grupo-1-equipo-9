@@ -1,10 +1,6 @@
 package gestorAplicacion.paddock;
 
-import gestorAplicacion.campeonato.DirectorCarrera;
-import gestorAplicacion.campeonato.Equipo;
-import gestorAplicacion.campeonato.Campeonato;
-import gestorAplicacion.campeonato.VehiculoCarrera;
-import gestorAplicacion.campeonato.Decimales;
+import gestorAplicacion.campeonato.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,28 +8,28 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Piloto extends Persona implements Serializable, Decimales {
-	private static final long serialVersionUID = 2266843321181044951L;
-	
-	private Equipo contrato;
-    private int puntos; //Puntos en el campeonato 
+    private static final long serialVersionUID = 2266843321181044951L;
+    //Lista de pilotos
+    public static ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
+    static Random random = new Random();
+    public ArrayList<String> victorias = new ArrayList<String>();
+    private Equipo contrato;
+    private int puntos; //Puntos en el campeonato
     private int sanciones;
     private double habilidad; //Probabilidad de chocarse
-    public ArrayList<String> victorias = new ArrayList<String>();
-    //Lista de pilotos
-	public static ArrayList<Piloto> listaPilotos = new ArrayList<Piloto>();
     private boolean lesionado = false; //Si el piloto esta disponible, se puede contratar
-
     private boolean desbloqueado = false; // Si el piloto esta desbloqueado, se puede jugar
     private boolean elegido = false;
-
     private double valorContrato = 0;
-
     private double presupuestoVehiculo = 0;
-    private Patrocinador patrocinador;
 
 
     //Constructores
+    private Patrocinador patrocinador;
 
+    {
+        this.redondear();
+    }
 
     public Piloto(String nombre, Equipo contrato, int puntos, int sanciones, double habilidad, boolean lesionado, boolean desbloqueado, boolean elegido, double valorContrato, double presupuestoVehiculo, Patrocinador patrocinador) {
         super(nombre);
@@ -64,7 +60,7 @@ public class Piloto extends Persona implements Serializable, Decimales {
         this.patrocinador = patrocinador;
     }
 
-    public Piloto(String nombre){
+    public Piloto(String nombre) {
         super(nombre);
         this.habilidad = 0.1 + (0.3 - 0.1) * Math.random();
         this.puntos = 0;
@@ -85,87 +81,46 @@ public class Piloto extends Persona implements Serializable, Decimales {
         }
         return pilotosDesbloqueados;
     }
-    
-    //Metodos de instancia
-    public void sumarPuntos(int puntos) {
-    	this.puntos+=puntos;
-    }
-    
-    public void agregarVictoria(Campeonato campeonato) {
-    	victorias.add(campeonato.toString());
-    }
 
-    public void contratar(Equipo equipo) {
-        equipo.setPlata(equipo.getPlata()-this.valorContrato);
-        this.setPresupuestoVehiculo(this.valorContrato * this.habilidad * 10);
-    }
-
-    public VehiculoCarrera maldecirPiloto(double plata, Piloto piloto, DirectorCarrera directorCarrera){
-        //Busqueda del carro
-        VehiculoCarrera vehiculoMaldito = null;
-        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
-            if (vehiculoCarrera.getPiloto().equals(this)) {
-                vehiculoMaldito = vehiculoCarrera;
-            }
-        }
-        //Maldecir al piloto y al vehiculo
-        double difHabilidad = this.getHabilidad();
-        if (plata>=this.getValorContrato()){
-            this.setHabilidad(0);
-            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque()+difHabilidad);
-        } else if(plata>=this.getValorContrato()/2) {
-            this.setHabilidad(this.getHabilidad()/2);
-            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque()+difHabilidad/2);
-        } else {
-            directorCarrera.ponerSancion(piloto);
-        }
-        return vehiculoMaldito;
-    }
-
-    //Metodo abstracto heredado
-    public void recibirPlata(double plata){
-        this.getEquipo().setPlata(this.getEquipo().getPlata()+plata);
-    }
-    
     // Metodos de clase
     public static Piloto pilotoAleatorio() {
-    	int n = (int) (Math.random()*Piloto.listaPilotos.size());
-    	return Piloto.listaPilotos.get(n);
+        int n = (int) (Math.random() * Piloto.listaPilotos.size());
+        return Piloto.listaPilotos.get(n);
     }
 
     public static ArrayList<Piloto> pilotosDisponibles() {
-    	ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
-    	for (Piloto piloto : Piloto.listaPilotos) {
-    		if (!piloto.isLesionado()) {
-    			pilotosDisponibles.add(piloto);
-    		}
-    	}
-    	return pilotosDisponibles;
+        ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
+        for (Piloto piloto : Piloto.listaPilotos) {
+            if (!piloto.isLesionado()) {
+                pilotosDisponibles.add(piloto);
+            }
+        }
+        return pilotosDisponibles;
     }
 
     public static ArrayList<Piloto> pilotosEquipo(Equipo equipo, ArrayList<Piloto> pilotos) {
-    	ArrayList<Piloto> pilotosEquipo = new ArrayList<Piloto>();
+        ArrayList<Piloto> pilotosEquipo = new ArrayList<Piloto>();
         for (Piloto piloto : pilotos) {
             if (piloto.getEquipo() == equipo) {
                 pilotosEquipo.add(piloto);
             }
         }
-    	return pilotosEquipo;
+        return pilotosEquipo;
 
     }
 
     public static void desbloquearPilotos(ArrayList<Piloto> pilotos) {
-    	for (Piloto piloto : pilotos) {
-    		piloto.setDesbloqueado(true);
-    	}
+        for (Piloto piloto : pilotos) {
+            piloto.setDesbloqueado(true);
+        }
     }
 
-    public static void asignarEquipo(){
+    public static void asignarEquipo() {
         ArrayList<Piloto> pilotos = Piloto.listaPilotos;
         Collections.shuffle(pilotos);
         int i = 0;
         int c = 0;
-        for (Piloto piloto: pilotos) {
+        for (Piloto piloto : pilotos) {
             if (piloto.getEquipo() == null) {
                 piloto.setEquipo(Equipo.equipos.get(i % Equipo.equipos.size()));
                 c++;
@@ -180,22 +135,63 @@ public class Piloto extends Persona implements Serializable, Decimales {
         Random rand = new Random();
         int n = rand.nextInt(pilotos.size());
         Piloto piloto = pilotos.get(n);
-        piloto.contratar(equipo);
+        piloto.contratar();
         return piloto;
     }
 
-    public void noEsElegido(){
-        this.setElegido(false);
-        VehiculoCarrera.crearVehiculoPilotosNoElegidos(this);
-    }
-
-    // Lista de metodos set y get
-    public void setVictorias(ArrayList<String> victorias) {
-        this.victorias = victorias;
+    public static ArrayList<Piloto> getListaPilotos() {
+        return Piloto.listaPilotos;
     }
 
     public static void setListaPilotos(ArrayList<Piloto> listaPilotos) {
         Piloto.listaPilotos = listaPilotos;
+    }
+
+    //Metodos de instancia
+    public void sumarPuntos(int puntos) {
+        this.puntos += puntos;
+    }
+
+    public void agregarVictoria(Campeonato campeonato) {
+        victorias.add(campeonato.toString());
+    }
+
+    public void contratar() {
+        Equipo equipo = this.getEquipo();
+        equipo.setPlata(equipo.getPlata() - this.valorContrato);
+        this.setPresupuestoVehiculo(this.valorContrato * this.habilidad * 10);
+    }
+
+    public VehiculoCarrera maldecirPiloto(double plata, Piloto piloto, DirectorCarrera directorCarrera) {
+        //Busqueda del carro
+        VehiculoCarrera vehiculoMaldito = null;
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()) {
+            if (vehiculoCarrera.getPiloto().equals(this)) {
+                vehiculoMaldito = vehiculoCarrera;
+            }
+        }
+        //Maldecir al piloto y al vehiculo
+        double difHabilidad = this.getHabilidad();
+        if (plata >= this.getValorContrato()) {
+            this.setHabilidad(0);
+            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque() + difHabilidad);
+        } else if (plata >= this.getValorContrato() / 2) {
+            this.setHabilidad(this.getHabilidad() / 2);
+            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque() + difHabilidad / 2);
+        } else {
+            directorCarrera.ponerSancion(piloto);
+        }
+        return vehiculoMaldito;
+    }
+
+    //Metodo abstracto heredado
+    public void recibirPlata(double plata) {
+        this.getEquipo().setPlata(this.getEquipo().getPlata() + plata);
+    }
+
+    public void noEsElegido() {
+        this.setElegido(false);
+        VehiculoCarrera.crearVehiculoPilotosNoElegidos(this);
     }
 
     public boolean isDesbloqueado() {
@@ -212,29 +208,54 @@ public class Piloto extends Persona implements Serializable, Decimales {
         this.presupuestoVehiculo = dosDecimales(this.presupuestoVehiculo);
     }
 
-    {
-        this.redondear();
+    public int getPuntos() {
+        return this.puntos;
     }
 
-    public int getPuntos() {return this.puntos;}
-    public void setPuntos(int puntos) {this.puntos = puntos;}
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
 
-    public int getSanciones() {return this.sanciones;}
-    public void setSanciones(int sanciones) {this.sanciones = sanciones;}
+    public int getSanciones() {
+        return this.sanciones;
+    }
 
-    public double getHabilidad() {return this.habilidad;}
-    public void setHabilidad(double hab) {this.habilidad = hab;}
+    public void setSanciones(int sanciones) {
+        this.sanciones = sanciones;
+    }
 
-    public boolean isLesionado() {return this.lesionado;}
-    public void setLesionado(boolean disp) {this.lesionado = disp;}
+    public double getHabilidad() {
+        return this.habilidad;
+    }
 
-    public ArrayList<String> getVictorias() {return victorias;}
-    
-    public static ArrayList<Piloto> getListaPilotos() {return Piloto.listaPilotos;}
+    public void setHabilidad(double hab) {
+        this.habilidad = hab;
+    }
 
-    public Equipo getEquipo() {return this.contrato;}
+    public boolean isLesionado() {
+        return this.lesionado;
+    }
 
-    public void setEquipo(Equipo equipo) {this.contrato = equipo;}
+    public void setLesionado(boolean disp) {
+        this.lesionado = disp;
+    }
+
+    public ArrayList<String> getVictorias() {
+        return victorias;
+    }
+
+    // Lista de metodos set y get
+    public void setVictorias(ArrayList<String> victorias) {
+        this.victorias = victorias;
+    }
+
+    public Equipo getEquipo() {
+        return this.contrato;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.contrato = equipo;
+    }
 
     public Equipo getContrato() {
         return contrato;
@@ -275,8 +296,6 @@ public class Piloto extends Persona implements Serializable, Decimales {
     public void setPatrocinador(Patrocinador patrocinador) {
         this.patrocinador = patrocinador;
     }
-
-    static Random random = new Random();
 
     public void sinPlata() {
         this.getEquipo().recibirPlata((Math.random() * 90000) + 10000);

@@ -222,6 +222,7 @@ public class Campeonato implements Serializable, Decimales {
                 return carrera1.getFecha().compareTo(carrera2.getFecha());
             }
         });
+        this.listaCarreras.sort(Comparator.comparing(Carrera::getMes));
     }
 
     public void actualizarMesCarreras(int mes) {
@@ -245,7 +246,7 @@ public class Campeonato implements Serializable, Decimales {
             if (!carrerasPreferidas.isEmpty()) {
                 if (carrerasPreferidas.contains(carrera)) {
                     // si es preferida el peso es el doble
-                    pesoTotal += carrera.getDificultad() + 2;
+                    pesoTotal += carrera.getDificultad() * 2;
                 }
             }
             pesoTotal += carrera.getDificultad();

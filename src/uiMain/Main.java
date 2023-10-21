@@ -143,7 +143,7 @@ public class Main {
         ArrayList<Piloto> pilotosParticipar = new ArrayList<Piloto>();
 
         ArrayList<Piloto> pilotosEquipo = Piloto.pilotosEquipo(equipo, pilotosDisponibles);
-        System.out.println("Mira los Pilotos de tu Escuderia");
+        System.out.println("\nMira los Pilotos de tu Escuderia");
         // TODO tabla de pilotos
         Tablas.tablaPilotosEquipo(pilotosEquipo);
 
@@ -172,7 +172,6 @@ public class Main {
 
         // preguntar si quiere elegir contrincantes
         System.out.println("Quieres elegir los pilotos de equipos contrincantes?");
-        System.out.println("Y/N");
         elegir = validacionesYN();
 
         // se eligen los pilotos que participaran por cada equipo
@@ -222,7 +221,12 @@ public class Main {
                 pilotosEquipo.remove(pilotoN);
             }
         }
+
         campeonato.setListaPilotos(pilotosParticipar);
+
+        for (Piloto piloto : pilotosParticipar) {
+            piloto.contratar();
+        }
 
         // elegir patrocinador
 
@@ -463,9 +467,9 @@ public class Main {
         ArrayList<VehiculoCarrera> vehiculos = VehiculoCarrera.vehiculosPiloto(piloto);
         if (vehiculos.isEmpty()) {
             System.out.println("No hay vehiculos asociados a " + piloto.getNombre());
-            System.out.println("Tienes que comprar un chasis y configurar tu vehiculo");
+            System.out.println("Tienes que comprar un chasis y configurar tu vehiculo, pulsa enter para continuar");
             System.out.println("\n");
-
+            sc.nextLine();
             // elegir chasis
             ArrayList<Chasis> chasisDisponibles = Chasis.chasisDisponible(piloto);
             System.out.println("Estos son los chasis disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto");

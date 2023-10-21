@@ -21,7 +21,7 @@ public class Equipo implements Serializable {
     private String nombre;
     private double plata;
     private int puntos; //Puntos que lleva el equipo en el campeonato
-    private boolean ocupado = false; //Si el equipo esta ocupado, se puede jugar
+    private boolean ocupado = false; //Si el equipo esta ocupado, no se puede jugar
     private ArrayList<Ciudad> sedes = new ArrayList<Ciudad>(); //Lista de ciudades donde se puede ubicar la sede del equipo
     private ArrayList<Patrocinador> patrocinadoresEquipo = new ArrayList<Patrocinador>(); //Lista de patrocinadores que patrocinan al equipo
 

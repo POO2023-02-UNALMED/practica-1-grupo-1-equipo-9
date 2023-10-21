@@ -1076,26 +1076,26 @@ public interface CrearObjetos {
         // Pilotos
         
         Piloto piloto1Equipo1 = new Piloto("Michael Schumacher", equipo1, 65, 3, 0.92, false, true, true, 3000000.0, 2000000.0, patrocinador1);
-        Piloto piloto2Equipo1 = new Piloto("Lewis Hamilton", equipo1, 45, 2, 0.88, false, true, true, 2500000.0, 1500000.0 ,patrocinador2);
-        Piloto piloto1Equipo2 = new Piloto("Juan Manuel Fangio", equipo2, 35, 4, 0.85, false, false, true, 2000000.0, 2000000.0, patrocinador3);
-        Piloto piloto2Equipo2 = new Piloto("Ayrton Senna", equipo2, 55, 1, 0.90, false, false, true, 2500000.0, 1500000.0, patrocinador4);
-        Piloto piloto1Equipo3 = new Piloto("Alain Prost", equipo3, 75, 2, 0.94, false, false, true, 3500000.0, 2000000.0, patrocinador5);
-        Piloto piloto2Equipo3 = new Piloto("Niki Lauda", equipo3, 65, 3, 0.92, false, false, true, 3000000.0, 1500000.0, patrocinador6);
-        Piloto piloto1Equipo4 = new Piloto("Jackie Stewart", equipo4, 45, 2, 0.88, false, true, true, 2500000.0, 1500000.0, patrocinador7);
-        Piloto piloto2Equipo4 = new Piloto("Jim Clark", equipo4, 55, 1, 0.90, false, true, true, 3000000.0, 2000000.0, patrocinador8);
-        Piloto piloto1Equipo5 = new Piloto("Sebastian Vettel", equipo5, 40, 4, 0.85, false, false, true, 2000000.0, 1500000.0, patrocinador9);
-        Piloto piloto2Equipo5 = new Piloto("Fernando Alonso", equipo5, 50, 3, 0.92, false, true, true, 3000000.0, 2000000.0, patrocinador10);
+        Piloto piloto2Equipo1 = new Piloto("Lewis Hamilton", equipo1, 45, 2, 0.88, false, true, false, 2500000.0, 1500000.0 ,patrocinador2);
+        Piloto piloto1Equipo2 = new Piloto("Juan Manuel Fangio", equipo2, 35, 4, 0.85, false, false, false, 2000000.0, 2000000.0, patrocinador3);
+        Piloto piloto2Equipo2 = new Piloto("Ayrton Senna", equipo2, 55, 1, 0.90, false, false, false, 2500000.0, 1500000.0, patrocinador4);
+        Piloto piloto1Equipo3 = new Piloto("Alain Prost", equipo3, 75, 2, 0.94, false, false, false, 3500000.0, 2000000.0, patrocinador5);
+        Piloto piloto2Equipo3 = new Piloto("Niki Lauda", equipo3, 65, 3, 0.92, false, false, false, 3000000.0, 1500000.0, patrocinador6);
+        Piloto piloto1Equipo4 = new Piloto("Jackie Stewart", equipo4, 45, 2, 0.88, false, true, false, 2500000.0, 1500000.0, patrocinador7);
+        Piloto piloto2Equipo4 = new Piloto("Jim Clark", equipo4, 55, 1, 0.90, false, true, false, 3000000.0, 2000000.0, patrocinador8);
+        Piloto piloto1Equipo5 = new Piloto("Sebastian Vettel", equipo5, 40, 4, 0.85, false, false, false, 2000000.0, 1500000.0, patrocinador9);
+        Piloto piloto2Equipo5 = new Piloto("Fernando Alonso", equipo5, 50, 3, 0.92, false, true, false, 3000000.0, 2000000.0, patrocinador10);
 
         Piloto piloto1Equipo6 = new Piloto("Nelson Piquet", equipo6, 35, 3, 0.86, false, true, true, 2500000.0, 1500000.0, patrocinador11);
-        Piloto piloto2Equipo6 = new Piloto("Mika Hakkinen", equipo6, 55, 2, 0.90, false, true, true, 3000000.0, 2000000.0, patrocinador12);
-        Piloto piloto1Equipo7 = new Piloto("Stirling Moss", equipo7, 65, 3, 0.92, false, false, true, 2500000.0, 1500000.0, patrocinador13);
-        Piloto piloto2Equipo7 = new Piloto("Emerson Fittipaldi", equipo7, 45, 4, 0.88, false, false, true, 2000000.0, 2000000.0, patrocinador14);
-        Piloto piloto1Equipo8 = new Piloto("Gilles Villeneuve", equipo8, 55, 1, 0.90, false, true, true, 3000000.0, 2000000.0, patrocinador15);
-        Piloto piloto2Equipo8 = new Piloto("Kimi Raikkonen", equipo8, 35, 2, 0.85, false, true, true, 2500000.0, 1500000.0, patrocinador16);
-        Piloto piloto1Equipo9 = new Piloto("Damon Hill", equipo9, 50, 3, 0.92, false, true, true, 3000000.0, 2000000.0, patrocinador17);
-        Piloto piloto2Equipo9 = new Piloto("Keke Rosberg", equipo9, 70, 2, 0.94, false, true, true, 3500000.0, 1500000.0, patrocinador18);
-        Piloto piloto1Equipo10 = new Piloto("Nigel Mansell", equipo10, 45, 4, 0.88, false, false, true, 2000000.0, 2000000.0, patrocinador19);
-        Piloto piloto2Equipo10 = new Piloto("Jenson Button", equipo10, 60, 3, 0.91, false, false, true, 2500000.0, 1500000.0, patrocinador20);
+        Piloto piloto2Equipo6 = new Piloto("Mika Hakkinen", equipo6, 55, 2, 0.90, false, true, false, 3000000.0, 2000000.0, patrocinador12);
+        Piloto piloto1Equipo7 = new Piloto("Stirling Moss", equipo7, 65, 3, 0.92, false, false, false, 2500000.0, 1500000.0, patrocinador13);
+        Piloto piloto2Equipo7 = new Piloto("Emerson Fittipaldi", equipo7, 45, 4, 0.88, false, false, false, 2000000.0, 2000000.0, patrocinador14);
+        Piloto piloto1Equipo8 = new Piloto("Gilles Villeneuve", equipo8, 55, 1, 0.90, false, true, false, 3000000.0, 2000000.0, patrocinador15);
+        Piloto piloto2Equipo8 = new Piloto("Kimi Raikkonen", equipo8, 35, 2, 0.85, false, true, false, 2500000.0, 1500000.0, patrocinador16);
+        Piloto piloto1Equipo9 = new Piloto("Damon Hill", equipo9, 50, 3, 0.92, false, true, false, 3000000.0, 2000000.0, patrocinador17);
+        Piloto piloto2Equipo9 = new Piloto("Keke Rosberg", equipo9, 70, 2, 0.94, false, true, false, 3500000.0, 1500000.0, patrocinador18);
+        Piloto piloto1Equipo10 = new Piloto("Nigel Mansell", equipo10, 45, 4, 0.88, false, false, false, 2000000.0, 2000000.0, patrocinador19);
+        Piloto piloto2Equipo10 = new Piloto("Jenson Button", equipo10, 60, 3, 0.91, false, false, false, 2500000.0, 1500000.0, patrocinador20);
         
         listaPilotosC1.add(piloto1Equipo1);
         listaPilotosC1.add(piloto2Equipo1);

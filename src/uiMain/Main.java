@@ -27,8 +27,8 @@ public class Main {
     static {
 
         Deserializado.deserializacion();
-        //CrearObjetos.crearObjetos();
-        //serializador.serializar();
+        /*CrearObjetos.crearObjetos();
+        serializador.serializar();*/
     }
 
     public static void main(String[] args) {
@@ -46,6 +46,7 @@ public class Main {
         boolean jugar = true;
         while (jugar) {
             // Menu
+            System.out.println("\n");
             System.out.println("Menu Principal");
             System.out.println("1. Prepara un nuevo campeonato");
             System.out.println("2. Disenar Ruta de Campeonato");
@@ -80,8 +81,10 @@ public class Main {
                     break;
                 case 6:
                     //salir
+                    preguntar();
                     System.out.println("Gracias por jugar!");
                     jugar = false;
+
                     serializador.serializar();
                     //TODO: Borrar los datos innecesarios!
                     break;
@@ -959,5 +962,17 @@ public class Main {
             System.out.println("No habia dinero suficiente pero la abuela de " + persona.getNombre() + " ha muerto y le ha dejado una herencia");
             persona.sinPlata();
         }
+    }
+
+    private static void preguntar() {
+        System.out.println("Deseas guardar la partida?");
+        System.out.println("Y/N");
+        boolean guardar = validacionesYN();
+        if (guardar) {
+            serializador.serializar();
+        } else {
+            // preguntar como se borra todo
+        }
+        System.out.println("Gracias por jugar!");
     }
 }

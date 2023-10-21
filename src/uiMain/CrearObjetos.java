@@ -258,7 +258,6 @@ public interface CrearObjetos {
 
 
 
-
         // Pilotos
         new Piloto("Jack Brabham");
         new Piloto("Graham Hill");
@@ -1204,7 +1203,7 @@ public interface CrearObjetos {
             listaEquiposC1,
             listaPilotosC1,
             1, 
-            "Gran Campeonato Internacional 2023",
+            "Gran Campeonato de Chigorodo",
             2023, 
             Continente.America, 
             12, 
@@ -1220,7 +1219,7 @@ public interface CrearObjetos {
         	    listaPilotosC2,
         	    2, 
         	    "Campeonato Internacional Pangasio",
-        	    2024, 
+        	    2023, 
         	    Continente.Europa, 
         	    10, 
         	    1000000.0, 

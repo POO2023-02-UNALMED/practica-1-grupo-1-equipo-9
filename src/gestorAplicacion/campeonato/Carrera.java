@@ -4,14 +4,15 @@ import gestorAplicacion.paddock.Circuito;
 import gestorAplicacion.paddock.Patrocinador;
 import gestorAplicacion.paddock.Piloto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
-public class Carrera implements Decimales {
+public class Carrera implements Decimales, Serializable {
+	private static final long serialVersionUID = 5592556885641211247L;
 
-
-    public  ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
+	public  ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
 
     public  ArrayList<VehiculoCarrera> terminados = new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
 

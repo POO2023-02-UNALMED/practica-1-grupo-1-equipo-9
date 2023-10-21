@@ -5,8 +5,9 @@ import gestorAplicacion.campeonato.*;
 import java.util.*;
 
 public class Circuito implements java.io.Serializable, Decimales{
-
-    public static ArrayList<Circuito> circuitos = new ArrayList<Circuito>();
+	private static final long serialVersionUID = 6748994374640828496L;
+	
+	public static ArrayList<Circuito> circuitos = new ArrayList<Circuito>();
     private String nombre;
     private double Precio;
     private ArrayList<Continente> continentes = new ArrayList<Continente>();

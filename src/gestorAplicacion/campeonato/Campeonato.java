@@ -51,6 +51,7 @@ public class Campeonato implements Serializable, Decimales {
         this.desbloqueado = desbloqueado;
         this.patrocinadorCampeonato = Patrocinador.listaPatrocinadores.get(new Random().nextInt(Patrocinador.listaPatrocinadores.size()));
         patrocinadorCampeonato.setPatrocinadorCampeonato();
+        campeonatos.add(this);
     }
 
     public Campeonato(ArrayList<Carrera> listaCarreras, ArrayList<Equipo> listaEquipos, ArrayList<Piloto> listaPilotos, int id, String nombre, Continente continente, int cantCarreras, double premio, boolean desbloqueado, Patrocinador patrocinadorCampeonato) {
@@ -64,6 +65,7 @@ public class Campeonato implements Serializable, Decimales {
         this.premio = premio;
         this.desbloqueado = desbloqueado;
         this.patrocinadorCampeonato = patrocinadorCampeonato;
+        campeonatos.add(this);
     }
 
     public Campeonato(String nombre, int cantCarrera, Continente continente) {

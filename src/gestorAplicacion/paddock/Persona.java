@@ -4,7 +4,8 @@ import gestorAplicacion.campeonato.Decimales;
 import java.io.Serializable;
 
 public abstract class Persona implements Serializable, Decimales {
-    // Atributos
+	private static final long serialVersionUID = 9152973937117015465L;
+	// Atributos
     static int idActual = 1;
     protected int id;
     protected String nombre;

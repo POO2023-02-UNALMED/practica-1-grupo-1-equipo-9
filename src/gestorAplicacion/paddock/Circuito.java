@@ -5,6 +5,10 @@ import gestorAplicacion.campeonato.*;
 import java.util.*;
 
 public class Circuito implements java.io.Serializable, Decimales{
+    /***
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Finalidad: Descripcion de la clase
+     */
 	private static final long serialVersionUID = 6748994374640828496L;
 	
 	public static ArrayList<Circuito> circuitos = new ArrayList<Circuito>();
@@ -74,8 +78,12 @@ public class Circuito implements java.io.Serializable, Decimales{
         return circuitosDisponibles;
     }
 
-
     public void venderCircuito(DirectorCarrera dir, int mes){
+        /***
+         * Descripcion del metodo:
+         * Parametros de entrada:
+         * Parametros de salida:
+         */
         dir.setPlata(dir.getPlata() - this.getPrecio());
         this.getDisponibilidad().removeIf(num -> num == mes);
     }

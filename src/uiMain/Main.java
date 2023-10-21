@@ -12,8 +12,7 @@ import java.util.Scanner;
 import baseDatos.Deserializado;
 import baseDatos.serializador;
 
-import static uiMain.AsciiArt.bienvenida;
-import static uiMain.AsciiArt.sitAndTalk;
+import static uiMain.AsciiArt.*;
 import static uiMain.Tablas.*;
 
 public class Main {
@@ -91,6 +90,8 @@ public class Main {
         // elegir continente
         System.out.println("Has decidido crear preparar un nuevo campeonato. Comencemos.");
         System.out.println("Elige un continente donde se llevara a cabo");
+        world();
+        System.out.println("\n");
         // TODO tabla de continentes
         Tablas.tablaContinentes();
         n = validaciones(1, 5);
@@ -272,6 +273,7 @@ public class Main {
         // Mostrar como quedo el campeonto con sus participantes
         System.out.println("Este es el campeonato que has creado");
         // TODO tabla de pilotos
+        banner(campeonato.getNombre(), String.valueOf(campeonato.getAno()));
         Piloto.desbloquearPilotos(pilotosParticipar);
         Tablas.tablaPilotosParticipantes(pilotosParticipar, campeonato);
         System.out.println("\n");
@@ -456,6 +458,8 @@ public class Main {
         ArrayList<Piloto> pilotosDisponibles = Piloto.pilotosDesbloqueados();
 
         System.out.println("Es momento de tunear tu vehiculo de carreras. Primero, veamos a que piloto le vas a personalizar el vehiculo");
+        car();
+        System.out.println("\n");
         System.out.println("De acuerdo a los campeonatos desbloqueados, estan disponibles los siguientes pilotos");
         // TODO pilotos tabla
         Tablas.tablaPilotosEquipo(pilotosDisponibles);
@@ -897,6 +901,7 @@ public class Main {
         System.out.println("Nos compleace presentarte, la puntacion final de los equipos del campeonato!");
         //TODO: Tabla de puntos: Tabla que muestre los equipos del campeonato con los puntos
         ArrayList<Equipo> equiposPuntuados = Equipo.organizarEquiposPuntos(campeonato);
+        cup();
         //Iniciando minifuncionalidad 3: Premiacion del Campeonato
         campeonato.premiarCampeones(equiposPuntuados); //TODO: FALTA COMPLEJIDAD
         //TODO: BORRAR INDICIOS DE CAMPEONATO

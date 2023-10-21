@@ -872,6 +872,5 @@ public interface Tablas extends Decimales {
         }
 
         System.out.println("-".repeat(tablaAncho));
-    }
-
+        }
 }

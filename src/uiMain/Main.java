@@ -25,10 +25,8 @@ public class Main {
     static int n;
 
     static {
-
-        Deserializado.deserializacion();
-        /*CrearObjetos.crearObjetos();
-        serializador.serializar();*/
+        //Deserializado.deserializacion();
+        CrearObjetos.crearObjetos();
     }
 
     public static void main(String[] args) {
@@ -82,10 +80,7 @@ public class Main {
                 case 6:
                     //salir
                     preguntar();
-                    System.out.println("Gracias por jugar!");
                     jugar = false;
-
-                    serializador.serializar();
                     //TODO: Borrar los datos innecesarios!
                     break;
             }

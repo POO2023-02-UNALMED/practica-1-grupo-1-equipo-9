@@ -118,6 +118,7 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public static Patrocinador patrocinadorPiloto(Piloto piloto, ArrayList<Patrocinador> patrocinadores, boolean x) {
+
         double valor = piloto.getValorContrato() + piloto.getPresupuestoVehiculo();
         Random rand = new Random();
 

@@ -148,6 +148,24 @@ public class serializador {
 
 	    
 	   ////////////////////////// VEHICULO CARRERA  /////////////////////////
+
+        try {
+
+        pw = new PrintWriter("src\\baseDatos\\temp\\datosVehiculos.txt");
+
+        FileOutputStream fileOutputStream7 = new FileOutputStream("src\\baseDatos\\temp\\datosVehiculos.txt");
+        ObjectOutputStream objectOutputStream7 = new ObjectOutputStream(fileOutputStream7);
+
+        objectOutputStream7.writeObject(VehiculoCarrera.listaVehiculos);
+
+        objectOutputStream7.close();
+        fileOutputStream7.close();
+
+        } catch (FileNotFoundException e12) {
+        e12.printStackTrace();
+        } catch (IOException e13) {
+        e13.printStackTrace();
+        }
        
 
 	    

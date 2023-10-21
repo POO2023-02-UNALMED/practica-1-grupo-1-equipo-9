@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class VehiculoCarrera extends Chasis implements Decimales {
+public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serializable {
     public static ArrayList<VehiculoCarrera> listaVehiculos = new ArrayList<VehiculoCarrera>();
 
     //Atributos
     private Piloto piloto; //Conductor
-    private double tiempo; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posición final
-    private double distanciaRecorrida; //Se usa sólo dentro del ciclo, se calcula en cada iteración para obtener la posición actual
-    private boolean terminado; // Mira si terminó la carrera. Si se choca, esto pasa a true.
-    private boolean morido; // Si está morido, lo manda al final de la lista de posiciones.
-    private double velocidadTuneao; //Velocidad del vehículo + velocidad de las piezas
+    private double tiempo; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posiciï¿½n final
+    private double distanciaRecorrida; //Se usa sï¿½lo dentro del ciclo, se calcula en cada iteraciï¿½n para obtener la posiciï¿½n actual
+    private boolean terminado; // Mira si terminï¿½ la carrera. Si se choca, esto pasa a true.
+    private boolean morido; // Si estï¿½ morido, lo manda al final de la lista de posiciones.
+    private double velocidadTuneao; //Velocidad del vehï¿½culo + velocidad de las piezas
     private double velocidadCircumstancias; // velocidad de las circunstancias
-    private double velocidadActual; //Velocidad actual del vehículo, velocidad tuneada +- situaciones
+    private double velocidadActual; //Velocidad actual del vehï¿½culo, velocidad tuneada +- situaciones
     private double probabilidadChoque;
     private Pieza motor;
     private Pieza neumaticos;
@@ -138,7 +138,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
 
 
 
-    //Métodos
+    //Mï¿½todos
     public void chocar() { //Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
         this.tiempo = 0;
         this.setVelocidadActual(0);
@@ -159,7 +159,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         Equipo equipo =  this.getPiloto().getEquipo();
         if (equipo.getPlata() >= pieza.getPrecio()) {
             equipo.setPlata(equipo.getPlata() - pieza.getPrecio()); // Cobrar
-            this.setNeumaticos(pieza); //Cambiar neumáticos
+            this.setNeumaticos(pieza); //Cambiar neumï¿½ticos
             this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }
@@ -168,7 +168,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         Equipo equipo =  this.getPiloto().getEquipo();
         if (equipo.getPlata() >= pieza.getPrecio()) {
             equipo.setPlata(equipo.getPlata() - pieza.getPrecio()); // Cobrar
-            this.setAleron(pieza); //Cambiar alerón
+            this.setAleron(pieza); //Cambiar alerï¿½n
             this.actualizarVelocidadT(); //Actualizar velocidad tuneada
         }
     }*/
@@ -178,11 +178,11 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         String tipoPieza = pieza.getTipo();
         switch (tipoPieza){
             case "A":
-                this.setAleron(pieza); //Cambiar alerón
+                this.setAleron(pieza); //Cambiar alerï¿½n
                 this.actualizarVelocidadT(); //Actualizar velocidad tuneada
                 break;
             case "N":
-                this.setNeumaticos(pieza); //Cambiar neumáticos
+                this.setNeumaticos(pieza); //Cambiar neumï¿½ticos
                 this.actualizarVelocidadT(); //Actualizar velocidad tuneada
                 break;
             case "M":
@@ -240,7 +240,7 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         // O si cambia la velocidad de circumstancias
         this.actualizarVelocidadT(); // Actualizar velocidad tuneada
         this.velocidadActual = this.velocidadTuneao + this.velocidadCircumstancias; // Actualizar velocidad actual
-        revisarMaxVelocidad(); // Revisar que no se pase de la velocidad máxima
+        revisarMaxVelocidad(); // Revisar que no se pase de la velocidad mï¿½xima
     }
 
     public void revisarMaxVelocidad() {
@@ -250,13 +250,13 @@ public class VehiculoCarrera extends Chasis implements Decimales {
     }
 
     // Aprovechar DRS (Adelantar) - Aumenta velocidad
-    // 1. Daña el alerón
+    // 1. Daï¿½a el alerï¿½n
     // 2. Aumenta la velocidad
     // 3. Usa la probabilidad de chocar
     public void aprovecharDRS() {
-        Random rand = new Random(); // Generador de números aleatorios
-        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio entre 1 y 3
-        if (randomNumber == 1) { // Daña el alerón
+        Random rand = new Random(); // Generador de nï¿½meros aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Nï¿½mero aleatorio entre 1 y 3
+        if (randomNumber == 1) { // Daï¿½a el alerï¿½n
             this.getAleron().setDanado(true);
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
         } else if (randomNumber <= 9) {
@@ -264,8 +264,8 @@ public class VehiculoCarrera extends Chasis implements Decimales {
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
         } else { // Usa la probabilidad de chocar
             double numeroAleatorio = rand.nextDouble();
-            // Número aleatorio entre 0 y 1
-            if (numeroAleatorio <= this.getProbabilidadChoque()) { // Si el número aleatorio es menor o igual a la probabilidad de chocar, choca
+            // Nï¿½mero aleatorio entre 0 y 1
+            if (numeroAleatorio <= this.getProbabilidadChoque()) { // Si el nï¿½mero aleatorio es menor o igual a la probabilidad de chocar, choca
                 this.chocar();
             } else { // Si no, aumenta la velocidad
                 this.setVelocidadCircumstancias(10); // Aumenta la velocidad en 10
@@ -275,16 +275,16 @@ public class VehiculoCarrera extends Chasis implements Decimales {
     }
 
     // Frenar (Debe frenar para entrar a pits) - Disminuye la velocidad
-    // 1. Daña las llantas
-    // 2. Disminuye 1 posición
+    // 1. Daï¿½a las llantas
+    // 2. Disminuye 1 posiciï¿½n
     // 3. Puede entrar a Pits
     public void frenar() {
-        Random rand = new Random(); // Generador de números aleatorios
-        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio entre 1 y 3
-        if (randomNumber == 1) { // Daña las llantas
+        Random rand = new Random(); // Generador de nï¿½meros aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Nï¿½mero aleatorio entre 1 y 3
+        if (randomNumber == 1) { // Daï¿½a las llantas
             this.getNeumaticos().setDanado(true);
             this.actualizarVelicidadActual();
-        } else if (randomNumber <= 9) { // Disminuye 1 posición
+        } else if (randomNumber <= 9) { // Disminuye 1 posiciï¿½n
             this.setVelocidadCircumstancias(- 100); // Aumenta la velocidad en 10
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
         }
@@ -295,8 +295,8 @@ public class VehiculoCarrera extends Chasis implements Decimales {
 //    2. Aumentar velocidad 100
 
     public void hacerManiobra() {
-        Random rand = new Random(); // Generador de números aleatorios
-        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio
+        Random rand = new Random(); // Generador de nï¿½meros aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Nï¿½mero aleatorio
         if (randomNumber <= 5) { // Choca
             this.chocar();
         } else { // Aumenta la velocidad en 100
@@ -305,11 +305,11 @@ public class VehiculoCarrera extends Chasis implements Decimales {
         }
     }
 
-//  Defender Posición (Pussy) - Mantiene la velocidad actual
+//  Defender Posiciï¿½n (Pussy) - Mantiene la velocidad actual
 //  1. Aumentar o disminuir velocidad en 20
     public void defender() {
-        Random rand = new Random(); // Generador de números aleatorios
-        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio
+        Random rand = new Random(); // Generador de nï¿½meros aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Nï¿½mero aleatorio
         if (randomNumber <= 5) { // Aumenta la velocidad en 20
             this.setVelocidadCircumstancias(20); // Aumenta la velocidad en 10
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
@@ -320,24 +320,24 @@ public class VehiculoCarrera extends Chasis implements Decimales {
     }
 
 //  Derrapar RAAAAAAAAAAAAAAAA - Mantiene la velocidad
-//  1. Dañar las llantas
+//  1. Daï¿½ar las llantas
 //  2. Aumentar 30 velocidad
 //  3. Usa la probabilidad de choque
 
     public void derrapar() {
-        Random rand = new Random(); // Generador de números aleatorios
-        int randomNumber = rand.nextInt(10) + 1; // Número aleatorio
+        Random rand = new Random(); // Generador de nï¿½meros aleatorios
+        int randomNumber = rand.nextInt(10) + 1; // Nï¿½mero aleatorio
         if (randomNumber == 1) {
-            this.getNeumaticos().setDanado(true); // Dañar las llantas
+            this.getNeumaticos().setDanado(true); // Daï¿½ar las llantas
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
         } else if (randomNumber <= 9) {
             this.setVelocidadCircumstancias(30); // Aumenta la velocidad en 10
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
         } else { // Usa la probabilidad de chocar
             double numeroAleatorio = rand.nextDouble();
-            // Número aleatorio entre 0 y 1
+            // Nï¿½mero aleatorio entre 0 y 1
             if (numeroAleatorio <= this.getProbabilidadChoque()) {
-                // Si el número aleatorio es menor o igual a la probabilidad de chocar, choca
+                // Si el nï¿½mero aleatorio es menor o igual a la probabilidad de chocar, choca
                 this.chocar();
             } else { // Si no, aumenta la velocidad
                 this.setVelocidadCircumstancias(10); // Aumenta la velocidad en 10

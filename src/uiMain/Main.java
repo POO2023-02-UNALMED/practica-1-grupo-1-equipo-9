@@ -26,9 +26,9 @@ public class Main {
 
     static {
 
-        //Deserializado.deserializacion();
-        CrearObjetos.crearObjetos();
-        serializador.serializar();
+        Deserializado.deserializacion();
+        //CrearObjetos.crearObjetos();
+        //serializador.serializar();
     }
 
     public static void main(String[] args) {
@@ -82,6 +82,7 @@ public class Main {
                     //salir
                     System.out.println("Gracias por jugar!");
                     jugar = false;
+                    serializador.serializar();
                     //TODO: Borrar los datos innecesarios!
                     break;
             }
@@ -272,8 +273,6 @@ public class Main {
         Piloto.desbloquearPilotos(pilotosParticipar);
         Tablas.tablaPilotosParticipantes(pilotosParticipar, campeonato);
         System.out.println("\n");
-
-        serializador.serializar();
 
         // Reset variables
         campeonato = null;

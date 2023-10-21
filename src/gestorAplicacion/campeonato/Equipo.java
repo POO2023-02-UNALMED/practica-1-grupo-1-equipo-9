@@ -92,10 +92,10 @@ public class Equipo implements Serializable {
     // Metodos de clase
     public static ArrayList<Equipo> organizarEquiposPuntos(Campeonato campeonato) {
         ArrayList<Equipo> listaOrganizada = new ArrayList<Equipo>();
-        for (Equipo equipo : campeonato.getListaEquipos()){
+        for (Equipo equipo : campeonato.getListaEquipos()) {
             listaOrganizada.add(equipo);
         }
-        listaOrganizada.sort(Comparator.comparing(equipo->equipo.getPuntos()));
+        listaOrganizada.sort(Comparator.comparing(equipo -> equipo.getPuntos()));
         return listaOrganizada;
     }
 
@@ -193,19 +193,19 @@ public class Equipo implements Serializable {
         Equipo.idActual = idActual;
     }
 
-    public static void puntuarEquipos(ArrayList<VehiculoCarrera> terminados, double plata, Campeonato campeonato){
+    public static void puntuarEquipos(ArrayList<VehiculoCarrera> terminados, double plata, Campeonato campeonato) {
         int puntosActuales = 13;
         for (VehiculoCarrera vehiculo : terminados) {
-            if (!vehiculo.isMorido()){
+            if (!vehiculo.isMorido()) {
                 vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
                 vehiculo.getPiloto().getEquipo().recalcularPuntos(campeonato);
-                if (puntosActuales>=8){
-                    puntosActuales-=2;
+                if (puntosActuales >= 8) {
+                    puntosActuales -= 2;
                 } else {
                     puntosActuales--;
                 }
             }
-            if (vehiculo.getPiloto().getSanciones()!=0){
+            if (vehiculo.getPiloto().getSanciones() != 0) {
                 vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
             }
         }
@@ -218,15 +218,16 @@ public class Equipo implements Serializable {
     }
 
     //Metodos de instancia
-    public void recalcularPuntos(Campeonato campeonato){
+    public void recalcularPuntos(Campeonato campeonato) {
         int nuevosPuntos = 0;
         for (Piloto piloto : campeonato.getListaPilotos()) {
-            if (piloto.isElegido() && piloto.getEquipo()==this){
-                nuevosPuntos+=piloto.getPuntos();
+            if (piloto.isElegido() && piloto.getEquipo() == this) {
+                nuevosPuntos += piloto.getPuntos();
             }
         }
         this.setPuntos(nuevosPuntos);
     }
+
     public void recibirPlata(double plata) {
         this.setPlata(this.getPlata() + plata);
     }
@@ -291,7 +292,7 @@ public class Equipo implements Serializable {
         if (this.plata < 0) {
             for (Patrocinador patrocinador : this.patrocinadoresEquipo) {
                 // el patrocinador le da mas plata al equipo
-                patrocinador.setPlata(patrocinador.getPlata() + this.plata*2);
+                patrocinador.setPlata(patrocinador.getPlata() + this.plata * 2);
                 this.setPlata(Math.abs(this.plata));
             }
         }

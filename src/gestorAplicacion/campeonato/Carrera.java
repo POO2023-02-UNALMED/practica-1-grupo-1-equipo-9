@@ -143,8 +143,8 @@ public class Carrera implements Decimales, Serializable {
                 carroElegidoCarrerra = vehiculoCarrera;
             }
         }
-        if (carroElegidoCarrerra.getGasolina() > 3) { //Si hay suficiente gasolina, se reduce el nivel.
-            carroElegidoCarrerra.setGasolina(carroElegidoCarrerra.getGasolina() - 3);
+        if (carroElegidoCarrerra.getGasolina() > 5) { //Si hay suficiente gasolina, se reduce el nivel.
+            carroElegidoCarrerra.setGasolina(carroElegidoCarrerra.getGasolina() - 5);
         } else { //Si no hay suficiente gasolina, el carro choca.
             carroElegidoCarrerra.chocar();
         }
@@ -168,7 +168,7 @@ public class Carrera implements Decimales, Serializable {
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
             int numRandom = rand.nextInt(10);
-            if (numRandom >= 3) {
+            if (numRandom >= 2) {
                 listaOpciones.add(true);
             } else {
                 listaOpciones.add(false);
@@ -180,11 +180,8 @@ public class Carrera implements Decimales, Serializable {
     //Metodos para el final de la carrera
     public boolean actualizarTerminado() {
         boolean todosTerminados = true;
-        for (VehiculoCarrera vehiculoCarrera : posiciones) {
-            if (!vehiculoCarrera.isTerminado()) {
+            if (this.posiciones.isEmpty()) {
                 todosTerminados = false;
-                break;
-            }
         }
         return todosTerminados;
     }

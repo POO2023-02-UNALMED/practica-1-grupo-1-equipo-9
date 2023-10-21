@@ -106,7 +106,7 @@ public class Serializado {
     objectOutputStream9.close();
     fileOutputStream9.close();
 
- /*    ////////////////////////// VEHICULO CARRERA  //////////////////////////
+  ////////////////////////// VEHICULO CARRERA  //////////////////////////
 
     FileOutputStream fileOutputStream10 = new FileOutputStream("src\\baseDatos\\temp\\datosVehiculosCarrera.txt");
     ObjectOutputStream objectOutputStream10 = new ObjectOutputStream(fileOutputStream10);
@@ -115,8 +115,6 @@ public class Serializado {
 
     objectOutputStream10.close();
     fileOutputStream10.close();
-
-    */
 
   ////////////////////////// CIRCUITOS  //////////////////////////
 

@@ -52,13 +52,12 @@ public class Deserializado {
 	    Pieza.setPiezas(piezas);
 
 	    
-	  /* ////////////////////////// VEHICULO CARRERA  //////////////////////////
+	  ////////////////////////// VEHICULO CARRERA  //////////////////////////
 	    
 	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculosCarrera.txt");
 
 		VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
 
-	*/
 	    
 	    ////////////////////////// PILOTOS  //////////////////////////
 	    

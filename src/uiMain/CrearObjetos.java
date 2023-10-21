@@ -524,83 +524,7 @@ public interface CrearObjetos {
 
         Piloto.asignarEquipo();
 
-/* 
 
-        // TODO Los campeonatos hechos
-
-        Patrocinador pa1 = new Patrocinador("Eaton", 1000000, 900000, 1, true, true);
-        Patrocinador pa2 = new Patrocinador("Dell", 1000000, 900000, 1, true, true);
-        Patrocinador pa3 = new Patrocinador("Marussia", 1000000, 900000, 1, true, true);
-        Patrocinador pa4 = new Patrocinador("Chandon", 1000000, 900000, 1, true, true);
-        Patrocinador pa5 = new Patrocinador("Hackett", 1000000, 900000, 1, true, true);
-
-
-
-        Campeonato c1 = new Campeonato("Gran Premio del Desierto", 2, Continente.Africa);
-
-
-        Equipo e1 = new Equipo("Forti");
-        Equipo e2 = new Equipo("Osella");
-        Equipo e3 = new Equipo("EuroBrun Racing");
-        Equipo e4 = new Equipo("Onyx Grand Prix");
-        Equipo e5 = new Equipo("Simtek");
-
-        Piloto p1 = new Piloto("Phil Hill");
-        Piloto p2 = new Piloto("Oliver Gendebien");
-        Piloto p3 = new Piloto("Willy Mairesse");
-        Piloto p4 = new Piloto("Lorenzo Bandini");
-        Piloto p5 = new Piloto("Piers Courage");
-        Piloto p6 = new Piloto("Pedro Rodriguez");
-        Piloto p7 = new Piloto("Mauricio Gugelmin");
-        Piloto p8 = new Piloto("Sergio Perez");
-        Piloto p9 = new Piloto("Esteban Gutierrez");
-        Piloto p10 = new Piloto("Esteban Ocon");
-
-        ArrayList<Piloto> pilotos1 = new ArrayList<Piloto>();
-        pilotos1.add(p1);
-        pilotos1.add(p2);
-        pilotos1.add(p3);
-        pilotos1.add(p4);
-        pilotos1.add(p5);
-        pilotos1.add(p6);
-        pilotos1.add(p7);
-        pilotos1.add(p8);
-        pilotos1.add(p9);
-        pilotos1.add(p10);
-
-
-        Campeonato c2 = new Campeonato("Circuito de las Estrellas", 3, Continente.America);
-
-        Equipo e6 = new Equipo("Life Racing Engines");
-        Equipo e7 = new Equipo("Walter Wolf Racing");
-        Equipo e8 = new Equipo("Ensign Racing");
-        Equipo e9 = new Equipo("Fittipaldi Automotive");
-        Equipo e10 = new Equipo("ATS Racing");
-
-        Piloto p11 = new Piloto("Lance Stroll");
-        Piloto p12 = new Piloto("Kazuki Nakajima");
-        Piloto p13 = new Piloto("Kamui Kobayashi");
-        Piloto p14 = new Piloto("Charles Pic");
-        Piloto p15 = new Piloto("Jean-Eric Vergne");
-        Piloto p16 = new Piloto("Daniil Kvyat");
-        Piloto p17 = new Piloto("Nicholas Latifi");
-        Piloto p18 = new Piloto("Yuki Tsunoda");
-        Piloto p19 = new Piloto("Stoffel Vandoorne");
-        Piloto p20 = new Piloto("Jolyon Palmer");
-
-        ArrayList<Piloto> pilotos2 = new ArrayList<Piloto>();
-        pilotos2.add(p11);
-        pilotos2.add(p12);
-        pilotos2.add(p13);
-        pilotos2.add(p14);
-        pilotos2.add(p15);
-        pilotos2.add(p16);
-        pilotos2.add(p17);
-        pilotos2.add(p18);
-        pilotos2.add(p19);
-        pilotos2.add(p20);
-
-        */
         
         // Chasis
         
@@ -646,7 +570,7 @@ public interface CrearObjetos {
         Chasis chasisF1_40 = new Chasis("Haas", "VF-21");
 
         // vehiculosCarrera
-/* 
+
         VehiculoCarrera vehiculoCarrera1 = new VehiculoCarrera(chasisF1_1);
         VehiculoCarrera vehiculoCarrera2 = new VehiculoCarrera(chasisF1_2);
         VehiculoCarrera vehiculoCarrera3 = new VehiculoCarrera(chasisF1_3);
@@ -688,7 +612,6 @@ public interface CrearObjetos {
         VehiculoCarrera vehiculoCarrera39 = new VehiculoCarrera(chasisF1_39);
         VehiculoCarrera vehiculoCarrera40 = new VehiculoCarrera(chasisF1_40);
         
-        */
         //Piezas Mercedes
         
         Pieza aleron1 = new Pieza("WingMaster 9000", "aleron", "Mercedes");

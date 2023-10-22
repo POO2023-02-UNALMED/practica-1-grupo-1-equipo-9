@@ -22,6 +22,7 @@ public class Campeonato implements Serializable, Decimales {
 
     // Atributos
     private static int ano = 2023;
+    private static final int minCarreras = 2;
     private ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
 
     private ArrayList<Equipo> listaEquipos = new ArrayList<Equipo>(); //Lista de equipos que participan en el campeonato
@@ -32,6 +33,7 @@ public class Campeonato implements Serializable, Decimales {
     private int cantCarreras;
     private double premio; //Premio total que se lleva el equipo cuando se gana el campeonato
     private boolean desbloqueado = false; //Si el campeonato esta desbloqueado, se puede jugar
+    private boolean jugado = false;
     private Patrocinador patrocinadorCampeonato;
     private ArrayList<Integer> mesesCarreras = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
 
@@ -72,7 +74,7 @@ public class Campeonato implements Serializable, Decimales {
         Random rand = new Random();
         this.id = idActual++;
         this.nombre = nombre;
-        this.cantCarreras = rand.nextInt(3) + 4;
+        this.cantCarreras = rand.nextInt(3) + minCarreras;
         this.continente = continente;
         this.desbloqueado = false;
         campeonatos.add(this);
@@ -122,7 +124,7 @@ public class Campeonato implements Serializable, Decimales {
     public static ArrayList<Campeonato> campeonatosDisponibles(ArrayList<Campeonato> campeonatos) {
         ArrayList<Campeonato> campeonatosDisponibles = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
-            if (!campeonato.isDesbloqueado()) {
+            if (!campeonato.isDesbloqueado() && !campeonato.isJugado()) {
                 campeonatosDisponibles.add(campeonato);
             }
         }
@@ -132,7 +134,7 @@ public class Campeonato implements Serializable, Decimales {
     public static ArrayList<Campeonato> campeonatosDesbloqueados() {
         ArrayList<Campeonato> campeonatosDesbloqueados = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
-            if (campeonato.isDesbloqueado()) {
+            if (campeonato.isDesbloqueado() && !campeonato.isJugado()) {
                 campeonatosDesbloqueados.add(campeonato);
             }
         }
@@ -186,15 +188,35 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public void premiarCampeones(ArrayList<Equipo> equiposPuntuados) {
-        for (Piloto piloto : this.getListaPilotos()) {
-            if (equiposPuntuados.get(0) == piloto.getEquipo()) {
-                piloto.agregarVictoria(this);
+        this.listaEquipos = equiposPuntuados;
+        double multiplicadorDinero = 1.2;
+        double contadorHabilidad = 0.08;
+        for (Equipo equipo : equiposPuntuados) {
+            equipo.setPlata(equipo.getPlata() + this.premio * multiplicadorDinero);
+            if (!equipo.getPatrocinadoresEquipo().isEmpty()) {
+                for (Patrocinador patrocinador : equipo.getPatrocinadoresEquipo()) {
+                    patrocinador.recibirPlata(this.premio * multiplicadorDinero / 2);
+                }
+            }
+            if (multiplicadorDinero > 0.2) {
+                multiplicadorDinero -= 0.2;
+            }
+            for (Piloto piloto : this.getListaPilotos()) {
+                if (piloto.getEquipo().equals(equipo) && piloto.getPuntos() != 0 && equiposPuntuados.get(0).equals(equipo)) {
+                    piloto.setHabilidad(contadorHabilidad);
+                    piloto.agregarVictoria(this);
+                }else if (piloto.getEquipo().equals(equipo) && piloto.getPuntos() != 0) {
+                    piloto.setHabilidad(contadorHabilidad);
+                }
+                if (contadorHabilidad>0.02){
+                    contadorHabilidad-=0.01;
+                }
             }
         }
     }
 
     public String toString() {
-        return (this.nombre + " " + ano);
+        return (this.nombre + " " + ano + " (" + this.continente.toString() + ")");
     }
 
     public void agregarCarrera(Carrera carrerita) {
@@ -265,6 +287,17 @@ public class Campeonato implements Serializable, Decimales {
         // cobrar patrocinador
         patrocinador.setPlata(patrocinador.getPlata() - presupuesto);
         this.organizarCarreras();
+    }
+
+    public Piloto pilotoCampeonato() {
+        Piloto piloto = null;
+        for (Piloto pilotico : this.getListaPilotos()) {
+            if (pilotico.isElegido()) {
+                piloto = pilotico;
+                break;
+            }
+        }
+        return piloto;
     }
 
     public void redondear() {
@@ -385,5 +418,13 @@ public class Campeonato implements Serializable, Decimales {
 
     public void setMesesCarreras(ArrayList<Integer> mesesCarreras) {
         this.mesesCarreras = mesesCarreras;
+    }
+
+    public boolean isJugado() {
+        return jugado;
+    }
+
+    public void setJugado(boolean jugado) {
+        this.jugado = jugado;
     }
 }

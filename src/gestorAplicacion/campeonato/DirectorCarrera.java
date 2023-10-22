@@ -185,19 +185,39 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
         }
     }*/
 
-    public ArrayList<Piloto> pilotosDesfavorecidos(double plata, Piloto piloto) {
-        // buscar pilotos que participan en el campeonato donde el piloto es elegido
+    public ArrayList<Piloto> pilotosDesfavorecidos(double plata, Piloto piloto, Campeonato campeonato) {
+        // Buscar pilotos que participan en el campeonato donde el piloto es elegido
+        Carrera carreraDirector = carreraCampeonato(campeonato);
         ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
-        for (Campeonato campeonato: Campeonato.campeonatos) {
-            if (campeonato.getListaPilotos().contains(piloto)) {
                 for (Piloto piloto1 : campeonato.getListaPilotos()) {
-                    if (piloto.getEquipo() != piloto1.getEquipo()) {
+                    if (piloto.getEquipo() != piloto1.getEquipo() && !carreraDirector.getEquiposBeneficiados().contains(piloto1.getEquipo()) && plata>piloto1.getValorContrato() * 0.05) {
                         pilotosDesfavorecidos.add(piloto1);
                     }
                 }
+        return pilotosDesfavorecidos;
+    }
+
+    public ArrayList<Piloto> pilotosDesfavorecidos(Piloto piloto, Campeonato campeonato) {
+        // Buscar pilotos que participan en el campeonato donde el piloto es elegido
+        Carrera carreraDirector = carreraCampeonato(campeonato);
+        ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
+        for (Piloto piloto1 : campeonato.getListaPilotos()) {
+            if (piloto.getEquipo() != piloto1.getEquipo() && !carreraDirector.getEquiposBeneficiados().contains(piloto1.getEquipo())) {
+                pilotosDesfavorecidos.add(piloto1);
             }
         }
         return pilotosDesfavorecidos;
+    }
+
+    public Carrera carreraCampeonato(Campeonato campeonato){ //Retorna alguna de las carreras que tiene como director de carrera el objeto que lo llama
+        Random rand = new Random();
+        ArrayList<Carrera> listaCarrerasDirector = new ArrayList<Carrera>();
+        for (Carrera carrera : campeonato.getListaCarreras()){
+            if (carrera.getDirectorCarrera().equals(this)){
+                listaCarrerasDirector.add(carrera);
+            }
+        }
+        return listaCarrerasDirector.get(rand.nextInt(listaCarrerasDirector.size()));
     }
 
     public boolean isLicencia() {

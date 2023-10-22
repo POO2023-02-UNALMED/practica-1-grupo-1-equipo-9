@@ -17,6 +17,19 @@ public interface AsciiArt {
         System.out.println(art);
     }
 
+    public static void chocar() {
+        System.out.println("              _.-^^---....,,---_");
+        System.out.println("           _--                  --_");
+        System.out.println("          <          BOOM!         >)");
+        System.out.println("           \\._                   _./");
+        System.out.println("              ```--. . , ; .--'''");
+        System.out.println("                    | |   |");
+        System.out.println("                 .-=||  | |=-.");
+        System.out.println("                 `-=#$%&%$#=-'");
+        System.out.println("                    | ;  :|");
+        System.out.println("           _____.,-#%&$@%#&#~,._____");
+    }
+
     public static void bienvenida() {
         String art = "       .-----------,-.-----.\n" +
                 "       |:_______ //(_)\\____|:\n" +
@@ -237,6 +250,69 @@ public interface AsciiArt {
                 " / .___/_/\\__/   /____/\\__/\\____/ .___/ \n" +
                 "/_/                            /_/      ";
 
+        System.out.println(art);
+    }
+
+    public static void skull(){
+        String art = "                           ,--.\n" +
+                "                          {    }\n" +
+                "                          K,   }\n" +
+                "                         /  `Y`\n" +
+                "                    _   /   /\n" +
+                "                   {_'-K.__/\n" +
+                "                     `/-.__L._\n" +
+                "                     /  ' /`\\_}\n" +
+                "                    /  ' /     -ART BY ZEUS-\n" +
+                "            ____   /  ' /\n" +
+                "     ,-'~~~~    ~~/  ' /_\n" +
+                "   ,'             ``~~~%%',\n" +
+                "  (                     %  Y\n" +
+                " {                      %% I\n" +
+                "{      -                 %  `.\n" +
+                "|       ',                %  )\n" +
+                "|        |   ,..__      __. Y\n" +
+                "|    .,_./  Y ' / ^Y   J   )|\n" +
+                "\\           |' /   |   |   ||\n" +
+                " \\          L_/    . _ (_,.'(\n" +
+                "  \\,   ,      ^^\"\"' / |      )\n" +
+                "    \\_  \\          /,L]     /\n" +
+                "      '-_`-,       ` `   ./`\n" +
+                "         `-(_            )\n" +
+                "             ^^\\..___,.--`";
+        System.out.println(art);
+    }
+
+    public static void markinglist(){
+        String art = "(\\ \n" +
+                "\\'\\ \n" +
+                " \\'\\     __________  \n" +
+                " / '|   ()_________)\n" +
+                " \\ '/    \\ ~~~~~~~~ \\\n" +
+                "   \\       \\ ~~~~~~   \\\n" +
+                "   ==).      \\__________\\\n" +
+                "  (__)       ()__________)";
+        System.out.println(art);
+    }
+
+    public static void fuera(){
+        String art = "\n" +
+                "__________                         ______\n" +
+                "___  ____/___  ___________________ ___  /\n" +
+                "__  /_   _  / / /  _ \\_  ___/  __ `/_  / \n" +
+                "_  __/   / /_/ //  __/  /   / /_/ / /_/  \n" +
+                "/_/      \\__,_/ \\___//_/    \\__,_/ (_)   \n" +
+                "                                         \n";
+        System.out.println(art);
+    }
+
+    public static void atencion(){
+        String art = "\n" +
+                "________________\n" +
+                "___  /__  /__  /\n" +
+                "__  /__  /__  / \n" +
+                " /_/  /_/  /_/  \n" +
+                "(_)  (_)  (_)   \n" +
+                "                \n";
         System.out.println(art);
     }
 }

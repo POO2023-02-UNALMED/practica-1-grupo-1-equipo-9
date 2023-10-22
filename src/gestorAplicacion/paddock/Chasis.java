@@ -42,7 +42,7 @@ public class Chasis implements Serializable, Decimales{
         this.modelo = modelo;
         this.velocidad = (double) (random.nextInt(50) + 200);
         this.maniobrabilidad = 0.1 + (0.4 - 0.1) * random.nextDouble();
-        this.precio = ((Math.random() * 4001) + 1000) * 3;
+        this.precio = ((Math.random() * 40001) + 1000) * 3;
         Chasis.listaChasis.add(this);
     }
 

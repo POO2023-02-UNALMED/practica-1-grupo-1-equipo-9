@@ -13,14 +13,14 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 
     //Atributos
     private Piloto piloto; //Conductor
-    private double tiempo; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posici�n final
-    private double distanciaRecorrida; //Se usa s�lo dentro del ciclo, se calcula en cada iteraci�n para obtener la posici�n actual
+    private double tiempo = 0; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posici�n final
+    private double distanciaRecorrida = 0; //Se usa s�lo dentro del ciclo, se calcula en cada iteraci�n para obtener la posici�n actual
     private boolean terminado; // Mira si termin� la carrera. Si se choca, esto pasa a true.
     private boolean morido; // Si est� morido, lo manda al final de la lista de posiciones.
-    private double velocidadTuneao; //Velocidad del veh�culo + velocidad de las piezas
-    private double velocidadCircumstancias; // velocidad de las circunstancias
-    private double velocidadActual; //Velocidad actual del veh�culo, velocidad tuneada +- situaciones
-    private double probabilidadChoque;
+    private double velocidadTuneao = 0; //Velocidad del veh�culo + velocidad de las piezas
+    private double velocidadCircumstancias = 0; // velocidad de las circunstancias
+    private double velocidadActual = 0; //Velocidad actual del veh�culo, velocidad tuneada +- situaciones
+    private double probabilidadChoque = 0;
     private Pieza motor;
     private Pieza neumaticos;
     private Pieza aleron;
@@ -107,6 +107,15 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
                 vehiculosPiloto.add(vehiculo);
             }
         }
+        // si no tiene vehiculo se crea uno default
+        if (vehiculosPiloto.isEmpty() && !piloto.isElegido()){
+            crearVehiculoPilotosNoElegidos(piloto);
+            for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos) {
+                if (vehiculo.getPiloto() == piloto) {
+                    vehiculosPiloto.add(vehiculo);
+                }
+            }
+        }
         return vehiculosPiloto;
     }
 
@@ -115,8 +124,8 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         String modelo = String.valueOf(cantidadVehiculosDefault() + 1);
         int velocidad = rand.nextInt(50) + 200;
         double precio = ((Math.random() * 4001) + 1000) * 3;
-        double maniobrabilidad = rand.nextDouble() * 0.3;
-        Chasis chasis = new Chasis("Default", modelo, velocidad, velocidad, precio);
+        double maniobrabilidad = Math.max(rand.nextDouble(), 0.2);
+        Chasis chasis = new Chasis("Default", modelo, velocidad, maniobrabilidad, precio);
         VehiculoCarrera vehiculo = new VehiculoCarrera(chasis, piloto);
         Pieza aleron = Pieza.piezaNoElegida("A");
         Pieza neumaticos = Pieza.piezaNoElegida("N");
@@ -139,11 +148,13 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 
 
     //M�todos
-    public void chocar() { //Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
+    public void chocar(Carrera carrera) { //Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
         this.tiempo = 0;
         this.setVelocidadActual(0);
         this.terminado = true;
+        carrera.terminados.add(this);
         this.morido = true;
+        this.getPiloto().setSanciones(this.getPiloto().getSanciones()+1);
     }
 
 /*    public void cambiarMotor(Pieza pieza) {
@@ -249,11 +260,15 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         }
     }
 
+    public void actualizarProbabilidadChoque(double doub) { //Actualiza la Probabilidad de Choque cuando se cambie la habilidad del piloto
+        this.probabilidadChoque = Math.max(this.getProbabilidadChoque()-doub, 0.2);
+    }
+
     // Aprovechar DRS (Adelantar) - Aumenta velocidad
     // 1. Da�a el aler�n
     // 2. Aumenta la velocidad
     // 3. Usa la probabilidad de chocar
-    public void aprovecharDRS() {
+    public void aprovecharDRS(Carrera carrera) {
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio entre 1 y 3
         if (randomNumber == 1) { // Da�a el aler�n
@@ -266,7 +281,7 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
             double numeroAleatorio = rand.nextDouble();
             // N�mero aleatorio entre 0 y 1
             if (numeroAleatorio <= this.getProbabilidadChoque()) { // Si el n�mero aleatorio es menor o igual a la probabilidad de chocar, choca
-                this.chocar();
+                this.chocar(carrera);
             } else { // Si no, aumenta la velocidad
                 this.setVelocidadCircumstancias(10); // Aumenta la velocidad en 10
                 this.actualizarVelicidadActual(); // Actualizar velocidad actual
@@ -278,7 +293,7 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     // 1. Da�a las llantas
     // 2. Disminuye 1 posici�n
     // 3. Puede entrar a Pits
-    public void frenar() {
+    public void frenar(Carrera carrera) {
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio entre 1 y 3
         if (randomNumber == 1) { // Da�a las llantas
@@ -294,20 +309,20 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 //    1. Chocar
 //    2. Aumentar velocidad 100
 
-    public void hacerManiobra() {
+    public void hacerManiobra(Carrera carrera) {
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio
         if (randomNumber <= 5) { // Choca
-            this.chocar();
+            this.chocar(carrera);
         } else { // Aumenta la velocidad en 100
-            this.setVelocidadCircumstancias(100); // Aumenta la velocidad en 10
+            this.setVelocidadCircumstancias(100); // Aumenta la velocidad en 100
             this.actualizarVelicidadActual(); // Actualizar velocidad actual
         }
     }
 
 //  Defender Posici�n (Pussy) - Mantiene la velocidad actual
 //  1. Aumentar o disminuir velocidad en 20
-    public void defender() {
+    public void defender(Carrera carrera) {
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio
         if (randomNumber <= 5) { // Aumenta la velocidad en 20
@@ -324,7 +339,7 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 //  2. Aumentar 30 velocidad
 //  3. Usa la probabilidad de choque
 
-    public void derrapar() {
+    public void derrapar(Carrera carrera) {
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio
         if (randomNumber == 1) {
@@ -338,7 +353,7 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
             // N�mero aleatorio entre 0 y 1
             if (numeroAleatorio <= this.getProbabilidadChoque()) {
                 // Si el n�mero aleatorio es menor o igual a la probabilidad de chocar, choca
-                this.chocar();
+                this.chocar(carrera);
             } else { // Si no, aumenta la velocidad
                 this.setVelocidadCircumstancias(10); // Aumenta la velocidad en 10
                 this.actualizarVelicidadActual(); // Actualizar velocidad actual
@@ -346,15 +361,15 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         }
     }
 
-    public static ArrayList<VehiculoCarrera> maldecirVehiculos(VehiculoCarrera vehiculoMaldito, VehiculoCarrera vehiculoUsuario, ArrayList<Piloto> pilotosDesfavorecidos, double plata, DirectorCarrera directorCarrera){
+    public static ArrayList<VehiculoCarrera> manipularVehiculos(ArrayList<VehiculoCarrera> vehiculoParticipantes, ArrayList<Piloto> pilotosDesfavorecidos, Piloto pilotoMaldito, Piloto piloto, double plata, DirectorCarrera directorCarrera){
         Random rand = new Random();
         ArrayList<VehiculoCarrera> posicionesCorruptas = new ArrayList<VehiculoCarrera>();
-        vehiculoUsuario.setDistanciaRecorrida(50 + (double) ((100) * (1 + rand.nextInt(10))) /10);
-        posicionesCorruptas.add(vehiculoUsuario);
-        vehiculoMaldito.setDistanciaRecorrida(-50 - (double) ((200) * (1 + rand.nextInt(10))) /10);
-        posicionesCorruptas.add(vehiculoMaldito);
-        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
-            if (pilotosDesfavorecidos.contains(vehiculoCarrera.getPiloto())){
+        for (VehiculoCarrera vehiculoCarrera : vehiculoParticipantes){
+            if (vehiculoCarrera.getPiloto().equals(pilotoMaldito)) {
+                vehiculoCarrera.setDistanciaRecorrida(-50 - (double) ((300) * (1 + rand.nextInt(10))) /10);
+            } else if (vehiculoCarrera.getPiloto().equals(piloto)){
+                vehiculoCarrera.setDistanciaRecorrida(50 + (double) ((300) * (1 + rand.nextInt(10))) /10);
+            } else if (pilotosDesfavorecidos.contains(vehiculoCarrera.getPiloto())){
                 vehiculoCarrera.setDistanciaRecorrida(-10 - (double) ((50) * (1 + rand.nextInt(10))) /10);
             }
                 posicionesCorruptas.add(vehiculoCarrera);
@@ -362,6 +377,19 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         return posicionesCorruptas;
     }
 
+    public static ArrayList<VehiculoCarrera> manipularVehiculos(ArrayList<VehiculoCarrera> vehiculoParticipantes, ArrayList<Piloto> pilotosDesfavorecidos, Piloto piloto, double plata, DirectorCarrera directorCarrera){
+        Random rand = new Random();
+        ArrayList<VehiculoCarrera> posicionesCorruptas = new ArrayList<VehiculoCarrera>();
+        for (VehiculoCarrera vehiculoCarrera : vehiculoParticipantes){
+            if (vehiculoCarrera.getPiloto().equals(piloto)){
+                vehiculoCarrera.setVelocidadActual(vehiculoCarrera.getVelocidadActual()+50);
+            } else {
+                vehiculoCarrera.setVelocidadActual(vehiculoCarrera.getVelocidadActual()-20);
+            }
+            posicionesCorruptas.add(vehiculoCarrera);
+        }
+        return posicionesCorruptas;
+    }
 
     // Ligadura Dinamica
     public void morir() {
@@ -493,6 +521,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     @Override
     public void redondear() {
         this.probabilidadChoque = dosDecimales(this.probabilidadChoque);
+        this.distanciaRecorrida = dosDecimales(this.distanciaRecorrida);
+        this.tiempo = dosDecimales(this.tiempo);
+        this.velocidadActual = dosDecimales(this.velocidadActual);
+        this.velocidadCircumstancias = dosDecimales(this.velocidadCircumstancias);
+        this.velocidadTuneao = dosDecimales(this.velocidadTuneao);
     }
     {
         this.redondear();

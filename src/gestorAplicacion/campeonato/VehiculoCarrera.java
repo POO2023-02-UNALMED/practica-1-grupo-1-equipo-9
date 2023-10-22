@@ -110,7 +110,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         // si no tiene vehiculo se crea uno default
         if (vehiculosPiloto.isEmpty() && !piloto.isElegido()){
             crearVehiculoPilotosNoElegidos(piloto);
-            vehiculosPiloto(piloto);
+            for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos) {
+                if (vehiculo.getPiloto() == piloto) {
+                    vehiculosPiloto.add(vehiculo);
+                }
+            }
         }
         return vehiculosPiloto;
     }

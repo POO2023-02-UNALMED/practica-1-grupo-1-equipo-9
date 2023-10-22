@@ -22,6 +22,7 @@ public class Campeonato implements Serializable, Decimales {
 
     // Atributos
     private static int ano = 2023;
+    private static final int minCarreras = 2;
     private ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Cuando se escoja el campeonato, en esta lista se colocan las carreras
 
     private ArrayList<Equipo> listaEquipos = new ArrayList<Equipo>(); //Lista de equipos que participan en el campeonato
@@ -73,7 +74,7 @@ public class Campeonato implements Serializable, Decimales {
         Random rand = new Random();
         this.id = idActual++;
         this.nombre = nombre;
-        this.cantCarreras = rand.nextInt(3) + 4;
+        this.cantCarreras = rand.nextInt(3) + minCarreras;
         this.continente = continente;
         this.desbloqueado = false;
         campeonatos.add(this);

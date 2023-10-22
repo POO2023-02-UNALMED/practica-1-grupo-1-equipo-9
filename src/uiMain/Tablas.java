@@ -28,7 +28,7 @@ public interface Tablas extends Decimales {
         int tablaAncho = maxNombre + 10 + 7; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el tï¿½tulo centrado
-        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   CAMPEONATOS", "");
+        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "  CAMPEONATOS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
@@ -94,7 +94,7 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxNombre + 10 + 7; // 7 para los espacios y los bordes
+        int tablaAncho = maxNombre + 10 + 7-3; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el título centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   EQUIPOS", "");
@@ -200,20 +200,20 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxNombre + 7 + 16 + 10 + 7 + 5 + 19; // 7 para los espacios y los bordes
+        int tablaAncho = maxNombre + 7 + 16 + 10 + 7 + 5 + 19+3; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   PIEZAS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
-        System.out.printf("|%-" + 7 + "s | %-" + maxNombre + "s | %-" + 16 + "s | %-" + 10 + "s |%-" + 17 + "s |\n", "OPCION", "NOMBRE", "MANIOBRABILIDAD", "PRECIO", "VELOCIDAD AÑADIDA");
+        System.out.printf("|%-" + 7 + "s | %-" + maxNombre + "s | %-" + 16 + "s | %-" + 10 + "s |%-" + 20 + "s |\n", "OPCION", "NOMBRE", "MANIOBRABILIDAD", "PRECIO", "VELOCIDAD ADICIONAL");
         System.out.println("-".repeat(tablaAncho));
 
 
         int i = 1;
         for (Pieza pieza : piezas) {
-            System.out.printf("|%-" + 7 + "s | %-" + maxNombre + "s | %-" + 16 + "s | %-" + 10 + "s | %-" + 17 + "s|\n", i, pieza.getNombre(), "+" + pieza.getManiobrabilidadAnadida(), pieza.getPrecio() + "$", "+" + pieza.getVelocidadAnadida());
+            System.out.printf("|%-" + 7 + "s | %-" + maxNombre + "s | %-" + 16 + "s | %-" + 10 + "s | %-" + 20 + "s|\n", i, pieza.getNombre(), "+" + pieza.getManiobrabilidadAnadida(), pieza.getPrecio() + "$", "+" + pieza.getVelocidadAnadida());
             i++;
         }
 
@@ -560,7 +560,7 @@ public interface Tablas extends Decimales {
         int tablaAncho = maxNombre + 10 + 7 + 10; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el tï¿½tulo centrado
-        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", " PILOTOS ", "");
+        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   PILOTOS ", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
@@ -624,19 +624,19 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxNombre + maxCamp + 7 + maxEquipo + 4; // 7 para los espacios y los bordes
+        int tablaAncho = 76+10; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - maxCamp) / 2) + "s%s%" + ((tablaAncho - maxCamp) / 2) + "s", "", campeonato.getNombre().toUpperCase(), "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
-        System.out.printf("| %-" + maxNombre + "s | %-" + 11 + "s | %-" + maxEquipo + "s |\n", "NOMBRE", "HABILIDAD", "EQUIPO");
+        System.out.printf("| %-" + 25 + "s | %-" + 11 + "s | %-" + 40 + "s |\n", "NOMBRE", "HABILIDAD", "EQUIPO");
         System.out.println("-".repeat(tablaAncho));
 
         int i = 1;
         for (Piloto piloto : listaPilotos) {
-            System.out.printf("| %-" + maxNombre + "s | %-" + 11 + "s | %-" + maxEquipo + "s |\n", piloto.getNombre(), String.format("%.2f", piloto.getHabilidad()), piloto.getEquipo().getNombre());
+            System.out.printf("| %-" + 25 + "s | %-" + 11 + "s | %-" + 40 + "s |\n", piloto.getNombre(), String.format("%.2f", piloto.getHabilidad()), piloto.getEquipo().getNombre());
             i++;
         }
 
@@ -656,21 +656,21 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxNombre + 10 + 7; // 7 para los espacios y los bordes
+        int tablaAncho = 25 + 10 + 7 +20 +3; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "   CIUDADES", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
-        System.out.printf("| %-" + 10 + "s | %-" + maxNombre + "s | %-" + 10 + "s |\n","OPCION", "NOMBRE", "PRECIO ESTADIA");
+        System.out.printf("| %-" + 10 + "s | %-" + 25 + "s | %-" + 20 + "s |\n","OPCION", "NOMBRE", "PRECIO ESTADIA");
         System.out.println("-".repeat(tablaAncho));
 
         String[] continentes = {"Africa", "America", "Asia", "Europa", "Oceania"};
 
         int i = 1;
         for (Ciudad ciudad : ciudades) {
-            System.out.printf("| %-" + 10 + "s | %-" + maxNombre + "s | %-" + 10 + "s |\n", i ,ciudad.getNombre(), ciudad.getPrecioEstadia() + "$");
+            System.out.printf("| %-" + 10 + "s | %-" + 25 + "s | %-" + 20 + "s |\n", i ,ciudad.getNombre(), ciudad.getPrecioEstadia() + "$");
             i++;
         }
 
@@ -690,20 +690,20 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxNombre + 7 + 16 + 10 + 7 + 5 + 19; // 7 para los espacios y los bordes
+        int tablaAncho = 30 + 7 + 16 + 10 + 7 + 5 + 18 + 10; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el t�tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "CARRERAS", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
-        System.out.printf("| %-" + maxNombre + "s |%-" + 17 + "s | %-" + 7 + "s | %-" + 10 + "s |%-" + 17 + "s |\n", "NOMBRE", "FECHA", "DIFICULTAD", "PREMIO EFECTIVO", "CIUDAD");
+        System.out.printf("| %-" + 30 + "s |%-" + 17 + "s | %-" + 10 + "s | %-" + 15 + "s |%-" + 17 + "s |\n", "NOMBRE", "FECHA", "DIFICULTAD", "PREMIO EFECTIVO", "CIUDAD");
         System.out.println("-".repeat(tablaAncho));
 
 
         int i = 1;
         for (Carrera carrera : listaCarreras) {
-            System.out.printf("| %-" + maxNombre + "s |%-" + 17 + "s | %-" + 7 + "s | %-" + 10 + "s | %-" + 17 + "s|\n", carrera.getNombreCircuito(), carrera.getFecha(), carrera.getDificultad(), carrera.getPremioEfectivo() + "$", carrera.getCiudad());
+            System.out.printf("| %-" + 30 + "s |%-" + 17 + "s | %-" + 10 + "s | %-" + 15 + "s | %-" + 17 + "s|\n", carrera.getNombreCircuito(), carrera.getFecha(), carrera.getDificultad(), carrera.getPremioEfectivo() + "$", carrera.getCiudad());
             i++;
         }
 
@@ -724,7 +724,7 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxNombre + 10 + 7 + 4 + 20; // 7 para los espacios y los bordes
+        int tablaAncho = maxNombre + 11 + 7 + 4 + 11; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el tï¿½tulo centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "CIRCUITOS", "");
@@ -759,7 +759,7 @@ public interface Tablas extends Decimales {
         int tablaAncho = maxNombre + 7 + 16 + 10 + 7 + 5 + 19; // 7 para los espacios y los bordes
 
         // Imprimir la tabla con el t�tulo centrado
-        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "CARRERAS", "");
+        String tituloCentrado = String.format("%" + ((tablaAncho - 18) / 2) + "s%s%" + ((tablaAncho - 18) / 2) + "s", "", "VEHICULO", "");
         System.out.println("-".repeat(tablaAncho));
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
@@ -791,7 +791,7 @@ public interface Tablas extends Decimales {
             }
 
 
-            System.out.printf("| %-" + maxNombre + "s |%-" + 17 + "s | %-" + 7 + "s | %-" + 10 + "s | %-" + 10 + "s | %-" + 17 + "s|\n", vehiculoCarrera.getModelo() + " " + vehiculoCarrera.getMarca(), vehiculoCarrera.getVelocidad(), aleron, motor, neumaticos, vehiculoCarrera.getGasolina());
+            System.out.printf("| %-" + maxNombre + "s |%-" + 10 + "s | %-" + 10 + "s | %-" + 10 + "s | %-" + 10 + "s | %-" + 10 + "s|\n", vehiculoCarrera.getModelo() + " " + vehiculoCarrera.getMarca(), vehiculoCarrera.getVelocidad(), aleron, motor, neumaticos, vehiculoCarrera.getGasolina());
 
         }
 
@@ -850,7 +850,7 @@ public interface Tablas extends Decimales {
         }
 
         // Calcular el ancho total de la tabla
-        int tablaAncho = maxMarca + maxModelo + maxVelocidad + maxPrecio + 18;
+        int tablaAncho = maxMarca + maxModelo + maxVelocidad + maxPrecio + 18+18;
 
         // Imprimir la tabla con el título centrado
         String tituloCentrado = String.format("%" + ((tablaAncho - 21) / 2) + "s%s%" + ((tablaAncho - 21) / 2) + "s", "", "   CHASIS", "");
@@ -858,16 +858,16 @@ public interface Tablas extends Decimales {
         System.out.println(tituloCentrado);
         System.out.println("-".repeat(tablaAncho));
 
-        System.out.printf("| %-" + maxMarca + "s | %-" + maxModelo + "s | %-" + maxVelocidad + "s | %-" + maxPrecio + "s |\n",
-                "MARCA", "MODELO", "VELOCIDAD", "PRECIO");
+        System.out.printf("| %-" + 10 + "s | %-" + maxMarca + "s | %-" + maxModelo + "s | %-" + 15 + "s | %-" + maxPrecio + "s |\n",
+                "OPCION","MARCA", "MODELO", "VELOCIDAD", "PRECIO");
 
         System.out.println("-".repeat(tablaAncho));
 
         int i = 1;
         for (Chasis chasis : chasisList) {
             chasis.redondear();
-            System.out.printf("| %-" + maxMarca + "s | %-" + maxModelo + "s | %-" + maxVelocidad + "s | %-" + maxPrecio + "s |\n",
-                    chasis.getMarca(), chasis.getModelo(), chasis.getVelocidad(), chasis.getPrecio());
+            System.out.printf("| %-" + 10 + "s | %-" + maxMarca + "s | %-" + maxModelo + "s | %-" + 15 + "s | %-" + maxPrecio + "s |\n",
+                    i,chasis.getMarca(), chasis.getModelo(), chasis.getVelocidad(), chasis.getPrecio());
             i++;
         }
 

@@ -430,7 +430,7 @@ public interface CrearObjetos {
         new Piloto("Roland Ratzenberger");
         new Piloto("Tomas Scheckter");
         new Piloto("Max Chilton");
-        new Piloto("Ren� Arnoux");
+        new Piloto("Reno Arnoux");
         new Piloto("Henri Pescarolo");
         new Piloto("Johnny Servoz-Gavin");
         new Piloto("Maurice Trintignant");
@@ -457,7 +457,7 @@ public interface CrearObjetos {
         DirectorCarrera dc13 = new DirectorCarrera("Paul Gutjahr");
         DirectorCarrera dc14 = new DirectorCarrera("Yves Bacquelaine");
         DirectorCarrera dc15 = new DirectorCarrera("Nick Craw");
-        DirectorCarrera dc16 = new DirectorCarrera("Bj�rn Nilsson");
+        DirectorCarrera dc16 = new DirectorCarrera("Bjorn Nilsson");
         DirectorCarrera dc17 = new DirectorCarrera("Roger Peart");
         DirectorCarrera dc18 = new DirectorCarrera("Jean-Claude Lefebvre");
         DirectorCarrera dc19 = new DirectorCarrera("Tony Scott-Andrews");
@@ -477,7 +477,7 @@ public interface CrearObjetos {
         DirectorCarrera dc33 = new DirectorCarrera("Manfred Scheuer");
         DirectorCarrera dc34 = new DirectorCarrera("Steve Stringwell");
         DirectorCarrera dc35 = new DirectorCarrera("Yasumasa Arai");
-        DirectorCarrera dc36 = new DirectorCarrera("Jorge H. Ba�ados");
+        DirectorCarrera dc36 = new DirectorCarrera("Jorge H. Barados");
         DirectorCarrera dc37 = new DirectorCarrera("Walter Aeschlimann");
         DirectorCarrera dc38 = new DirectorCarrera("Eugenio Farcas");
         DirectorCarrera dc39 = new DirectorCarrera("Enzo Spano");
@@ -490,7 +490,7 @@ public interface CrearObjetos {
         DirectorCarrera dc46 = new DirectorCarrera("Oscar Stafanini");
 
 
-        new Circuito("Circuito del Drag�n");
+        new Circuito("Circuito del Dragon");
         new Circuito("Circuito Estelar");
         new Circuito("Circuito del Horizonte");
         new Circuito("Circuito de la Velocidad Suprema");
@@ -500,26 +500,26 @@ public interface CrearObjetos {
         new Circuito("Circuito del Sol Eterno");
         new Circuito("Circuito de las Estrellas Doradas");
         new Circuito("Circuito de la Victoria Infinita");
-        new Circuito("Circuito del Viento R�pido");
+        new Circuito("Circuito del Viento Rapido");
         new Circuito("Circuito del Rayo Veloz");
-        new Circuito("Circuito de la Maravilla Mec�nica");
+        new Circuito("Circuito de la Maravilla Mecanica");
         new Circuito("Circuito del Rugido del Motor");
-        new Circuito("Circuito de la Curva del Drag�n");
+        new Circuito("Circuito de la Curva del Dragon");
         new Circuito("Circuito de la Recta Sin Fin");
         new Circuito("Circuito de la Sombra Luminosa");
-        new Circuito("Circuito del Desaf�o Supremo");
-        new Circuito("Circuito de la Pasi�n Veloz");
+        new Circuito("Circuito del Desafio Supremo");
+        new Circuito("Circuito de la Pasion Veloz");
         new Circuito("Circuito de la Aventura Extrema");
         new Circuito("Circuito de la Noche Estrellada");
         new Circuito("Circuito del Laberinto");
         new Circuito("Circuito de las Dunas Ardientes");
         new Circuito("Circuito del Oasis Veloz");
-        new Circuito("Circuito del V�rtice");
+        new Circuito("Circuito del Vortice");
         new Circuito("Circuito de la Selva Secreta");
-        new Circuito("Circuito de la Magia Mec�nica");
+        new Circuito("Circuito de la Magia Mecanica");
         new Circuito("Circuito de la Euforia Veloz");
         new Circuito("Circuito de la Lluvia de Estrellas");
-        new Circuito("Circuito de la Perfecci�n Veloz");
+        new Circuito("Circuito de la Perfeccion Veloz");
 
         Piloto.asignarEquipo();
 

@@ -485,7 +485,7 @@ public class Main {
             vehiculoCarrera = chasis.comprar(piloto);
             ArrayList<ArrayList<Pieza>> combinaciones = Pieza.combinaciones(vehiculoCarrera);
 
-            System.out.println("Estos son los alerones disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto");
+            System.out.println("Estos son los alerones disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto y de la marca "+ chasis.getMarca());
             // elegir aleron
             ArrayList<Pieza> aleronesDisponibles = Pieza.filterAlerones(combinaciones);
             tablaPiezas(aleronesDisponibles);
@@ -494,7 +494,7 @@ public class Main {
             Pieza aleron = aleronesDisponibles.get(n - 1);
 
             // elegir llantas
-            System.out.println("Estas son los neumaticos disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto");
+            System.out.println("Estas son los neumaticos disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto y de la marca "+ aleron.getMarca());
             ArrayList<ArrayList<Pieza>> combinaciones2 = Pieza.combinacionesDisponibles(vehiculoCarrera, aleron, combinaciones);
             ArrayList<Pieza> llantasDisponibles = Pieza.filterNeumaticos(combinaciones2);
             tablaPiezas(llantasDisponibles);
@@ -503,7 +503,7 @@ public class Main {
             Pieza llanta = llantasDisponibles.get(n - 1);
 
             // elegir motor
-            System.out.println("Estos son los motores disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto");
+            System.out.println("Estos son los motores disponibles para " + piloto.getNombre() + " de acuerdo a su presupuesto de la marca " + llanta.getMarca());
             ArrayList<ArrayList<Pieza>> combinaciones3 = Pieza.combinacionesDisponibles(vehiculoCarrera, llanta, combinaciones2);
             ArrayList<Pieza> motoresDisponibles = Pieza.filterMotores(combinaciones3);
             tablaPiezas(motoresDisponibles);
@@ -826,10 +826,13 @@ public class Main {
                     if (1 - probOpciones < rand.nextDouble()) {
                         AsciiArt.atencion();
                         System.out.println("Oh my god! Es tu momento de actuar!");
-                        System.out.println("El estado de tu vehiculo es el siguiente");
+                        System.out.println("El estado de tu vehiculo es el siguiente, presiona enter para continuar");
                         tablaStatsActuales(carroElegido);
-                        System.out.println("\nHasta ahora, las posiciones en la carrera son las siguientes");
+                        sc.nextLine();
+                        System.out.println("\nHasta ahora, las posiciones en la carrera son las siguientes, presiona enter para continuar");
                         tablaPosiciones(carrera.posiciones);
+                        sc.nextLine();
+                        carroElegido.redondear();
                         System.out.println("\nLa distancia que has recorrido de la carrera es: " + carroElegido.getDistanciaRecorrida() + "/" + carrera.getDistancia());
                         if (carrera.terminados.isEmpty()) {
                             System.out.println("\nNo ha terminado ningun conductor!");
@@ -935,6 +938,7 @@ public class Main {
                 }
             }
             if (carroElegido.isMorido()) {
+                chocar();
                 System.out.println("Tu piloto se ha chocado!");
                 System.out.println("Eso le ha dado una sancion a tu piloto");
             }
@@ -975,9 +979,10 @@ public class Main {
         }
         System.out.println("\n\nSe han acabado todas las carreras!");
         System.out.println("Es momento del gran final...");
-        System.out.println("\n\nLa premiacion del campeonato!");
+        System.out.println("\n\nLa premiacion del campeonato!, presiona enter para continuar");
         banner(campeonato.getNombre(), String.valueOf(campeonato.getAno()));
-        System.out.println("\nNos compleace presentarte, la puntacion final de los equipos del campeonato!");
+        sc.nextLine();
+        System.out.println("\nNos compleace presentarte, la puntacion final de los equipos del campeonato!\n");
         ArrayList<Equipo> equiposOrganizados = (Equipo.organizarEquiposPuntos(campeonato));
         tablaEquiposPuntos(equiposOrganizados);
         cup();
@@ -1031,6 +1036,7 @@ public class Main {
                 piloto.setTiemposCarreras(new ArrayList<Double>());
             }
         }
+
     }
 
     private static int validaciones(int min, int max) {

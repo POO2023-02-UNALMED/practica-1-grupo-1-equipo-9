@@ -17,6 +17,19 @@ public interface AsciiArt {
         System.out.println(art);
     }
 
+    public static void chocar() {
+        System.out.println("              _.-^^---....,,---_");
+        System.out.println("           _--                  --_");
+        System.out.println("          <          BOOM!         >)");
+        System.out.println("           \\._                   _./");
+        System.out.println("              ```--. . , ; .--'''");
+        System.out.println("                    | |   |");
+        System.out.println("                 .-=||  | |=-.");
+        System.out.println("                 `-=#$%&%$#=-'");
+        System.out.println("                    | ;  :|");
+        System.out.println("           _____.,-#%&$@%#&#~,._____");
+    }
+
     public static void bienvenida() {
         String art = "       .-----------,-.-----.\n" +
                 "       |:_______ //(_)\\____|:\n" +

@@ -32,6 +32,7 @@ public class Campeonato implements Serializable, Decimales {
     private int cantCarreras;
     private double premio; //Premio total que se lleva el equipo cuando se gana el campeonato
     private boolean desbloqueado = false; //Si el campeonato esta desbloqueado, se puede jugar
+    private boolean jugado = false;
     private Patrocinador patrocinadorCampeonato;
     private ArrayList<Integer> mesesCarreras = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
 
@@ -122,7 +123,7 @@ public class Campeonato implements Serializable, Decimales {
     public static ArrayList<Campeonato> campeonatosDisponibles(ArrayList<Campeonato> campeonatos) {
         ArrayList<Campeonato> campeonatosDisponibles = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
-            if (!campeonato.isDesbloqueado()) {
+            if (!campeonato.isDesbloqueado() && !campeonato.isJugado()) {
                 campeonatosDisponibles.add(campeonato);
             }
         }
@@ -132,7 +133,7 @@ public class Campeonato implements Serializable, Decimales {
     public static ArrayList<Campeonato> campeonatosDesbloqueados() {
         ArrayList<Campeonato> campeonatosDesbloqueados = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
-            if (campeonato.isDesbloqueado()) {
+            if (campeonato.isDesbloqueado() && !campeonato.isJugado()) {
                 campeonatosDesbloqueados.add(campeonato);
             }
         }
@@ -416,5 +417,13 @@ public class Campeonato implements Serializable, Decimales {
 
     public void setMesesCarreras(ArrayList<Integer> mesesCarreras) {
         this.mesesCarreras = mesesCarreras;
+    }
+
+    public boolean isJugado() {
+        return jugado;
+    }
+
+    public void setJugado(boolean jugado) {
+        this.jugado = jugado;
     }
 }

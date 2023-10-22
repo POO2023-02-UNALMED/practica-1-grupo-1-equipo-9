@@ -13,14 +13,14 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 
     //Atributos
     private Piloto piloto; //Conductor
-    private double tiempo; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posici�n final
-    private double distanciaRecorrida; //Se usa s�lo dentro del ciclo, se calcula en cada iteraci�n para obtener la posici�n actual
+    private double tiempo = 0; //Cuanto se demora en terminar la carrera, solo se calcula al final para obtener la posici�n final
+    private double distanciaRecorrida = 0; //Se usa s�lo dentro del ciclo, se calcula en cada iteraci�n para obtener la posici�n actual
     private boolean terminado; // Mira si termin� la carrera. Si se choca, esto pasa a true.
     private boolean morido; // Si est� morido, lo manda al final de la lista de posiciones.
-    private double velocidadTuneao; //Velocidad del veh�culo + velocidad de las piezas
-    private double velocidadCircumstancias; // velocidad de las circunstancias
-    private double velocidadActual; //Velocidad actual del veh�culo, velocidad tuneada +- situaciones
-    private double probabilidadChoque;
+    private double velocidadTuneao = 0; //Velocidad del veh�culo + velocidad de las piezas
+    private double velocidadCircumstancias = 0; // velocidad de las circunstancias
+    private double velocidadActual = 0; //Velocidad actual del veh�culo, velocidad tuneada +- situaciones
+    private double probabilidadChoque = 0;
     private Pieza motor;
     private Pieza neumaticos;
     private Pieza aleron;
@@ -512,6 +512,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     @Override
     public void redondear() {
         this.probabilidadChoque = dosDecimales(this.probabilidadChoque);
+        this.distanciaRecorrida = dosDecimales(this.distanciaRecorrida);
+        this.tiempo = dosDecimales(this.tiempo);
+        this.velocidadActual = dosDecimales(this.velocidadActual);
+        this.velocidadCircumstancias = dosDecimales(this.velocidadCircumstancias);
+        this.velocidadTuneao = dosDecimales(this.velocidadTuneao);
     }
     {
         this.redondear();

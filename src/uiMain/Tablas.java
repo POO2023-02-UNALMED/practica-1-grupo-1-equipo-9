@@ -363,9 +363,12 @@ public interface Tablas extends Decimales {
 
         int i = 1;
         for (VehiculoCarrera posicion : posiciones) {
+            String tiempo = String.valueOf(posicion.getTiempo()) + " s";
+            if (posicion.getTiempo() == 0) {
+                tiempo ="DNF";
+            }
 
-
-            System.out.printf("| %-" + maxNombre + "s | %-" + 16 + "s | %-" + 16 + "s |\n", posicion.getPiloto().getNombre(), posicion.getTiempo(), "       " + i);
+            System.out.printf("| %-" + maxNombre + "s | %-" + 16 + "s | %-" + 16 + "s |\n", posicion.getPiloto().getNombre(), tiempo, "       " + i);
             i++;
 
 

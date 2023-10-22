@@ -196,7 +196,9 @@ public class Piloto extends Persona implements Serializable, Decimales {
 
     public void noEsElegido() {
         this.setElegido(false);
-        VehiculoCarrera.crearVehiculoPilotosNoElegidos(this);
+        if (VehiculoCarrera.vehiculosPiloto(this).isEmpty()) {
+            VehiculoCarrera.crearVehiculoPilotosNoElegidos(this);
+        }
     }
 
     public boolean isDesbloqueado() {

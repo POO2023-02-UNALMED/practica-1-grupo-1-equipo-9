@@ -167,6 +167,7 @@ public class Main {
         piloto2.setElegido(false);
         pilotosEquipo.remove(piloto2);
         pilotosParticipar.add(piloto2);
+        piloto2.noEsElegido();
         System.out.println("Has elegido " + piloto2.getNombre());
         System.out.println("\n");
 
@@ -188,6 +189,7 @@ public class Main {
                 System.out.println("Elige un piloto");
                 n = validaciones(1, pilotosEquipo.size());
                 Piloto pilotoNo1 = pilotosEquipo.get(n - 1);
+                pilotoNo1.noEsElegido();
                 pilotosEquipo.remove(pilotoNo1);
                 pilotosParticipar.add(pilotoNo1);
                 System.out.println("Has elegido " + pilotoNo1.getNombre());
@@ -228,6 +230,9 @@ public class Main {
 
         for (Piloto piloto : pilotosParticipar) {
             piloto.contratar();
+            if (!piloto.isElegido()) {
+                piloto.noEsElegido();
+            }
         }
 
         // elegir patrocinador
@@ -428,7 +433,7 @@ public class Main {
                 Carrera carrera = carrerasPreferidas.get(n - 1);
                 carrerasPreferidasU.add(carrera);
                 carrerasPreferidas.remove(carrera);
-                System.out.println("\n");
+                //System.out.println("\n");
             }
         }
 
@@ -458,7 +463,7 @@ public class Main {
         ArrayList<Piloto> pilotosDisponibles = Piloto.pilotosDesbloqueados();
 
         System.out.println("Es momento de tunear tu vehiculo de carreras. Primero, veamos a que piloto le vas a personalizar el vehiculo");
-        car();
+        bigCar();
         System.out.println("\n");
         System.out.println("De acuerdo a los campeonatos desbloqueados, estan disponibles los siguientes pilotos");
         // TODO pilotos tabla

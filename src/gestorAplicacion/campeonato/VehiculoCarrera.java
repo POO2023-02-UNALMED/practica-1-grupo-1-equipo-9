@@ -107,6 +107,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
                 vehiculosPiloto.add(vehiculo);
             }
         }
+        // si no tiene vehiculo se crea uno default
+        if (vehiculosPiloto.isEmpty() && !piloto.isElegido()){
+            crearVehiculoPilotosNoElegidos(piloto);
+            vehiculosPiloto(piloto);
+        }
         return vehiculosPiloto;
     }
 
@@ -115,8 +120,8 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         String modelo = String.valueOf(cantidadVehiculosDefault() + 1);
         int velocidad = rand.nextInt(50) + 200;
         double precio = ((Math.random() * 4001) + 1000) * 3;
-        double maniobrabilidad = rand.nextDouble() * 0.3;
-        Chasis chasis = new Chasis("Default", modelo, velocidad, velocidad, precio);
+        double maniobrabilidad = Math.max(rand.nextDouble(), 0.2);
+        Chasis chasis = new Chasis("Default", modelo, velocidad, maniobrabilidad, precio);
         VehiculoCarrera vehiculo = new VehiculoCarrera(chasis, piloto);
         Pieza aleron = Pieza.piezaNoElegida("A");
         Pieza neumaticos = Pieza.piezaNoElegida("N");

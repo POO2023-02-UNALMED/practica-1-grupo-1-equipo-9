@@ -203,7 +203,13 @@ public class Carrera implements Decimales, Serializable {
             }
         }
         this.terminados = vehiculosTerminados;
-
+        // terminados tiene vehiculos distintos
+        ArrayList<VehiculoCarrera> vehiculosTerminados2 = new ArrayList<>();
+        for (VehiculoCarrera vehiculo : this.terminados){
+            if (!vehiculosTerminados2.contains(vehiculo)){
+                vehiculosTerminados2.add(vehiculo);
+            }
+        }
     }
     @Override
 

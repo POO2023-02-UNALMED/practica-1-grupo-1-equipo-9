@@ -94,6 +94,7 @@ public class Equipo implements Serializable {
         ArrayList<Equipo> listaOrganizada = new ArrayList<Equipo>();
         for (Equipo equipo : campeonato.getListaEquipos()) {
             listaOrganizada.add(equipo);
+            equipo.setPuntos(Math.abs(equipo.getPuntos()));
         }
         listaOrganizada.sort(Comparator.comparing(Equipo::getPuntos).reversed());
         return listaOrganizada;

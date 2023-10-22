@@ -54,7 +54,7 @@ public class Deserializado {
 	    
 	  ////////////////////////// VEHICULO CARRERA  //////////////////////////
 	    
-	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculosCarrera.txt");
+	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculos.txt");
 
 		VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
 

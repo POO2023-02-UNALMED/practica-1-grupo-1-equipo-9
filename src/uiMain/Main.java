@@ -25,8 +25,8 @@ public class Main {
     static int n;
 
     static {
-        //Deserializado.deserializacion();
-        CrearObjetos.crearObjetos();
+        Deserializado.deserializacion();
+        //CrearObjetos.crearObjetos();
     }
 
     public static void main(String[] args) {

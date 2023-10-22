@@ -1,7 +1,6 @@
 package gestorAplicacion.campeonato;
 
 import gestorAplicacion.paddock.Circuito;
-import gestorAplicacion.paddock.Patrocinador;
 import gestorAplicacion.paddock.Piloto;
 
 import java.io.Serializable;
@@ -10,18 +9,13 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class Carrera implements Decimales, Serializable {
-	private static final long serialVersionUID = 5592556885641211247L;
-
-	public  ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
-
-    public  ArrayList<VehiculoCarrera> terminados = new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
-
+    private static final long serialVersionUID = 5592556885641211247L;
     public static ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Lista de carreras
-
-    private ArrayList<Equipo> equiposBeneficiados = new ArrayList<Equipo>(); //Lista de pilotos que tienen trato preferencial
-
     //Atributos
     private static int idActual = 1;
+    public ArrayList<VehiculoCarrera> posiciones = new ArrayList<VehiculoCarrera>(); //Lista de posiciones de los vehiculos
+    public ArrayList<VehiculoCarrera> terminados = new ArrayList<VehiculoCarrera>(); //Lista de carros que ya terminaron
+    private ArrayList<Equipo> equiposBeneficiados = new ArrayList<Equipo>(); //Lista de pilotos que tienen trato preferencial
     private Campeonato campeonato;
     private int id;
     private String nombreCircuito;
@@ -31,10 +25,14 @@ public class Carrera implements Decimales, Serializable {
     private double premioEfectivo = 0; //Este premio se distribuye entre los 3 primeros puestos
     private Ciudad ciudad;
     private DirectorCarrera directorCarrera;
-    private double clima = 0 ; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
+    private double clima = 0; //.05 soleado, .10 lluvia, .15 tormenta, se le suma a la probabilidad de chocarse del vehiculo
     private int dificultad = 0; //Se le suma a la probabilidad de chocarse del vehiculo
 
     private Circuito circuito;
+
+    {
+        this.redondear();
+    }
 
     //Constructores
     public Carrera(String nombre, int mes, double distancia, double premio, Ciudad ciudad, DirectorCarrera director, double dificultad) {
@@ -115,6 +113,7 @@ public class Carrera implements Decimales, Serializable {
         this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
+
     public Carrera(Ciudad ciudad, double dificultad, Campeonato campeonato, Circuito circuito, int mes, DirectorCarrera directorCarrera) { //El chakalito y la chakalita
         this.id = idActual++;
         Random rand = new Random();
@@ -135,11 +134,26 @@ public class Carrera implements Decimales, Serializable {
         this.fecha = randomNumber + "/" + this.mes + "/" + campeonato.getAno();
     }
 
+    public static int getIdActual() {
+        return idActual;
+    }
+
+    public static void setIdActual(int idActual) {
+        Carrera.idActual = idActual;
+    }
+
+    public static ArrayList<Carrera> getListaCarreras() {
+        return listaCarreras;
+    }
+
+    public static void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+        Carrera.listaCarreras = listaCarreras;
+    }
 
     public void actualizarGasolina(Piloto piloto, Carrera carrera) { //Cada iteracion se debe actualizar la gasolina.
         VehiculoCarrera carroElegidoCarrerra = null;
-        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
-            if (vehiculoCarrera.getPiloto()==piloto){
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()) {
+            if (vehiculoCarrera.getPiloto().equals(piloto)) {
                 carroElegidoCarrerra = vehiculoCarrera;
             }
         }
@@ -158,9 +172,9 @@ public class Carrera implements Decimales, Serializable {
                 if (vehiculo.getDistanciaRecorrida() > this.getDistancia() && !terminados.contains(vehiculo)) {
                     terminados.add(vehiculo);
                     vehiculo.setTerminado(true);
-                } else if (!terminados.contains(vehiculo)){
+                } else if (!terminados.contains(vehiculo)) {
                     vehiculo.setTiempo(vehiculo.getTiempo() + 1.0);
-                    if (rand.nextDouble()>0.95){
+                    if (rand.nextDouble() > 0.95) {
                     }
                 }
             }
@@ -185,19 +199,20 @@ public class Carrera implements Decimales, Serializable {
     //Metodos para el final de la carrera
     public boolean actualizarTerminado() {
         boolean todosTerminados = true;
-        for (VehiculoCarrera vehiculo1 : this.posiciones){
-            if (!this.terminados.contains(vehiculo1)){
+        for (VehiculoCarrera vehiculo1 : this.posiciones) {
+            if (!this.terminados.contains(vehiculo1)) {
                 todosTerminados = false;
                 break;
             }
         }
         return todosTerminados;
     }
-    public void organizarVehiculosTiempos(){ //Organizar los vehiculos por los tiempos
+
+    public void organizarVehiculosTiempos() { //Organizar los vehiculos por los tiempos
         terminados.sort(Comparator.comparing(VehiculoCarrera::getTiempo));
         ArrayList<VehiculoCarrera> vehiculosTerminados = new ArrayList<>(terminados);
-        for (VehiculoCarrera vehiculo : this.terminados){
-            if (vehiculo.getTiempo()==0){
+        for (VehiculoCarrera vehiculo : this.terminados) {
+            if (vehiculo.getTiempo() == 0) {
                 vehiculosTerminados.remove(vehiculo);
                 vehiculosTerminados.add(vehiculo);
             }
@@ -205,12 +220,13 @@ public class Carrera implements Decimales, Serializable {
         this.terminados = vehiculosTerminados;
         // terminados tiene vehiculos distintos
         ArrayList<VehiculoCarrera> vehiculosTerminados2 = new ArrayList<>();
-        for (VehiculoCarrera vehiculo : this.terminados){
-            if (!vehiculosTerminados2.contains(vehiculo)){
+        for (VehiculoCarrera vehiculo : this.terminados) {
+            if (!vehiculosTerminados2.contains(vehiculo)) {
                 vehiculosTerminados2.add(vehiculo);
             }
         }
     }
+
     @Override
 
     public void redondear() {
@@ -219,20 +235,8 @@ public class Carrera implements Decimales, Serializable {
         this.clima = dosDecimales(this.clima);
     }
 
-    {
-        this.redondear();
-    }
-
     public void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {
         this.posiciones.add(vehiculoCarrera);
-    }
-
-    public static int getIdActual() {
-        return idActual;
-    }
-
-    public static void setIdActual(int idActual) {
-        Carrera.idActual = idActual;
     }
 
     public ArrayList<VehiculoCarrera> getTerminados() {
@@ -347,14 +351,6 @@ public class Carrera implements Decimales, Serializable {
 
     public void setCampeonato(Campeonato campeonato) {
         this.campeonato = campeonato;
-    }
-
-    public static ArrayList<Carrera> getListaCarreras() {
-        return listaCarreras;
-    }
-
-    public static void setListaCarreras(ArrayList<Carrera> listaCarreras) {
-        Carrera.listaCarreras = listaCarreras;
     }
 
     public ArrayList<Equipo> getEquiposBeneficiados() {

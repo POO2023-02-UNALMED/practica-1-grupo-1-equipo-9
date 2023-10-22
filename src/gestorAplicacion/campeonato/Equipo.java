@@ -6,6 +6,7 @@ import gestorAplicacion.paddock.Piloto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -355,5 +356,17 @@ public class Equipo implements Serializable {
 
     public void setCrewMembers(int crewMembers) {
         this.crewMembers = crewMembers;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipo miClase = (Equipo) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

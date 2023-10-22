@@ -103,7 +103,7 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     public static ArrayList<VehiculoCarrera> vehiculosPiloto(Piloto piloto) {
         ArrayList<VehiculoCarrera> vehiculosPiloto = new ArrayList<VehiculoCarrera>();
         for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos) {
-            if (vehiculo.getPiloto() == piloto) {
+            if (vehiculo.getPiloto().equals(piloto)) {
                 vehiculosPiloto.add(vehiculo);
             }
         }
@@ -111,7 +111,7 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         if (vehiculosPiloto.isEmpty() && !piloto.isElegido()){
             crearVehiculoPilotosNoElegidos(piloto);
             for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos) {
-                if (vehiculo.getPiloto() == piloto) {
+                if (vehiculo.getPiloto().equals(piloto)) {
                     vehiculosPiloto.add(vehiculo);
                 }
             }

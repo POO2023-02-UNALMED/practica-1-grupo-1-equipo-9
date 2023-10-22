@@ -5,6 +5,7 @@ import gestorAplicacion.campeonato.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Random;
 
 public class Piloto extends Persona implements Serializable, Decimales {
@@ -102,7 +103,7 @@ public class Piloto extends Persona implements Serializable, Decimales {
     public static ArrayList<Piloto> pilotosEquipo(Equipo equipo, ArrayList<Piloto> pilotos) {
         ArrayList<Piloto> pilotosEquipo = new ArrayList<Piloto>();
         for (Piloto piloto : pilotos) {
-            if (piloto.getEquipo() == equipo) {
+            if (piloto.getEquipo().equals(equipo)) {
                 pilotosEquipo.add(piloto);
             }
         }
@@ -321,5 +322,17 @@ public class Piloto extends Persona implements Serializable, Decimales {
 
     public void sinPlata() {
         this.getEquipo().recibirPlata((Math.random() * 90000) + 10000);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piloto miClase = (Piloto) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

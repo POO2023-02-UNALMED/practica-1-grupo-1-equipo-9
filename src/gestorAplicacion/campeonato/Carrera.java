@@ -115,7 +115,7 @@ public class Carrera implements Decimales, Serializable {
         this.clima = lowerBound + (upperBound - lowerBound) * rand.nextDouble(); //Se le asiga un valor aleatorio entre 0.0 y 0.2 al clima
     }
 
-    public Carrera(Ciudad ciudad, double dificultad, Campeonato campeonato, Circuito circuito, int mes, DirectorCarrera directorCarrera) { //El chakalito y la chakalita xd
+    public Carrera(Ciudad ciudad, double dificultad, Campeonato campeonato, Circuito circuito, int mes, DirectorCarrera directorCarrera) { //El chakalito y la chakalita
         this.id = idActual++;
         Random rand = new Random();
         ArrayList<String> poolNombres = new ArrayList<String>();
@@ -136,31 +136,36 @@ public class Carrera implements Decimales, Serializable {
     }
 
 
-    public void actualizarGasolina(Piloto piloto) { //Cada iteracion se debe actualizar la gasolina.
+    public void actualizarGasolina(Piloto piloto, Carrera carrera) { //Cada iteracion se debe actualizar la gasolina.
         VehiculoCarrera carroElegidoCarrerra = null;
         for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
             if (vehiculoCarrera.getPiloto()==piloto){
                 carroElegidoCarrerra = vehiculoCarrera;
             }
         }
-        if (carroElegidoCarrerra.getGasolina() > 5) { //Si hay suficiente gasolina, se reduce el nivel.
-            carroElegidoCarrerra.setGasolina(carroElegidoCarrerra.getGasolina() - 5);
+        if (carroElegidoCarrerra.getGasolina() > 3) { //Si hay suficiente gasolina, se reduce el nivel.
+            carroElegidoCarrerra.setGasolina(carroElegidoCarrerra.getGasolina() - 3);
         } else { //Si no hay suficiente gasolina, el carro choca.
-            carroElegidoCarrerra.chocar();
+            carroElegidoCarrerra.chocar(carrera);
         }
     }
 
     public void actualizarPosiciones() {
-        for (VehiculoCarrera vehiculo : this.posiciones) {
-            vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
-            vehiculo.setTiempo(vehiculo.getTiempo() + 1.0);
-            if (vehiculo.getDistanciaRecorrida() >= this.getDistancia()) {
-                terminados.add(vehiculo);
-                vehiculo.setTerminado(true);
-                posiciones.remove(vehiculo);
+        Random rand = new Random();
+        if (!this.posiciones.isEmpty()) {
+            for (VehiculoCarrera vehiculo : this.posiciones) {
+                vehiculo.setDistanciaRecorrida(vehiculo.getDistanciaRecorrida() + vehiculo.getVelocidadActual());
+                if (vehiculo.getDistanciaRecorrida() > this.getDistancia() && !terminados.contains(vehiculo)) {
+                    terminados.add(vehiculo);
+                    vehiculo.setTerminado(true);
+                } else if (!terminados.contains(vehiculo)){
+                    vehiculo.setTiempo(vehiculo.getTiempo() + 1.0);
+                    if (rand.nextDouble()>0.95){
+                    }
+                }
             }
+            this.posiciones.sort(Comparator.comparing(VehiculoCarrera::getDistanciaRecorrida).reversed());
         }
-        posiciones.sort(Comparator.comparing(VehiculoCarrera::getDistanciaRecorrida));
     }
 
     public ArrayList<Boolean> actualizarOpciones() { //Este metodo selecciona aleatoriamente que opciones se van a mostrar
@@ -180,20 +185,26 @@ public class Carrera implements Decimales, Serializable {
     //Metodos para el final de la carrera
     public boolean actualizarTerminado() {
         boolean todosTerminados = true;
-            if (this.posiciones.isEmpty()) {
+        for (VehiculoCarrera vehiculo1 : this.posiciones){
+            if (!this.terminados.contains(vehiculo1)){
                 todosTerminados = false;
+                break;
+            }
         }
         return todosTerminados;
     }
-
-    public void verificarPorChoques(){
-        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()){
-            if (vehiculoCarrera.isMorido() && this.getCampeonato().getListaPilotos().contains(vehiculoCarrera.getPiloto())){
-                this.terminados.add(vehiculoCarrera);
+    public void organizarVehiculosTiempos(){ //Organizar los vehiculos por los tiempos
+        terminados.sort(Comparator.comparing(VehiculoCarrera::getTiempo));
+        ArrayList<VehiculoCarrera> vehiculosTerminados = new ArrayList<>(terminados);
+        for (VehiculoCarrera vehiculo : this.terminados){
+            if (vehiculo.getTiempo()==0){
+                vehiculosTerminados.remove(vehiculo);
+                vehiculosTerminados.add(vehiculo);
             }
         }
-    }
+        this.terminados = vehiculosTerminados;
 
+    }
     @Override
 
     public void redondear() {

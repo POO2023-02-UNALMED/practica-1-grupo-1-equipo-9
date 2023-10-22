@@ -186,15 +186,35 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public void premiarCampeones(ArrayList<Equipo> equiposPuntuados) {
-        for (Piloto piloto : this.getListaPilotos()) {
-            if (equiposPuntuados.get(0) == piloto.getEquipo()) {
-                piloto.agregarVictoria(this);
+        this.listaEquipos = equiposPuntuados;
+        double multiplicadorDinero = 1.2;
+        double contadorHabilidad = 0.08;
+        for (Equipo equipo : equiposPuntuados) {
+            equipo.setPlata(equipo.getPlata() + this.premio * multiplicadorDinero);
+            if (!equipo.getPatrocinadoresEquipo().isEmpty()) {
+                for (Patrocinador patrocinador : equipo.getPatrocinadoresEquipo()) {
+                    patrocinador.recibirPlata(this.premio * multiplicadorDinero / 2);
+                }
+            }
+            if (multiplicadorDinero > 0.2) {
+                multiplicadorDinero -= 0.2;
+            }
+            for (Piloto piloto : this.getListaPilotos()) {
+                if (piloto.getEquipo().equals(equipo) && piloto.getPuntos() != 0 && equiposPuntuados.get(0).equals(equipo)) {
+                    piloto.setHabilidad(contadorHabilidad);
+                    piloto.agregarVictoria(this);
+                }else if (piloto.getEquipo().equals(equipo) && piloto.getPuntos() != 0) {
+                    piloto.setHabilidad(contadorHabilidad);
+                }
+                if (contadorHabilidad>0.02){
+                    contadorHabilidad-=0.01;
+                }
             }
         }
     }
 
     public String toString() {
-        return (this.nombre + " " + ano);
+        return (this.nombre + " " + ano + " (" + this.continente.toString() + ")");
     }
 
     public void agregarCarrera(Carrera carrerita) {
@@ -265,6 +285,17 @@ public class Campeonato implements Serializable, Decimales {
         // cobrar patrocinador
         patrocinador.setPlata(patrocinador.getPlata() - presupuesto);
         this.organizarCarreras();
+    }
+
+    public Piloto pilotoCampeonato() {
+        Piloto piloto = null;
+        for (Piloto pilotico : this.getListaPilotos()) {
+            if (pilotico.isElegido()) {
+                piloto = pilotico;
+                break;
+            }
+        }
+        return piloto;
     }
 
     public void redondear() {

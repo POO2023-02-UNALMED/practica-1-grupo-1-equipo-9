@@ -22,6 +22,7 @@ public class Piloto extends Persona implements Serializable, Decimales {
     private boolean elegido = false;
     private double valorContrato = 0;
     private double presupuestoVehiculo = 0;
+    public ArrayList<Double> tiemposCarreras = new ArrayList<Double>();
 
 
     //Constructores
@@ -148,6 +149,9 @@ public class Piloto extends Persona implements Serializable, Decimales {
     }
 
     //Metodos de instancia
+    public void registrarTiempo (double tiempo){
+        this.tiemposCarreras.add(tiempo);
+    }
     public void sumarPuntos(int puntos) {
         this.puntos += puntos;
     }
@@ -162,26 +166,27 @@ public class Piloto extends Persona implements Serializable, Decimales {
         this.setPresupuestoVehiculo(this.valorContrato * this.habilidad * 10);
     }
 
-    public VehiculoCarrera maldecirPiloto(double plata, Piloto piloto, DirectorCarrera directorCarrera) {
-        //Busqueda del carro
+    public ArrayList<VehiculoCarrera> maldecirPiloto(double plata, Piloto piloto, DirectorCarrera directorCarrera, Campeonato campeonato) { //Esto es para maldecir a un piloto desde los tratos especiales con el director de carrera
+        ArrayList<VehiculoCarrera> vehiculosDevolver = new ArrayList<VehiculoCarrera>();
+        vehiculosDevolver.add(VehiculoCarrera.vehiculosPiloto(piloto).get(0));
         VehiculoCarrera vehiculoMaldito = null;
         for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.getListaVehiculosCarrera()) {
             if (vehiculoCarrera.getPiloto().equals(this)) {
                 vehiculoMaldito = vehiculoCarrera;
             }
+            if (campeonato.getListaPilotos().contains(vehiculoCarrera.getPiloto()) && vehiculoCarrera.getPiloto() != piloto){
+                vehiculosDevolver.add(vehiculoCarrera);
+            }
         }
-        //Maldecir al piloto y al vehiculo
-        double difHabilidad = this.getHabilidad();
-        if (plata >= this.getValorContrato()) {
-            this.setHabilidad(0);
-            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque() + difHabilidad);
-        } else if (plata >= this.getValorContrato() / 2) {
+        //Maldecir al piloto dependiendo del dinero que se tenga
+        if (plata >= (this.getValorContrato() * 3 / 4)) {
+            this.setHabilidad(Math.max(this.getHabilidad()-0.1,0.0));
+        } else if (plata >= (this.getValorContrato() / 3)) {
             this.setHabilidad(this.getHabilidad() / 2);
-            vehiculoMaldito.setProbabilidadChoque(vehiculoMaldito.getProbabilidadChoque() + difHabilidad / 2);
         } else {
             directorCarrera.ponerSancion(piloto);
         }
-        return vehiculoMaldito;
+        return vehiculosDevolver;
     }
 
     //Metodo abstracto heredado
@@ -229,7 +234,14 @@ public class Piloto extends Persona implements Serializable, Decimales {
     }
 
     public void setHabilidad(double hab) {
+        double habAnterior = this.habilidad;
         this.habilidad = hab;
+        ArrayList<VehiculoCarrera> vehiculos = VehiculoCarrera.vehiculosPiloto(this);
+        if (!vehiculos.isEmpty()){
+            for (VehiculoCarrera vehiculoCarrera : vehiculos){
+                vehiculoCarrera.actualizarProbabilidadChoque(this.habilidad-habAnterior);
+            }
+        }
     }
 
     public boolean isLesionado() {
@@ -295,6 +307,14 @@ public class Piloto extends Persona implements Serializable, Decimales {
 
     public void setPatrocinador(Patrocinador patrocinador) {
         this.patrocinador = patrocinador;
+    }
+
+    public ArrayList<Double> getTiemposCarreras() {
+        return tiemposCarreras;
+    }
+
+    public void setTiemposCarreras(ArrayList<Double> tiemposCarreras) {
+        this.tiemposCarreras = tiemposCarreras;
     }
 
     public void sinPlata() {

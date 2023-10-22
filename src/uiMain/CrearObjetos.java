@@ -961,9 +961,8 @@ public interface CrearObjetos {
         
         
         
-/*
-        
-        ArrayList<Carrera> listaCarrerasC1 = new ArrayList<>();
+
+/*        ArrayList<Carrera> listaCarrerasC1 = new ArrayList<>();
         ArrayList<Carrera> listaCarrerasC2 = new ArrayList<>();
         
         // Carreras
@@ -1146,7 +1145,6 @@ public interface CrearObjetos {
         	    1000000.0, 
         	    true 
         	);
-    
-    }*/
+    */
     }
 }

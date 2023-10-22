@@ -95,7 +95,7 @@ public class Equipo implements Serializable {
         for (Equipo equipo : campeonato.getListaEquipos()) {
             listaOrganizada.add(equipo);
         }
-        listaOrganizada.sort(Comparator.comparing(equipo -> equipo.getPuntos()));
+        listaOrganizada.sort(Comparator.comparing(Equipo::getPuntos).reversed());
         return listaOrganizada;
     }
 
@@ -208,6 +208,7 @@ public class Equipo implements Serializable {
             if (vehiculo.getPiloto().getSanciones() != 0) {
                 vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
             }
+            vehiculo.getPiloto().registrarTiempo(vehiculo.getTiempo());
         }
         terminados.get(0).getPiloto().recibirPlata(plata * 0.9);
         for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
@@ -215,13 +216,14 @@ public class Equipo implements Serializable {
         }
         terminados.get(1).getPiloto().recibirPlata(plata * 0.3);
         terminados.get(2).getPiloto().recibirPlata(plata * 0.2);
+        Equipo.organizarEquiposPuntos(campeonato);
     }
 
     //Metodos de instancia
     public void recalcularPuntos(Campeonato campeonato) {
         int nuevosPuntos = 0;
         for (Piloto piloto : campeonato.getListaPilotos()) {
-            if (piloto.isElegido() && piloto.getEquipo() == this) {
+            if (piloto.getEquipo().equals(this)) {
                 nuevosPuntos += piloto.getPuntos();
             }
         }

@@ -1005,7 +1005,7 @@ public class Main {
         }
         //Que si quiere ver las posiciones por separado, y las habilidades
         System.out.println("\nDeseas ver las estadisticas especificas del campeonato?");
-        System.out.println("\nEscribe Y ó N");
+        System.out.println("\nEscribe Y ï¿½ N");
         if (validacionesYN()){
             int i = 1;
             for (Equipo equipo : campeonato.getListaEquipos()) {

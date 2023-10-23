@@ -108,7 +108,7 @@ public class Serializado {
 
   ////////////////////////// VEHICULO CARRERA  //////////////////////////
 
-    FileOutputStream fileOutputStream10 = new FileOutputStream("src\\baseDatos\\temp\\datosVehiculosCarrera.txt");
+    FileOutputStream fileOutputStream10 = new FileOutputStream("src\\baseDatos\\temp\\datosVehiculos.txt");
     ObjectOutputStream objectOutputStream10 = new ObjectOutputStream(fileOutputStream10);
 
     objectOutputStream10.writeObject(VehiculoCarrera.getListaVehiculosCarrera());

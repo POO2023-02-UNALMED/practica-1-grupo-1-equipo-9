@@ -800,12 +800,8 @@ public class Main {
                 }
             }
             //Eligiendo el carro del usuario
-            VehiculoCarrera carroElegido = null;
-            for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.vehiculosPiloto(piloto))
-                if (carrera.posiciones.contains(vehiculoCarrera)) {
-                    carroElegido = vehiculoCarrera;
-                    break;
-                }
+            VehiculoCarrera carroElegido = VehiculoCarrera.vehiculoCarreraPiloto(carrera.getPosiciones(),piloto);
+
             double velocidadOriginal = carroElegido.getVelocidadActual();
 
             System.out.println("Comenzando la carrera: " + carrera.getNombreCircuito());

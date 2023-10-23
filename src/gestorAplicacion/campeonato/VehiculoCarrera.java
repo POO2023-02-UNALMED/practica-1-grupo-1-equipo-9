@@ -391,6 +391,16 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
         return posicionesCorruptas;
     }
 
+    public static VehiculoCarrera vehiculoCarreraPiloto(ArrayList<VehiculoCarrera> vehiculos, Piloto piloto){
+        VehiculoCarrera carroElegido = null;
+        for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.vehiculosPiloto(piloto))
+            if (vehiculos.contains(vehiculoCarrera)) {
+                carroElegido = vehiculoCarrera;
+                break;
+            }
+        return carroElegido;
+    }
+
     // Ligadura Dinamica
     public void morir() {
         Chasis chasis = this;

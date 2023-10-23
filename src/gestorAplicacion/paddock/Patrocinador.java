@@ -11,6 +11,12 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Patrocinador extends Persona implements Serializable, Decimales{
+
+    /***
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Finalidad: Descripcion de la clase: La clase "Patrocinador" desempeña un papel fundamental al crear y asignar los atributos asociados. Su importancia radica en su rol de proveer a los equipos con los recursos financieros necesarios para participar en el campeonato. El flujo de dinero es esencial para el funcionamiento fluido de las interacciones dentro del campeonato.
+     */
+
 	private static final long serialVersionUID = -3407371441746326606L;
 	
 	//Lista de patrocinadores
@@ -87,6 +93,11 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public static ArrayList<Patrocinador> patrocinadoresDisponibles() {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de patrocinadores dependiendo si estan o no patrocinando a un piloto, tambien se encarga de poner un patrocinador por defecto parar asegurar que la lista no este vacia
+         * Parametros de entrada:  sin argumentos
+         * Parametros de salida: ArrayList<Patrocinador>
+         */
     	ArrayList<Patrocinador> patrocinadoresDisponibles = new ArrayList<Patrocinador>();
     	for (Patrocinador patrocinador : Patrocinador.listaPatrocinadores) {
     		if (!patrocinador.isPatrocinando()) {
@@ -102,6 +113,11 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public static ArrayList<Patrocinador> patrocinadorPiloto(Piloto piloto, ArrayList<Patrocinador> patrocinadores) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de patrocinadores de acuerdo al precio de contrato mas el precio del vehiculo de un piloto, teniendo en cuenta el atributo dineroOfrecer
+         * Parametros de entrada:  piloto de tipo Piloto y patrocinadores de tipo ArrayList<Patrocinador>
+         * Parametros de salida: ArrayList<Patrocinador>
+         */
     	ArrayList<Patrocinador> patrocinadoresPiloto = new ArrayList<Patrocinador>();
         double valor = piloto.getValorContrato() + piloto.getPresupuestoVehiculo();
     	for (Patrocinador patrocinador : patrocinadores) {
@@ -118,6 +134,11 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public static Patrocinador patrocinadorPiloto(Piloto piloto, ArrayList<Patrocinador> patrocinadores, boolean x) {
+        /***
+         * Descripcion del metodo: este metodo elige un patrocinador de la lista y se lo asigna a un piloto de un equipo contrincante
+         * Parametros de entrada:  piloto de tipo Piloto , patrocinadores de tipo ArrayList<Patrocinador> y x de tipo boolean
+         * Parametros de salida: Patrocinador
+         */
 
         double valor = piloto.getValorContrato() + piloto.getPresupuestoVehiculo();
         Random rand = new Random();
@@ -152,6 +173,11 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public boolean pensarNegocio(Piloto piloto) {
+        /***
+         * Descripcion del metodo: calcula si acepta o no un trato con el piloto dependiendo las probabilidades de aceptar que tenga el patrocinador
+         * Parametros de entrada:  piloto de tipo Piloto
+         * Parametros de salida: boolean
+         */
         Random rand = new Random();
         double lowerBound = 0.0;
         double upperBound = this.probAceptar;
@@ -180,6 +206,7 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     //Lista de metodos set y get
 
     public void setDinero(double dinero) {
+
         this.setPlata(dinero);
         this.setDineroOfrecido(dinero);
         if (this.getPlata() <= 0) {
@@ -193,6 +220,11 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
     }
 
     public void setPatrocinadorCampeonato() {
+        /***
+         * Descripcion del metodo: este metodo se encarga de asignar 5 ciudades aleaotrias a una lista de ciudadesPreferidas en las cuales si se llega a ganar una carrera el premio se multiplica
+         * Parametros de entrada:  sin argumentos
+         * Parametros de salida: void
+         */
         Random rand = new Random();
         // 5 ciudades random
         ArrayList<Ciudad> ciudades = Ciudad.getListaCiudades();

@@ -7,7 +7,7 @@ import java.util.*;
 public class Circuito implements java.io.Serializable, Decimales{
     /***
      * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
-     * Finalidad: Descripcion de la clase
+     * Finalidad: Descripcion de la clase: La clase "Circuito" facilita la creación y asignación de atributos esenciales para cada uno de los circuitos requeridos en el campeonato de carreras. Estos atributos incluyen detalles como el precio, nombre y ubicación geográfica de cada circuito. Esta información es crucial para la gestión y organización de las carreras, permitiendo una representación precisa y detallada de los distintos escenarios en los que se llevan a cabo las carreras del campeonato.
      */
 	private static final long serialVersionUID = 6748994374640828496L;
 	
@@ -17,6 +17,8 @@ public class Circuito implements java.io.Serializable, Decimales{
     private ArrayList<Continente> continentes = new ArrayList<Continente>();
     private ArrayList<Integer> disponibilidad = new ArrayList<Integer>();
 
+
+    //constructor
     public Circuito(String nombre, double precio, ArrayList<Continente> continente) {
     	this.nombre=nombre;
     	this.Precio=precio;
@@ -29,7 +31,7 @@ public class Circuito implements java.io.Serializable, Decimales{
     }
 
 
-
+    //constructor
     public Circuito(String nombre){
         this.nombre = nombre;
         this.Precio = (double) (random.nextInt(40001) + 10000) /3;
@@ -50,6 +52,11 @@ public class Circuito implements java.io.Serializable, Decimales{
     }
 
     public static ArrayList<Circuito> circuitosUbicacion(Campeonato campeonato){
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de circuitos de un campeonato dependiendo su ubicacion
+         * Parametros de entrada:  campeonato de tipo Campeonato
+         * Parametros de salida: ArrayList<Circuito>
+         */
         ArrayList<Circuito> circuitosUbicacion = new ArrayList<Circuito>();
         for (Circuito circuito : circuitos) {
             if (circuito.getContinentes().contains(campeonato.getContinente())) {
@@ -59,6 +66,11 @@ public class Circuito implements java.io.Serializable, Decimales{
         return circuitosUbicacion;
     }
     public static ArrayList<Circuito> circuitosVender(DirectorCarrera dir, ArrayList<Circuito> circuitosDisponibles){
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de circuitos que el director de carrera puede comprar en base a su plata
+         * Parametros de entrada:  dir de tipo DirectorCarrera y circuitos de tipo ArrayList<Circuito>
+         * Parametros de salida: ArrayList<Circuito>
+         */
         ArrayList<Circuito> circuitosVender = new ArrayList<Circuito>();
         for (Circuito circuito : circuitosDisponibles) {
             if (dir.getPlata() >= circuito.getPrecio()) {
@@ -69,6 +81,11 @@ public class Circuito implements java.io.Serializable, Decimales{
     }
 
     public static ArrayList<Circuito> circuitosDisponibles(int mes, ArrayList<Circuito> circuitos){
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de circuitos que esten en el mismo mes
+         * Parametros de entrada:  mes de tipo int y circuitos de tipo ArrayList<Circuito>
+         * Parametros de salida: ArrayList<Circuito>
+         */
         ArrayList<Circuito> circuitosDisponibles = new ArrayList<Circuito>();
         for (Circuito circuito : circuitos) {
             if (circuito.verDisponibilidad(mes)) {
@@ -80,9 +97,9 @@ public class Circuito implements java.io.Serializable, Decimales{
 
     public void venderCircuito(DirectorCarrera dir, int mes){
         /***
-         * Descripcion del metodo:
-         * Parametros de entrada:
-         * Parametros de salida:
+         * Descripcion del metodo: este metodo se encarga de asignar un mes para el cirtuito y de actualizar el dinero del director de carrera luego de la compra del circuito
+         * Parametros de entrada: dir de tipo Director Carrera y mes de tipo int
+         * Parametros de salida: void
          */
         dir.setPlata(dir.getPlata() - this.getPrecio());
         this.getDisponibilidad().removeIf(num -> num == mes);
@@ -96,6 +113,7 @@ public class Circuito implements java.io.Serializable, Decimales{
         this.redondear();
     }
 
+    //setters n getters
     public boolean verDisponibilidad(int dia) {
         return disponibilidad.contains((Integer) dia);
     }

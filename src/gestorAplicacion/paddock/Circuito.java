@@ -7,7 +7,7 @@ import java.util.*;
 public class Circuito implements java.io.Serializable, Decimales{
     /***
      * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
-     * Finalidad: Descripcion de la clase: La clase "Circuito" facilita la creación y asignación de atributos esenciales para cada uno de los circuitos requeridos en el campeonato de carreras. Estos atributos incluyen detalles como el precio, nombre y ubicación geográfica de cada circuito. Esta información es crucial para la gestión y organización de las carreras, permitiendo una representación precisa y detallada de los distintos escenarios en los que se llevan a cabo las carreras del campeonato.
+     * Descripcion de la clase: La clase "Circuito" facilita la creación y asignación de atributos esenciales para cada uno de los circuitos requeridos en el campeonato de carreras. Estos atributos incluyen detalles como el precio, nombre y ubicación geográfica de cada circuito. Esta información es crucial para la gestión y organización de las carreras, permitiendo una representación precisa y detallada de los distintos escenarios en los que se llevan a cabo las carreras del campeonato.
      */
 	private static final long serialVersionUID = 6748994374640828496L;
 	

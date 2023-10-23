@@ -4,6 +4,10 @@ import gestorAplicacion.campeonato.Decimales;
 import java.io.Serializable;
 
 public abstract class Persona implements Serializable, Decimales {
+    /***
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Descripcion de la clase: Esta clase ha sido diseñada con la finalidad de ser heredada por diferentes entidades utilizadas en el programa, como son los patrocinadores, pilotos y directores de carrera.
+     */
 	private static final long serialVersionUID = 9152973937117015465L;
 	// Atributos
     static int idActual = 1;

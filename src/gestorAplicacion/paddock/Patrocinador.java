@@ -14,7 +14,7 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
 
     /***
      * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
-     * Finalidad: Descripcion de la clase: La clase "Patrocinador" desempeña un papel fundamental al crear y asignar los atributos asociados. Su importancia radica en su rol de proveer a los equipos con los recursos financieros necesarios para participar en el campeonato. El flujo de dinero es esencial para el funcionamiento fluido de las interacciones dentro del campeonato.
+     * Descripcion de la clase: La clase "Patrocinador" desempeña un papel fundamental al crear y asignar los atributos asociados. Su importancia radica en su rol de proveer a los equipos con los recursos financieros necesarios para participar en el campeonato. El flujo de dinero es esencial para el funcionamiento fluido de las interacciones dentro del campeonato.
      */
 
 	private static final long serialVersionUID = -3407371441746326606L;

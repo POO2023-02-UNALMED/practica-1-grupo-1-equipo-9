@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Pieza implements Serializable, Decimales {
+    /***
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Descripcion de la clase: La función principal de esta clase es la asignación de atributos a cada una de las piezas de los vehiculos que compiten en las carreras del campeonato.
+     */
 	private static final long serialVersionUID = 3981603915201008050L;
 	
 	static int idActual = 0;
@@ -131,6 +135,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public boolean comprar(VehiculoCarrera vehiculoCarrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de actualizar la maniobrabilidad del vehiculo dependiendo la pieza que se haya elegido, tambien actualiza el saldo de plata que tiene el equipo del piloto
+         * Parametros de entrada:  vehiculoCarrera de tipo VehiculoCarrera
+         * Parametros de salida: boolean
+         */
         Equipo equipo = vehiculoCarrera.getPiloto().getEquipo();
         if (this.precio <= equipo.getPlata()) {
             equipo.setPlata(equipo.getPlata() - this.precio);
@@ -149,6 +158,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<ArrayList<Pieza>> combinacionesDisponibles(VehiculoCarrera vehiculoCarrera, Pieza neumatico) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas dependiendo de la marca y dependiendo de el dinero disponible por el equipo del piloto
+         * Parametros de entrada:  vehiculoCarrera de tipo VehiculoCarrera y neumatico de tipo Pieza
+         * Parametros de salida: ArrayList<ArrayList<Pieza>>
+         */
         ArrayList<ArrayList<Pieza>> combinaciones = new ArrayList<ArrayList<Pieza>>();
         ArrayList<Pieza> motoresDisponibles = Pieza.motoresDisponibles(vehiculoCarrera.getMarca());
         ArrayList<Pieza> aleronDisponible = Pieza.aleronesDisponibles(vehiculoCarrera.getMarca());
@@ -170,6 +184,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<ArrayList<Pieza>> combinacionesDisponibles(VehiculoCarrera vehiculoCarrera, Pieza aleron, ArrayList<ArrayList<Pieza>> combinaciones) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas dependiendo de la marca y dependiendo de el dinero disponible por el equipo del piloto
+         * Parametros de entrada:  vehiculoCarrera de tipo VehiculoCarrera , aleron de tipo Pieza y combinaciones de tipo ArrayList<ArrayList<Pieza>>
+         * Parametros de salida: ArrayList<ArrayList<Pieza>>
+         */
         ArrayList<ArrayList<Pieza>> combinacionesDisponibles = new ArrayList<ArrayList<Pieza>>();
         combinacionesDisponibles.addAll(combinaciones);
         for (ArrayList<Pieza> combinacion : combinaciones) {
@@ -181,6 +200,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<ArrayList<Pieza>> combinaciones(VehiculoCarrera vehiculoCarrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas dependiendo de la marca y dependiendo de el dinero disponible por el equipo del piloto
+         * Parametros de entrada:  vehiculoCarrera de tipo VehiculoCarrera
+         * Parametros de salida: ArrayList<ArrayList<Pieza>>
+         */
         ArrayList<ArrayList<Pieza>> combinaciones = new ArrayList<ArrayList<Pieza>>();
         ArrayList<Pieza> motoresDisponibles = Pieza.motoresDisponibles(vehiculoCarrera.getMarca());
         ArrayList<Pieza> aleronDisponible = Pieza.aleronesDisponibles(vehiculoCarrera.getMarca());
@@ -205,6 +229,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> filterAlerones(ArrayList<ArrayList<Pieza>> combinaciones) {
+        /***
+     * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo los alerones
+     * Parametros de entrada:  combinaciones de tipo ArrayList<ArrayList<Pieza>>
+     * Parametros de salida: ArrayList<Pieza>
+     */
         ArrayList<Pieza> alerones = new ArrayList<Pieza>();
         for (ArrayList<Pieza> combinacion : combinaciones) {
             for (Pieza pieza : combinacion) {
@@ -224,6 +253,12 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> filterNeumaticos(ArrayList<ArrayList<Pieza>> combinaciones) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo los neumaticos
+         * Parametros de entrada:  combinaciones de tipo ArrayList<ArrayList<Pieza>>
+         * Parametros de salida: ArrayList<Pieza>
+         */
+
         ArrayList<Pieza> neumaticos = new ArrayList<Pieza>();
         for (ArrayList<Pieza> combinacion : combinaciones) {
             for (Pieza pieza : combinacion) {
@@ -243,6 +278,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> filterMotores(ArrayList<ArrayList<Pieza>> combinaciones) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo los motores
+         * Parametros de entrada:  combinaciones de tipo ArrayList<ArrayList<Pieza>>
+         * Parametros de salida: ArrayList<Pieza>
+         */
         ArrayList<Pieza> motores = new ArrayList<Pieza>();
         for (ArrayList<Pieza> combinacion : combinaciones) {
             for (Pieza pieza : combinacion) {
@@ -262,6 +302,12 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> piezasDisponibles() {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo las piezas que no estan danadas
+         * Parametros de entrada:  combinaciones de tipo ArrayList<ArrayList<Pieza>>
+         * Parametros de salida: ArrayList<Pieza>
+         */
+
         ArrayList<Pieza> piezasDisponibles = new ArrayList<Pieza>();
         for (Pieza pieza : Pieza.piezas) {
             if (!pieza.isDanado()) {
@@ -272,6 +318,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> motoresDisponibles(String marca) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo las piezas que no estan danadas, son motores y son de una marca especifica
+         * Parametros de entrada:  marca de tipo String
+         * Parametros de salida: ArrayList<Pieza>
+         */
         ArrayList<Pieza> motoresDisponibles = new ArrayList<Pieza>();
         ArrayList<Pieza> piezasDisponibles = Pieza.piezasDisponibles();
         for (Pieza pieza : piezasDisponibles) {
@@ -283,6 +334,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> neumaticosDisponibles(String marca){
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo las piezas que no estan danadas, son neumaticos y son de una marca especifica
+         * Parametros de entrada:  marca de tipo String
+         * Parametros de salida: ArrayList<Pieza>
+         */
         ArrayList<Pieza> neumaticosDisponibles = new ArrayList<Pieza>();
         ArrayList<Pieza> piezasDisponibles = Pieza.piezasDisponibles();
         for (Pieza pieza : piezasDisponibles) {
@@ -294,6 +350,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static ArrayList<Pieza> aleronesDisponibles(String marca) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de piezas mostrando solo las piezas que no estan danadas, son alerones y son de una marca especifica
+         * Parametros de entrada:  marca de tipo String
+         * Parametros de salida: ArrayList<Pieza>
+         */
         ArrayList<Pieza> aleronesDisponibles = new ArrayList<Pieza>();
         ArrayList<Pieza> piezasDisponibles = Pieza.piezasDisponibles();
         for (Pieza pieza : piezasDisponibles) {
@@ -305,6 +366,11 @@ public class Pieza implements Serializable, Decimales {
     }
 
     public static double precioTotal(ArrayList<Pieza> piezas, VehiculoCarrera vehiculoCarrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de asignar al vehiculo las piezas por comprar y calcula el precio de toda la compra
+         * Parametros de entrada:  marca de tipo String
+         * Parametros de salida: double
+         */
         double precioTotal = 0;
         for (Pieza pieza : piezas) {
             precioTotal += pieza.getPrecio();

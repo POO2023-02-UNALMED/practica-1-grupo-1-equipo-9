@@ -7,8 +7,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ciudad implements Serializable, Decimales{
-	private static final long serialVersionUID = -8026803019433813720L;
+	
+    /**
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Finalidad: Descripcion de la clase: Esta clase representa una ciudad, la cual tiene un nombre, un continente, y una lista de patrocinadores y un precio de estadía. Es en las ciudades donde se llevan a cabo las carreras de loa campeonatos
+     * de acuero al continente donde se realice el campeonato.
+     **/
 
+	private static final long serialVersionUID = -8026803019433813720L;
 	//Lista de las ciudades
 	public static ArrayList<Ciudad> listaCiudades = new ArrayList<Ciudad>();
 	
@@ -44,7 +50,12 @@ public class Ciudad implements Serializable, Decimales{
     public static ArrayList<Ciudad> getListaCiudades() {
     	return listaCiudades;
     }
-    public static Continente convertirContinente(int id) { //Convierte un caracter del 1 al 5 en su continente correspondiente
+    public static Continente convertirContinente(int id) { 
+    	/*
+         * Descripcion del metodo: Convierte un caracter del 1 al 5 en su continente correspondiente 
+         * Parametros de entrada: int id
+         * Parametros de salida: Continente
+         */
     	Continente continente = null;
     	switch(id) {
     	case 1:
@@ -67,6 +78,11 @@ public class Ciudad implements Serializable, Decimales{
     }
 
 	public static ArrayList<Ciudad> ciudadesContinente(Continente continente) {
+    	/*
+         * Descripcion del metodo: El método se encarga de filtrar todas las ciudades disponibles para guardar en una lkista las ciudades que pertenecen a determinado continente
+         * Parametros de entrada: continente del tipo Continente
+         * Parametros de salida: ArrayList<Ciudad>
+         */
 		ArrayList<Ciudad> listaCompleta = Ciudad.getListaCiudades();
 		ArrayList<Ciudad> listaDisponibles = new ArrayList<Ciudad>();
 		for (Ciudad ciudad : listaCompleta) {
@@ -78,6 +94,11 @@ public class Ciudad implements Serializable, Decimales{
 	}
 
 	public void estadia(Carrera carrera) {
+    	/*
+         * Descripcion del metodo: El método se encarga de calcular el costo de la estadía de un equipo en la ciudad donde se llevará a cabo la carera y restar ese costo al dinero que tiene disponible el equipo
+         * Parametros de entrada: carrera del tipo Carrera
+         * Parametros de salida: null
+         */
 		Campeonato campeonato = carrera.getCampeonato();
 		for (Equipo equipo : campeonato.getListaEquipos()) {
 			double precio = carrera.getCiudad().getPrecioEstadia() * equipo.getCrewMembers();
@@ -86,6 +107,11 @@ public class Ciudad implements Serializable, Decimales{
 	}
 
 	public void hostRosca(Carrera carrera) {
+    	/*
+         * Descripcion del metodo: El método se encarga de filtrar los equipos cuyos patrocinadores tienen como ciudad preferida la ciudad en donde se desarrolla determinada carrera, y los establece como equipos beneficiados
+         * Parametros de entrada: carrera del tipo Carrera
+         * Parametros de salida: null
+         */
 		Campeonato campeonato = carrera.getCampeonato();
 		ArrayList<Equipo> equipos = campeonato.getListaEquipos();
 		ArrayList<Equipo> equiposBeneficiados = new ArrayList<Equipo>();

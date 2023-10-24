@@ -9,6 +9,11 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class Carrera implements Decimales, Serializable {
+    /**
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Finalidad: Descripcion de la clase: Esta clase representa una carrera, la cual tiene un id, un circuito, un mes, una distancia, un premio, una ciudad, un director de carrera, una dificultad y un clima, al desarrollarse cada una 
+     * se genera n listas con los equipos beneficiados, las posiciones de los competodores y los competidores que finalizan la carrera, las carreras componen un campeonato y se realizan en ciudades del mismo continente.
+     **/
     private static final long serialVersionUID = 5592556885641211247L;
     public static ArrayList<Carrera> listaCarreras = new ArrayList<Carrera>(); //Lista de carreras
     //Atributos
@@ -182,7 +187,12 @@ public class Carrera implements Decimales, Serializable {
         }
     }
 
-    public ArrayList<Boolean> actualizarOpciones() { //Este metodo selecciona aleatoriamente que opciones se van a mostrar
+    public ArrayList<Boolean> actualizarOpciones() {
+    	/*
+         * Descripcion del metodo: Este metodo selecciona aleatoriamente que opciones de acción se van a mostrar durante la ejecucion de la carrera
+         * Parametros de entrada: null
+         * Parametros de salida: ArrayList<Boolean>
+         */
         ArrayList<Boolean> listaOpciones = new ArrayList<Boolean>();
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
@@ -198,6 +208,11 @@ public class Carrera implements Decimales, Serializable {
 
     //Metodos para el final de la carrera
     public boolean actualizarTerminado() {
+    	/*
+         * Descripcion del metodo: Este metodo define si la carrera ha terminado de acuerdo a las posiciones de los vehículos.
+         * Parametros de entrada: null
+         * Parametros de salida: boolean todosTerminados 
+         */
         boolean todosTerminados = true;
         for (VehiculoCarrera vehiculo1 : this.posiciones) {
             if (!this.terminados.contains(vehiculo1)) {
@@ -209,6 +224,11 @@ public class Carrera implements Decimales, Serializable {
     }
 
     public void organizarVehiculosTiempos() { //Organizar los vehiculos por los tiempos
+    	/*
+         * Descripcion del metodo: Este metodo define se encarga de comparar los tiempos de los vehículos en la carrera y generar un orden de acuerdo a estos tiempos
+         * Parametros de entrada: null
+         * Parametros de salida: adición de vehículos a listas 
+         */
         terminados.sort(Comparator.comparing(VehiculoCarrera::getTiempo));
         ArrayList<VehiculoCarrera> vehiculosTerminados = new ArrayList<>(terminados);
         for (VehiculoCarrera vehiculo : this.terminados) {
@@ -236,6 +256,11 @@ public class Carrera implements Decimales, Serializable {
     }
 
     public void agregarVehiculoCarrerra(VehiculoCarrera vehiculoCarrera) {
+    	/*
+         * Descripcion del metodo: Este metodo añade determinado vehículo de carrera a la lista de posiciones
+         * Parametros de entrada: vehiculoCarrera de tipo VehiculoCarrera
+         * Parametros de salida: adición de vehículos a lista 
+         */
         this.posiciones.add(vehiculoCarrera);
     }
 

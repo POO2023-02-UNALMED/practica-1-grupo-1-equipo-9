@@ -10,6 +10,11 @@ import java.util.Random;
 
 
 public class DirectorCarrera extends Persona implements Decimales, Serializable {
+    /**
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Finalidad: Descripcion de la clase: Esta clase representa al director de carrera, el cual tiene una licencia, una carrera la cual dirige y un atributo de corripción, los directores de carreras 
+     * se encargan de gestionar los fraudes que pueden ser implementados en las carreras. 
+     **/
     private static final long serialVersionUID = -2602637847133906292L;
     //Lista directores de carrera
     public static ArrayList<DirectorCarrera> listaDirectores = new ArrayList<DirectorCarrera>();
@@ -56,6 +61,11 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
     //Metodo abstracto heredado
 
     public static ArrayList<DirectorCarrera> dcDisponibles() {
+	/*
+     * Descripcion del metodo: Este metodo filtra los directores de carrera con licencia de la lista de directores de carrera creados y crea una lista con los filtrados.
+     * Parametros de entrada: null
+     * Parametros de salida: ArrayList<DirectorCarrera>
+     */
         ArrayList<DirectorCarrera> disponibles = new ArrayList<DirectorCarrera>();
         for (DirectorCarrera dc : DirectorCarrera.listaDirectores) {
             if (dc.isLicencia()) {
@@ -86,20 +96,40 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
     }
 
     public void recibirPlata(double plata, Piloto piloto) {
+    	/*
+         * Descripcion del metodo: Este método agrega y resta la plata que determinado piloto le da al director de carrera con el fin de cometer un fraude
+         * Parametros de entrada: double plata, Piloto piloto
+         * Parametros de salida: Actialización de parametros
+         */
         this.setPlata(this.getPlata() + plata);
         piloto.getEquipo().setPlata(piloto.getEquipo().getPlata() - plata);
     }
 
-    public void recibirPlata(double plata) {
+    public void recibirPlata(double plata) {    	
+    	/*
+         * Descripcion del metodo: Este método agrega determinada cantidad de plata al director de carrera 
+         * Parametros de entrada: double plata
+         * Parametros de salida: Actialización de parametros
+         */
         this.setPlata(this.getPlata() + plata);
     }
 
     public void sinPlata() {
+    	/*
+         * Descripcion del metodo: Este método agrega plata al director de carrera 
+         * Parametros de entrada: null
+         * Parametros de salida: Actialización de parametros
+         */
         this.setPlata(random.nextDouble(40001) + 10000);
     }
 
     // Metodos de instancia
     public void ponerSancion(Piloto piloto) {
+    	/*
+         * Descripcion del metodo: Este método se encarga de imponer una sanción a determinado piloto
+         * Parametros de entrada: piloto del tipo Piloto
+         * Parametros de salida: Actialización de parametros
+         */
         piloto.setSanciones(piloto.getSanciones() + 1);
     }
 
@@ -186,7 +216,11 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
     }*/
 
     public ArrayList<Piloto> pilotosDesfavorecidos(double plata, Piloto piloto, Campeonato campeonato) {
-        // Buscar pilotos que participan en el campeonato donde el piloto es elegido
+    	/*
+         * Descripcion del metodo: Este método se encarga de filtrar los pilotos desfavorecidos de la lista de pilotos de determinado campeonato donde está el piloto elegido y agregarlos a una lista
+         * Parametros de entrada: double plata, piloto de tipo Piloto, campeonato de tipo Campeonato
+         * Parametros de salida: ArrayList<Piloto>
+         */
         Carrera carreraDirector = carreraCampeonato(campeonato);
         ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
                 for (Piloto piloto1 : campeonato.getListaPilotos()) {
@@ -198,7 +232,11 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
     }
 
     public ArrayList<Piloto> pilotosDesfavorecidos(Piloto piloto, Campeonato campeonato) {
-        // Buscar pilotos que participan en el campeonato donde el piloto es elegido
+    	/*
+         * Descripcion del metodo: Este método se encarga de filtrar los pilotos desfavorecidos de la lista de pilotos de determinado campeonato donde está el piloto elegido y agregarlos a una lista
+         * Parametros de entrada: piloto de tipo Piloto, campeonato de tipo Campeonato
+         * Parametros de salida: ArrayList<Piloto>
+         */
         Carrera carreraDirector = carreraCampeonato(campeonato);
         ArrayList<Piloto> pilotosDesfavorecidos = new ArrayList<Piloto>();
         for (Piloto piloto1 : campeonato.getListaPilotos()) {
@@ -209,8 +247,13 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
         return pilotosDesfavorecidos;
     }
 
-    public Carrera carreraCampeonato(Campeonato campeonato){ //Retorna alguna de las carreras que tiene como director de carrera el objeto que lo llama
-        Random rand = new Random();
+    public Carrera carreraCampeonato(Campeonato campeonato){ 
+    	/*
+         * Descripcion del metodo: Este método se encarga de Retornar alguna de las carreras que tiene como director de carrera el objeto que lo llama
+         * Parametros de entrada: campeonato de tipo Campeonato
+         * Parametros de salida: ArrayList<Carrera>
+         */
+    	Random rand = new Random();
         ArrayList<Carrera> listaCarrerasDirector = new ArrayList<Carrera>();
         for (Carrera carrera : campeonato.getListaCarreras()){
             if (carrera.getDirectorCarrera().equals(this)){

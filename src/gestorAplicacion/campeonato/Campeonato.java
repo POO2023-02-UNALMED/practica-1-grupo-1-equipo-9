@@ -13,7 +13,8 @@ import java.util.function.DoubleUnaryOperator;
 public class Campeonato implements Serializable, Decimales {
 
     /**
-     * Esta clase representa un campeonato, el cual tiene una lista de carreras, una lista de equipos, una lista de pilotos, un id, un nombre, un a�o, un continente, una cantidad de carreras, un premio y un booleano que indica si el campeonato esta desbloqueado o no.
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Finalidad: Descripcion de la clase: Esta clase representa un campeonato, el cual tiene una lista de carreras, una lista de equipos, una lista de pilotos, un id, un nombre, un ano, un continente, una cantidad de carreras, un premio y un booleano que indica si el campeonato esta desbloqueado o no.
      **/
 
     private static final long serialVersionUID = -2490361864090903222L;
@@ -102,6 +103,11 @@ public class Campeonato implements Serializable, Decimales {
 
     //Metodos de clase
     public static ArrayList<Campeonato> campeonatosContinente(Continente continente) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad el agrupar los campeonatos en listas de acuerdo al continente en el cual se dearrollen 
+         * Parametros de entrada:  continente de tipo Continente
+         * Parametros de salida: ArrayList<Campeonato>
+         */
         ArrayList<Campeonato> campeonatosContinente = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
             if (campeonato.getContinente() == continente) {
@@ -112,6 +118,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public static Campeonato buscarCampeonato(int id) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad el identificar determinado campeonato de acuerdo a su id 
+         * Parametros de entrada:  int id
+         * Parametros de salida: campeonato del tipo Campeonato
+         */
         Campeonato campeonato = null;
         for (Campeonato campeonato1 : campeonatos) {
             if (campeonato1.getId() == id) {
@@ -122,6 +133,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public static ArrayList<Campeonato> campeonatosDisponibles(ArrayList<Campeonato> campeonatos) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad filtrar los campeonatos que existen y agrupar en una lista los campeonatos que se encuentran disponibles 
+         * Parametros de entrada:  ArrayList<Campeonato>
+         * Parametros de salida: ArrayList<Campeonato>
+         */
         ArrayList<Campeonato> campeonatosDisponibles = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
             if (!campeonato.isDesbloqueado() && !campeonato.isJugado()) {
@@ -132,6 +148,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public static ArrayList<Campeonato> campeonatosDesbloqueados() {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad filtrar los campeonatos que existen  y agrupar en una lista los campeonatos que se encuentran desbloqueados para ser ejecutados 
+         * Parametros de entrada:  null
+         * Parametros de salida: ArrayList<Campeonato>
+         */
         ArrayList<Campeonato> campeonatosDesbloqueados = new ArrayList<Campeonato>();
         for (Campeonato campeonato : campeonatos) {
             if (campeonato.isDesbloqueado() && !campeonato.isJugado()) {
@@ -142,6 +163,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public static Campeonato campeonatoPiloto(Piloto piloto) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad determinar en cual campeonato compite cierto piloto, buscando en la lista de pilotos de los campeonatos desbloqueados
+         * Parametros de entrada:  piloto del tipo Piloto
+         * Parametros de salida: campeonatoElegido del tipo Campeonato
+         */
         Campeonato campeonatoElegido = null;
         for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
             for (Piloto pilotico : campeonato.getListaPilotos()) {
@@ -158,6 +184,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public static ArrayList<DirectorCarrera> directoresCarrera(Campeonato campeonatoElegido) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad agregar en listas todos los objetos que sean del tipo directorCarrera y esten a cargo de la direccion de las carreras de determinado campeonato 
+         * Parametros de entrada: campeonatoElegido del tipo Campeonato
+         * Parametros de salida: ArrayList<DirectorCarrera>
+         */
         ArrayList<DirectorCarrera> maestrosDeCarrera = new ArrayList<DirectorCarrera>();
         for (Carrera carrera : campeonatoElegido.getListaCarreras()) {
             maestrosDeCarrera.add(carrera.getDirectorCarrera());
@@ -188,6 +219,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public void premiarCampeones(ArrayList<Equipo> equiposPuntuados) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad hacer los calculos que determinen la cantidad correspondiente al premio de cada equipo por su participación en un campeonato y actualizar el parámetro habilidad
+         * Parametros de entrada: ArrayList<Equipo>
+         * Parametros de salida: null 
+         */
         this.listaEquipos = equiposPuntuados;
         double multiplicadorDinero = 1.2;
         double contadorHabilidad = 0.08;
@@ -226,6 +262,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public ArrayList<Carrera> carrerasPreferidas() {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad crear una lista con las carreras preferidas del patrocinador del campeonato de acuerdo a la ciudad en donde se corran.
+         * Parametros de entrada: null
+         * Parametros de salida: ArrayList<Carrera>
+         */
         ArrayList<Carrera> carrerasPreferidas = new ArrayList<Carrera>();
         for (Carrera carrera : this.listaCarreras) {
             // Ciudad en las ciudades preferidas del patrocinador de campeonato
@@ -237,6 +278,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public void organizarCarreras() {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad de comparar las fechas de las carreras de un campeonato y asignarles un orden en el cual se van a ejecutar.
+         * Parametros de entrada: null
+         * Parametros de salida: null
+         */
         // Organizar carreras de acuerdo a la fecha
         this.listaCarreras.sort(new Comparator<Carrera>() {
             @Override
@@ -248,10 +294,20 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public void actualizarMesCarreras(int mes) {
+    	/*
+         * Descripcion del metodo: Este método tiene como finalidad actualizar la lista que contiene los meses en los que se corren las carreras a medida que se vayan corriendo.
+         * Parametros de entrada: int mes
+         * Parametros de salida: null
+         */
         this.mesesCarreras.removeIf(num -> num == mes);
     }
 
     public void logisticaPremios(double premio, double presupuesto, ArrayList<Carrera> carrerasPreferidas) {
+    	/*
+         * Descripcion del metodo: Este método se encarga de calcular el pago del patrocinador al equipo teniendo en cuenta si la carrera se lleva a cabo en una de las ciudades preferias del patrocinador o no
+         * Parametros de entrada: double premio, double presupuesto, ArrayList<Carrera>
+         * Parametros de salida: null
+         */
         Patrocinador patrocinador = this.patrocinadorCampeonato;
         if (patrocinador.getPlata() / 2 > premio) {
             this.premio = patrocinador.getPlata() / 2;
@@ -290,6 +346,11 @@ public class Campeonato implements Serializable, Decimales {
     }
 
     public Piloto pilotoCampeonato() {
+    	/*
+         * Descripcion del metodo: Este método se encarga de seleccionar el piloto que el usuario elige de la lista de pilotos dosponobles de determinado equipo para cierro campeonato         
+         * parametros de entrada: null
+         * Parametros de salida: piloto del tipo Piloto
+         */
         Piloto piloto = null;
         for (Piloto pilotico : this.getListaPilotos()) {
             if (pilotico.isElegido()) {

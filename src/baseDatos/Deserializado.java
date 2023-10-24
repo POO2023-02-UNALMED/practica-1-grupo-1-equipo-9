@@ -1,83 +1,84 @@
 package baseDatos;
 
-import java.util.ArrayList;
 import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 
+import java.util.ArrayList;
+
 public class Deserializado {
 
-	public static void deserializacion() {
-		
-		
-		//////////////////////////CAMPEONATOS  //////////////////////////
-		
-	    ArrayList<Campeonato> campeonatos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCampeonatos.txt");
-
-	    Campeonato.setCampeonatos(campeonatos);
-
-	    
-	    ////////////////////////// CIUDADES  //////////////////////////
-	    
-	    ArrayList<Ciudad> ciudades = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCiudades.txt");
-
-	    Ciudad.setListaCiudades(ciudades);
-	    
-	    
-	    ////////////////////////// DIRECTORES  //////////////////////////
-	    
-	    ArrayList<DirectorCarrera> directoresCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosDirectores.txt");
+    public static void deserializacion() {
 
 
-		DirectorCarrera.setListaDirectores(directoresCarrera);
-		
-	    
-	    ////////////////////////// EQUIPOS  //////////////////////////
-	    
-	    ArrayList<Equipo> equipos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosEquipos.txt");
+        //////////////////////////CAMPEONATOS  //////////////////////////
 
-	    Equipo.setEquipos(equipos);
-	    
+        ArrayList<Campeonato> campeonatos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCampeonatos.txt");
 
-	    ////////////////////////// PATROCINADORES  //////////////////////////
+        Campeonato.setCampeonatos(campeonatos);
 
-	    ArrayList<Patrocinador> patrocinadores = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPatrocinadores.txt");
 
-	    Patrocinador.setListaPatrocinadores(patrocinadores);
+        ////////////////////////// CIUDADES  //////////////////////////
 
-	    
-	    ////////////////////////// PIEZAS  //////////////////////////
-	    
-	    ArrayList<Pieza> piezas = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPiezas.txt");
+        ArrayList<Ciudad> ciudades = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCiudades.txt");
 
-	    Pieza.setPiezas(piezas);
+        Ciudad.setListaCiudades(ciudades);
 
-	    
-	  ////////////////////////// VEHICULO CARRERA  //////////////////////////
-	    
-	    ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculos.txt");
 
-		VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
+        ////////////////////////// DIRECTORES  //////////////////////////
 
-	    
-	    ////////////////////////// PILOTOS  //////////////////////////
-	    
-	    ArrayList<Piloto> pilotos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPilotos.txt");
+        ArrayList<DirectorCarrera> directoresCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosDirectores.txt");
 
-	    Piloto.setListaPilotos(pilotos);
-	    
 
-	    ////////////////////////// CHASIS  //////////////////////////
+        DirectorCarrera.setListaDirectores(directoresCarrera);
 
-	    ArrayList<Chasis> chasis = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosChasis.txt");
 
-		Chasis.setListaChasis(chasis);
+        ////////////////////////// EQUIPOS  //////////////////////////
 
-		////////////////////////// CIRCUITOS  //////////////////////////
+        ArrayList<Equipo> equipos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosEquipos.txt");
 
-		ArrayList<Circuito> circuitos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCircuitos.txt");
+        Equipo.setEquipos(equipos);
 
-		Circuito.setCircuitos(circuitos);
 
-	    
-	}
+        ////////////////////////// PATROCINADORES  //////////////////////////
+
+        ArrayList<Patrocinador> patrocinadores = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPatrocinadores.txt");
+
+        Patrocinador.setListaPatrocinadores(patrocinadores);
+
+
+        ////////////////////////// PIEZAS  //////////////////////////
+
+        ArrayList<Pieza> piezas = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPiezas.txt");
+
+        Pieza.setPiezas(piezas);
+
+
+        ////////////////////////// VEHICULO CARRERA  //////////////////////////
+
+        ArrayList<VehiculoCarrera> vehiculosCarrera = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosVehiculos.txt");
+
+        VehiculoCarrera.setListaVehiculosCarrera(vehiculosCarrera);
+
+
+        ////////////////////////// PILOTOS  //////////////////////////
+
+        ArrayList<Piloto> pilotos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosPilotos.txt");
+
+        Piloto.setListaPilotos(pilotos);
+
+
+        ////////////////////////// CHASIS  //////////////////////////
+
+        ArrayList<Chasis> chasis = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosChasis.txt");
+
+        Chasis.setListaChasis(chasis);
+
+        ////////////////////////// CIRCUITOS  //////////////////////////
+
+        ArrayList<Circuito> circuitos = DeserializadoGenerico.deserializarObjetos("src\\baseDatos\\temp\\datosCircuitos.txt");
+
+        Circuito.setCircuitos(circuitos);
+
+
+    }
 }

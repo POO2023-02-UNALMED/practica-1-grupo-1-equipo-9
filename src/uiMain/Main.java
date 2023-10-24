@@ -1,8 +1,10 @@
 package uiMain;
 
+import baseDatos.Serializado;
 import gestorAplicacion.campeonato.*;
 import gestorAplicacion.paddock.*;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -1108,7 +1110,15 @@ public class Main {
         if (guardar) {
             serializador.serializar();
         } else {
-            // preguntar como se borra todo
+            ps5controller();
+            String backroom = sc.nextLine();
+            if (backroom.equals("resetear")){
+                try {
+                    Serializado.resetear();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
         System.out.println("Gracias por jugar!");
     }

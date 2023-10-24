@@ -8,8 +8,8 @@ public abstract class Persona implements Serializable, Decimales {
      * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
      * Descripcion de la clase: Esta clase ha sido diseñada con la finalidad de ser heredada por diferentes entidades utilizadas en el programa, como son los patrocinadores, pilotos y directores de carrera.
      */
-	private static final long serialVersionUID = 9152973937117015465L;
-	// Atributos
+    private static final long serialVersionUID = 9152973937117015465L;
+    // Atributos
     static int idActual = 1;
     protected int id;
     protected String nombre;
@@ -17,13 +17,6 @@ public abstract class Persona implements Serializable, Decimales {
     protected double plata;
 
     // Constructores
-    public Persona(String nombre, String pais) {
-        this.id = Persona.getIdActual();
-        this.nombre = nombre;
-        this.pais = pais;
-        Persona.idActual++;
-        this.plata = 0;
-    }
     public Persona(String nombre, String pais, double plata) {
         this.id = Persona.getIdActual();
         this.nombre = nombre;
@@ -31,29 +24,26 @@ public abstract class Persona implements Serializable, Decimales {
         Persona.idActual++;
         this.plata = plata;
     }
-    
+
+    public Persona(String nombre, String pais) {
+        this(nombre, pais, 0);
+    }
+
+
     public Persona(String nombre) {
-    	this.id = Persona.getIdActual();
-    	this.nombre = nombre;
-        Persona.idActual++;
-        this.plata = 0;
+        this(nombre, "Alemania", 0);
     }
 
     public Persona(String nombre, double plata) {
-        this.id = Persona.getIdActual();
-        this.nombre = nombre;
-        Persona.idActual++;
-        this.plata = plata;
+        this(nombre, "Alemania", plata);
     }
-    
+
     public Persona() {
-        this.id = Persona.getIdActual();
-        Persona.idActual++;
-        this.plata = 0;
+        this("NPC");
     }
 
     public void redondear() {
-    	this.plata = dosDecimales(this.plata);
+        this.plata = dosDecimales(this.plata);
     }
 
     {
@@ -68,8 +58,8 @@ public abstract class Persona implements Serializable, Decimales {
     public static int getIdActual() {
         return idActual;
     }
-    
-    // Lista de m�todos set y get
+
+    // Lista de m todos set y get
     public int getId() {return this.id;}
     public void setId(int id) {this.id = id;}
 

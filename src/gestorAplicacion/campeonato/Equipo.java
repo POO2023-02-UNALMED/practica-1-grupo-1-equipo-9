@@ -108,6 +108,19 @@ public class Equipo implements Serializable {
             listaOrganizada.add(equipo);
             equipo.setPuntos(Math.abs(equipo.getPuntos()));
         }
+        Random rand = new Random();
+        boolean cero = true;
+        for (Equipo equipo : listaOrganizada) {
+            // si todos son cero
+            if (! (equipo.getPuntos() == 0)) {
+                cero = false;
+            }
+        }
+        for (Equipo equipo : listaOrganizada) {
+            if (cero) {
+                equipo.setPuntos(rand.nextInt(13));
+            }
+        }
         listaOrganizada.sort(Comparator.comparing(Equipo::getPuntos).reversed());
         return listaOrganizada;
     }

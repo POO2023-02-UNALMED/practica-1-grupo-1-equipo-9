@@ -1034,6 +1034,7 @@ public class Main {
         } else {
             System.out.println("\nEl campeonato " + campeonato.getNombre() + " se da por terminado");
         }
+        campeonato.setJugado(true);
         //BORRAR RESIDUOS DE CAMPEONATO
         for (Equipo equipo : campeonato.getListaEquipos()){
             equipo.setPuntos(0);

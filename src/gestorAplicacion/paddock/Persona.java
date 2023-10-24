@@ -83,5 +83,4 @@ public abstract class Persona implements Serializable, Decimales {
         this.plata = plata;
     }
 
-
 }

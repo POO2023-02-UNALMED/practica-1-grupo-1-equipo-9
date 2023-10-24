@@ -8,7 +8,6 @@ public interface Decimales {
     }
     void redondear();
 
-
     static double dosDecimalesP(double valor) {
         return Math.round(valor * 100.0) / 100.0;
     }

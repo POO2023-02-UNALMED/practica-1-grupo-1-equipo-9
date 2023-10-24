@@ -48,18 +48,10 @@ public class Piloto extends Persona implements Serializable, Decimales {
     }
 
     public Piloto(String nombre, String pais, Equipo contrato, int puntos, int sanciones, double habilidad, ArrayList<String> victorias, boolean lesionado, boolean desbloqueado, boolean elegido, double valorContrato, double presupuestoVehiculo, Patrocinador patrocinador) {
-        super(nombre, pais);
-        this.contrato = contrato;
-        this.puntos = puntos;
-        this.sanciones = sanciones;
-        this.habilidad = habilidad;
+        this(nombre, contrato, puntos, sanciones, habilidad, lesionado, desbloqueado, elegido, valorContrato, presupuestoVehiculo, patrocinador);
         this.victorias = victorias;
-        this.lesionado = lesionado;
         this.desbloqueado = desbloqueado;
-        this.elegido = elegido;
         this.valorContrato = valorContrato;
-        this.presupuestoVehiculo = presupuestoVehiculo;
-        this.patrocinador = patrocinador;
     }
 
     public Piloto(String nombre) {

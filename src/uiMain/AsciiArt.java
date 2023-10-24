@@ -33,7 +33,7 @@ public interface AsciiArt {
     public static void bienvenida() {
         String art = "       .-----------,-.-----.\n" +
                 "       |:_______ //(_)\\____|:\n" +
-                "    ___||=======// ,--.\\===.|  ___                 ¡Bienvenido al Proyecto de la Fédération\n" +
+                "    ___||=======// ,--.\\===.|  ___                 Bienvenido al Proyecto de la Federation\n" +
                 "  .'.\"\"'\\____.'/ | (__)\\__|\\.'.\"\"'.\n" +
                 "  | |\"\"\"||._       '---'__   `-|\"\"\"|                   Internationale de l'Automobile!\n" +
                 "  | |\"\"\"||. '-.___  ` -'--'     `-.| ___\n" +

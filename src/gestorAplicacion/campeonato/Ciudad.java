@@ -4,6 +4,7 @@ import gestorAplicacion.paddock.Patrocinador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class Ciudad implements Serializable, Decimales{
@@ -157,4 +158,17 @@ public class Ciudad implements Serializable, Decimales{
 	public void setPrecioEstadia(double precioEstadia) {
 		this.precioEstadia = precioEstadia;
 	}
+
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Ciudad miClase = (Ciudad) o;
+		return nombre.equals(miClase.nombre) ;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre);
+	}
+
 }

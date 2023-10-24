@@ -16,6 +16,8 @@ public class Chasis implements Serializable, Decimales{
     private static final long serialVersionUID = 7166096271225774034L;
 
     public static ArrayList<Chasis> listaChasis = new ArrayList<Chasis>();
+    private static int idActual = 0;
+    private int id = idActual++;
 
     private String marca;
     private String modelo;
@@ -137,6 +139,34 @@ public class Chasis implements Serializable, Decimales{
     public void morir() {
         this.setVelocidad(0);
         this.setManiobrabilidad(0);
+    }
+
+    public static int getIdActual() {
+        return idActual;
+    }
+
+    public static void setIdActual(int idActual) {
+        Chasis.idActual = idActual;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chasis miClase = (Chasis) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }

@@ -6,6 +6,7 @@ import gestorAplicacion.paddock.Piloto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -45,7 +46,7 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
     }
 
     public DirectorCarrera(String nombre) {
-        super(nombre, random.nextDouble(40001) + 10000);
+        super(nombre, random.nextDouble(400001) + 100);
         this.licencia = true;
         this.corrupcion = 0;
         DirectorCarrera.listaDirectores.add(this);
@@ -300,4 +301,17 @@ public class DirectorCarrera extends Persona implements Decimales, Serializable 
         DirectorCarrera.listaDirectores = directoresCarrera;
         
     }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DirectorCarrera miClase = (DirectorCarrera) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }

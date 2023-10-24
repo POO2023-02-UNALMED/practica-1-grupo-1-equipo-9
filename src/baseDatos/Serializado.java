@@ -278,10 +278,10 @@ public class Serializado {
         Ciudad fiyi = new Ciudad("Fiyi", Continente.Oceania);
         Ciudad boraBora = new Ciudad("Bora Bora", Continente.Oceania);
         Ciudad noumea = new Ciudad("Noumea", Continente.Oceania);
-        Ciudad honolulu2 = new Ciudad("Honolulu", Continente.Oceania);
+        Ciudad hobart = new Ciudad("Hobart", Continente.Oceania);
         Ciudad goldCoast = new Ciudad("Gold Coast", Continente.Oceania);
-        Ciudad sydney2 = new Ciudad("Sydney", Continente.Oceania);
-        Ciudad perth2 = new Ciudad("Perth", Continente.Oceania);
+        Ciudad canberra = new Ciudad("Canberra", Continente.Oceania);
+        Ciudad queenstown = new Ciudad("Queenstown", Continente.Oceania);
 
         // Equipos
         new Equipo("Mercedes-AMG Petronas Formula One Team");
@@ -360,14 +360,14 @@ public class Serializado {
         new Campeonato("Carrera en la Tierra de los Kiwis", 9, Continente.Oceania);
         new Campeonato("Gran Rally del Sahara", 6, Continente.Africa);
         new Campeonato("Ruta Panamericana Extrema", 11, Continente.America);
-        new Campeonato("Carrera en el Lejano Oriente", 8, Continente.Asia);
+        new Campeonato("Carreras por el Oriente", 8, Continente.Asia);
         new Campeonato("Campeonato Europeo de la Velocidad Extrema", 10, Continente.Europa);
         new Campeonato("Carrera en la Costa Australiana", 9, Continente.Oceania);
         new Campeonato("Carrera en el Desierto de los Faraones", 6, Continente.Africa);
         new Campeonato("Gran Carrera de las Americas", 11, Continente.America);
         new Campeonato("Carrera en el Lejano Oriente", 8, Continente.Asia);
         new Campeonato("Campeonato Europa a toda Velocidad", 10, Continente.Europa);
-        new Campeonato("Carrera en la Costa Australiana", 9, Continente.Oceania);
+        new Campeonato("Carrera en Australiana Veloz", 9, Continente.Oceania);
         new Campeonato("Campeonato de las Arenas", 8, Continente.Africa);
 
 

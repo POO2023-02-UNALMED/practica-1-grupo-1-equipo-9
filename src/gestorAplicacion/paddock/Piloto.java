@@ -167,6 +167,15 @@ public class Piloto extends Persona implements Serializable, Decimales {
         this.setPresupuestoVehiculo(this.valorContrato * this.habilidad * 10);
     }
 
+    public Piloto buscarPiloto(Piloto piloto) {
+        for (Piloto piloto1 : Piloto.listaPilotos) {
+            if (piloto1.equals(piloto)) {
+                return piloto1;
+            }
+        }
+        return piloto;
+    }
+
     public ArrayList<VehiculoCarrera> maldecirPiloto(double plata, Piloto piloto, DirectorCarrera directorCarrera, Campeonato campeonato) { //Esto es para maldecir a un piloto desde los tratos especiales con el director de carrera
         ArrayList<VehiculoCarrera> vehiculosDevolver = new ArrayList<VehiculoCarrera>();
         vehiculosDevolver.add(VehiculoCarrera.vehiculosPiloto(piloto).get(0));

@@ -7,6 +7,7 @@ import gestorAplicacion.campeonato.VehiculoCarrera;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Objects;
 
 public class Pieza implements Serializable, Decimales {
     /***
@@ -26,6 +27,7 @@ public class Pieza implements Serializable, Decimales {
     private String nombre;
     private double precio;
     private String tipo;
+    private boolean elegida = false;
 
 
     // Constructores
@@ -66,7 +68,7 @@ public class Pieza implements Serializable, Decimales {
         this.nombre = nombre;
         this.tipo = tipo;
         this.maniobrabilidadAnadida = 0.1 + (0.4 - 0.1) * random.nextDouble();
-        this.precio = Math.random() * 1000;
+        this.precio = random.nextDouble(1000) + 100;
         this.danado = false;
         this.velocidadAnadida = Math.random() * 20;
         Pieza.piezas.add(this);
@@ -310,7 +312,7 @@ public class Pieza implements Serializable, Decimales {
 
         ArrayList<Pieza> piezasDisponibles = new ArrayList<Pieza>();
         for (Pieza pieza : Pieza.piezas) {
-            if (!pieza.isDanado()) {
+            if (!pieza.isDanado() && !pieza.isElegida()) {
                 piezasDisponibles.add(pieza);
             }
         }
@@ -452,5 +454,25 @@ public class Pieza implements Serializable, Decimales {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pieza miClase = (Pieza) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    public boolean isElegida() {
+        return elegida;
+    }
+
+    public void setElegida(boolean elegida) {
+        this.elegida = elegida;
     }
 }

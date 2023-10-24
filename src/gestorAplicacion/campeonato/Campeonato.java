@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Objects;
 import java.util.function.DoubleUnaryOperator;
 
 public class Campeonato implements Serializable, Decimales {
@@ -202,6 +203,13 @@ public class Campeonato implements Serializable, Decimales {
         return maestrosDeCarreraDiferentes;
     }
 
+    public void actualizarEquipos() {
+        for(Piloto piloto: this.getListaPilotos()){
+            if(!this.getListaEquipos().contains(piloto.getEquipo())){
+                this.getListaEquipos().add(piloto.getEquipo());
+            }
+        }
+    }
     public static int getIdActual() {
         return idActual;
     }
@@ -335,7 +343,7 @@ public class Campeonato implements Serializable, Decimales {
             if (!carrerasPreferidas.isEmpty()) {
                 if (carrerasPreferidas.contains(carrera)) {
                     // si es preferida el premio es el doble
-                    carrera.setPremioEfectivo(calculatePercentage.applyAsDouble(carrera.getDificultad() * 2) * presupuesto);
+                    carrera.setPremioEfectivo(calculatePercentage.applyAsDouble(carrera.getDificultad()) * 2 * presupuesto);
                 }
             }
             carrera.setPremioEfectivo(calculatePercentage.applyAsDouble(carrera.getDificultad()) * presupuesto);
@@ -487,5 +495,18 @@ public class Campeonato implements Serializable, Decimales {
 
     public void setJugado(boolean jugado) {
         this.jugado = jugado;
+    }
+
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campeonato miClase = (Campeonato) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

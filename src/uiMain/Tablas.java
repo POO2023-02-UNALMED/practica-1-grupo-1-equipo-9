@@ -302,6 +302,7 @@ public interface Tablas extends Decimales {
         int maxNombre = 0;
 
         for (VehiculoCarrera posicion : posiciones) {
+            posicion.redondear();
             int nombre = posicion.getPiloto().getNombre().length();
             double distancia = posicion.getDistanciaRecorrida();
             double velocidad = posicion.getTiempo();
@@ -341,6 +342,7 @@ public interface Tablas extends Decimales {
         int maxNombre = 0;
 
         for (VehiculoCarrera posicion : posiciones) {
+            posicion.redondear();
             int nombre = posicion.getPiloto().getNombre().length();
             double distancia = posicion.getDistanciaRecorrida();
             double velocidad = posicion.getTiempo();
@@ -421,6 +423,7 @@ public interface Tablas extends Decimales {
         int maxNombre = 1;
 
         for (Carrera carrera : carreras) {
+            carrera.redondear();
             int nombre = carrera.getNombreCircuito().length();
             int ciudad = carrera.getCiudad().getNombre().length();
             double dificultad = carrera.getDificultad();
@@ -455,6 +458,7 @@ public interface Tablas extends Decimales {
 
     //tabla stats actuales
     static void tablaStatsActuales(VehiculoCarrera vehiculoElegido) {
+        vehiculoElegido.redondear();
 
 
         System.out.print("-------------------------------------\n");
@@ -618,6 +622,7 @@ public interface Tablas extends Decimales {
         int maxEquipo = 0;
         int maxCamp = campeonato.getNombre().length();
         for (Piloto piloto : listaPilotos) {
+            piloto.redondear();
             int nombre = piloto.getNombre().length();
             int equipo = piloto.getEquipo().getNombre().length();
             int opcion = String.valueOf(piloto.getId()).length();
@@ -771,6 +776,7 @@ public interface Tablas extends Decimales {
 
 
         for (VehiculoCarrera vehiculoCarrera : listaVehiculo) {
+            vehiculoCarrera.redondear();
             String aleron;
             String motor;
             String neumaticos;

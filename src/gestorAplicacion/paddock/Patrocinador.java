@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Random;
 
 public class Patrocinador extends Persona implements Serializable, Decimales{
@@ -316,4 +317,17 @@ public class Patrocinador extends Persona implements Serializable, Decimales{
         this.ciudadesPreferidas = ciudadesPreferidas;
     }
     public static Random random = new Random();
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patrocinador miClase = (Patrocinador) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }

@@ -10,6 +10,9 @@ public class Circuito implements java.io.Serializable, Decimales{
      * Descripcion de la clase: La clase "Circuito" facilita la creacion y asignacion de atributos esenciales para cada uno de los circuitos requeridos en el campeonato de carreras. Estos atributos incluyen detalles como el precio, nombre y ubicacion geografica de cada circuito. Esta informacion es crucial para la gestion y organizacion de las carreras, permitiendo una representacion precisa y detallada de los distintos escenarios en los que se llevan a cabo las carreras del campeonato.
      */
 	private static final long serialVersionUID = 6748994374640828496L;
+
+    private static int idActual = 0;
+    private int id = idActual++;
 	
 	public static ArrayList<Circuito> circuitos = new ArrayList<Circuito>();
     private String nombre;
@@ -158,4 +161,41 @@ public class Circuito implements java.io.Serializable, Decimales{
     }
 
     static Random random = new Random();
+
+    public static int getIdActual() {
+        return idActual;
+    }
+
+    public static void setIdActual(int idActual) {
+        Circuito.idActual = idActual;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static Random getRandom() {
+        return random;
+    }
+
+    public static void setRandom(Random random) {
+        Circuito.random = random;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circuito miClase = (Circuito) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }

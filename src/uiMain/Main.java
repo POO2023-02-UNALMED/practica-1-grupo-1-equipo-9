@@ -127,6 +127,7 @@ public class Main {
         System.out.println("Elige un equipo");
         n = validaciones(1, equiposDisponibles.size());
         Equipo equipo = equiposDisponibles.get(n - 1);
+        Equipo equipoElegido = equiposDisponibles.get(n - 1);
         System.out.println("Has elegido " + equipo.getNombre());
         equipo.setElegido(true);
         System.out.println("\n");
@@ -248,7 +249,7 @@ public class Main {
             while (repetir) {
                 // se eligen patrocinadores que tengan el dinero suficiente para patrocinar a cada piloto
                 ArrayList<Patrocinador> patrocinadoresPiloto = Patrocinador.patrocinadorPiloto(piloto, patrocinadoresDisponibles);
-                if (piloto.getEquipo().isElegido()) { // si es del equipo elegido
+                if (piloto.getEquipo().equals(equipoElegido)) { // si es del equipo elegido
                     System.out.println("Estos son los patrocinadores que pueden patrocinar a " + piloto.getNombre());
                     tablaPatrocinadores(patrocinadoresPiloto);
                     System.out.println("Elige un patrocinador para el piloto " + piloto.getNombre());
@@ -308,6 +309,7 @@ public class Main {
         System.out.println("Has elegido " + campeonato.getNombre());
         System.out.println("\n");
         ArrayList<Carrera> carrerasCamp = new ArrayList<Carrera>();
+        campeonato.setMesesCarreras(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)));
 
         ArrayList<Circuito> circuitos = Circuito.circuitosUbicacion(campeonato);
         ArrayList<Circuito> circuitosVender = null;
@@ -430,6 +432,7 @@ public class Main {
             carrerasPreferidasU = campeonato.carrerasPreferidas();
 
             for (int i = 0; i < cantCarrerasPreferidas; i++) {
+                tablaCarreras1(carrerasPreferidas);
                 System.out.println("Elige una carrera");
                 n = validaciones(1, carrerasPreferidas.size());
                 Carrera carrera = carrerasPreferidas.get(n - 1);
@@ -624,7 +627,7 @@ public class Main {
             if (descuento) {
                 System.out.println("Has impresionado a los proveedores");
                 double porcentaje = equipo.calcularDescuento(precioTotal, vehiculoCarrera);
-                System.out.println("Les han hecho un descuento del " + porcentaje + "% debido a tus habilidades y el dinero del equipo");
+                System.out.println("Les han hecho un descuento del " + Decimales.dosDecimalesP(porcentaje) + "% debido a tus habilidades y el dinero del equipo");
                 equipo.comprarPiezas(precioTotal, vehiculoCarrera);
             } else {
                 System.out.println("No has impresionado a los proveedores, no te han hecho descuento");
@@ -767,7 +770,7 @@ public class Main {
         ArrayList<Piloto> pilotosDisponibles = new ArrayList<Piloto>();
         //Campeonatos desbloqueados y con carreras
         for (Campeonato campeonato : Campeonato.campeonatosDesbloqueados()) {
-            if (campeonato.getListaCarreras().get(0) != null) {
+            if (!campeonato.getListaCarreras().isEmpty()) {
                 listaDesbloqueadosConCarreras.add(campeonato);
             }
         }

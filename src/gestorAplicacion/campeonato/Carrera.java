@@ -6,6 +6,7 @@ import gestorAplicacion.paddock.Piloto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Random;
 
 public class Carrera implements Decimales, Serializable {
@@ -384,6 +385,18 @@ public class Carrera implements Decimales, Serializable {
 
     public void setEquiposBeneficiados(ArrayList<Equipo> equiposBeneficiados) {
         this.equiposBeneficiados = equiposBeneficiados;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Carrera miClase = (Carrera) o;
+        return id == miClase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }

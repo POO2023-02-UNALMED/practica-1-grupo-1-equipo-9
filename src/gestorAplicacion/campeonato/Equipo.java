@@ -246,19 +246,24 @@ public class Equipo implements Serializable {
     	
         int puntosActuales = 13;
         for (VehiculoCarrera vehiculo : terminados) {
+            Piloto piloto = vehiculo.getPiloto().buscarPiloto(vehiculo.getPiloto());
             if (!vehiculo.isMorido()) {
-                vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
-                vehiculo.getPiloto().getEquipo().recalcularPuntos(campeonato);
+                piloto.setPuntos(piloto.getPuntos() + puntosActuales);
+                piloto.getEquipo().recalcularPuntos(campeonato);
                 if (puntosActuales >= 8) {
                     puntosActuales -= 2;
                 } else {
                     puntosActuales--;
                 }
             }
-            if (vehiculo.getPiloto().getSanciones() != 0) {
-                vehiculo.getPiloto().setPuntos(vehiculo.getPiloto().getPuntos() + puntosActuales);
+            if (piloto.getSanciones() != 0) {
+                piloto.setPuntos(piloto.getPuntos() + puntosActuales);
             }
-            vehiculo.getPiloto().registrarTiempo(vehiculo.getTiempo());
+            piloto.registrarTiempo(vehiculo.getTiempo());
+        }
+
+        for (Equipo equipo : campeonato.getListaEquipos()) {
+            equipo.recalcularPuntos(campeonato);
         }
         terminados.get(0).getPiloto().recibirPlata(plata * 0.9);
         for (Patrocinador patrocinador : terminados.get(0).getPiloto().getEquipo().getPatrocinadoresEquipo()) {
@@ -280,8 +285,9 @@ public class Equipo implements Serializable {
     	
         int nuevosPuntos = 0;
         for (Piloto piloto : campeonato.getListaPilotos()) {
+            Piloto pilotoSI = piloto.buscarPiloto(piloto);
             if (piloto.getEquipo().equals(this)) {
-                nuevosPuntos += piloto.getPuntos();
+                nuevosPuntos += pilotoSI.getPuntos();
             }
         }
         this.setPuntos(nuevosPuntos);
@@ -405,6 +411,7 @@ public class Equipo implements Serializable {
     }
 
     public boolean isElegido() {
+
         return elegido;
     }
 

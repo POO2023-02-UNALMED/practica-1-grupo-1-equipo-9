@@ -11,7 +11,7 @@ import java.util.Random;
 public class Pieza implements Serializable, Decimales {
     /***
      * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
-     * Descripcion de la clase: La función principal de esta clase es la asignación de atributos a cada una de las piezas de los vehiculos que compiten en las carreras del campeonato.
+     * Descripcion de la clase: La funcion principal de esta clase es la asignacion de atributos a cada una de las piezas de los vehiculos que compiten en las carreras del campeonato.
      */
 	private static final long serialVersionUID = 3981603915201008050L;
 	

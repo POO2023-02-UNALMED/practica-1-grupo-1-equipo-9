@@ -7,6 +7,12 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Chasis implements Serializable, Decimales{
+	
+    /***
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Descripcion de la clase: Esta clase ha sido diseñada con la finalidad de ser heredada por la clase vehiculoCarrera.
+     */
+	
     private static final long serialVersionUID = 7166096271225774034L;
 
     public static ArrayList<Chasis> listaChasis = new ArrayList<Chasis>();
@@ -47,6 +53,11 @@ public class Chasis implements Serializable, Decimales{
     }
 
     public static ArrayList<Chasis> chasisDisponible(Piloto piloto){
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de chasis segun el presupuesto disponible.
+         * Parametros de entrada:  piloto de tipo piloto
+         * Parametros de salida: ArrayList<Chasis>
+         */
         double precioMaximo = piloto.getPresupuestoVehiculo() * 0.6;
         ArrayList<Chasis> listaChasis = new ArrayList<Chasis>();
         for (Chasis chasis : Chasis.listaChasis) {

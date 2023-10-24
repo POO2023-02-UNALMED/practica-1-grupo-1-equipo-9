@@ -11,6 +11,12 @@ import java.util.Random;
 
 
 public class Equipo implements Serializable {
+	
+	   /***
+     * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+     * Descripcion de la clase: Esta clase se encarga de la creacion y gention de los quipos que seran utlizados en los campeonatos
+     */
+	
     private static final long serialVersionUID = 6129409994157579682L;
 
     public static ArrayList<Equipo> equipos = new ArrayList<Equipo>(); //Lista de equipos
@@ -92,6 +98,11 @@ public class Equipo implements Serializable {
 
     // Metodos de clase
     public static ArrayList<Equipo> organizarEquiposPuntos(Campeonato campeonato) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de organizar los equipos de un campeonato segun sus puntos
+         * Parametros de entrada: campeonato de tipo Campeonato
+         * Parametros de salida: ArrayList<Equipo>
+         */
         ArrayList<Equipo> listaOrganizada = new ArrayList<Equipo>();
         for (Equipo equipo : campeonato.getListaEquipos()) {
             listaOrganizada.add(equipo);
@@ -106,6 +117,11 @@ public class Equipo implements Serializable {
     }
 
     public static ArrayList<Equipo> equiposContinente(Campeonato campeonato) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de equipos, segun su continente
+         * Parametros de entrada:  campeonato de tipo Campeonato
+         * Parametros de salida: ArrayList<Equipo>
+         */
         Continente continente = campeonato.getContinente();
         ArrayList<Equipo> equiposContinente = new ArrayList<Equipo>();
         for (Equipo equipo : equipos) {
@@ -120,6 +136,13 @@ public class Equipo implements Serializable {
     }
 
     public static ArrayList<Equipo> equiposDisponibles(ArrayList<Equipo> equipos) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de equipos disponibles para un campeonato, segun su atributo ocupado.
+         * Parametros de entrada:  ArrayList<Equipo>
+         * Parametros de salida: ArrayList<Equipo>
+         */
+    	
         ArrayList<Equipo> equiposDisponibles = new ArrayList<Equipo>();
         for (Equipo equipo : equipos) {
             if (!equipo.isOcupado()) {
@@ -130,6 +153,12 @@ public class Equipo implements Serializable {
     }
 
     public static ArrayList<Equipo> equiposContrato() {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de equipos según su cantidad de contratos, dada por su atributo CantContratos
+         * Parametros de entrada:  sin argumentos
+         * Parametros de salida: ArrayList<Equipo>
+         */
+    	
         ArrayList<Equipo> equiposContrato = new ArrayList<Equipo>();
         for (Equipo equipo : equipos) {
             if (equipo.getCantContratos() == 0) {
@@ -157,12 +186,24 @@ public class Equipo implements Serializable {
     }
 
     public static void equiposOcupados(ArrayList<Equipo> equipos) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de cambiar el estado ocupado a disponible, de los equipos que se pasan como parametro 
+         * Parametros de entrada:  ArrayList<Equipo>
+         * Parametros de salida: void
+         */
         for (Equipo equipo : equipos) {
             equipo.setOcupado(true);
         }
     }
 
     public static ArrayList<Equipo> elegirContrincantes(Equipo equipo, Campeonato campeonato, ArrayList<Equipo> equipos) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de seleccionar y asignar los equipos contrincantes en el campeonato.
+         * Parametros de entrada:  equipo de tipo Equipo, campeonato de tipo Campeonato, ArrayList<Equipo> 
+         * Parametros de salida: ArrayList<Equipo>
+         */
+    	
         ArrayList<Equipo> contrincantes = new ArrayList<Equipo>();
 
         // Elegir 9 contrincantes
@@ -196,6 +237,13 @@ public class Equipo implements Serializable {
     }
 
     public static void puntuarEquipos(ArrayList<VehiculoCarrera> terminados, double plata, Campeonato campeonato) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga asignar los puntos actaules a los equipos del campeonato.
+         * Parametros de entrada:  ArrayList<VehiculoCarrera> , plata de tipo double,  campeonato de tipo Campeonato
+         * Parametros de salida: void
+         */
+    	
         int puntosActuales = 13;
         for (VehiculoCarrera vehiculo : terminados) {
             if (!vehiculo.isMorido()) {
@@ -223,6 +271,13 @@ public class Equipo implements Serializable {
 
     //Metodos de instancia
     public void recalcularPuntos(Campeonato campeonato) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de recalcular los puntos del campeonato.
+         * Parametros de entrada:  campeonato de tipo Campeonato
+         * Parametros de salida: void
+         */
+    	
         int nuevosPuntos = 0;
         for (Piloto piloto : campeonato.getListaPilotos()) {
             if (piloto.getEquipo().equals(this)) {
@@ -237,12 +292,22 @@ public class Equipo implements Serializable {
     }
 
     public boolean descuento(double precioTotal, VehiculoCarrera vehiculoCarrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de calcular si se hace desceunto, si la habiliad del piloto es mayor al porcentaje que es preciototal del dinero del equipo se hace descuento.
+         * Parametros de entrada:   precioTotal de tipo double, vehiculoCarrera de tipo vehiculoCarrera
+         * Parametros de salida: boolean
+         */
         Piloto piloto = vehiculoCarrera.getPiloto();
         // si la habiliad del piloto es mayor al porcentaje que es preciototal del dinero del equipo se hace descuento
         return piloto.getHabilidad() > (precioTotal / this.getPlata());
     }
 
     public double calcularDescuento(double precioTotal, VehiculoCarrera vehiculoCarrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de calcular el % de descuento.
+         * Parametros de entrada:   precioTotal de tipo double, vehiculoCarrera de tipo vehiculoCarrera
+         * Parametros de salida: boolean
+         */
         Piloto piloto = vehiculoCarrera.getPiloto();
         double descuento = 0;
         double porcentaje = 0;
@@ -255,6 +320,11 @@ public class Equipo implements Serializable {
     }
 
     public void comprarPiezas(double precioTotal, VehiculoCarrera vehiculoCarrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de comprar las piezas para los vehiculos.
+         * Parametros de entrada:   precioTotal de tipo double, vehiculoCarrera de tipo vehiculoCarrera
+         * Parametros de salida: void
+         */
         double descuento = this.calcularDescuento(precioTotal, vehiculoCarrera);
         double precioFinal = precioTotal - descuento * precioTotal;
         this.setPlata(this.getPlata() - precioFinal);

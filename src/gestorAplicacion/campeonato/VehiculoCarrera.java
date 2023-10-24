@@ -9,6 +9,12 @@ import java.util.Random;
 
 
 public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serializable {
+	
+	   /***
+  * Autores: David Toro Arboleda, Santiago Lopez Ayala, Juan Andres Jimenez Velez, Mariana Valencia Cubillos, Samuel Mira Alvarez
+  * Descripcion de la clase: Esta clase se encarga de la creacion y gention de los vehiculos de carrera que seran utlizados en los campeonatos por los diferentes equipos.
+  */
+	
     public static ArrayList<VehiculoCarrera> listaVehiculos = new ArrayList<VehiculoCarrera>();
 
     //Atributos
@@ -101,6 +107,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 
 
     public static ArrayList<VehiculoCarrera> vehiculosPiloto(Piloto piloto) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de filtrar una lista de los Vehiculos disponibles para el piloto.
+         * Parametros de entrada: piloto de tipo Piloto
+         * Parametros de salida: ArrayList<VehiculoCarrera>
+         */
         ArrayList<VehiculoCarrera> vehiculosPiloto = new ArrayList<VehiculoCarrera>();
         for (VehiculoCarrera vehiculo : VehiculoCarrera.listaVehiculos) {
             if (vehiculo.getPiloto().equals(piloto)) {
@@ -120,6 +131,13 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public static void crearVehiculoPilotosNoElegidos(Piloto piloto){
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de asignar los Vehiculos disponibles para los pilotos no elegidos.
+         * Parametros de entrada: piloto de tipo Piloto
+         * Parametros de salida: void
+         */
+    	
         Random rand = new Random();
         String modelo = String.valueOf(cantidadVehiculosDefault() + 1);
         int velocidad = rand.nextInt(50) + 200;
@@ -148,7 +166,15 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 
 
     //M�todos
-    public void chocar(Carrera carrera) { //Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
+    public void chocar(Carrera carrera) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de cambiar los atributos del vehiculo: tiempo en 0, velocidad en 0, terminado en true y morido en true
+         * Parametros de entrada: carrera de tipo Carrera
+         * Parametros de salida: void
+         */
+    	
+    	//Coloca tiempo en 0, velocidad en 0, terminado en true y morido en true
         this.tiempo = 0;
         this.setVelocidadActual(0);
         this.terminado = true;
@@ -185,6 +211,13 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }*/
 
     public void cambiarPieza(Pieza pieza) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de cambiar las piezas y atributos del vehiculo segun la pieza.
+         * Parametros de entrada: pieza de tipo Pieza
+         * Parametros de salida: void
+         */
+    	
         Equipo equipo =  this.getPiloto().getEquipo();
         String tipoPieza = pieza.getTipo();
         switch (tipoPieza){
@@ -204,6 +237,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public void configurarVehiculo(ArrayList<Pieza> piezas) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de cambiar las piezas y llenar la gasolina del vehiculo.
+         * Parametros de entrada: ArrayList<Pieza> piezas
+         * Parametros de salida: void
+         */
         for (Pieza pieza : piezas) {
             this.cambiarPieza(pieza);
         }
@@ -211,6 +249,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public boolean repararVehiculo() {
+        /***
+         * Descripcion del metodo: este metodo se encarga de reparar el vehiculo si el quipo tiene la plata necesaria.
+         * Parametros de entrada: sin argumentos
+         * Parametros de salida: void
+         */
         double precio = (this.motor.getPrecio()+this.aleron.getPrecio()+this.neumaticos.getPrecio())/2;
         Equipo equipo =  this.getPiloto().getEquipo();
         if (equipo.getPlata() >= precio) {
@@ -224,10 +267,21 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public void llenarGasolina() {
+        /***
+         * Descripcion del metodo: este metodo se encarga de llenar la gasolina del vehiculo al 100%.
+         * Parametros de entrada: sin argumentos
+         * Parametros de salida: void
+         */
         this.gasolina = 100; //Llenar gasolina al 100%
     }
 
-    public void actualizarVelocidadT() { //Actualiza la velocidad tuneada para cuando se cambie una pieza
+    public void actualizarVelocidadT() { 
+        /***
+         * Descripcion del metodo: este metodo se encarga de actualizar la velocidad tuneada para cuando se cambie una pieza.
+         * Parametros de entrada: sin argumentos
+         * Parametros de salida: void
+         */
+    	//
         if (this.getAleron() != null) {
             if (!this.getAleron().isDanado()) {
                 this.velocidadTuneao = this.getVelocidad() + this.getAleron().getVelocidadAnadida();
@@ -247,20 +301,37 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public void actualizarVelicidadActual() {
-        //Actualiza la velocidad actual para cuando se cambie una pieza
-        // O si cambia la velocidad de circumstancias
+        /***
+         * Descripcion del metodo: este metodo se encarga de actualizar la velocidad actual para cuando se cambie una pieza O si cambia la velocidad de circumstancias.
+         * Parametros de entrada: sin argumentos
+         * Parametros de salida: void
+         */
+    
         this.actualizarVelocidadT(); // Actualizar velocidad tuneada
         this.velocidadActual = this.velocidadTuneao + this.velocidadCircumstancias; // Actualizar velocidad actual
         revisarMaxVelocidad(); // Revisar que no se pase de la velocidad m�xima
     }
 
     public void revisarMaxVelocidad() {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga revisar que la velocidad no sobrepase la velocidad maxima.
+         * Parametros de entrada: sin argumentos
+         * Parametros de salida: void
+         */
+    	
         if (this.velocidadActual > 375) {
             this.setVelocidadActual(375);
         }
     }
 
-    public void actualizarProbabilidadChoque(double doub) { //Actualiza la Probabilidad de Choque cuando se cambie la habilidad del piloto
+    public void actualizarProbabilidadChoque(double doub) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de actualizar la Probabilidad de Choque cuando se cambie la habilidad del piloto.
+         * Parametros de entrada: doub de tipo double
+         * Parametros de salida: void
+         */
+ 
         this.probabilidadChoque = Math.max(this.getProbabilidadChoque()-doub, 0.2);
     }
 
@@ -269,6 +340,14 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     // 2. Aumenta la velocidad
     // 3. Usa la probabilidad de chocar
     public void aprovecharDRS(Carrera carrera) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de adelantar durante la carrera y tiene los suientes posibles efectos: Aumenta velocidad, Dana el aleron y usa la probabilidad de chocar.
+         * Parametros de entrada: carrera de tipo Carrera
+         * Parametros de salida: void
+         */
+    	
+    	
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio entre 1 y 3
         if (randomNumber == 1) { // Da�a el aler�n
@@ -294,6 +373,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     // 2. Disminuye 1 posici�n
     // 3. Puede entrar a Pits
     public void frenar(Carrera carrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de frenar durante la carrera, disminuye la velocidad y tiene los suientes posibles efectos: Dana las llantas y poder entrar a Pits.
+         * Parametros de entrada: carrera de tipo Carrera
+         * Parametros de salida: void
+         */
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio entre 1 y 3
         if (randomNumber == 1) { // Da�a las llantas
@@ -310,6 +394,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 //    2. Aumentar velocidad 100
 
     public void hacerManiobra(Carrera carrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de hacer una maniobra durante la carrera y tiene los siguientes posibles efectos: Aumentar la velocidad 100 o chocar.
+         * Parametros de entrada: carrera de tipo Carrera
+         * Parametros de salida: void
+         */
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio
         if (randomNumber <= 5) { // Choca
@@ -323,6 +412,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 //  Defender Posici�n (Pussy) - Mantiene la velocidad actual
 //  1. Aumentar o disminuir velocidad en 20
     public void defender(Carrera carrera) {
+        /***
+         * Descripcion del metodo: este metodo se encarga de defender la posicion durante la carrera y tiene los siguientes posibles efectos: Aumentar o disminuir velocidad en 20.
+         * Parametros de entrada: carrera de tipo Carrera
+         * Parametros de salida: void
+         */
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio
         if (randomNumber <= 5) { // Aumenta la velocidad en 20
@@ -340,6 +434,13 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
 //  3. Usa la probabilidad de choque
 
     public void derrapar(Carrera carrera) {
+    	
+        /***
+         * Descripcion del metodo: este metodo se encarga de derrapar durante la carrera y tiene los suientes posibles efectos: Aumentar velocidad en 30, Danar las llantas y usa la probabilidad de chocar.
+         * Parametros de entrada: carrera de tipo Carrera
+         * Parametros de salida: void
+         */
+    	
         Random rand = new Random(); // Generador de n�meros aleatorios
         int randomNumber = rand.nextInt(10) + 1; // N�mero aleatorio
         if (randomNumber == 1) {
@@ -362,6 +463,22 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public static ArrayList<VehiculoCarrera> manipularVehiculos(ArrayList<VehiculoCarrera> vehiculoParticipantes, ArrayList<Piloto> pilotosDesfavorecidos, Piloto pilotoMaldito, Piloto piloto, double plata, DirectorCarrera directorCarrera){
+    	
+    	/**
+    	 * Manipula la posición de los vehículos en una carrera, aplicando diferentes efectos según las condiciones de los pilotos.
+    	 * 
+    	 * Parametros de entrada:
+    	 *
+    	 *  vehiculoParticipantes de tipo ArrayList<VehiculoCarrera>  
+    	 *  pilotosDesfavorecidos de tipo ArrayList<Piloto>   
+    	 *  pilotoMaldito de tipo Piloto           
+    	 *  piloto de tipo   Piloto                
+    	 *  plata de tipo    double                .
+    	 *  directorCarrera de tipo  directorCarrera       
+    	 * 
+    	 * Parametros de salida:     Lista de vehículos con sus posiciones manipuladas.
+    	 */
+    	
         Random rand = new Random();
         ArrayList<VehiculoCarrera> posicionesCorruptas = new ArrayList<VehiculoCarrera>();
         for (VehiculoCarrera vehiculoCarrera : vehiculoParticipantes){
@@ -378,6 +495,21 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public static ArrayList<VehiculoCarrera> manipularVehiculos(ArrayList<VehiculoCarrera> vehiculoParticipantes, ArrayList<Piloto> pilotosDesfavorecidos, Piloto piloto, double plata, DirectorCarrera directorCarrera){
+    	
+    	/**
+    	 * Manipula la posición de los vehículos en una carrera, aplicando diferentes efectos según las condiciones de los pilotos.
+    	 * 
+    	 * Parametros de entrada:
+    	 *
+    	 *  vehiculoParticipantes de tipo ArrayList<VehiculoCarrera>  
+    	 *  pilotosDesfavorecidos de tipo ArrayList<Piloto>              
+    	 *  piloto de tipo   Piloto                
+    	 *  plata de tipo    double                .
+    	 *  directorCarrera de tipo  directorCarrera       
+    	 * 
+    	 * Parametros de salida:     Lista de vehículos con sus posiciones manipuladas.
+    	 */
+    	
         Random rand = new Random();
         ArrayList<VehiculoCarrera> posicionesCorruptas = new ArrayList<VehiculoCarrera>();
         for (VehiculoCarrera vehiculoCarrera : vehiculoParticipantes){
@@ -392,6 +524,11 @@ public class VehiculoCarrera extends Chasis implements Decimales, java.io.Serial
     }
 
     public static VehiculoCarrera vehiculoCarreraPiloto(ArrayList<VehiculoCarrera> vehiculos, Piloto piloto){
+        /***
+         * Descripcion del metodo: este metodo se encarga de asignar un vehiculo elegido.
+         * Parametros de entrada: vehiculos de tipo ArrayList<VehiculoCarrera>, piloto de tipo Piloto
+         * Parametros de salida: VehiculoCarrera
+         */
         VehiculoCarrera carroElegido = null;
         for (VehiculoCarrera vehiculoCarrera : VehiculoCarrera.vehiculosPiloto(piloto))
             if (vehiculos.contains(vehiculoCarrera)) {
